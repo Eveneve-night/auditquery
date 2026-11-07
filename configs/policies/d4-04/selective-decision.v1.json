@@ -1,0 +1,39 @@
+{
+  "policy_id": "d4-selective-decision",
+  "version": "1.0.0",
+  "mode": "uncalibrated_raw_score",
+  "allowed_actions": [
+    "accept",
+    "clarify",
+    "escalate",
+    "reject"
+  ],
+  "supported_intents": [
+    "sql"
+  ],
+  "action_priority": [
+    "policy_restriction",
+    "hard_slot_issue",
+    "unknown_slot_state",
+    "outside_candidate_set",
+    "raw_score_threshold",
+    "accept"
+  ],
+  "thresholds": {
+    "accept_min": 0.75,
+    "clarify_min": 0.5,
+    "abstain_below": 0.25,
+    "accept_boundary": "greater_than_or_equal",
+    "clarify_boundary": "greater_than_or_equal",
+    "abstain_boundary": "strictly_less_than"
+  },
+  "calibrator": {
+    "kind": "identity_uncalibrated",
+    "interface_version": "uncalibrated-identity.v1",
+    "empirically_calibrated": false
+  },
+  "safety": {
+    "accept_authorizes_sql_execution": false,
+    "requires_d4_02_safety_gate": true
+  }
+}

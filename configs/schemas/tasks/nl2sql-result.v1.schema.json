@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nl2sql-result.v1",
+  "title": "NL2SQL task result v1",
+  "type": "object",
+  "required": ["schema_version", "task_type", "status", "data", "error", "warnings"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "task_type": {"const": "nl2sql"},
+    "status": {"enum": ["success", "error"]},
+    "data": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/sql_data"}]},
+    "error": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/task_error"}]},
+    "warnings": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1, "maxLength": 200},
+      "uniqueItems": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "success"}}, "required": ["status"]},
+      "then": {"properties": {"data": {"$ref": "#/$defs/sql_data"}, "error": {"type": "null"}}}
+    },
+    {
+      "if": {"properties": {"status": {"const": "error"}}, "required": ["status"]},
+      "then": {"properties": {"data": {"type": "null"}, "error": {"$ref": "#/$defs/task_error"}}}
+    }
+  ],
+  "$defs": {
+    "sql_data": {
+      "type": "object",
+      "required": ["outcome", "sql", "tables", "params", "rationale"],
+      "properties": {
+        "outcome": {"const": "sql"},
+        "sql": {"type": "string", "minLength": 1, "maxLength": 4000},
+        "tables": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1, "maxLength": 128},
+          "minItems": 1,
+          "maxItems": 1,
+          "uniqueItems": true
+        },
+        "params": {
+          "type": "array",
+          "items": {"type": ["string", "number", "integer", "boolean", "null"]},
+          "maxItems": 50
+        },
+        "rationale": {"type": "string", "minLength": 1, "maxLength": 300}
+      },
+      "additionalProperties": false
+    },
+    "task_error": {
+      "type": "object",
+      "required": ["code", "message", "retryable", "field_errors"],
+      "properties": {
+        "code": {"enum": ["INSUFFICIENT_CONTEXT", "UNSAFE_REQUEST"]},
+        "message": {"type": "string", "minLength": 1, "maxLength": 300},
+        "retryable": {"const": false},
+        "field_errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["path", "code"],
+            "properties": {
+              "path": {"type": "string", "minLength": 1, "maxLength": 200},
+              "code": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"}
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

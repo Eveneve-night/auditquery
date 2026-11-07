@@ -1,0 +1,6 @@
+# 二进制产物：禁止 CRLF 转换与文本 diff，保证 manifest 中的 SHA-256 跨 checkout 稳定。
+*.pdf binary
+
+# 前端 RAG 引用清单是自动生成资产（tools/rag/build_frontend_manifest.py 产出），
+# 固定 LF：本机 core.autocrlf=true 会把它转成 CRLF，导致重建产物与提交文件字节漂移。
+src/frontend/d4-console/rag-manifest.js text eol=lf

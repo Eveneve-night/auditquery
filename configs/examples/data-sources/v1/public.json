@@ -1,0 +1,70 @@
+{
+  "source": {
+    "contract_version": "1.0.0",
+    "source_id": "source.demo",
+    "revision": 3,
+    "status": "published",
+    "connector": {
+      "id": "sqlite",
+      "version": "1.0.0"
+    },
+    "sqlite_asset_id": "asset.synthetic",
+    "credential_ref": null,
+    "binding": {
+      "schema_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "authorized_object_ids": [
+        "table.artist"
+      ],
+      "domain_pack": {
+        "id": "chinook",
+        "version": "1.0.0",
+        "manifest_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "policy": {
+        "version": "1.0.0",
+        "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      }
+    }
+  },
+  "descriptor": {
+    "contract_version": "1.0.0",
+    "connector": {
+      "id": "sqlite",
+      "version": "1.0.0"
+    },
+    "capabilities": {
+      "readonly": "supported",
+      "single_table": "supported",
+      "timeout": "supported",
+      "cancel": "unsupported",
+      "pooling": "unsupported",
+      "tls": "not_applicable",
+      "network": "unsupported",
+      "multi_table": "unsupported"
+    }
+  },
+  "snapshot": {
+    "contract_version": "1.0.0",
+    "source_id": "source.demo",
+    "source_revision": 3,
+    "connector": {
+      "id": "sqlite",
+      "version": "1.0.0"
+    },
+    "binding": {
+      "schema_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "authorized_object_ids": [
+        "table.artist"
+      ],
+      "domain_pack": {
+        "id": "chinook",
+        "version": "1.0.0",
+        "manifest_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "policy": {
+        "version": "1.0.0",
+        "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      }
+    }
+  }
+}

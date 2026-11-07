@@ -1,0 +1,46 @@
+{
+  "event_type": "typed_decision",
+  "trace_version": "1.0.0",
+  "request_id": "testonly-request-001",
+  "recorded_at": "2026-09-26T00:00:00Z",
+  "domain_pack_ref": {
+    "domain_pack_id": "example_public_pack",
+    "version": "1.0.0",
+    "manifest_sha256": "cfe0c5f36673c60ce2305fa3cfe51114fac68967a1b098be1039198d889cbdbe"
+  },
+  "decision": {
+    "decision_type": "boolean",
+    "candidate_options": [
+      {"candidate_id": "boolean.true", "display_name": "是", "evidence_refs": ["evidence.example_present"], "raw_features": {"rule_match": true}},
+      {"candidate_id": "boolean.false", "display_name": "否", "evidence_refs": ["evidence.example_absent"], "raw_features": {"rule_match": false}}
+    ],
+    "selected_option": "boolean.true",
+    "raw_score": 0.8,
+    "calibration_version": null,
+    "evidence_refs": ["evidence.example_present"],
+    "missing_or_conflicting_slots": [],
+    "recommended_action": "accept",
+    "abstain_reason": null,
+    "contract_version": "1.0.0"
+  },
+  "thresholds": {
+    "accept_min": 0.75,
+    "clarify_min": 0.4,
+    "abstain_below": 0.2,
+    "calibration_version": null
+  },
+  "executed_action": "accept",
+  "component_versions": {
+    "candidate_retriever": "not-implemented.v1",
+    "evidence_assembler": "not-implemented.v1",
+    "calibrator": null,
+    "selective_policy": "not-implemented.v1"
+  },
+  "budget_snapshot": {
+    "model_calls": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "estimated_cost_cny": 0.0,
+    "elapsed_ms": 0
+  }
+}

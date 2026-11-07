@@ -1,0 +1,18 @@
+# AuditQuery runtime lock (Python 3.12)
+argon2-cffi==25.1.0
+argon2-cffi-bindings==26.1.0
+attrs==26.1.0
+cffi==2.1.1
+charset-normalizer==3.5.1
+cryptography==50.0.1
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
+pdfminer.six==20260107
+pdfplumber==0.11.10
+pillow==12.3.0
+pycparser==3.0
+pypdf==6.19.0
+pypdfium2==5.13.0
+referencing==0.37.0
+rpds-py==2026.6.3
+typing_extensions==4.16.0

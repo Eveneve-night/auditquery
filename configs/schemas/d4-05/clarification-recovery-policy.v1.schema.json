@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "clarification-recovery-policy.v1",
+  "title": "D4-05 clarification recovery policy v1",
+  "type": "object",
+  "required": ["policy_id", "version", "planner", "state_merge", "safety"],
+  "properties": {
+    "policy_id": {"const": "d4-clarification-recovery"},
+    "version": {"const": "1.0.0"},
+    "planner": {
+      "type": "object",
+      "required": ["strategy", "ablation_baseline", "max_questions_per_turn", "tie_break", "weights"],
+      "properties": {
+        "strategy": {"const": "expected_information_gain"},
+        "ablation_baseline": {"const": "first_missing"},
+        "max_questions_per_turn": {"const": 1},
+        "tie_break": {"const": "score_desc_slot_id_asc"},
+        "weights": {
+          "type": "object",
+          "required": ["candidate_reduction_gain", "downstream_condition_impact", "legal_value_information"],
+          "properties": {
+            "candidate_reduction_gain": {"type": "number", "minimum": 0, "maximum": 1},
+            "downstream_condition_impact": {"type": "number", "minimum": 0, "maximum": 1},
+            "legal_value_information": {"type": "number", "minimum": 0, "maximum": 1}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "state_merge": {
+      "type": "object",
+      "required": ["accepted_value_count", "bind_session", "bind_turn", "bind_state_revision", "reject_replay", "reject_cross_slot_update", "time_range"],
+      "properties": {
+        "accepted_value_count": {"const": 1},
+        "bind_session": {"const": true},
+        "bind_turn": {"const": true},
+        "bind_state_revision": {"const": true},
+        "reject_replay": {"const": true},
+        "reject_cross_slot_update": {"const": true},
+        "time_range": {
+          "type": "object",
+          "required": ["representation", "version", "minimum_year", "maximum_year", "pattern"],
+          "properties": {
+            "representation": {"const": "single_year_string"},
+            "version": {"const": "single-year.v1"},
+            "minimum_year": {"const": 2009},
+            "maximum_year": {"const": 2013},
+            "pattern": {"const": "^(2009|2010|2011|2012|2013)$"}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "safety": {
+      "type": "object",
+      "required": ["accept_authorizes_sql_execution", "requires_d4_02_safety_gate", "proposal_port"],
+      "properties": {
+        "accept_authorizes_sql_execution": {"const": false},
+        "requires_d4_02_safety_gate": {"const": true},
+        "proposal_port": {"const": "offline_injected_only"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,166 @@
+{
+  "manifest_id": "pdf-v1",
+  "version": "1.0.0",
+  "created_at": "2026-09-26T14:00:00+08:00",
+  "hash_algorithm": "sha256",
+  "renderer": "tools/rag/render_knowledge_pdfs.py",
+  "font": "STSong-Light",
+  "license": "internal-synthetic（自造夹具，无第三方许可负担）",
+  "page_size": "A4",
+  "documents": [
+    {
+      "document_id": "expense_policy",
+      "title": "差旅与报销制度",
+      "source_markdown": "tests\\fixtures\\knowledge\\expense_policy.md",
+      "pdf_path": "data\\raw\\pdf\\expense_policy.pdf",
+      "sha256": "6df7d01341b4912d9ee2cc06ced4c7601d3857914dad05e03d89319b4a56e2e6",
+      "bytes": 4334,
+      "page_count": 3,
+      "evidence_pages": {
+        "EXP-001": 1,
+        "EXP-002": 1,
+        "EXP-003": 2,
+        "EXP-004": 2,
+        "EXP-005": 3
+      }
+    },
+    {
+      "document_id": "project_report",
+      "title": "灯塔项目年度复盘",
+      "source_markdown": "tests\\fixtures\\knowledge\\project_report.md",
+      "pdf_path": "data\\raw\\pdf\\project_report.pdf",
+      "sha256": "780f90fae9636e6ae17b2a220209549387abc0dc0277e81097a673ebe44b411b",
+      "bytes": 4216,
+      "page_count": 3,
+      "evidence_pages": {
+        "PROJ-001": 1,
+        "PROJ-002": 1,
+        "PROJ-003": 2,
+        "PROJ-004": 2,
+        "PROJ-005": 3
+      }
+    },
+    {
+      "document_id": "sales_playbook",
+      "title": "销售分析手册",
+      "source_markdown": "tests\\fixtures\\knowledge\\sales_playbook.md",
+      "pdf_path": "data\\raw\\pdf\\sales_playbook.pdf",
+      "sha256": "f001f9d7b1ea2315e7bf4047d8feee009f5ee5864e5f47dc00b6eb331070ad59",
+      "bytes": 4391,
+      "page_count": 3,
+      "evidence_pages": {
+        "SALES-001": 1,
+        "SALES-002": 1,
+        "SALES-003": 2,
+        "SALES-004": 2,
+        "SALES-005": 3
+      }
+    },
+    {
+      "document_id": "security_policy",
+      "title": "API 与数据安全规范",
+      "source_markdown": "tests\\fixtures\\knowledge\\security_policy.md",
+      "pdf_path": "data\\raw\\pdf\\security_policy.pdf",
+      "sha256": "2b9cc2b0b8139da417ba4529e46426ae48c5229057fe580fbc1990dc7be7fd77",
+      "bytes": 4466,
+      "page_count": 3,
+      "evidence_pages": {
+        "SEC-001": 1,
+        "SEC-002": 1,
+        "SEC-003": 2,
+        "SEC-004": 2,
+        "SEC-005": 3
+      }
+    },
+    {
+      "document_id": "customer_success",
+      "title": "客户成功服务规范",
+      "source_markdown": "tests\\fixtures\\knowledge\\pdf\\customer_success.md",
+      "pdf_path": "data\\raw\\pdf\\customer_success.pdf",
+      "sha256": "1e14fd54c2c1f39aa7191cbcc447879318d05fb44278f22d1cf917dbe40ff7a4",
+      "bytes": 3538,
+      "page_count": 2,
+      "evidence_pages": {
+        "CS-001": 1,
+        "CS-002": 1,
+        "CS-003": 2,
+        "CS-004": 2
+      }
+    },
+    {
+      "document_id": "finance_policy",
+      "title": "财务管理制度",
+      "source_markdown": "tests\\fixtures\\knowledge\\pdf\\finance_policy.md",
+      "pdf_path": "data\\raw\\pdf\\finance_policy.pdf",
+      "sha256": "a4d334a3f8dc67e21febcf5b0dc42c56af45d0d63adb0eb86e35fcf493cb5ab9",
+      "bytes": 3529,
+      "page_count": 2,
+      "evidence_pages": {
+        "FIN-001": 1,
+        "FIN-002": 1,
+        "FIN-003": 2,
+        "FIN-004": 2
+      }
+    },
+    {
+      "document_id": "hr_policy",
+      "title": "人事管理制度",
+      "source_markdown": "tests\\fixtures\\knowledge\\pdf\\hr_policy.md",
+      "pdf_path": "data\\raw\\pdf\\hr_policy.pdf",
+      "sha256": "4c1f32cafd91d710d19de0822f34bc06b156129161c5130571f9c042674e8aa2",
+      "bytes": 3543,
+      "page_count": 2,
+      "evidence_pages": {
+        "HR-001": 1,
+        "HR-002": 1,
+        "HR-003": 2,
+        "HR-004": 2
+      }
+    },
+    {
+      "document_id": "it_operations",
+      "title": "IT 运维制度",
+      "source_markdown": "tests\\fixtures\\knowledge\\pdf\\it_operations.md",
+      "pdf_path": "data\\raw\\pdf\\it_operations.pdf",
+      "sha256": "da50ca5bb2c195a9e8afdc289dceb0095562ba46b9d84fcb6cf7798d29100177",
+      "bytes": 3517,
+      "page_count": 2,
+      "evidence_pages": {
+        "IT-001": 1,
+        "IT-002": 1,
+        "IT-003": 2,
+        "IT-004": 2
+      }
+    },
+    {
+      "document_id": "legal_compliance",
+      "title": "法务与合规制度",
+      "source_markdown": "tests\\fixtures\\knowledge\\pdf\\legal_compliance.md",
+      "pdf_path": "data\\raw\\pdf\\legal_compliance.pdf",
+      "sha256": "821483e8599f14e91779800ee13e55ac6ba93db2252b9e4250336ab649c7d586",
+      "bytes": 3539,
+      "page_count": 2,
+      "evidence_pages": {
+        "LEGAL-001": 1,
+        "LEGAL-002": 1,
+        "LEGAL-003": 2,
+        "LEGAL-004": 2
+      }
+    },
+    {
+      "document_id": "product_manual",
+      "title": "产品手册",
+      "source_markdown": "tests\\fixtures\\knowledge\\pdf\\product_manual.md",
+      "pdf_path": "data\\raw\\pdf\\product_manual.pdf",
+      "sha256": "27cdc0a94df26f4c18a714e18a043acd983a74e33e7db5f420a7579fde586455",
+      "bytes": 3518,
+      "page_count": 2,
+      "evidence_pages": {
+        "PROD-001": 1,
+        "PROD-002": 1,
+        "PROD-003": 2,
+        "PROD-004": 2
+      }
+    }
+  ]
+}

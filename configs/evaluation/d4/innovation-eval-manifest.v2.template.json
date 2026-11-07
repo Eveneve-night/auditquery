@@ -1,0 +1,40 @@
+{
+  "dataset_id": "typed-decision-innovation-eval",
+  "version": "2.0.0",
+  "schema_version": "2.0.0",
+  "status": "public_template_only",
+  "contains_case_content": false,
+  "split_plan": {
+    "prompt_dev": 80,
+    "validation": 40,
+    "hidden_test": 120,
+    "total": 240
+  },
+  "blind_zones": {
+    "mutually_exclusive": true,
+    "unseen_alias_family": 40,
+    "unseen_utterance_template_family": 40,
+    "unseen_schema_or_domain": 40
+  },
+  "coverage_constraints": {
+    "should_clarify": 60,
+    "should_not_clarify": 60,
+    "schema_linking": 90,
+    "executable_end_to_end": 80,
+    "minimum_domains": 3,
+    "minimum_positive_per_slot_category": 15,
+    "slot_categories": ["time", "metric", "entity", "granularity", "scope", "comparison_baseline"]
+  },
+  "grouping_keys": ["alias_family_id", "sql_skeleton_id", "missing_slot_combination_id", "utterance_template_family_id", "document_family_id", "schema_domain_id"],
+  "hidden_test": {
+    "storage": "outside_repository_or_protected_pipeline",
+    "keeper": "non_prompt_author",
+    "content_committed": false,
+    "aggregate_results_only": true
+  },
+  "hash_spec": {
+    "algorithm": "sha256",
+    "canonicalization": "utf8_lf",
+    "required_before_run": true
+  }
+}

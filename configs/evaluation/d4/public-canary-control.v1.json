@@ -1,0 +1,98 @@
+{
+  "control_id": "d4-08-public-canary-control.v1",
+  "version": "1.0.0",
+  "owner": "A",
+  "status": "frozen_before_online_canary",
+  "scope": "one_public_prompt_dev_case_only",
+  "provider_boundary": {
+    "provider_id": "bailian-cn-beijing",
+    "region": "cn-beijing",
+    "model": "qwen3.7-flash",
+    "temperature": 0,
+    "enable_thinking": false,
+    "second_provider_enabled": false,
+    "fallback_enabled": false
+  },
+  "groups": [
+    {"group_id": "B0", "uses_model": true, "provider_attempt_cap": 1},
+    {"group_id": "B1", "uses_model": true, "provider_attempt_cap": 1},
+    {"group_id": "B2", "uses_model": false, "provider_attempt_cap": 0},
+    {"group_id": "P", "uses_model": true, "provider_attempt_cap": 1},
+    {"group_id": "P-uncalibrated", "uses_model": true, "provider_attempt_cap": 1}
+  ],
+  "batch_limits": {
+    "case_count": 1,
+    "provider_attempt_cap": 4,
+    "hard_cost_cny": 0.05,
+    "validation_case_reads": 0,
+    "hidden_test_case_reads": 0
+  },
+  "equality_constraints": [
+    "same_case_ids",
+    "same_candidate_catalog_sha256",
+    "same_scorer_sha256",
+    "same_budget_profile",
+    "same_output_constraints_from_frozen_protocol"
+  ],
+  "required_before_public_canary": [
+    "offline_stage_gate_pass",
+    "public_canary_manifest_frozen",
+    "online_adapter_identity_frozen",
+    "usage_token_cost_stop_reason_accounting",
+    "explicit_user_authorization"
+  ],
+  "required_before_validation_or_hidden_test": [
+    "formal_v2_data_manifest_frozen",
+    "split_hashes_frozen",
+    "validation_exposure_registered",
+    "hidden_answer_custodian_registered",
+    "readonly_hidden_runner_entrypoint",
+    "new_explicit_user_authorization"
+  ],
+  "stop_policy": {
+    "immediate": [
+      "http_400",
+      "http_401",
+      "http_403",
+      "provider_attempt_cap_reached",
+      "hard_cost_cap_reached"
+    ],
+    "retryable_only_by_frozen_gateway": [
+      "http_429",
+      "timeout",
+      "http_500",
+      "http_502",
+      "http_503",
+      "http_504"
+    ],
+    "may_raise_limits": false
+  },
+  "credential_boundary": {
+    "loader": "src.backend.llm.credentials.ExternalFileCredentialProvider",
+    "repository_storage_allowed": false,
+    "plaintext_logging_allowed": false,
+    "copy_or_modify_external_files_allowed": false
+  },
+  "redacted_report": {
+    "required_fields": [
+      "run_id",
+      "case_manifest_sha256",
+      "adapter_id",
+      "adapter_sha256",
+      "provider_attempts",
+      "input_tokens",
+      "output_tokens",
+      "estimated_cost_cny",
+      "stop_reason",
+      "stable_error_codes"
+    ],
+    "forbidden_content": [
+      "prompt_text",
+      "question_text",
+      "model_output_text",
+      "candidate_sql",
+      "evidence_body",
+      "api_key"
+    ]
+  }
+}

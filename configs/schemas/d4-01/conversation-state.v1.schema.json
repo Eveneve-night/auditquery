@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "conversation-state.v1",
+  "title": "Explicit conversation routing state v1",
+  "type": "object",
+  "required": [
+    "state_version",
+    "session_id",
+    "revision",
+    "phase",
+    "current_request",
+    "route",
+    "history"
+  ],
+  "properties": {
+    "state_version": {"const": "1.0.0"},
+    "session_id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.:-]{0,127}$"
+    },
+    "revision": {"type": "integer", "minimum": 0},
+    "phase": {
+      "type": "string",
+      "enum": ["awaiting_intent", "routed", "needs_clarification", "rejected"]
+    },
+    "current_request": {
+      "type": "object",
+      "required": ["query", "conversation"],
+      "properties": {
+        "query": {"type": "string", "minLength": 1, "maxLength": 2000},
+        "conversation": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {"$ref": "#/$defs/message"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "route": {"$ref": "#/$defs/route"},
+    "history": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {"$ref": "#/$defs/history_item"}
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"phase": {"const": "awaiting_intent"}}, "required": ["phase"]},
+      "then": {
+        "properties": {
+          "route": {
+            "properties": {
+              "intent": {"type": "null"},
+              "selected_source_ids": {"maxItems": 0},
+              "needs_clarification": {"const": false},
+              "missing_slots": {"maxItems": 0},
+              "reason": {"type": "null"},
+              "normalized_query": {"type": "null"}
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"phase": {"const": "routed"}}, "required": ["phase"]},
+      "then": {
+        "properties": {
+          "route": {
+            "properties": {
+              "intent": {"enum": ["sql", "rag", "cross_source"]},
+              "selected_source_ids": {"minItems": 1},
+              "needs_clarification": {"const": false},
+              "missing_slots": {"maxItems": 0},
+              "reason": {"const": "routable"}
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"phase": {"const": "needs_clarification"}}, "required": ["phase"]},
+      "then": {
+        "properties": {
+          "route": {
+            "properties": {
+              "intent": {"enum": ["sql", "rag", "cross_source"]},
+              "selected_source_ids": {"minItems": 1},
+              "needs_clarification": {"const": true},
+              "missing_slots": {"minItems": 1},
+              "reason": {"const": "ambiguous"}
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"phase": {"const": "rejected"}}, "required": ["phase"]},
+      "then": {
+        "properties": {
+          "route": {
+            "properties": {
+              "intent": {"const": "unknown"},
+              "selected_source_ids": {"maxItems": 0},
+              "needs_clarification": {"const": false},
+              "missing_slots": {"maxItems": 0},
+              "reason": {"enum": ["outside_available_sources", "unsupported_task"]}
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "identifier": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$"},
+    "source_id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]{1,63}$"},
+    "message": {
+      "type": "object",
+      "required": ["role", "content"],
+      "properties": {
+        "role": {"type": "string", "enum": ["user", "assistant"]},
+        "content": {"type": "string", "minLength": 1, "maxLength": 4000}
+      },
+      "additionalProperties": false
+    },
+    "route": {
+      "type": "object",
+      "required": [
+        "intent",
+        "selected_source_ids",
+        "needs_clarification",
+        "missing_slots",
+        "reason",
+        "normalized_query"
+      ],
+      "properties": {
+        "intent": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "string", "enum": ["sql", "rag", "cross_source", "unknown"]}
+          ]
+        },
+        "selected_source_ids": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/source_id"},
+          "maxItems": 4,
+          "uniqueItems": true
+        },
+        "needs_clarification": {"type": "boolean"},
+        "missing_slots": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/identifier"},
+          "maxItems": 8,
+          "uniqueItems": true
+        },
+        "reason": {
+          "oneOf": [
+            {"type": "null"},
+            {
+              "type": "string",
+              "enum": ["routable", "ambiguous", "outside_available_sources", "unsupported_task"]
+            }
+          ]
+        },
+        "normalized_query": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "string", "minLength": 1, "maxLength": 500}
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"intent": {"enum": ["sql", "rag"]}}, "required": ["intent"]},
+          "then": {"properties": {"selected_source_ids": {"minItems": 1}}}
+        },
+        {
+          "if": {"properties": {"intent": {"const": "cross_source"}}, "required": ["intent"]},
+          "then": {"properties": {"selected_source_ids": {"minItems": 2}}}
+        },
+        {
+          "if": {"properties": {"intent": {"const": "unknown"}}, "required": ["intent"]},
+          "then": {"properties": {"selected_source_ids": {"maxItems": 0}}}
+        }
+      ],
+      "additionalProperties": false
+    },
+    "history_item": {
+      "type": "object",
+      "required": [
+        "revision",
+        "phase",
+        "intent",
+        "selected_source_ids",
+        "needs_clarification",
+        "missing_slots",
+        "reason"
+      ],
+      "properties": {
+        "revision": {"type": "integer", "minimum": 1},
+        "phase": {"type": "string", "enum": ["routed", "needs_clarification", "rejected"]},
+        "intent": {"type": "string", "enum": ["sql", "rag", "cross_source", "unknown"]},
+        "selected_source_ids": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/source_id"},
+          "maxItems": 4,
+          "uniqueItems": true
+        },
+        "needs_clarification": {"type": "boolean"},
+        "missing_slots": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/identifier"},
+          "maxItems": 8,
+          "uniqueItems": true
+        },
+        "reason": {
+          "type": "string",
+          "enum": ["routable", "ambiguous", "outside_available_sources", "unsupported_task"]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

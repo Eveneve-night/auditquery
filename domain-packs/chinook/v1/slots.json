@@ -1,0 +1,192 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "slots",
+  "items": [
+    {
+      "slot_id": "slot.metric",
+      "display_name": "指标",
+      "description": "问数请求度量的业务指标，如收入、单价、时长或增长率。",
+      "value_type": "enum",
+      "required_by_default": true,
+      "required_when": [],
+      "conflict_slot_ids": [],
+      "allowed_value_evidence_refs": [
+        "evidence.metric_kinds"
+      ],
+      "source_refs": [
+        "source.d3_contract_vocabulary"
+      ]
+    },
+    {
+      "slot_id": "slot.entity_type",
+      "display_name": "实体类型",
+      "description": "问题主体所属的业务实体种类；跨多表的指标必须明确主体。",
+      "value_type": "enum",
+      "required_by_default": false,
+      "required_when": [
+        {
+          "condition_id": "condition.metric_entity_attached",
+          "subject_ref": "slot.metric",
+          "operator": "in",
+          "values": [
+            "count",
+            "unit_price",
+            "duration"
+          ]
+        }
+      ],
+      "conflict_slot_ids": [],
+      "allowed_value_evidence_refs": [
+        "evidence.entity_kinds"
+      ],
+      "source_refs": [
+        "source.d3_contract_vocabulary"
+      ]
+    },
+    {
+      "slot_id": "slot.time_range",
+      "display_name": "时间范围",
+      "description": "统计覆盖的时间区间；收入与增长率等期间型指标需要明确期间。",
+      "value_type": "string",
+      "required_by_default": false,
+      "required_when": [
+        {
+          "condition_id": "condition.metric_period_aggregate",
+          "subject_ref": "slot.metric",
+          "operator": "in",
+          "values": [
+            "revenue",
+            "sales_revenue",
+            "invoice_total",
+            "growth_rate"
+          ]
+        }
+      ],
+      "conflict_slot_ids": [],
+      "allowed_value_evidence_refs": [
+        "evidence.time_range_years"
+      ],
+      "source_refs": [
+        "source.d3_contract_vocabulary"
+      ]
+    },
+    {
+      "slot_id": "slot.country",
+      "display_name": "国家",
+      "description": "客户或发票归属的国家，取值必须来自数据库实际国家集合。",
+      "value_type": "enum",
+      "required_by_default": false,
+      "required_when": [
+        {
+          "condition_id": "condition.entity_geo_attached",
+          "subject_ref": "slot.entity_type",
+          "operator": "in",
+          "values": [
+            "customer",
+            "invoice"
+          ]
+        }
+      ],
+      "conflict_slot_ids": [],
+      "allowed_value_evidence_refs": [
+        "evidence.country_enum"
+      ],
+      "source_refs": [
+        "source.d3_contract_vocabulary"
+      ]
+    },
+    {
+      "slot_id": "slot.limit",
+      "display_name": "前N条数",
+      "description": "Top-N 类问题返回的条数上限，必须为正整数。",
+      "value_type": "integer",
+      "required_by_default": false,
+      "required_when": [
+        {
+          "condition_id": "condition.metric_ranking",
+          "subject_ref": "slot.metric",
+          "operator": "in",
+          "values": [
+            "unit_price",
+            "duration"
+          ]
+        }
+      ],
+      "conflict_slot_ids": [],
+      "allowed_value_evidence_refs": [
+        "evidence.limit_range"
+      ],
+      "source_refs": [
+        "source.d3_contract_vocabulary"
+      ]
+    },
+    {
+      "slot_id": "slot.grain",
+      "display_name": "时间粒度",
+      "description": "期间对比使用的分组粒度；增长率类指标需要明确对比粒度。",
+      "value_type": "enum",
+      "required_by_default": false,
+      "required_when": [
+        {
+          "condition_id": "condition.metric_growth",
+          "subject_ref": "slot.metric",
+          "operator": "equals",
+          "values": [
+            "growth_rate"
+          ]
+        }
+      ],
+      "conflict_slot_ids": [],
+      "allowed_value_evidence_refs": [
+        "evidence.grain_kinds"
+      ],
+      "source_refs": [
+        "source.d3_contract_vocabulary"
+      ]
+    },
+    {
+      "slot_id": "slot.sort",
+      "display_name": "排序方向",
+      "description": "Top-N 结果的排序方向；指定条数上限时需要排序方向。",
+      "value_type": "enum",
+      "required_by_default": false,
+      "required_when": [
+        {
+          "condition_id": "condition.limit_present",
+          "subject_ref": "slot.limit",
+          "operator": "present",
+          "values": []
+        }
+      ],
+      "conflict_slot_ids": [],
+      "allowed_value_evidence_refs": [
+        "evidence.sort_kinds"
+      ],
+      "source_refs": [
+        "source.d3_contract_vocabulary"
+      ]
+    },
+    {
+      "slot_id": "slot.comparison_baseline",
+      "display_name": "对比基线",
+      "description": "增长率类指标对比的基准期间，如上一季度或上一年度。",
+      "value_type": "string",
+      "required_by_default": false,
+      "required_when": [
+        {
+          "condition_id": "condition.metric_growth_baseline",
+          "subject_ref": "slot.metric",
+          "operator": "equals",
+          "values": [
+            "growth_rate"
+          ]
+        }
+      ],
+      "conflict_slot_ids": [],
+      "allowed_value_evidence_refs": [],
+      "source_refs": [
+        "source.d3_contract_vocabulary"
+      ]
+    }
+  ]
+}

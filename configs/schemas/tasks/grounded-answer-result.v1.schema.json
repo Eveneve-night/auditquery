@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "grounded-answer-result.v1",
+  "title": "Grounded answer (RAG) task result",
+  "description": "复用 task-result-envelope.v1 的字段语义；task_type 固定为 grounded_answer，成功 data 为 RAG 有据问答对象。自包含定义，便于离线校验器独立加载。",
+  "type": "object",
+  "required": ["schema_version", "task_type", "status", "data", "error", "warnings"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "task_type": {"const": "grounded_answer"},
+    "status": {"type": "string", "enum": ["success", "error"]},
+    "data": {"type": ["object", "null"]},
+    "error": {
+      "oneOf": [
+        {"type": "null"},
+        {"$ref": "#/$defs/task_error"}
+      ]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1, "maxLength": 200},
+      "uniqueItems": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "success"}}, "required": ["status"]},
+      "then": {
+        "properties": {
+          "data": {"$ref": "#/$defs/grounded_answer_data"},
+          "error": {"type": "null"}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"status": {"const": "error"}}, "required": ["status"]},
+      "then": {
+        "properties": {
+          "data": {"type": "null"},
+          "error": {"$ref": "#/$defs/task_error"}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "task_error": {
+      "type": "object",
+      "required": ["code", "message", "retryable", "field_errors"],
+      "properties": {
+        "code": {
+          "type": "string",
+          "enum": [
+            "INVALID_INPUT",
+            "INSUFFICIENT_CONTEXT",
+            "UNSAFE_REQUEST",
+            "SCHEMA_VALIDATION_FAILED",
+            "POLICY_LIMIT",
+            "INTERNAL_ERROR"
+          ]
+        },
+        "message": {"type": "string", "minLength": 1, "maxLength": 300},
+        "retryable": {"type": "boolean"},
+        "field_errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["path", "code"],
+            "properties": {
+              "path": {"type": "string", "minLength": 1, "maxLength": 200},
+              "code": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"}
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "grounded_answer_data": {
+      "type": "object",
+      "required": ["answerable", "answer", "evidence_ids", "citations", "insufficient_reason"],
+      "properties": {
+        "answerable": {"type": "boolean"},
+        "answer": {"type": ["string", "null"], "maxLength": 2000},
+        "evidence_ids": {
+          "type": "array",
+          "items": {"type": "string", "pattern": "^[A-Z]+-[0-9]{3}$"},
+          "maxItems": 10,
+          "uniqueItems": true
+        },
+        "citations": {
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "type": "object",
+            "required": ["evidence_id", "quote"],
+            "properties": {
+              "evidence_id": {"type": "string", "pattern": "^[A-Z]+-[0-9]{3}$"},
+              "quote": {"type": "string", "minLength": 1, "maxLength": 300}
+            },
+            "additionalProperties": false
+          }
+        },
+        "insufficient_reason": {"type": ["string", "null"], "minLength": 1, "maxLength": 300}
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {"properties": {"answerable": {"const": true}}, "required": ["answerable"]},
+          "then": {
+            "properties": {
+              "answer": {"type": "string", "minLength": 1, "maxLength": 2000},
+              "evidence_ids": {"minItems": 1},
+              "citations": {"minItems": 1},
+              "insufficient_reason": {"type": "null"}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"answerable": {"const": false}}, "required": ["answerable"]},
+          "then": {
+            "properties": {
+              "answer": {"type": "null"},
+              "evidence_ids": {"maxItems": 0},
+              "citations": {"maxItems": 0},
+              "insufficient_reason": {"type": "string", "minLength": 1, "maxLength": 300}
+            }
+          }
+        }
+      ]
+    }
+  },
+  "additionalProperties": false
+}

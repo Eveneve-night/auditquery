@@ -1,0 +1,71 @@
+{
+  "protocol_version": "1.0.0",
+  "split": "prompt_dev",
+  "purpose": "public_development_not_formal_evaluation",
+  "authorized_on": "2026-10-25",
+  "goals_are_official_rules": false,
+  "schema_linking": {
+    "minimum_tables_in_one_database": 30,
+    "complete_authorized_catalog_required": true,
+    "ranking_k": [
+      1,
+      3,
+      5
+    ],
+    "tie_break": "descending_raw_score_then_object_id",
+    "recall": "macro_mean_of_per_case_relevant_intersection_over_relevant_count; exclude_empty_gold_with_explicit_denominator",
+    "mrr": "macro_mean_first_relevant_reciprocal_rank; zero_when_no_hit",
+    "final_table": "selected_primary_table_in_relevant_table_set_on_positive_cases",
+    "final_columns": "exact_selected_column_set_on_positive_cases_separate_from_table_accuracy",
+    "status_accuracy": "all_cases_including_clarify_abstain_reject",
+    "internal_development_targets": {
+      "table_recall_at_3": 0.95,
+      "column_recall_at_5": 0.9,
+      "final_table_accuracy": 0.9
+    },
+    "minimum_table_count_is_not_summed_across_databases": true,
+    "sql_execution_authorized": false
+  },
+  "document_complexity": {
+    "minimum_public_documents": 30,
+    "minimum_structure_types": 3,
+    "local_strategy_ids": [
+      "pypdf_text.v1",
+      "pdfplumber_layout.v1"
+    ],
+    "prediction_input_phase": "pre_strategy",
+    "post_execution_labels_in_prediction": false,
+    "comparison_arms": [
+      "uniform_pypdf",
+      "uniform_pdfplumber",
+      "adaptive"
+    ],
+    "paired_document_hashes_required": true,
+    "adaptive_cost_includes_preflight": true,
+    "metrics": [
+      "difficulty_recall",
+      "structure_retention",
+      "answer_support",
+      "preflight_ms",
+      "parse_ms",
+      "total_ms"
+    ],
+    "score_only_without_two_executed_routes": "prototype_not_completed",
+    "quality_task_9_is_separate": true,
+    "ocr_authorized": false
+  },
+  "isolation": {
+    "inputs_and_scoring_files_separate": true,
+    "public_assets_are_not_hidden_test": true,
+    "formal_validation_contents_read": 0,
+    "hidden_test_contents_read": 0
+  },
+  "boundaries": {
+    "model_api_calls": 0,
+    "real_key_reads": 0,
+    "cost_cny": 0,
+    "only_online_model": "qwen3.7-flash",
+    "join_execution_authorized": false,
+    "public_HTTP_contract_changed": false
+  }
+}

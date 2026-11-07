@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "concepts",
+  "items": [
+    {
+      "concept_id": "concept.maintenance.asset",
+      "display_name": "asset",
+      "description": "Original synthetic maintenance object asset",
+      "parent_concept_ids": [],
+      "source_refs": [
+        "source.equipment_maintenance_synthetic"
+      ]
+    },
+    {
+      "concept_id": "concept.maintenance.work_order",
+      "display_name": "work_order",
+      "description": "Original synthetic maintenance object work_order",
+      "parent_concept_ids": [],
+      "source_refs": [
+        "source.equipment_maintenance_synthetic"
+      ]
+    },
+    {
+      "concept_id": "concept.maintenance.maintenance_event",
+      "display_name": "maintenance_event",
+      "description": "Original synthetic maintenance object maintenance_event",
+      "parent_concept_ids": [],
+      "source_refs": [
+        "source.equipment_maintenance_synthetic"
+      ]
+    }
+  ]
+}

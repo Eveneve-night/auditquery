@@ -1,0 +1,35 @@
+{
+  "policy_id": "d4-clarification-recovery",
+  "version": "1.0.0",
+  "planner": {
+    "strategy": "expected_information_gain",
+    "ablation_baseline": "first_missing",
+    "max_questions_per_turn": 1,
+    "tie_break": "score_desc_slot_id_asc",
+    "weights": {
+      "candidate_reduction_gain": 0.45,
+      "downstream_condition_impact": 0.35,
+      "legal_value_information": 0.2
+    }
+  },
+  "state_merge": {
+    "accepted_value_count": 1,
+    "bind_session": true,
+    "bind_turn": true,
+    "bind_state_revision": true,
+    "reject_replay": true,
+    "reject_cross_slot_update": true,
+    "time_range": {
+      "representation": "single_year_string",
+      "version": "single-year.v1",
+      "minimum_year": 2009,
+      "maximum_year": 2013,
+      "pattern": "^(2009|2010|2011|2012|2013)$"
+    }
+  },
+  "safety": {
+    "accept_authorizes_sql_execution": false,
+    "requires_d4_02_safety_gate": true,
+    "proposal_port": "offline_injected_only"
+  }
+}

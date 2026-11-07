@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "schema_catalog",
+  "items": [
+    {
+      "object_id": "schema.retail_inventory",
+      "object_type": "data_source",
+      "parent_object_id": null,
+      "display_name": "零售库存",
+      "physical_name": "retail_inventory",
+      "data_type": null,
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.retail_inventory"
+      ]
+    },
+    {
+      "object_id": "schema.retail_inventory.inventory",
+      "object_type": "table",
+      "parent_object_id": "schema.retail_inventory",
+      "display_name": "零售库存记录",
+      "physical_name": "Inventory",
+      "data_type": null,
+      "concept_refs": [
+        "concept.retail_inventory.entity"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.retail_inventory"
+      ]
+    },
+    {
+      "object_id": "schema.retail_inventory.inventory.productid",
+      "object_type": "column",
+      "parent_object_id": "schema.retail_inventory.inventory",
+      "display_name": "商品编号",
+      "physical_name": "ProductId",
+      "data_type": "TEXT",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.retail_inventory"
+      ]
+    },
+    {
+      "object_id": "schema.retail_inventory.inventory.productname",
+      "object_type": "column",
+      "parent_object_id": "schema.retail_inventory.inventory",
+      "display_name": "商品名称",
+      "physical_name": "ProductName",
+      "data_type": "TEXT",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.retail_inventory"
+      ]
+    },
+    {
+      "object_id": "schema.retail_inventory.inventory.warehouse",
+      "object_type": "column",
+      "parent_object_id": "schema.retail_inventory.inventory",
+      "display_name": "仓库",
+      "physical_name": "Warehouse",
+      "data_type": "TEXT",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.retail_inventory"
+      ]
+    },
+    {
+      "object_id": "schema.retail_inventory.inventory.quantity",
+      "object_type": "column",
+      "parent_object_id": "schema.retail_inventory.inventory",
+      "display_name": "库存数量",
+      "physical_name": "Quantity",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.retail_inventory.metric"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.retail_inventory"
+      ]
+    },
+    {
+      "object_id": "schema.retail_inventory.inventory.snapshotdate",
+      "object_type": "column",
+      "parent_object_id": "schema.retail_inventory.inventory",
+      "display_name": "快照日期",
+      "physical_name": "SnapshotDate",
+      "data_type": "TEXT",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.retail_inventory"
+      ]
+    }
+  ]
+}

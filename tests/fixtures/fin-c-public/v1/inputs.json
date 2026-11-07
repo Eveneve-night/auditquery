@@ -1,0 +1,8 @@
+[
+  {"case_id":"orders.total","split":"prompt_dev","domain":"orders","question":"销售订单总金额是多少？"},
+  {"case_id":"orders.ambiguous","split":"prompt_dev","domain":"orders","question":"订单金额是多少？"},
+  {"case_id":"orders.unknown","split":"prompt_dev","domain":"orders","question":"明年收入一定增长多少？"},
+  {"case_id":"maintenance.open","split":"prompt_dev","domain":"maintenance","question":"未完成工单有多少？"},
+  {"case_id":"maintenance.ambiguous","split":"prompt_dev","domain":"maintenance","question":"设备耗时是多少？"},
+  {"case_id":"maintenance.unknown","split":"prompt_dev","domain":"maintenance","question":"设备明天一定会发生故障吗？"}
+]

@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "slots",
+  "items": [
+    {
+      "slot_id": "slot.example_period",
+      "display_name": "示例期间",
+      "description": "虚构任务中的时间范围。",
+      "value_type": "date",
+      "required_by_default": true,
+      "required_when": [
+        {
+          "condition_id": "condition.example_metric_present",
+          "subject_ref": "concept.example_metric",
+          "operator": "present",
+          "values": []
+        }
+      ],
+      "conflict_slot_ids": [],
+      "allowed_value_evidence_refs": ["evidence.example_period_range"],
+      "source_refs": ["source.example_public"]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "schema_id": "typed-decision.v1",
+  "samples": [
+    {
+      "decision_type": "boolean",
+      "candidate_options": [
+        {"candidate_id": "boolean.true", "display_name": "是", "evidence_refs": ["evidence.example_present"], "raw_features": {"rule_match": true}},
+        {"candidate_id": "boolean.false", "display_name": "否", "evidence_refs": ["evidence.example_absent"], "raw_features": {"rule_match": false}}
+      ],
+      "selected_option": "boolean.true",
+      "raw_score": 0.8,
+      "calibration_version": null,
+      "evidence_refs": ["evidence.example_present"],
+      "missing_or_conflicting_slots": [],
+      "recommended_action": "accept",
+      "abstain_reason": null,
+      "contract_version": "1.0.0"
+    },
+    {
+      "decision_type": "choice",
+      "candidate_options": [
+        {"candidate_id": "choice.example_a", "display_name": "虚构候选A", "evidence_refs": ["evidence.example_a"], "raw_features": {"lexical_score": 0.7}},
+        {"candidate_id": "choice.example_b", "display_name": "虚构候选B", "evidence_refs": ["evidence.example_b"], "raw_features": {"lexical_score": 0.3}}
+      ],
+      "selected_option": "choice.example_a",
+      "raw_score": 0.7,
+      "calibration_version": null,
+      "evidence_refs": ["evidence.example_a"],
+      "missing_or_conflicting_slots": [],
+      "recommended_action": "accept",
+      "abstain_reason": null,
+      "contract_version": "1.0.0"
+    },
+    {
+      "decision_type": "score",
+      "candidate_options": [],
+      "selected_option": null,
+      "raw_score": 0.45,
+      "calibration_version": null,
+      "evidence_refs": ["evidence.example_score"],
+      "missing_or_conflicting_slots": [
+        {"slot_id": "slot.example_period", "issue": "missing", "evidence_refs": ["evidence.example_score"]}
+      ],
+      "recommended_action": "clarify",
+      "abstain_reason": null,
+      "contract_version": "1.0.0"
+    },
+    {
+      "decision_type": "abstain",
+      "candidate_options": [],
+      "selected_option": null,
+      "raw_score": null,
+      "calibration_version": null,
+      "evidence_refs": [],
+      "missing_or_conflicting_slots": [],
+      "recommended_action": "reject",
+      "abstain_reason": "outside_candidate_set",
+      "contract_version": "1.0.0"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+[
+  {"id": "SAFE-001", "description": "COUNT 艺术家总数", "sql": "SELECT COUNT(*) AS c FROM Artist", "tables": ["Artist"], "params": [], "expected_rows": 1},
+  {"id": "SAFE-002", "description": "COUNT 专辑总数", "sql": "SELECT COUNT(*) AS c FROM Album", "tables": ["Album"], "params": [], "expected_rows": 1},
+  {"id": "SAFE-003", "description": "过滤计数：单价>1的曲目", "sql": "SELECT COUNT(*) AS c FROM Track WHERE UnitPrice > ?", "tables": ["Track"], "params": [1.0], "expected_rows": 1},
+  {"id": "SAFE-004", "description": "TOP-5 最贵曲目（排序+限行）", "sql": "SELECT TrackId, Name, UnitPrice FROM Track ORDER BY UnitPrice DESC, TrackId ASC LIMIT 5", "tables": ["Track"], "params": [], "expected_rows": 5},
+  {"id": "SAFE-005", "description": "曲目平均时长（单位换算+ROUND）", "sql": "SELECT ROUND(AVG(Milliseconds) / 60000.0, 2) AS m FROM Track", "tables": ["Track"], "params": [], "expected_rows": 1},
+  {"id": "SAFE-006", "description": "参数化过滤：某国客户数", "sql": "SELECT COUNT(*) AS c FROM Customer WHERE Country = ?", "tables": ["Customer"], "params": ["USA"], "expected_rows": 1},
+  {"id": "SAFE-007", "description": "MAX 最大发票金额", "sql": "SELECT ROUND(MAX(Total), 2) AS m FROM Invoice", "tables": ["Invoice"], "params": [], "expected_rows": 1},
+  {"id": "SAFE-008", "description": "SUM 发票总收入", "sql": "SELECT ROUND(SUM(Total), 2) AS s FROM Invoice", "tables": ["Invoice"], "params": [], "expected_rows": 1},
+  {"id": "SAFE-009", "description": "GROUP BY 按国家收入 TOP-5", "sql": "SELECT BillingCountry, ROUND(SUM(Total), 2) AS revenue FROM Invoice GROUP BY BillingCountry ORDER BY revenue DESC, BillingCountry ASC LIMIT 5", "tables": ["Invoice"], "params": [], "expected_rows": 5},
+  {"id": "SAFE-010", "description": "列表：前10个流派（排序+限行）", "sql": "SELECT GenreId, Name FROM Genre ORDER BY Name ASC, GenreId ASC LIMIT 10", "tables": ["Genre"], "params": [], "expected_rows": 10}
+]

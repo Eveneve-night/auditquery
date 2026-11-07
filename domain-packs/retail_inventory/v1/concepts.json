@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "concepts",
+  "items": [
+    {
+      "concept_id": "concept.retail_inventory.entity",
+      "display_name": "商品",
+      "description": "零售库存合成业务元数据：商品。单位不隐式换算，范围不隐式补全。",
+      "parent_concept_ids": [],
+      "source_refs": [
+        "source.retail_inventory"
+      ]
+    },
+    {
+      "concept_id": "concept.retail_inventory.metric",
+      "display_name": "库存数量",
+      "description": "零售库存合成业务元数据：库存数量。单位不隐式换算，范围不隐式补全。",
+      "parent_concept_ids": [],
+      "source_refs": [
+        "source.retail_inventory"
+      ]
+    },
+    {
+      "concept_id": "concept.retail_inventory.location",
+      "display_name": "仓库",
+      "description": "零售库存合成业务元数据：仓库。单位不隐式换算，范围不隐式补全。",
+      "parent_concept_ids": [],
+      "source_refs": [
+        "source.retail_inventory"
+      ]
+    },
+    {
+      "concept_id": "concept.retail_inventory.unit",
+      "display_name": "件",
+      "description": "零售库存合成业务元数据：件。单位不隐式换算，范围不隐式补全。",
+      "parent_concept_ids": [],
+      "source_refs": [
+        "source.retail_inventory"
+      ]
+    },
+    {
+      "concept_id": "concept.retail_inventory.available",
+      "display_name": "可用数量",
+      "description": "可用数量与另一数量口径不同，需明确口径。",
+      "parent_concept_ids": [],
+      "source_refs": [
+        "source.retail_inventory"
+      ]
+    },
+    {
+      "concept_id": "concept.retail_inventory.total",
+      "display_name": "总数量",
+      "description": "总数量与另一数量口径不同，需明确口径。",
+      "parent_concept_ids": [],
+      "source_refs": [
+        "source.retail_inventory"
+      ]
+    }
+  ]
+}

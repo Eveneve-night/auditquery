@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "innovation-eval-manifest.v2",
+  "title": "Innovation evaluation data manifest v2 template",
+  "type": "object",
+  "required": ["dataset_id", "version", "schema_version", "status", "contains_case_content", "split_plan", "blind_zones", "coverage_constraints", "grouping_keys", "hidden_test", "hash_spec"],
+  "properties": {
+    "dataset_id": {"const": "typed-decision-innovation-eval"},
+    "version": {"const": "2.0.0"},
+    "schema_version": {"const": "2.0.0"},
+    "status": {"const": "public_template_only"},
+    "contains_case_content": {"const": false},
+    "split_plan": {
+      "type": "object",
+      "required": ["prompt_dev", "validation", "hidden_test", "total"],
+      "properties": {
+        "prompt_dev": {"const": 80},
+        "validation": {"const": 40},
+        "hidden_test": {"const": 120},
+        "total": {"const": 240}
+      },
+      "additionalProperties": false
+    },
+    "blind_zones": {
+      "type": "object",
+      "required": ["mutually_exclusive", "unseen_alias_family", "unseen_utterance_template_family", "unseen_schema_or_domain"],
+      "properties": {
+        "mutually_exclusive": {"const": true},
+        "unseen_alias_family": {"const": 40},
+        "unseen_utterance_template_family": {"const": 40},
+        "unseen_schema_or_domain": {"const": 40}
+      },
+      "additionalProperties": false
+    },
+    "coverage_constraints": {
+      "type": "object",
+      "required": ["should_clarify", "should_not_clarify", "schema_linking", "executable_end_to_end", "minimum_domains", "minimum_positive_per_slot_category", "slot_categories"],
+      "properties": {
+        "should_clarify": {"const": 60},
+        "should_not_clarify": {"const": 60},
+        "schema_linking": {"const": 90},
+        "executable_end_to_end": {"const": 80},
+        "minimum_domains": {"const": 3},
+        "minimum_positive_per_slot_category": {"const": 15},
+        "slot_categories": {"const": ["time", "metric", "entity", "granularity", "scope", "comparison_baseline"]}
+      },
+      "additionalProperties": false
+    },
+    "grouping_keys": {
+      "const": ["alias_family_id", "sql_skeleton_id", "missing_slot_combination_id", "utterance_template_family_id", "document_family_id", "schema_domain_id"]
+    },
+    "hidden_test": {
+      "type": "object",
+      "required": ["storage", "keeper", "content_committed", "aggregate_results_only"],
+      "properties": {
+        "storage": {"const": "outside_repository_or_protected_pipeline"},
+        "keeper": {"const": "non_prompt_author"},
+        "content_committed": {"const": false},
+        "aggregate_results_only": {"const": true}
+      },
+      "additionalProperties": false
+    },
+    "hash_spec": {
+      "type": "object",
+      "required": ["algorithm", "canonicalization", "required_before_run"],
+      "properties": {
+        "algorithm": {"const": "sha256"},
+        "canonicalization": {"const": "utf8_lf"},
+        "required_before_run": {"const": true}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

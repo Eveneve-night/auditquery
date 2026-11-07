@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "schema_catalog",
+  "items": [
+    {
+      "object_id": "schema.equipment_loan",
+      "object_type": "data_source",
+      "parent_object_id": null,
+      "display_name": "设备借用",
+      "physical_name": "equipment_loan",
+      "data_type": null,
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    },
+    {
+      "object_id": "schema.equipment_loan.equipmentloan",
+      "object_type": "table",
+      "parent_object_id": "schema.equipment_loan",
+      "display_name": "设备借用记录",
+      "physical_name": "EquipmentLoan",
+      "data_type": null,
+      "concept_refs": [
+        "concept.equipment_loan.entity"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    },
+    {
+      "object_id": "schema.equipment_loan.equipmentloan.loanid",
+      "object_type": "column",
+      "parent_object_id": "schema.equipment_loan.equipmentloan",
+      "display_name": "借用编号",
+      "physical_name": "LoanId",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    },
+    {
+      "object_id": "schema.equipment_loan.equipmentloan.devicename",
+      "object_type": "column",
+      "parent_object_id": "schema.equipment_loan.equipmentloan",
+      "display_name": "设备名称",
+      "physical_name": "DeviceName",
+      "data_type": "TEXT",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    },
+    {
+      "object_id": "schema.equipment_loan.equipmentloan.department",
+      "object_type": "column",
+      "parent_object_id": "schema.equipment_loan.equipmentloan",
+      "display_name": "借用部门",
+      "physical_name": "Department",
+      "data_type": "TEXT",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    },
+    {
+      "object_id": "schema.equipment_loan.equipmentloan.quantity",
+      "object_type": "column",
+      "parent_object_id": "schema.equipment_loan.equipmentloan",
+      "display_name": "借用数量",
+      "physical_name": "Quantity",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.equipment_loan.metric"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    },
+    {
+      "object_id": "schema.equipment_loan.equipmentloan.loandate",
+      "object_type": "column",
+      "parent_object_id": "schema.equipment_loan.equipmentloan",
+      "display_name": "借用日期",
+      "physical_name": "LoanDate",
+      "data_type": "TEXT",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    },
+    {
+      "object_id": "schema.equipment_loan.equipmentloan.returndate",
+      "object_type": "column",
+      "parent_object_id": "schema.equipment_loan.equipmentloan",
+      "display_name": "归还日期",
+      "physical_name": "ReturnDate",
+      "data_type": "TEXT",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    }
+  ]
+}

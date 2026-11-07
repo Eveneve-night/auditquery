@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "concepts",
+  "items": [
+    {
+      "concept_id": "concept.example_metric",
+      "display_name": "示例指标",
+      "description": "仅用于验证领域包结构的虚构指标。",
+      "parent_concept_ids": [],
+      "source_refs": ["source.example_public"]
+    },
+    {
+      "concept_id": "concept.example_amount",
+      "display_name": "示例金额",
+      "description": "示例指标的虚构下位概念。",
+      "parent_concept_ids": ["concept.example_metric"],
+      "source_refs": ["source.example_public"]
+    }
+  ]
+}

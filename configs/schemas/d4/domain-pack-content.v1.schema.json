@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "domain-pack-content.v1",
+  "title": "Domain pack content artifact v1",
+  "oneOf": [
+    {"$ref": "#/$defs/concepts_artifact"},
+    {"$ref": "#/$defs/aliases_artifact"},
+    {"$ref": "#/$defs/slots_artifact"},
+    {"$ref": "#/$defs/schema_catalog_artifact"},
+    {"$ref": "#/$defs/relations_artifact"},
+    {"$ref": "#/$defs/value_evidence_artifact"},
+    {"$ref": "#/$defs/validation_rules_artifact"}
+  ],
+  "$defs": {
+    "ref_id": {"type": "string", "pattern": "^[a-z][a-z0-9_.:-]{0,127}$"},
+    "header": {
+      "type": "object",
+      "required": ["schema_version", "artifact_type", "items"],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "artifact_type": {"type": "string"},
+        "items": {"type": "array"}
+      }
+    },
+    "concept": {
+      "type": "object",
+      "required": ["concept_id", "display_name", "description", "parent_concept_ids", "source_refs"],
+      "properties": {
+        "concept_id": {"$ref": "#/$defs/ref_id"},
+        "display_name": {"type": "string", "minLength": 1, "maxLength": 160},
+        "description": {"type": "string", "minLength": 1, "maxLength": 500},
+        "parent_concept_ids": {"type": "array", "items": {"$ref": "#/$defs/ref_id"}, "maxItems": 8, "uniqueItems": true},
+        "source_refs": {"type": "array", "items": {"$ref": "#/$defs/ref_id"}, "minItems": 1, "maxItems": 16, "uniqueItems": true}
+      },
+      "additionalProperties": false
+    },
+    "alias": {
+      "type": "object",
+      "required": ["alias_id", "surface_form", "language", "concept_id", "source_ref", "confidence_class"],
+      "properties": {
+        "alias_id": {"$ref": "#/$defs/ref_id"},
+        "surface_form": {"type": "string", "minLength": 1, "maxLength": 160},
+        "language": {"type": "string", "pattern": "^[a-z]{2}(-[A-Z]{2})?$"},
+        "concept_id": {"$ref": "#/$defs/ref_id"},
+        "source_ref": {"$ref": "#/$defs/ref_id"},
+        "confidence_class": {"type": "string", "enum": ["authoritative", "curated", "synthetic"]}
+      },
+      "additionalProperties": false
+    },
+    "condition": {
+      "type": "object",
+      "required": ["condition_id", "subject_ref", "operator", "values"],
+      "properties": {
+        "condition_id": {"$ref": "#/$defs/ref_id"},
+        "subject_ref": {"$ref": "#/$defs/ref_id"},
+        "operator": {"type": "string", "enum": ["equals", "in", "present"]},
+        "values": {
+          "type": "array",
+          "items": {"type": ["string", "number", "boolean"]},
+          "maxItems": 16,
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "slot": {
+      "type": "object",
+      "required": ["slot_id", "display_name", "description", "value_type", "required_by_default", "required_when", "conflict_slot_ids", "allowed_value_evidence_refs", "source_refs"],
+      "properties": {
+        "slot_id": {"$ref": "#/$defs/ref_id"},
+        "display_name": {"type": "string", "minLength": 1, "maxLength": 160},
+        "description": {"type": "string", "minLength": 1, "maxLength": 500},
+        "value_type": {"type": "string", "enum": ["string", "number", "integer", "date", "datetime", "boolean", "enum"]},
+        "required_by_default": {"type": "boolean"},
+        "required_when": {"type": "array", "items": {"$ref": "#/$defs/condition"}, "maxItems": 16},
+        "conflict_slot_ids": {"type": "array", "items": {"$ref": "#/$defs/ref_id"}, "maxItems": 16, "uniqueItems": true},
+        "allowed_value_evidence_refs": {"type": "array", "items": {"$ref": "#/$defs/ref_id"}, "maxItems": 32, "uniqueItems": true},
+        "source_refs": {"type": "array", "items": {"$ref": "#/$defs/ref_id"}, "minItems": 1, "maxItems": 16, "uniqueItems": true}
+      },
+      "additionalProperties": false
+    },
+    "schema_object": {
+      "type": "object",
+      "required": ["object_id", "object_type", "parent_object_id", "display_name", "physical_name", "data_type", "concept_refs", "authorization_level", "source_refs"],
+      "properties": {
+        "object_id": {"$ref": "#/$defs/ref_id"},
+        "object_type": {"type": "string", "enum": ["data_source", "table", "column"]},
+        "parent_object_id": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/ref_id"}]},
+        "display_name": {"type": "string", "minLength": 1, "maxLength": 160},
+        "physical_name": {"type": "string", "minLength": 1, "maxLength": 160},
+        "data_type": {"type": ["string", "null"], "maxLength": 64},
+        "concept_refs": {"type": "array", "items": {"$ref": "#/$defs/ref_id"}, "maxItems": 16, "uniqueItems": true},
+        "authorization_level": {"type": "string", "enum": ["read_public", "read_restricted", "local_only"]},
+        "source_refs": {"type": "array", "items": {"$ref": "#/$defs/ref_id"}, "minItems": 1, "maxItems": 16, "uniqueItems": true}
+      },
+      "additionalProperties": false
+    },
+    "relation": {
+      "type": "object",
+      "required": ["relation_id", "relation_type", "source_object_id", "target_object_id", "direction", "cardinality", "source_refs"],
+      "properties": {
+        "relation_id": {"$ref": "#/$defs/ref_id"},
+        "relation_type": {"type": "string", "enum": ["foreign_key", "business", "contains"]},
+        "source_object_id": {"$ref": "#/$defs/ref_id"},
+        "target_object_id": {"$ref": "#/$defs/ref_id"},
+        "direction": {"type": "string", "enum": ["directed", "bidirectional"]},
+        "cardinality": {"type": "string", "enum": ["one_to_one", "one_to_many", "many_to_one", "many_to_many"]},
+        "source_refs": {"type": "array", "items": {"$ref": "#/$defs/ref_id"}, "minItems": 1, "maxItems": 16, "uniqueItems": true}
+      },
+      "additionalProperties": false
+    },
+    "evidence_payload": {
+      "type": "object",
+      "properties": {
+        "values": {"type": "array", "items": {"type": ["string", "number", "boolean"]}, "maxItems": 100, "uniqueItems": true},
+        "minimum": {"type": "number"},
+        "maximum": {"type": "number"},
+        "pattern": {"type": "string", "minLength": 1, "maxLength": 256}
+      },
+      "minProperties": 1,
+      "additionalProperties": false
+    },
+    "value_evidence": {
+      "type": "object",
+      "required": ["evidence_id", "slot_id", "evidence_type", "payload", "data_level", "send_to_model", "source_ref"],
+      "properties": {
+        "evidence_id": {"$ref": "#/$defs/ref_id"},
+        "slot_id": {"$ref": "#/$defs/ref_id"},
+        "evidence_type": {"type": "string", "enum": ["enum", "range", "regex", "dictionary"]},
+        "payload": {"$ref": "#/$defs/evidence_payload"},
+        "data_level": {"type": "string", "enum": ["L0", "L1", "L2", "L3"]},
+        "send_to_model": {"type": "boolean"},
+        "source_ref": {"$ref": "#/$defs/ref_id"}
+      },
+      "additionalProperties": false
+    },
+    "validation_rule": {
+      "type": "object",
+      "required": ["rule_id", "rule_kind", "operator", "input_refs", "evidence_refs", "reason_code", "recommended_action", "source_refs"],
+      "properties": {
+        "rule_id": {"$ref": "#/$defs/ref_id"},
+        "rule_kind": {"type": "string", "enum": ["hard", "soft"]},
+        "operator": {"type": "string", "enum": ["all", "any", "not", "equals", "in", "present", "conflicts"]},
+        "input_refs": {"type": "array", "items": {"$ref": "#/$defs/ref_id"}, "minItems": 1, "maxItems": 32, "uniqueItems": true},
+        "evidence_refs": {"type": "array", "items": {"$ref": "#/$defs/ref_id"}, "maxItems": 32, "uniqueItems": true},
+        "reason_code": {"type": "string", "pattern": "^[a-z][a-z0-9_]{1,63}$"},
+        "recommended_action": {"type": "string", "enum": ["accept", "clarify", "escalate", "reject"]},
+        "source_refs": {"type": "array", "items": {"$ref": "#/$defs/ref_id"}, "minItems": 1, "maxItems": 16, "uniqueItems": true}
+      },
+      "additionalProperties": false
+    },
+    "concepts_artifact": {
+      "type": "object", "required": ["schema_version", "artifact_type", "items"],
+      "properties": {"schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "concepts"}, "items": {"type": "array", "items": {"$ref": "#/$defs/concept"}}},
+      "additionalProperties": false
+    },
+    "aliases_artifact": {
+      "type": "object", "required": ["schema_version", "artifact_type", "items"],
+      "properties": {"schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "aliases"}, "items": {"type": "array", "items": {"$ref": "#/$defs/alias"}}},
+      "additionalProperties": false
+    },
+    "slots_artifact": {
+      "type": "object", "required": ["schema_version", "artifact_type", "items"],
+      "properties": {"schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "slots"}, "items": {"type": "array", "items": {"$ref": "#/$defs/slot"}}},
+      "additionalProperties": false
+    },
+    "schema_catalog_artifact": {
+      "type": "object", "required": ["schema_version", "artifact_type", "items"],
+      "properties": {"schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "schema_catalog"}, "items": {"type": "array", "items": {"$ref": "#/$defs/schema_object"}}},
+      "additionalProperties": false
+    },
+    "relations_artifact": {
+      "type": "object", "required": ["schema_version", "artifact_type", "items"],
+      "properties": {"schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "relations"}, "items": {"type": "array", "items": {"$ref": "#/$defs/relation"}}},
+      "additionalProperties": false
+    },
+    "value_evidence_artifact": {
+      "type": "object", "required": ["schema_version", "artifact_type", "items"],
+      "properties": {"schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "value_evidence"}, "items": {"type": "array", "items": {"$ref": "#/$defs/value_evidence"}}},
+      "additionalProperties": false
+    },
+    "validation_rules_artifact": {
+      "type": "object", "required": ["schema_version", "artifact_type", "items"],
+      "properties": {"schema_version": {"const": "1.0.0"}, "artifact_type": {"const": "validation_rules"}, "items": {"type": "array", "items": {"$ref": "#/$defs/validation_rule"}}},
+      "additionalProperties": false
+    }
+  }
+}

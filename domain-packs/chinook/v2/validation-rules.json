@@ -1,0 +1,133 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "validation_rules",
+  "items": [
+    {
+      "rule_id": "rule.metric_must_be_known",
+      "rule_kind": "hard",
+      "operator": "in",
+      "input_refs": [
+        "slot.metric"
+      ],
+      "evidence_refs": [
+        "evidence.metric_kinds"
+      ],
+      "reason_code": "metric_unknown",
+      "recommended_action": "clarify",
+      "source_refs": [
+        "source.d3_contract_vocabulary"
+      ]
+    },
+    {
+      "rule_id": "rule.entity_type_must_be_known",
+      "rule_kind": "hard",
+      "operator": "in",
+      "input_refs": [
+        "slot.entity_type"
+      ],
+      "evidence_refs": [
+        "evidence.entity_kinds"
+      ],
+      "reason_code": "entity_type_unknown",
+      "recommended_action": "clarify",
+      "source_refs": [
+        "source.d3_contract_vocabulary"
+      ]
+    },
+    {
+      "rule_id": "rule.country_must_be_known",
+      "rule_kind": "hard",
+      "operator": "in",
+      "input_refs": [
+        "slot.country"
+      ],
+      "evidence_refs": [
+        "evidence.country_enum"
+      ],
+      "reason_code": "country_outside_evidence",
+      "recommended_action": "clarify",
+      "source_refs": [
+        "source.chinook_database"
+      ]
+    },
+    {
+      "rule_id": "rule.limit_must_be_positive",
+      "rule_kind": "hard",
+      "operator": "in",
+      "input_refs": [
+        "slot.limit"
+      ],
+      "evidence_refs": [
+        "evidence.limit_range"
+      ],
+      "reason_code": "limit_out_of_range",
+      "recommended_action": "clarify",
+      "source_refs": [
+        "source.d3_contract_vocabulary"
+      ]
+    },
+    {
+      "rule_id": "rule.time_range_must_be_covered",
+      "rule_kind": "hard",
+      "operator": "in",
+      "input_refs": [
+        "slot.time_range"
+      ],
+      "evidence_refs": [
+        "evidence.time_range_years"
+      ],
+      "reason_code": "time_range_outside_data",
+      "recommended_action": "clarify",
+      "source_refs": [
+        "source.chinook_database"
+      ]
+    },
+    {
+      "rule_id": "rule.grain_must_be_known",
+      "rule_kind": "hard",
+      "operator": "in",
+      "input_refs": [
+        "slot.grain"
+      ],
+      "evidence_refs": [
+        "evidence.grain_kinds"
+      ],
+      "reason_code": "grain_unknown",
+      "recommended_action": "clarify",
+      "source_refs": [
+        "source.d3_contract_vocabulary"
+      ]
+    },
+    {
+      "rule_id": "rule.sort_must_be_known",
+      "rule_kind": "hard",
+      "operator": "in",
+      "input_refs": [
+        "slot.sort"
+      ],
+      "evidence_refs": [
+        "evidence.sort_kinds"
+      ],
+      "reason_code": "sort_unknown",
+      "recommended_action": "clarify",
+      "source_refs": [
+        "source.d3_contract_vocabulary"
+      ]
+    },
+    {
+      "rule_id": "rule.grain_without_time_range",
+      "rule_kind": "soft",
+      "operator": "conflicts",
+      "input_refs": [
+        "slot.grain",
+        "slot.time_range"
+      ],
+      "evidence_refs": [],
+      "reason_code": "grain_without_time_range",
+      "recommended_action": "clarify",
+      "source_refs": [
+        "source.d3_contract_vocabulary"
+      ]
+    }
+  ]
+}

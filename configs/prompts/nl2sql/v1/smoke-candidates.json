@@ -1,0 +1,7 @@
+{
+  "task_type": "nl2sql",
+  "asset_version": "model-eval.v1",
+  "split": "prompt_dev",
+  "purpose": "contract_smoke_only",
+  "candidate_ids": ["SQL-001", "SQL-004", "SQL-005", "SQL-007", "SQL-010"]
+}

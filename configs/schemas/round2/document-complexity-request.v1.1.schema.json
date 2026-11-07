@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "document-complexity-request.v1.1",
+  "description": "Additive request 1.1.0: empty available_strategies is representable. Result remains document-complexity-result.v1 (1.0.0). Frozen request v1 is unchanged.",
+  "type": "object",
+  "required": ["request_version", "request_id", "phase", "feature_version", "document", "observations", "evidence_catalog", "available_strategies"],
+  "properties": {
+    "request_version": {"const": "1.1.0"},
+    "request_id": {"$ref": "document-complexity-request.v1#/properties/request_id"},
+    "phase": {"$ref": "document-complexity-request.v1#/properties/phase"},
+    "feature_version": {"$ref": "document-complexity-request.v1#/properties/feature_version"},
+    "document": {"$ref": "document-complexity-request.v1#/properties/document"},
+    "observations": {"$ref": "document-complexity-request.v1#/properties/observations"},
+    "evidence_catalog": {"$ref": "document-complexity-request.v1#/properties/evidence_catalog"},
+    "available_strategies": {
+      "type": "array",
+      "items": {"$ref": "round2-common.v1#/$defs/strategy"},
+      "minItems": 0,
+      "maxItems": 2,
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false
+}

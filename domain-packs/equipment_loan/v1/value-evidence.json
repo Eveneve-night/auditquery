@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "value_evidence",
+  "items": [
+    {
+      "evidence_id": "evidence.equipment_loan.metric",
+      "slot_id": "slot.metric",
+      "evidence_type": "enum",
+      "payload": {
+        "values": [
+          "count",
+          "借用数量"
+        ]
+      },
+      "data_level": "L0",
+      "send_to_model": true,
+      "source_ref": "source.equipment_loan"
+    },
+    {
+      "evidence_id": "evidence.equipment_loan.entity_type",
+      "slot_id": "slot.entity_type",
+      "evidence_type": "enum",
+      "payload": {
+        "values": [
+          "设备"
+        ]
+      },
+      "data_level": "L0",
+      "send_to_model": true,
+      "source_ref": "source.equipment_loan"
+    },
+    {
+      "evidence_id": "evidence.equipment_loan.location",
+      "slot_id": "slot.location",
+      "evidence_type": "enum",
+      "payload": {
+        "values": [
+          "实验室",
+          "教务处"
+        ]
+      },
+      "data_level": "L0",
+      "send_to_model": true,
+      "source_ref": "source.equipment_loan"
+    },
+    {
+      "evidence_id": "evidence.equipment_loan.unit",
+      "slot_id": "slot.unit",
+      "evidence_type": "enum",
+      "payload": {
+        "values": [
+          "台"
+        ]
+      },
+      "data_level": "L0",
+      "send_to_model": true,
+      "source_ref": "source.equipment_loan"
+    }
+  ]
+}

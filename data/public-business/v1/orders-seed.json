@@ -1,0 +1,878 @@
+{
+  "credit_note": [
+    {
+      "id": 1,
+      "invoice_id": 1,
+      "return_id": 1,
+      "credit_amount": 20,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "invoice_id": 2,
+      "return_id": 2,
+      "credit_amount": 60,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "invoice_id": 3,
+      "return_id": 3,
+      "credit_amount": 120,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "customer": [
+    {
+      "id": 1,
+      "customer_name": "customer_name_1",
+      "segment_id": 1,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "customer_name": "customer_name_2",
+      "segment_id": 2,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "customer_name": "customer_name_3",
+      "segment_id": 3,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "customer_address": [
+    {
+      "id": 1,
+      "customer_id": 1,
+      "address_text": "address_text_1",
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "customer_id": 2,
+      "address_text": "address_text_2",
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "customer_id": 3,
+      "address_text": "address_text_3",
+      "created_at": "2026-10-03"
+    }
+  ],
+  "customer_contact": [
+    {
+      "id": 1,
+      "customer_id": 1,
+      "contact_name": "contact_name_1",
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "customer_id": 2,
+      "contact_name": "contact_name_2",
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "customer_id": 3,
+      "contact_name": "contact_name_3",
+      "created_at": "2026-10-03"
+    }
+  ],
+  "customer_segment": [
+    {
+      "id": 1,
+      "segment_name": "segment_name_1",
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "segment_name": "segment_name_2",
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "segment_name": "segment_name_3",
+      "created_at": "2026-10-03"
+    }
+  ],
+  "goods_receipt": [
+    {
+      "id": 1,
+      "purchase_id": 1,
+      "warehouse_id": 1,
+      "received_at": "2026-10-01",
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "purchase_id": 2,
+      "warehouse_id": 2,
+      "received_at": "2026-10-02",
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "purchase_id": 3,
+      "warehouse_id": 3,
+      "received_at": "2026-10-03",
+      "created_at": "2026-10-03"
+    }
+  ],
+  "goods_receipt_line": [
+    {
+      "id": 1,
+      "goods_receipt_id": 1,
+      "purchase_line_id": 1,
+      "quantity": 2,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "goods_receipt_id": 2,
+      "purchase_line_id": 2,
+      "quantity": 3,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "goods_receipt_id": 3,
+      "purchase_line_id": 3,
+      "quantity": 4,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "inventory_balance": [
+    {
+      "id": 1,
+      "warehouse_id": 1,
+      "product_id": 1,
+      "on_hand_quantity": 99,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "warehouse_id": 2,
+      "product_id": 2,
+      "on_hand_quantity": 98,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "warehouse_id": 3,
+      "product_id": 3,
+      "on_hand_quantity": 97,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "inventory_movement": [
+    {
+      "id": 1,
+      "warehouse_id": 1,
+      "product_id": 1,
+      "movement_quantity": 2,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "warehouse_id": 2,
+      "product_id": 2,
+      "movement_quantity": 3,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "warehouse_id": 3,
+      "product_id": 3,
+      "movement_quantity": 4,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "invoice": [
+    {
+      "id": 1,
+      "order_id": 1,
+      "customer_id": 1,
+      "invoiced_amount": 20,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "order_id": 2,
+      "customer_id": 2,
+      "invoiced_amount": 60,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "order_id": 3,
+      "customer_id": 3,
+      "invoiced_amount": 120,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "invoice_line": [
+    {
+      "id": 1,
+      "invoice_id": 1,
+      "order_line_id": 1,
+      "tax_amount": 20,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "invoice_id": 2,
+      "order_line_id": 2,
+      "tax_amount": 60,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "invoice_id": 3,
+      "order_line_id": 3,
+      "tax_amount": 120,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "payable": [
+    {
+      "id": 1,
+      "purchase_id": 1,
+      "supplier_id": 1,
+      "payable_amount": 20,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "purchase_id": 2,
+      "supplier_id": 2,
+      "payable_amount": 60,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "purchase_id": 3,
+      "supplier_id": 3,
+      "payable_amount": 120,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "payment": [
+    {
+      "id": 1,
+      "payable_id": 1,
+      "supplier_id": 1,
+      "paid_amount": 20,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "payable_id": 2,
+      "supplier_id": 2,
+      "paid_amount": 60,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "payable_id": 3,
+      "supplier_id": 3,
+      "paid_amount": 120,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "product": [
+    {
+      "id": 1,
+      "category_id": 1,
+      "product_name": "product_name_1",
+      "unit_price": 10,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "category_id": 2,
+      "product_name": "product_name_2",
+      "unit_price": 20,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "category_id": 3,
+      "product_name": "product_name_3",
+      "unit_price": 30,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "product_category": [
+    {
+      "id": 1,
+      "category_name": "category_name_1",
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "category_name": "category_name_2",
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "category_name": "category_name_3",
+      "created_at": "2026-10-03"
+    }
+  ],
+  "purchase_order": [
+    {
+      "id": 1,
+      "supplier_id": 1,
+      "purchase_amount": 20,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "supplier_id": 2,
+      "purchase_amount": 60,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "supplier_id": 3,
+      "purchase_amount": 120,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "purchase_order_line": [
+    {
+      "id": 1,
+      "purchase_id": 1,
+      "product_id": 1,
+      "quantity": 2,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "purchase_id": 2,
+      "product_id": 2,
+      "quantity": 3,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "purchase_id": 3,
+      "product_id": 3,
+      "quantity": 4,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "quotation": [
+    {
+      "id": 1,
+      "customer_id": 1,
+      "quoted_amount": 20,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "customer_id": 2,
+      "quoted_amount": 60,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "customer_id": 3,
+      "quoted_amount": 120,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "quotation_line": [
+    {
+      "id": 1,
+      "quotation_id": 1,
+      "product_id": 1,
+      "quantity": 2,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "quotation_id": 2,
+      "product_id": 2,
+      "quantity": 3,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "quotation_id": 3,
+      "product_id": 3,
+      "quantity": 4,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "receipt": [
+    {
+      "id": 1,
+      "customer_id": 1,
+      "received_amount": 20,
+      "received_at": "2026-10-01",
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "customer_id": 2,
+      "received_amount": 60,
+      "received_at": "2026-10-02",
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "customer_id": 3,
+      "received_amount": 120,
+      "received_at": "2026-10-03",
+      "created_at": "2026-10-03"
+    }
+  ],
+  "receipt_allocation": [
+    {
+      "id": 1,
+      "receipt_id": 1,
+      "receivable_id": 1,
+      "allocated_amount": 20,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "receipt_id": 2,
+      "receivable_id": 2,
+      "allocated_amount": 60,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "receipt_id": 3,
+      "receivable_id": 3,
+      "allocated_amount": 120,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "receivable": [
+    {
+      "id": 1,
+      "invoice_id": 1,
+      "customer_id": 1,
+      "receivable_amount": 20,
+      "due_date": "2026-10-01",
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "invoice_id": 2,
+      "customer_id": 2,
+      "receivable_amount": 60,
+      "due_date": "2026-10-02",
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "invoice_id": 3,
+      "customer_id": 3,
+      "receivable_amount": 120,
+      "due_date": "2026-10-03",
+      "created_at": "2026-10-03"
+    }
+  ],
+  "receivable_installment": [
+    {
+      "id": 1,
+      "receivable_id": 1,
+      "due_date": "2026-10-01",
+      "installment_amount": 20,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "receivable_id": 2,
+      "due_date": "2026-10-02",
+      "installment_amount": 60,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "receivable_id": 3,
+      "due_date": "2026-10-03",
+      "installment_amount": 120,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "refund": [
+    {
+      "id": 1,
+      "return_id": 1,
+      "customer_id": 1,
+      "refund_amount": 20,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "return_id": 2,
+      "customer_id": 2,
+      "refund_amount": 60,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "return_id": 3,
+      "customer_id": 3,
+      "refund_amount": 120,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "refund_allocation": [
+    {
+      "id": 1,
+      "refund_id": 1,
+      "receipt_id": 1,
+      "allocated_amount": 20,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "refund_id": 2,
+      "receipt_id": 2,
+      "allocated_amount": 60,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "refund_id": 3,
+      "receipt_id": 3,
+      "allocated_amount": 120,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "sales_order": [
+    {
+      "id": 1,
+      "customer_id": 1,
+      "quotation_id": 1,
+      "order_amount": 20,
+      "order_status": "order_status_1",
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "customer_id": 2,
+      "quotation_id": 2,
+      "order_amount": 60,
+      "order_status": "order_status_2",
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "customer_id": 3,
+      "quotation_id": 3,
+      "order_amount": 120,
+      "order_status": "order_status_3",
+      "created_at": "2026-10-03"
+    }
+  ],
+  "sales_order_daily_summary": [
+    {
+      "id": 1,
+      "customer_id": 1,
+      "business_date": "2026-10-01",
+      "order_count": 1,
+      "order_amount": 20,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "customer_id": 2,
+      "business_date": "2026-10-02",
+      "order_count": 2,
+      "order_amount": 60,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "customer_id": 3,
+      "business_date": "2026-10-03",
+      "order_count": 3,
+      "order_amount": 120,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "sales_order_history": [
+    {
+      "id": 1,
+      "original_order_id": 1,
+      "customer_id": 1,
+      "order_amount": 20,
+      "archived_at": "2026-10-01",
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "original_order_id": 2,
+      "customer_id": 2,
+      "order_amount": 60,
+      "archived_at": "2026-10-02",
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "original_order_id": 3,
+      "customer_id": 3,
+      "order_amount": 120,
+      "archived_at": "2026-10-03",
+      "created_at": "2026-10-03"
+    }
+  ],
+  "sales_order_line": [
+    {
+      "id": 1,
+      "order_id": 1,
+      "product_id": 1,
+      "quantity": 2,
+      "line_amount": 20,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "order_id": 2,
+      "product_id": 2,
+      "quantity": 3,
+      "line_amount": 60,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "order_id": 3,
+      "product_id": 3,
+      "quantity": 4,
+      "line_amount": 120,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "sales_order_line_history": [
+    {
+      "id": 1,
+      "history_id": 1,
+      "product_id": 1,
+      "quantity": 2,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "history_id": 2,
+      "product_id": 2,
+      "quantity": 3,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "history_id": 3,
+      "product_id": 3,
+      "quantity": 4,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "sales_order_monthly_summary": [
+    {
+      "id": 1,
+      "customer_id": 1,
+      "business_month": "business_month_1",
+      "order_count": 1,
+      "order_amount": 20,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "customer_id": 2,
+      "business_month": "business_month_2",
+      "order_count": 2,
+      "order_amount": 60,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "customer_id": 3,
+      "business_month": "business_month_3",
+      "order_count": 3,
+      "order_amount": 120,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "sales_return": [
+    {
+      "id": 1,
+      "order_id": 1,
+      "customer_id": 1,
+      "return_reason": "return_reason_1",
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "order_id": 2,
+      "customer_id": 2,
+      "return_reason": "return_reason_2",
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "order_id": 3,
+      "customer_id": 3,
+      "return_reason": "return_reason_3",
+      "created_at": "2026-10-03"
+    }
+  ],
+  "sales_return_line": [
+    {
+      "id": 1,
+      "return_id": 1,
+      "product_id": 1,
+      "returned_quantity": 2,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "return_id": 2,
+      "product_id": 2,
+      "returned_quantity": 3,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "return_id": 3,
+      "product_id": 3,
+      "returned_quantity": 4,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "shipment": [
+    {
+      "id": 1,
+      "order_id": 1,
+      "warehouse_id": 1,
+      "shipped_at": "2026-10-01",
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "order_id": 2,
+      "warehouse_id": 2,
+      "shipped_at": "2026-10-02",
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "order_id": 3,
+      "warehouse_id": 3,
+      "shipped_at": "2026-10-03",
+      "created_at": "2026-10-03"
+    }
+  ],
+  "shipment_line": [
+    {
+      "id": 1,
+      "shipment_id": 1,
+      "order_line_id": 1,
+      "shipped_quantity": 2,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "shipment_id": 2,
+      "order_line_id": 2,
+      "shipped_quantity": 3,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "shipment_id": 3,
+      "order_line_id": 3,
+      "shipped_quantity": 4,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "shipment_tracking": [
+    {
+      "id": 1,
+      "shipment_id": 1,
+      "event_time": "2026-10-01",
+      "event_text": "event_text_1",
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "shipment_id": 2,
+      "event_time": "2026-10-02",
+      "event_text": "event_text_2",
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "shipment_id": 3,
+      "event_time": "2026-10-03",
+      "event_text": "event_text_3",
+      "created_at": "2026-10-03"
+    }
+  ],
+  "stock_reservation": [
+    {
+      "id": 1,
+      "order_line_id": 1,
+      "warehouse_id": 1,
+      "reserved_quantity": 2,
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "order_line_id": 2,
+      "warehouse_id": 2,
+      "reserved_quantity": 3,
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "order_line_id": 3,
+      "warehouse_id": 3,
+      "reserved_quantity": 4,
+      "created_at": "2026-10-03"
+    }
+  ],
+  "supplier": [
+    {
+      "id": 1,
+      "supplier_name": "supplier_name_1",
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "supplier_name": "supplier_name_2",
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "supplier_name": "supplier_name_3",
+      "created_at": "2026-10-03"
+    }
+  ],
+  "warehouse": [
+    {
+      "id": 1,
+      "warehouse_name": "warehouse_name_1",
+      "created_at": "2026-10-01"
+    },
+    {
+      "id": 2,
+      "warehouse_name": "warehouse_name_2",
+      "created_at": "2026-10-02"
+    },
+    {
+      "id": 3,
+      "warehouse_name": "warehouse_name_3",
+      "created_at": "2026-10-03"
+    }
+  ]
+}

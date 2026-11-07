@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "clarification-recovery-result.v1",
+  "title": "D4-05 clarification recovery result v1",
+  "type": "object",
+  "required": [
+    "result_version",
+    "policy_ref",
+    "domain_pack_ref",
+    "session_id",
+    "request_id",
+    "workflow_status",
+    "current_action",
+    "stop_reason",
+    "pending_question",
+    "questions",
+    "answer_summaries",
+    "merge_events",
+    "decision_traces",
+    "audit_events",
+    "safety",
+    "data_exposure"
+  ],
+  "properties": {
+    "result_version": {"const": "1.0.0"},
+    "policy_ref": {
+      "type": "object",
+      "required": ["policy_id", "version", "sha256"],
+      "properties": {
+        "policy_id": {"const": "d4-clarification-recovery"},
+        "version": {"const": "1.0.0"},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      },
+      "additionalProperties": false
+    },
+    "domain_pack_ref": {
+      "type": "object",
+      "required": ["domain_pack_id", "version", "manifest_sha256"],
+      "properties": {
+        "domain_pack_id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]{1,63}$"},
+        "version": {"type": "string", "pattern": "^[1-9][0-9]*\\.[0-9]+\\.[0-9]+$"},
+        "manifest_sha256": {"$ref": "#/$defs/sha256"}
+      },
+      "additionalProperties": false
+    },
+    "session_id": {"type": "string", "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.:-]{0,127}$"},
+    "request_id": {"type": "string", "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.:-]{0,127}$"},
+    "workflow_status": {
+      "enum": [
+        "initialized",
+        "awaiting_clarification",
+        "accepted_for_safety_handoff",
+        "executed",
+        "safety_rejected",
+        "escalated",
+        "rejected",
+        "stopped"
+      ]
+    },
+    "current_action": {"enum": ["accept", "clarify", "escalate", "reject"]},
+    "stop_reason": {"type": ["string", "null"], "maxLength": 128},
+    "pending_question": {
+      "oneOf": [
+        {"type": "null"},
+        {"$ref": "#/$defs/question"}
+      ]
+    },
+    "questions": {
+      "type": "array",
+      "maxItems": 2,
+      "items": {"$ref": "#/$defs/question"}
+    },
+    "answer_summaries": {
+      "type": "array",
+      "maxItems": 2,
+      "items": {"$ref": "#/$defs/answer_summary"}
+    },
+    "merge_events": {
+      "type": "array",
+      "maxItems": 2,
+      "items": {"$ref": "#/$defs/merge_event"}
+    },
+    "decision_traces": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {"$ref": "typed-decision-trace-event.v1"}
+    },
+    "audit_events": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 16,
+      "items": {"$ref": "#/$defs/audit_event"}
+    },
+    "safety": {
+      "type": "object",
+      "required": [
+        "accept_authorizes_sql_execution",
+        "requires_d4_02_safety_gate",
+        "safety_gate_calls",
+        "safety_approved",
+        "local_sqlite_execution_attempts",
+        "local_sqlite_execution_successes"
+      ],
+      "properties": {
+        "accept_authorizes_sql_execution": {"const": false},
+        "requires_d4_02_safety_gate": {"const": true},
+        "safety_gate_calls": {"type": "integer", "minimum": 0, "maximum": 2},
+        "safety_approved": {"type": ["boolean", "null"]},
+        "local_sqlite_execution_attempts": {"type": "integer", "minimum": 0, "maximum": 2},
+        "local_sqlite_execution_successes": {"type": "integer", "minimum": 0, "maximum": 2}
+      },
+      "additionalProperties": false
+    },
+    "data_exposure": {
+      "type": "object",
+      "required": ["model_api_calls", "network_evaluation_calls", "credential_files_read", "validation_exposures", "hidden_test_exposures"],
+      "properties": {
+        "model_api_calls": {"const": 0},
+        "network_evaluation_calls": {"const": 0},
+        "credential_files_read": {"const": 0},
+        "validation_exposures": {"const": 0},
+        "hidden_test_exposures": {"const": 0}
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "ref_id": {"type": "string", "pattern": "^[a-z][a-z0-9_.:-]{0,127}$"},
+    "scalar": {"type": ["string", "integer", "number", "boolean"]},
+    "option": {
+      "type": "object",
+      "required": ["value", "display_name", "evidence_ref"],
+      "properties": {
+        "value": {"$ref": "#/$defs/scalar"},
+        "display_name": {"type": "string", "minLength": 1, "maxLength": 160},
+        "evidence_ref": {"$ref": "#/$defs/ref_id"}
+      },
+      "additionalProperties": false
+    },
+    "information_gain": {
+      "type": "object",
+      "required": ["candidate_reduction_gain", "downstream_condition_count", "downstream_condition_impact", "legal_value_count", "legal_value_information", "weighted_score"],
+      "properties": {
+        "candidate_reduction_gain": {"type": "number", "minimum": 0, "maximum": 1},
+        "downstream_condition_count": {"type": "integer", "minimum": 0},
+        "downstream_condition_impact": {"type": "number", "minimum": 0, "maximum": 1},
+        "legal_value_count": {"type": "integer", "minimum": 1, "maximum": 64},
+        "legal_value_information": {"type": "number", "minimum": 0, "maximum": 1},
+        "weighted_score": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": false
+    },
+    "question": {
+      "type": "object",
+      "required": ["question_id", "session_id", "request_id", "turn_id", "state_revision", "slot_id", "issue", "prompt", "options", "evidence_refs", "information_gain", "baseline_slot_id", "planner_version"],
+      "properties": {
+        "question_id": {"type": "string", "pattern": "^clarify\\.[0-9a-f]{24}$"},
+        "session_id": {"type": "string", "minLength": 1, "maxLength": 128},
+        "request_id": {"type": "string", "minLength": 1, "maxLength": 128},
+        "turn_id": {"type": "integer", "minimum": 1, "maximum": 2},
+        "state_revision": {"type": "integer", "minimum": 0},
+        "slot_id": {"$ref": "#/$defs/ref_id"},
+        "issue": {"enum": ["missing", "conflicting"]},
+        "prompt": {"type": "string", "minLength": 1, "maxLength": 500},
+        "options": {"type": "array", "minItems": 1, "maxItems": 64, "items": {"$ref": "#/$defs/option"}},
+        "evidence_refs": {"type": "array", "maxItems": 64, "uniqueItems": true, "items": {"$ref": "#/$defs/ref_id"}},
+        "information_gain": {"$ref": "#/$defs/information_gain"},
+        "baseline_slot_id": {"$ref": "#/$defs/ref_id"},
+        "planner_version": {"const": "expected-information-gain.v1"}
+      },
+      "additionalProperties": false
+    },
+    "answer_summary": {
+      "type": "object",
+      "required": ["answer_id", "question_id", "slot_id", "value_count", "evidence_refs", "answer_sha256"],
+      "properties": {
+        "answer_id": {"type": "string", "minLength": 1, "maxLength": 128},
+        "question_id": {"type": "string", "minLength": 1, "maxLength": 128},
+        "slot_id": {"$ref": "#/$defs/ref_id"},
+        "value_count": {"const": 1},
+        "evidence_refs": {"type": "array", "minItems": 1, "maxItems": 16, "uniqueItems": true, "items": {"$ref": "#/$defs/ref_id"}},
+        "answer_sha256": {"$ref": "#/$defs/sha256"}
+      },
+      "additionalProperties": false
+    },
+    "merge_event": {
+      "type": "object",
+      "required": ["slot_id", "issue_before", "status_after", "value_count", "evidence_refs", "answer_sha256", "state_merger_version"],
+      "properties": {
+        "slot_id": {"$ref": "#/$defs/ref_id"},
+        "issue_before": {"enum": ["missing", "conflicting"]},
+        "status_after": {"const": "filled"},
+        "value_count": {"const": 1},
+        "evidence_refs": {"type": "array", "maxItems": 32, "uniqueItems": true, "items": {"$ref": "#/$defs/ref_id"}},
+        "answer_sha256": {"$ref": "#/$defs/sha256"},
+        "state_merger_version": {"const": "strict-state-merger.v1"}
+      },
+      "additionalProperties": false
+    },
+    "audit_event": {
+      "type": "object",
+      "required": ["sequence", "event_type", "slot_id", "action", "reason_code", "evidence_refs", "value_count", "artifact_sha256"],
+      "properties": {
+        "sequence": {"type": "integer", "minimum": 1, "maximum": 16},
+        "event_type": {"enum": ["initial_decision", "clarification_question", "structured_answer", "state_merge", "redecision", "safety_gate", "sql_execution", "workflow_stopped"]},
+        "slot_id": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/ref_id"}]},
+        "action": {"type": ["string", "null"], "enum": ["accept", "clarify", "escalate", "reject", null]},
+        "reason_code": {"type": ["string", "null"], "maxLength": 128},
+        "evidence_refs": {"type": "array", "maxItems": 64, "uniqueItems": true, "items": {"$ref": "#/$defs/ref_id"}},
+        "value_count": {"type": ["integer", "null"], "minimum": 0},
+        "artifact_sha256": {"$ref": "#/$defs/sha256"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

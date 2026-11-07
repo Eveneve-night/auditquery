@@ -1,0 +1,14 @@
+{
+  "dataset_id": "chinook-v1.4.5",
+  "source": "https://github.com/lerocha/chinook-database/releases/tag/v1.4.5",
+  "download_url": "https://github.com/lerocha/chinook-database/releases/download/v1.4.5/Chinook_Sqlite.sqlite",
+  "downloaded_at": "2026-09-22",
+  "license": "MIT",
+  "license_url": "https://github.com/lerocha/chinook-database/blob/master/LICENSE.md",
+  "file": "../raw/chinook-v1.4.5/Chinook_Sqlite.sqlite",
+  "bytes": 1067008,
+  "sha256": "BDF635BE69850BD3BE09C9A2DBEEF7DDFB80036BD3EF3381383CD03B61E4A61A",
+  "schema": "../schema/chinook-v1.4.5.schema.json",
+  "usage": "公开样例数据库，仅用于开发、离线评测和本地演示。",
+  "modifications": "无；保留官方 SQLite 文件原样。"
+}

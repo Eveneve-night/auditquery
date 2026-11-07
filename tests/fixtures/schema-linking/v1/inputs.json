@@ -1,0 +1,320 @@
+[
+  {
+    "case_id": "public.001",
+    "split": "prompt_dev",
+    "family": "current_history",
+    "input": {
+      "question": "当前销售订单的订单金额"
+    }
+  },
+  {
+    "case_id": "public.002",
+    "split": "prompt_dev",
+    "family": "current_history",
+    "input": {
+      "question": "历史销售订单的历史订单金额"
+    }
+  },
+  {
+    "case_id": "public.003",
+    "split": "prompt_dev",
+    "family": "current_history",
+    "input": {
+      "question": "订单归档的归档时间"
+    }
+  },
+  {
+    "case_id": "public.004",
+    "split": "prompt_dev",
+    "family": "header_detail",
+    "input": {
+      "question": "销售订单明细的订购数量"
+    }
+  },
+  {
+    "case_id": "public.005",
+    "split": "prompt_dev",
+    "family": "header_detail",
+    "input": {
+      "question": "历史订单明细的历史订购数量"
+    }
+  },
+  {
+    "case_id": "public.006",
+    "split": "prompt_dev",
+    "family": "aggregate",
+    "input": {
+      "question": "销售订单日汇总的订单笔数"
+    }
+  },
+  {
+    "case_id": "public.007",
+    "split": "prompt_dev",
+    "family": "aggregate",
+    "input": {
+      "question": "销售订单月汇总的订单汇总金额"
+    }
+  },
+  {
+    "case_id": "public.008",
+    "split": "prompt_dev",
+    "family": "alias",
+    "input": {
+      "question": "每日订单汇总"
+    }
+  },
+  {
+    "case_id": "public.009",
+    "split": "prompt_dev",
+    "family": "alias",
+    "input": {
+      "question": "月订单统计"
+    }
+  },
+  {
+    "case_id": "public.010",
+    "split": "prompt_dev",
+    "family": "accounting",
+    "input": {
+      "question": "应收账款的应收金额"
+    }
+  },
+  {
+    "case_id": "public.011",
+    "split": "prompt_dev",
+    "family": "accounting",
+    "input": {
+      "question": "实收款记录的实收金额"
+    }
+  },
+  {
+    "case_id": "public.012",
+    "split": "prompt_dev",
+    "family": "alias",
+    "input": {
+      "question": "到账收款的到账时间"
+    }
+  },
+  {
+    "case_id": "public.013",
+    "split": "prompt_dev",
+    "family": "accounting",
+    "input": {
+      "question": "应收分期的分期到期日"
+    }
+  },
+  {
+    "case_id": "public.014",
+    "split": "prompt_dev",
+    "family": "relation",
+    "input": {
+      "question": "收款核销的核销金额"
+    }
+  },
+  {
+    "case_id": "public.015",
+    "split": "prompt_dev",
+    "family": "accounting",
+    "input": {
+      "question": "供应商付款的实付金额"
+    }
+  },
+  {
+    "case_id": "public.016",
+    "split": "prompt_dev",
+    "family": "accounting",
+    "input": {
+      "question": "应付账款的应付金额"
+    }
+  },
+  {
+    "case_id": "public.017",
+    "split": "prompt_dev",
+    "family": "header_detail",
+    "input": {
+      "question": "销售发票的开票金额"
+    }
+  },
+  {
+    "case_id": "public.018",
+    "split": "prompt_dev",
+    "family": "header_detail",
+    "input": {
+      "question": "发票明细的税额"
+    }
+  },
+  {
+    "case_id": "public.019",
+    "split": "prompt_dev",
+    "family": "relation",
+    "input": {
+      "question": "发货明细的实发数量"
+    }
+  },
+  {
+    "case_id": "public.020",
+    "split": "prompt_dev",
+    "family": "relation",
+    "input": {
+      "question": "物流轨迹的轨迹时间"
+    }
+  },
+  {
+    "case_id": "public.021",
+    "split": "prompt_dev",
+    "family": "inventory",
+    "input": {
+      "question": "库存余额的现存数量"
+    }
+  },
+  {
+    "case_id": "public.022",
+    "split": "prompt_dev",
+    "family": "inventory",
+    "input": {
+      "question": "库存流水的变动数量"
+    }
+  },
+  {
+    "case_id": "public.023",
+    "split": "prompt_dev",
+    "family": "inventory",
+    "input": {
+      "question": "库存预留的预留数量"
+    }
+  },
+  {
+    "case_id": "public.024",
+    "split": "prompt_dev",
+    "family": "purchasing",
+    "input": {
+      "question": "采购订单的采购金额"
+    }
+  },
+  {
+    "case_id": "public.025",
+    "split": "prompt_dev",
+    "family": "purchasing",
+    "input": {
+      "question": "采购明细的采购数量"
+    }
+  },
+  {
+    "case_id": "public.026",
+    "split": "prompt_dev",
+    "family": "purchasing",
+    "input": {
+      "question": "采购入库明细的入库数量"
+    }
+  },
+  {
+    "case_id": "public.027",
+    "split": "prompt_dev",
+    "family": "master",
+    "input": {
+      "question": "客户联系人的联系人姓名"
+    }
+  },
+  {
+    "case_id": "public.028",
+    "split": "prompt_dev",
+    "family": "master",
+    "input": {
+      "question": "商品档案的单价"
+    }
+  },
+  {
+    "case_id": "public.029",
+    "split": "prompt_dev",
+    "family": "alias",
+    "input": {
+      "question": "SKU的单价"
+    }
+  },
+  {
+    "case_id": "public.030",
+    "split": "prompt_dev",
+    "family": "missing_grain",
+    "input": {
+      "question": "订单"
+    }
+  },
+  {
+    "case_id": "public.031",
+    "split": "prompt_dev",
+    "family": "unknown",
+    "input": {
+      "question": "星际基因表达谱"
+    }
+  },
+  {
+    "case_id": "public.032",
+    "split": "prompt_dev",
+    "family": "unknown",
+    "input": {
+      "question": "明日天气预测"
+    }
+  },
+  {
+    "case_id": "public.033",
+    "split": "prompt_dev",
+    "family": "typo",
+    "input": {
+      "question": "sales_ordr"
+    }
+  },
+  {
+    "case_id": "public.034",
+    "split": "prompt_dev",
+    "family": "ambiguous",
+    "input": {
+      "question": "订单金额"
+    }
+  },
+  {
+    "case_id": "public.035",
+    "split": "prompt_dev",
+    "family": "authorization",
+    "input": {
+      "question": "实收款记录的实收金额",
+      "authorized_table_ids": [
+        "schema.otc.receivable",
+        "schema.otc.receivable_installment"
+      ]
+    }
+  },
+  {
+    "case_id": "public.036",
+    "split": "prompt_dev",
+    "family": "authorization",
+    "input": {
+      "question": "供应商付款的实付金额",
+      "authorized_table_ids": [
+        "schema.otc.receipt",
+        "schema.otc.receipt_allocation"
+      ]
+    }
+  },
+  {
+    "case_id": "public.037",
+    "split": "prompt_dev",
+    "family": "directory_subset",
+    "input": {
+      "question": "销售订单月汇总的订单笔数",
+      "authorized_table_ids": [
+        "schema.otc.sales_order_monthly_summary",
+        "schema.otc.sales_order_daily_summary",
+        "schema.otc.sales_order_history",
+        "schema.otc.sales_order"
+      ]
+    }
+  },
+  {
+    "case_id": "public.038",
+    "split": "prompt_dev",
+    "family": "multiple_objects",
+    "input": {
+      "question": "当前销售订单与实收款记录"
+    }
+  }
+]

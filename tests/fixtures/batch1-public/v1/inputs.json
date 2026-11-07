@@ -1,0 +1,398 @@
+[
+  {
+    "case_id": "retail_inventory.alias",
+    "split": "prompt_dev",
+    "schema_family": "retail_inventory",
+    "template_family": "alias",
+    "input": {
+      "domain_pack_id": "retail_inventory",
+      "question": "统计货品的库存数量，2026年10月，东仓。"
+    },
+    "review_focus": "alias"
+  },
+  {
+    "case_id": "retail_inventory.ambiguous",
+    "split": "prompt_dev",
+    "schema_family": "retail_inventory",
+    "template_family": "ambiguous",
+    "input": {
+      "domain_pack_id": "retail_inventory",
+      "question": "只说数量，未说明是可用量还是总量。"
+    },
+    "review_focus": "ambiguous"
+  },
+  {
+    "case_id": "retail_inventory.typo",
+    "split": "prompt_dev",
+    "schema_family": "retail_inventory",
+    "template_family": "typo",
+    "input": {
+      "domain_pack_id": "retail_inventory",
+      "question": "查询库寸数量。"
+    },
+    "review_focus": "typo"
+  },
+  {
+    "case_id": "retail_inventory.negation",
+    "split": "prompt_dev",
+    "schema_family": "retail_inventory",
+    "template_family": "negation",
+    "input": {
+      "domain_pack_id": "retail_inventory",
+      "question": "不要统计商品的库存数量。"
+    },
+    "review_focus": "negation"
+  },
+  {
+    "case_id": "retail_inventory.number_unit",
+    "split": "prompt_dev",
+    "schema_family": "retail_inventory",
+    "template_family": "number_unit",
+    "input": {
+      "domain_pack_id": "retail_inventory",
+      "question": "只看超过12件的商品，不要改成120。"
+    },
+    "review_focus": "number_unit"
+  },
+  {
+    "case_id": "retail_inventory.no_rewrite",
+    "split": "prompt_dev",
+    "schema_family": "retail_inventory",
+    "template_family": "no_rewrite",
+    "input": {
+      "domain_pack_id": "retail_inventory",
+      "question": "统计商品的库存数量。"
+    },
+    "review_focus": "no_rewrite"
+  },
+  {
+    "case_id": "retail_inventory.missing_dimension",
+    "split": "prompt_dev",
+    "schema_family": "retail_inventory",
+    "template_family": "missing_dimension",
+    "input": {
+      "domain_pack_id": "retail_inventory",
+      "question": "商品的库存数量是多少？"
+    },
+    "review_focus": "missing_dimension"
+  },
+  {
+    "case_id": "retail_inventory.conflict",
+    "split": "prompt_dev",
+    "schema_family": "retail_inventory",
+    "template_family": "conflict",
+    "input": {
+      "domain_pack_id": "retail_inventory",
+      "question": "统计2025年，改为2026年；同时必须保留2025年。"
+    },
+    "review_focus": "conflict"
+  },
+  {
+    "case_id": "retail_inventory.supplement",
+    "split": "prompt_dev",
+    "schema_family": "retail_inventory",
+    "template_family": "supplement",
+    "input": {
+      "domain_pack_id": "retail_inventory",
+      "question": "补充：2026年10月，东仓。"
+    },
+    "review_focus": "supplement"
+  },
+  {
+    "case_id": "retail_inventory.correction",
+    "split": "prompt_dev",
+    "schema_family": "retail_inventory",
+    "template_family": "correction",
+    "input": {
+      "domain_pack_id": "retail_inventory",
+      "question": "更正：不要东仓，换一个地点。"
+    },
+    "review_focus": "correction"
+  },
+  {
+    "case_id": "retail_inventory.restart",
+    "split": "prompt_dev",
+    "schema_family": "retail_inventory",
+    "template_family": "restart",
+    "input": {
+      "domain_pack_id": "retail_inventory",
+      "question": "重新开始，放弃刚才的问题。"
+    },
+    "review_focus": "restart"
+  },
+  {
+    "case_id": "retail_inventory.unknown",
+    "split": "prompt_dev",
+    "schema_family": "retail_inventory",
+    "template_family": "unknown",
+    "input": {
+      "domain_pack_id": "retail_inventory",
+      "question": "查询量子晶格的相位角。"
+    },
+    "review_focus": "unknown"
+  },
+  {
+    "case_id": "equipment_loan.alias",
+    "split": "prompt_dev",
+    "schema_family": "equipment_loan",
+    "template_family": "alias",
+    "input": {
+      "domain_pack_id": "equipment_loan",
+      "question": "统计器材的借用数量，2026年10月，实验室。"
+    },
+    "review_focus": "alias"
+  },
+  {
+    "case_id": "equipment_loan.ambiguous",
+    "split": "prompt_dev",
+    "schema_family": "equipment_loan",
+    "template_family": "ambiguous",
+    "input": {
+      "domain_pack_id": "equipment_loan",
+      "question": "只说数量，未说明是可用量还是总量。"
+    },
+    "review_focus": "ambiguous"
+  },
+  {
+    "case_id": "equipment_loan.typo",
+    "split": "prompt_dev",
+    "schema_family": "equipment_loan",
+    "template_family": "typo",
+    "input": {
+      "domain_pack_id": "equipment_loan",
+      "question": "查询设被数量。"
+    },
+    "review_focus": "typo"
+  },
+  {
+    "case_id": "equipment_loan.negation",
+    "split": "prompt_dev",
+    "schema_family": "equipment_loan",
+    "template_family": "negation",
+    "input": {
+      "domain_pack_id": "equipment_loan",
+      "question": "不要统计设备的借用数量。"
+    },
+    "review_focus": "negation"
+  },
+  {
+    "case_id": "equipment_loan.number_unit",
+    "split": "prompt_dev",
+    "schema_family": "equipment_loan",
+    "template_family": "number_unit",
+    "input": {
+      "domain_pack_id": "equipment_loan",
+      "question": "只看超过12台的设备，不要改成120。"
+    },
+    "review_focus": "number_unit"
+  },
+  {
+    "case_id": "equipment_loan.no_rewrite",
+    "split": "prompt_dev",
+    "schema_family": "equipment_loan",
+    "template_family": "no_rewrite",
+    "input": {
+      "domain_pack_id": "equipment_loan",
+      "question": "统计设备的借用数量。"
+    },
+    "review_focus": "no_rewrite"
+  },
+  {
+    "case_id": "equipment_loan.missing_dimension",
+    "split": "prompt_dev",
+    "schema_family": "equipment_loan",
+    "template_family": "missing_dimension",
+    "input": {
+      "domain_pack_id": "equipment_loan",
+      "question": "设备的借用数量是多少？"
+    },
+    "review_focus": "missing_dimension"
+  },
+  {
+    "case_id": "equipment_loan.conflict",
+    "split": "prompt_dev",
+    "schema_family": "equipment_loan",
+    "template_family": "conflict",
+    "input": {
+      "domain_pack_id": "equipment_loan",
+      "question": "统计2025年，改为2026年；同时必须保留2025年。"
+    },
+    "review_focus": "conflict"
+  },
+  {
+    "case_id": "equipment_loan.supplement",
+    "split": "prompt_dev",
+    "schema_family": "equipment_loan",
+    "template_family": "supplement",
+    "input": {
+      "domain_pack_id": "equipment_loan",
+      "question": "补充：2026年10月，实验室。"
+    },
+    "review_focus": "supplement"
+  },
+  {
+    "case_id": "equipment_loan.correction",
+    "split": "prompt_dev",
+    "schema_family": "equipment_loan",
+    "template_family": "correction",
+    "input": {
+      "domain_pack_id": "equipment_loan",
+      "question": "更正：不要实验室，换一个地点。"
+    },
+    "review_focus": "correction"
+  },
+  {
+    "case_id": "equipment_loan.restart",
+    "split": "prompt_dev",
+    "schema_family": "equipment_loan",
+    "template_family": "restart",
+    "input": {
+      "domain_pack_id": "equipment_loan",
+      "question": "重新开始，放弃刚才的问题。"
+    },
+    "review_focus": "restart"
+  },
+  {
+    "case_id": "equipment_loan.unknown",
+    "split": "prompt_dev",
+    "schema_family": "equipment_loan",
+    "template_family": "unknown",
+    "input": {
+      "domain_pack_id": "equipment_loan",
+      "question": "查询量子晶格的相位角。"
+    },
+    "review_focus": "unknown"
+  },
+  {
+    "case_id": "chinook_music_store.alias",
+    "split": "prompt_dev",
+    "schema_family": "chinook",
+    "template_family": "alias",
+    "input": {
+      "domain_pack_id": "chinook_music_store",
+      "question": "统计歌手总数"
+    },
+    "review_focus": "alias"
+  },
+  {
+    "case_id": "chinook_music_store.ambiguous",
+    "split": "prompt_dev",
+    "schema_family": "chinook",
+    "template_family": "ambiguous",
+    "input": {
+      "domain_pack_id": "chinook_music_store",
+      "question": "查询数量"
+    },
+    "review_focus": "ambiguous"
+  },
+  {
+    "case_id": "chinook_music_store.typo",
+    "split": "prompt_dev",
+    "schema_family": "chinook",
+    "template_family": "typo",
+    "input": {
+      "domain_pack_id": "chinook_music_store",
+      "question": "查询艺朮家总数"
+    },
+    "review_focus": "typo"
+  },
+  {
+    "case_id": "chinook_music_store.negation",
+    "split": "prompt_dev",
+    "schema_family": "chinook",
+    "template_family": "negation",
+    "input": {
+      "domain_pack_id": "chinook_music_store",
+      "question": "不要统计艺术家总数"
+    },
+    "review_focus": "negation"
+  },
+  {
+    "case_id": "chinook_music_store.number_unit",
+    "split": "prompt_dev",
+    "schema_family": "chinook",
+    "template_family": "number_unit",
+    "input": {
+      "domain_pack_id": "chinook_music_store",
+      "question": "只看超过12分钟的曲目，不要改为120"
+    },
+    "review_focus": "number_unit"
+  },
+  {
+    "case_id": "chinook_music_store.no_rewrite",
+    "split": "prompt_dev",
+    "schema_family": "chinook",
+    "template_family": "no_rewrite",
+    "input": {
+      "domain_pack_id": "chinook_music_store",
+      "question": "统计艺术家总数"
+    },
+    "review_focus": "no_rewrite"
+  },
+  {
+    "case_id": "chinook_music_store.missing_dimension",
+    "split": "prompt_dev",
+    "schema_family": "chinook",
+    "template_family": "missing_dimension",
+    "input": {
+      "domain_pack_id": "chinook_music_store",
+      "question": "统计收入"
+    },
+    "review_focus": "missing_dimension"
+  },
+  {
+    "case_id": "chinook_music_store.conflict",
+    "split": "prompt_dev",
+    "schema_family": "chinook",
+    "template_family": "conflict",
+    "input": {
+      "domain_pack_id": "chinook_music_store",
+      "question": "统计2025年，改为2026年；同时保留2025年"
+    },
+    "review_focus": "conflict"
+  },
+  {
+    "case_id": "chinook_music_store.supplement",
+    "split": "prompt_dev",
+    "schema_family": "chinook",
+    "template_family": "supplement",
+    "input": {
+      "domain_pack_id": "chinook_music_store",
+      "question": "补充：2026年10月"
+    },
+    "review_focus": "supplement"
+  },
+  {
+    "case_id": "chinook_music_store.correction",
+    "split": "prompt_dev",
+    "schema_family": "chinook",
+    "template_family": "correction",
+    "input": {
+      "domain_pack_id": "chinook_music_store",
+      "question": "更正：不要巴西，改为加拿大"
+    },
+    "review_focus": "correction"
+  },
+  {
+    "case_id": "chinook_music_store.restart",
+    "split": "prompt_dev",
+    "schema_family": "chinook",
+    "template_family": "restart",
+    "input": {
+      "domain_pack_id": "chinook_music_store",
+      "question": "重新开始，放弃刚才问题"
+    },
+    "review_focus": "restart"
+  },
+  {
+    "case_id": "chinook_music_store.unknown",
+    "split": "prompt_dev",
+    "schema_family": "chinook",
+    "template_family": "unknown",
+    "input": {
+      "domain_pack_id": "chinook_music_store",
+      "question": "查询量子晶格相位角"
+    },
+    "review_focus": "unknown"
+  }
+]

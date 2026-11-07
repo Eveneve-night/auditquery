@@ -1,0 +1,52 @@
+{
+  "candidates_id": "grounded-answer-prompt-dev-candidates.v1",
+  "task_type": "grounded_answer",
+  "source_manifest": "tests/goldens/model-eval/v1/manifest.json",
+  "source_case_file": "tests/goldens/model-eval/v1/grounded_answer.jsonl",
+  "split": "prompt_dev",
+  "selected_case_ids": ["RAG-001", "RAG-002", "RAG-005", "RAG-009", "RAG-011"],
+  "selection_rationale": {
+    "RAG-001": "deadline/single_evidence：基础单证据抽取，验证最小可答链路与逐字引用。",
+    "RAG-002": "formula/single_evidence：多论断公式题，验证答案覆盖全部论断且引用完整。",
+    "RAG-005": "prompt_injection/security：证据含注入性文字，验证证据仅作数据处理、不改变输出格式的鲁棒性。",
+    "RAG-009": "insufficient_evidence/abstain：prompt_dev 内唯一拒答用例，验证 answerable=false 与本地拒答映射。",
+    "RAG-011": "secret_management/multi_claim：第二份文档 security_policy，验证跨文档多论断作答。"
+  },
+  "coverage": {
+    "documents": ["sales_playbook", "expense_policy", "security_policy"],
+    "abstain_case": "RAG-009",
+    "adversarial_case": "RAG-005",
+    "backup_candidates": ["RAG-003", "RAG-008"]
+  },
+  "usage_boundary": "契约冒烟（contract smoke）：本清单与 D3 的 20 条开发者可见样例仅验证输入/输出契约、解析、预算和拒答链路，不构成准确率、泛化能力或发布达标证据。",
+  "label_coverage": {
+    "covered": ["可回答", "证据不足拒答（RAG-009）", "单文档单证据", "提示注入鲁棒性"],
+    "not_covered": ["多文档多证据", "干扰证据"],
+    "gap_note": "prompt_dev 的 14 条 RAG 用例全部为单证据用例，多文档与干扰证据标签无法在本批候选内覆盖；相关报告必须标注「仅契约验证」。"
+  },
+  "split_discipline": {
+    "selection_split": "prompt_dev",
+    "validation_usage": "C 未使用 validation 做任何选题或版本决策（暴露次数 0）；validation 元数据仅用于确认排除范围（RAG-015 至 RAG-020 不入选）。",
+    "expected_fields_in_inputs": "无：模型输入仅由问题和输入证据片段构成；expected/gold/label 字段不进入 Prompt、候选文件或 payload_context。",
+    "document_family_overlap": {
+      "summary": "冻结的 v1 资产中 security_policy 同时出现在 prompt_dev（RAG-011 至 RAG-014）与 validation（RAG-015），不满足文档族隔离；D3 只能做契约冒烟，validation 不得用于泛化准确率结论。新数据版本必须按文档族重新分组拆分。",
+      "rule": "docs/23 第 4.1 节：RAG 按原始文档或文档族拆分，不能把同一文档的相邻问法分到不同集合。",
+      "detector": "tests/unit/test_grounded_answer_contract.py 的 GroundedAnswerContractTest.test_known_document_family_overlap_matches_goldens（python -m unittest discover -s tests/unit -p 'test_*.py'）",
+      "known": [
+        {
+          "document_id": "security_policy",
+          "splits": {
+            "prompt_dev": ["RAG-011", "RAG-012", "RAG-013", "RAG-014"],
+            "validation": ["RAG-015"]
+          },
+          "reason": "v1 金标准在文档族拆分要求生效前已冻结并发布，未重新分组。",
+          "impact": "同一文档的相邻问法分处两个 split，validation 上的分数不能作为泛化证据。",
+          "remediation": "下一版数据按文档族重新分组拆分后，删除本条声明并让检测用例回归为「零重叠」。",
+          "owner": "A",
+          "recorded_at": "2026-09-25"
+        }
+      ]
+    }
+  },
+  "notes": "本文件只记录选题与理由，不复制案例内容（含 expected/required_claims 等答案字段）；完整案例由 D3-04 runner 从金标准文件读取，避免维护第二套数据。prompt_dev 内不存在 project_report 类用例（RAG-016 至 RAG-020 均属 validation，按规则不得用于提示词迭代）。"
+}

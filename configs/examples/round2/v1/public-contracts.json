@@ -1,0 +1,1018 @@
+{
+  "fixture_version": "1.0.0",
+  "scope": "public_fake_contract_examples_not_engine_predictions",
+  "schema_linking": {
+    "selected": {
+      "request": {
+        "request_version": "1.0.0",
+        "request_id": "request.round2.selected",
+        "question": "公开假样例：查询艺术家名称",
+        "domain_pack_ref": {
+          "domain_pack_id": "chinook_music_store",
+          "version": "1.0.0",
+          "manifest_sha256": "26906fd809480a18274ef3e07558e52b2f55857299685f63facdcdafe2efb3a0"
+        },
+        "catalog_scope": "full_model_visible_read_public_pack",
+        "max_data_level": "L1",
+        "authorized_object_ids": [
+          "schema.chinook",
+          "schema.chinook.album",
+          "schema.chinook.album.albumid",
+          "schema.chinook.album.artistid",
+          "schema.chinook.album.title",
+          "schema.chinook.artist",
+          "schema.chinook.artist.artistid",
+          "schema.chinook.artist.name",
+          "schema.chinook.customer",
+          "schema.chinook.customer.address",
+          "schema.chinook.customer.city",
+          "schema.chinook.customer.company",
+          "schema.chinook.customer.country",
+          "schema.chinook.customer.customerid",
+          "schema.chinook.customer.email",
+          "schema.chinook.customer.fax",
+          "schema.chinook.customer.firstname",
+          "schema.chinook.customer.lastname",
+          "schema.chinook.customer.phone",
+          "schema.chinook.customer.postalcode",
+          "schema.chinook.customer.state",
+          "schema.chinook.customer.supportrepid",
+          "schema.chinook.employee",
+          "schema.chinook.employee.address",
+          "schema.chinook.employee.birthdate",
+          "schema.chinook.employee.city",
+          "schema.chinook.employee.country",
+          "schema.chinook.employee.email",
+          "schema.chinook.employee.employeeid",
+          "schema.chinook.employee.fax",
+          "schema.chinook.employee.firstname",
+          "schema.chinook.employee.hiredate",
+          "schema.chinook.employee.lastname",
+          "schema.chinook.employee.phone",
+          "schema.chinook.employee.postalcode",
+          "schema.chinook.employee.reportsto",
+          "schema.chinook.employee.state",
+          "schema.chinook.employee.title",
+          "schema.chinook.genre",
+          "schema.chinook.genre.genreid",
+          "schema.chinook.genre.name",
+          "schema.chinook.invoice",
+          "schema.chinook.invoice.billingaddress",
+          "schema.chinook.invoice.billingcity",
+          "schema.chinook.invoice.billingcountry",
+          "schema.chinook.invoice.billingpostalcode",
+          "schema.chinook.invoice.billingstate",
+          "schema.chinook.invoice.customerid",
+          "schema.chinook.invoice.invoicedate",
+          "schema.chinook.invoice.invoiceid",
+          "schema.chinook.invoice.total",
+          "schema.chinook.invoiceline",
+          "schema.chinook.invoiceline.invoiceid",
+          "schema.chinook.invoiceline.invoicelineid",
+          "schema.chinook.invoiceline.quantity",
+          "schema.chinook.invoiceline.trackid",
+          "schema.chinook.invoiceline.unitprice",
+          "schema.chinook.mediatype",
+          "schema.chinook.mediatype.mediatypeid",
+          "schema.chinook.mediatype.name",
+          "schema.chinook.playlist",
+          "schema.chinook.playlist.name",
+          "schema.chinook.playlist.playlistid",
+          "schema.chinook.playlisttrack",
+          "schema.chinook.playlisttrack.playlistid",
+          "schema.chinook.playlisttrack.trackid",
+          "schema.chinook.track",
+          "schema.chinook.track.albumid",
+          "schema.chinook.track.bytes",
+          "schema.chinook.track.composer",
+          "schema.chinook.track.genreid",
+          "schema.chinook.track.mediatypeid",
+          "schema.chinook.track.milliseconds",
+          "schema.chinook.track.name",
+          "schema.chinook.track.trackid",
+          "schema.chinook.track.unitprice"
+        ],
+        "authorized_relation_ids": [
+          "relation.fk_album_artistid",
+          "relation.fk_customer_supportrepid",
+          "relation.fk_employee_reportsto",
+          "relation.fk_invoice_customerid",
+          "relation.fk_invoiceline_invoiceid",
+          "relation.fk_invoiceline_trackid",
+          "relation.fk_playlisttrack_playlistid",
+          "relation.fk_playlisttrack_trackid",
+          "relation.fk_track_albumid",
+          "relation.fk_track_genreid",
+          "relation.fk_track_mediatypeid"
+        ],
+        "catalog_sha256": "7d4459bbd953b9cb19c01ab2c90528ba0c3006b22a53b23ae085ad47dd0648fc"
+      },
+      "result": {
+        "result_version": "1.0.0",
+        "request_id": "request.round2.selected",
+        "input_sha256": "fdd0ce5a21ed1306d28736e4c7a229761378d6ee68d53e86da4b4930a95e83ae",
+        "domain_pack_ref": {
+          "domain_pack_id": "chinook_music_store",
+          "version": "1.0.0",
+          "manifest_sha256": "26906fd809480a18274ef3e07558e52b2f55857299685f63facdcdafe2efb3a0"
+        },
+        "status": "selected",
+        "reason_code": "public_contract_example",
+        "table_candidates": [
+          {
+            "object_id": "schema.chinook.artist",
+            "raw_score": 0.9,
+            "evidence_refs": [
+              "schema.chinook.artist"
+            ],
+            "raw_features": {
+              "contract_fake": true,
+              "candidate_kind": "schema_object"
+            }
+          },
+          {
+            "object_id": "schema.chinook.album",
+            "raw_score": 0.8,
+            "evidence_refs": [
+              "schema.chinook.album"
+            ],
+            "raw_features": {
+              "contract_fake": true,
+              "candidate_kind": "schema_object"
+            }
+          }
+        ],
+        "column_candidates": [
+          {
+            "object_id": "schema.chinook.artist.name",
+            "raw_score": 0.9,
+            "evidence_refs": [
+              "schema.chinook.artist.name"
+            ],
+            "raw_features": {
+              "contract_fake": true,
+              "candidate_kind": "schema_object"
+            }
+          }
+        ],
+        "selected_table_id": "schema.chinook.artist",
+        "selected_column_ids": [
+          "schema.chinook.artist.name"
+        ],
+        "typed_decision": {
+          "decision_type": "choice",
+          "candidate_options": [
+            {
+              "candidate_id": "schema.chinook.artist",
+              "display_name": "艺术家",
+              "evidence_refs": [
+                "schema.chinook.artist"
+              ],
+              "raw_features": {
+                "contract_fake": true,
+                "candidate_kind": "schema_object",
+                "lexical_raw_score": 0.9
+              }
+            },
+            {
+              "candidate_id": "schema.chinook.album",
+              "display_name": "专辑",
+              "evidence_refs": [
+                "schema.chinook.album"
+              ],
+              "raw_features": {
+                "contract_fake": true,
+                "candidate_kind": "schema_object",
+                "lexical_raw_score": 0.8
+              }
+            }
+          ],
+          "selected_option": "schema.chinook.artist",
+          "raw_score": 0.9,
+          "calibration_version": null,
+          "evidence_refs": [
+            "schema.chinook.album",
+            "schema.chinook.artist"
+          ],
+          "missing_or_conflicting_slots": [],
+          "recommended_action": "accept",
+          "abstain_reason": null,
+          "contract_version": "1.0.0"
+        },
+        "sql_execution_authorized": false
+      }
+    },
+    "clarify": {
+      "request": {
+        "request_version": "1.0.0",
+        "request_id": "request.round2.clarify",
+        "question": "公开假样例：查询艺术家名称",
+        "domain_pack_ref": {
+          "domain_pack_id": "chinook_music_store",
+          "version": "1.0.0",
+          "manifest_sha256": "26906fd809480a18274ef3e07558e52b2f55857299685f63facdcdafe2efb3a0"
+        },
+        "catalog_scope": "full_model_visible_read_public_pack",
+        "max_data_level": "L1",
+        "authorized_object_ids": [
+          "schema.chinook",
+          "schema.chinook.album",
+          "schema.chinook.album.albumid",
+          "schema.chinook.album.artistid",
+          "schema.chinook.album.title",
+          "schema.chinook.artist",
+          "schema.chinook.artist.artistid",
+          "schema.chinook.artist.name",
+          "schema.chinook.customer",
+          "schema.chinook.customer.address",
+          "schema.chinook.customer.city",
+          "schema.chinook.customer.company",
+          "schema.chinook.customer.country",
+          "schema.chinook.customer.customerid",
+          "schema.chinook.customer.email",
+          "schema.chinook.customer.fax",
+          "schema.chinook.customer.firstname",
+          "schema.chinook.customer.lastname",
+          "schema.chinook.customer.phone",
+          "schema.chinook.customer.postalcode",
+          "schema.chinook.customer.state",
+          "schema.chinook.customer.supportrepid",
+          "schema.chinook.employee",
+          "schema.chinook.employee.address",
+          "schema.chinook.employee.birthdate",
+          "schema.chinook.employee.city",
+          "schema.chinook.employee.country",
+          "schema.chinook.employee.email",
+          "schema.chinook.employee.employeeid",
+          "schema.chinook.employee.fax",
+          "schema.chinook.employee.firstname",
+          "schema.chinook.employee.hiredate",
+          "schema.chinook.employee.lastname",
+          "schema.chinook.employee.phone",
+          "schema.chinook.employee.postalcode",
+          "schema.chinook.employee.reportsto",
+          "schema.chinook.employee.state",
+          "schema.chinook.employee.title",
+          "schema.chinook.genre",
+          "schema.chinook.genre.genreid",
+          "schema.chinook.genre.name",
+          "schema.chinook.invoice",
+          "schema.chinook.invoice.billingaddress",
+          "schema.chinook.invoice.billingcity",
+          "schema.chinook.invoice.billingcountry",
+          "schema.chinook.invoice.billingpostalcode",
+          "schema.chinook.invoice.billingstate",
+          "schema.chinook.invoice.customerid",
+          "schema.chinook.invoice.invoicedate",
+          "schema.chinook.invoice.invoiceid",
+          "schema.chinook.invoice.total",
+          "schema.chinook.invoiceline",
+          "schema.chinook.invoiceline.invoiceid",
+          "schema.chinook.invoiceline.invoicelineid",
+          "schema.chinook.invoiceline.quantity",
+          "schema.chinook.invoiceline.trackid",
+          "schema.chinook.invoiceline.unitprice",
+          "schema.chinook.mediatype",
+          "schema.chinook.mediatype.mediatypeid",
+          "schema.chinook.mediatype.name",
+          "schema.chinook.playlist",
+          "schema.chinook.playlist.name",
+          "schema.chinook.playlist.playlistid",
+          "schema.chinook.playlisttrack",
+          "schema.chinook.playlisttrack.playlistid",
+          "schema.chinook.playlisttrack.trackid",
+          "schema.chinook.track",
+          "schema.chinook.track.albumid",
+          "schema.chinook.track.bytes",
+          "schema.chinook.track.composer",
+          "schema.chinook.track.genreid",
+          "schema.chinook.track.mediatypeid",
+          "schema.chinook.track.milliseconds",
+          "schema.chinook.track.name",
+          "schema.chinook.track.trackid",
+          "schema.chinook.track.unitprice"
+        ],
+        "authorized_relation_ids": [
+          "relation.fk_album_artistid",
+          "relation.fk_customer_supportrepid",
+          "relation.fk_employee_reportsto",
+          "relation.fk_invoice_customerid",
+          "relation.fk_invoiceline_invoiceid",
+          "relation.fk_invoiceline_trackid",
+          "relation.fk_playlisttrack_playlistid",
+          "relation.fk_playlisttrack_trackid",
+          "relation.fk_track_albumid",
+          "relation.fk_track_genreid",
+          "relation.fk_track_mediatypeid"
+        ],
+        "catalog_sha256": "7d4459bbd953b9cb19c01ab2c90528ba0c3006b22a53b23ae085ad47dd0648fc"
+      },
+      "result": {
+        "result_version": "1.0.0",
+        "request_id": "request.round2.clarify",
+        "input_sha256": "e62381fc806afe3be51ef1a39cd302245c6bd4de9c4363f4e9b13e713c419312",
+        "domain_pack_ref": {
+          "domain_pack_id": "chinook_music_store",
+          "version": "1.0.0",
+          "manifest_sha256": "26906fd809480a18274ef3e07558e52b2f55857299685f63facdcdafe2efb3a0"
+        },
+        "status": "clarify",
+        "reason_code": "public_contract_example",
+        "table_candidates": [
+          {
+            "object_id": "schema.chinook.artist",
+            "raw_score": 0.9,
+            "evidence_refs": [
+              "schema.chinook.artist"
+            ],
+            "raw_features": {
+              "contract_fake": true,
+              "candidate_kind": "schema_object"
+            }
+          },
+          {
+            "object_id": "schema.chinook.album",
+            "raw_score": 0.8,
+            "evidence_refs": [
+              "schema.chinook.album"
+            ],
+            "raw_features": {
+              "contract_fake": true,
+              "candidate_kind": "schema_object"
+            }
+          }
+        ],
+        "column_candidates": [
+          {
+            "object_id": "schema.chinook.artist.name",
+            "raw_score": 0.9,
+            "evidence_refs": [
+              "schema.chinook.artist.name"
+            ],
+            "raw_features": {
+              "contract_fake": true,
+              "candidate_kind": "schema_object"
+            }
+          }
+        ],
+        "selected_table_id": null,
+        "selected_column_ids": [],
+        "typed_decision": {
+          "decision_type": "score",
+          "candidate_options": [
+            {
+              "candidate_id": "schema.chinook.artist",
+              "display_name": "艺术家",
+              "evidence_refs": [
+                "schema.chinook.artist"
+              ],
+              "raw_features": {
+                "contract_fake": true,
+                "candidate_kind": "schema_object",
+                "lexical_raw_score": 0.9
+              }
+            },
+            {
+              "candidate_id": "schema.chinook.album",
+              "display_name": "专辑",
+              "evidence_refs": [
+                "schema.chinook.album"
+              ],
+              "raw_features": {
+                "contract_fake": true,
+                "candidate_kind": "schema_object",
+                "lexical_raw_score": 0.8
+              }
+            }
+          ],
+          "selected_option": null,
+          "raw_score": 0.9,
+          "calibration_version": null,
+          "evidence_refs": [
+            "schema.chinook.album",
+            "schema.chinook.artist"
+          ],
+          "missing_or_conflicting_slots": [
+            {
+              "slot_id": "slot.entity_type",
+              "issue": "missing",
+              "evidence_refs": []
+            }
+          ],
+          "recommended_action": "clarify",
+          "abstain_reason": null,
+          "contract_version": "1.0.0"
+        },
+        "sql_execution_authorized": false
+      }
+    },
+    "abstain": {
+      "request": {
+        "request_version": "1.0.0",
+        "request_id": "request.round2.abstain",
+        "question": "公开假样例：查询艺术家名称",
+        "domain_pack_ref": {
+          "domain_pack_id": "chinook_music_store",
+          "version": "1.0.0",
+          "manifest_sha256": "26906fd809480a18274ef3e07558e52b2f55857299685f63facdcdafe2efb3a0"
+        },
+        "catalog_scope": "full_model_visible_read_public_pack",
+        "max_data_level": "L1",
+        "authorized_object_ids": [
+          "schema.chinook",
+          "schema.chinook.album",
+          "schema.chinook.album.albumid",
+          "schema.chinook.album.artistid",
+          "schema.chinook.album.title",
+          "schema.chinook.artist",
+          "schema.chinook.artist.artistid",
+          "schema.chinook.artist.name",
+          "schema.chinook.customer",
+          "schema.chinook.customer.address",
+          "schema.chinook.customer.city",
+          "schema.chinook.customer.company",
+          "schema.chinook.customer.country",
+          "schema.chinook.customer.customerid",
+          "schema.chinook.customer.email",
+          "schema.chinook.customer.fax",
+          "schema.chinook.customer.firstname",
+          "schema.chinook.customer.lastname",
+          "schema.chinook.customer.phone",
+          "schema.chinook.customer.postalcode",
+          "schema.chinook.customer.state",
+          "schema.chinook.customer.supportrepid",
+          "schema.chinook.employee",
+          "schema.chinook.employee.address",
+          "schema.chinook.employee.birthdate",
+          "schema.chinook.employee.city",
+          "schema.chinook.employee.country",
+          "schema.chinook.employee.email",
+          "schema.chinook.employee.employeeid",
+          "schema.chinook.employee.fax",
+          "schema.chinook.employee.firstname",
+          "schema.chinook.employee.hiredate",
+          "schema.chinook.employee.lastname",
+          "schema.chinook.employee.phone",
+          "schema.chinook.employee.postalcode",
+          "schema.chinook.employee.reportsto",
+          "schema.chinook.employee.state",
+          "schema.chinook.employee.title",
+          "schema.chinook.genre",
+          "schema.chinook.genre.genreid",
+          "schema.chinook.genre.name",
+          "schema.chinook.invoice",
+          "schema.chinook.invoice.billingaddress",
+          "schema.chinook.invoice.billingcity",
+          "schema.chinook.invoice.billingcountry",
+          "schema.chinook.invoice.billingpostalcode",
+          "schema.chinook.invoice.billingstate",
+          "schema.chinook.invoice.customerid",
+          "schema.chinook.invoice.invoicedate",
+          "schema.chinook.invoice.invoiceid",
+          "schema.chinook.invoice.total",
+          "schema.chinook.invoiceline",
+          "schema.chinook.invoiceline.invoiceid",
+          "schema.chinook.invoiceline.invoicelineid",
+          "schema.chinook.invoiceline.quantity",
+          "schema.chinook.invoiceline.trackid",
+          "schema.chinook.invoiceline.unitprice",
+          "schema.chinook.mediatype",
+          "schema.chinook.mediatype.mediatypeid",
+          "schema.chinook.mediatype.name",
+          "schema.chinook.playlist",
+          "schema.chinook.playlist.name",
+          "schema.chinook.playlist.playlistid",
+          "schema.chinook.playlisttrack",
+          "schema.chinook.playlisttrack.playlistid",
+          "schema.chinook.playlisttrack.trackid",
+          "schema.chinook.track",
+          "schema.chinook.track.albumid",
+          "schema.chinook.track.bytes",
+          "schema.chinook.track.composer",
+          "schema.chinook.track.genreid",
+          "schema.chinook.track.mediatypeid",
+          "schema.chinook.track.milliseconds",
+          "schema.chinook.track.name",
+          "schema.chinook.track.trackid",
+          "schema.chinook.track.unitprice"
+        ],
+        "authorized_relation_ids": [
+          "relation.fk_album_artistid",
+          "relation.fk_customer_supportrepid",
+          "relation.fk_employee_reportsto",
+          "relation.fk_invoice_customerid",
+          "relation.fk_invoiceline_invoiceid",
+          "relation.fk_invoiceline_trackid",
+          "relation.fk_playlisttrack_playlistid",
+          "relation.fk_playlisttrack_trackid",
+          "relation.fk_track_albumid",
+          "relation.fk_track_genreid",
+          "relation.fk_track_mediatypeid"
+        ],
+        "catalog_sha256": "7d4459bbd953b9cb19c01ab2c90528ba0c3006b22a53b23ae085ad47dd0648fc"
+      },
+      "result": {
+        "result_version": "1.0.0",
+        "request_id": "request.round2.abstain",
+        "input_sha256": "8525e82e5a65f06706adbb2e512fb1904330bc0a9c66ce72918e02f89221e59f",
+        "domain_pack_ref": {
+          "domain_pack_id": "chinook_music_store",
+          "version": "1.0.0",
+          "manifest_sha256": "26906fd809480a18274ef3e07558e52b2f55857299685f63facdcdafe2efb3a0"
+        },
+        "status": "abstain",
+        "reason_code": "public_contract_example",
+        "table_candidates": [
+          {
+            "object_id": "schema.chinook.artist",
+            "raw_score": 0.9,
+            "evidence_refs": [
+              "schema.chinook.artist"
+            ],
+            "raw_features": {
+              "contract_fake": true,
+              "candidate_kind": "schema_object"
+            }
+          },
+          {
+            "object_id": "schema.chinook.album",
+            "raw_score": 0.8,
+            "evidence_refs": [
+              "schema.chinook.album"
+            ],
+            "raw_features": {
+              "contract_fake": true,
+              "candidate_kind": "schema_object"
+            }
+          }
+        ],
+        "column_candidates": [
+          {
+            "object_id": "schema.chinook.artist.name",
+            "raw_score": 0.9,
+            "evidence_refs": [
+              "schema.chinook.artist.name"
+            ],
+            "raw_features": {
+              "contract_fake": true,
+              "candidate_kind": "schema_object"
+            }
+          }
+        ],
+        "selected_table_id": null,
+        "selected_column_ids": [],
+        "typed_decision": {
+          "decision_type": "abstain",
+          "candidate_options": [
+            {
+              "candidate_id": "schema.chinook.artist",
+              "display_name": "艺术家",
+              "evidence_refs": [
+                "schema.chinook.artist"
+              ],
+              "raw_features": {
+                "contract_fake": true,
+                "candidate_kind": "schema_object",
+                "lexical_raw_score": 0.9
+              }
+            },
+            {
+              "candidate_id": "schema.chinook.album",
+              "display_name": "专辑",
+              "evidence_refs": [
+                "schema.chinook.album"
+              ],
+              "raw_features": {
+                "contract_fake": true,
+                "candidate_kind": "schema_object",
+                "lexical_raw_score": 0.8
+              }
+            }
+          ],
+          "selected_option": null,
+          "raw_score": null,
+          "calibration_version": null,
+          "evidence_refs": [
+            "schema.chinook.album",
+            "schema.chinook.artist"
+          ],
+          "missing_or_conflicting_slots": [],
+          "recommended_action": "escalate",
+          "abstain_reason": "insufficient_evidence",
+          "contract_version": "1.0.0"
+        },
+        "sql_execution_authorized": false
+      }
+    },
+    "reject": {
+      "request": {
+        "request_version": "1.0.0",
+        "request_id": "request.round2.reject",
+        "question": "公开假样例：查询艺术家名称",
+        "domain_pack_ref": {
+          "domain_pack_id": "chinook_music_store",
+          "version": "1.0.0",
+          "manifest_sha256": "26906fd809480a18274ef3e07558e52b2f55857299685f63facdcdafe2efb3a0"
+        },
+        "catalog_scope": "full_model_visible_read_public_pack",
+        "max_data_level": "L1",
+        "authorized_object_ids": [
+          "schema.chinook",
+          "schema.chinook.album",
+          "schema.chinook.album.albumid",
+          "schema.chinook.album.artistid",
+          "schema.chinook.album.title",
+          "schema.chinook.artist",
+          "schema.chinook.artist.artistid",
+          "schema.chinook.artist.name",
+          "schema.chinook.customer",
+          "schema.chinook.customer.address",
+          "schema.chinook.customer.city",
+          "schema.chinook.customer.company",
+          "schema.chinook.customer.country",
+          "schema.chinook.customer.customerid",
+          "schema.chinook.customer.email",
+          "schema.chinook.customer.fax",
+          "schema.chinook.customer.firstname",
+          "schema.chinook.customer.lastname",
+          "schema.chinook.customer.phone",
+          "schema.chinook.customer.postalcode",
+          "schema.chinook.customer.state",
+          "schema.chinook.customer.supportrepid",
+          "schema.chinook.employee",
+          "schema.chinook.employee.address",
+          "schema.chinook.employee.birthdate",
+          "schema.chinook.employee.city",
+          "schema.chinook.employee.country",
+          "schema.chinook.employee.email",
+          "schema.chinook.employee.employeeid",
+          "schema.chinook.employee.fax",
+          "schema.chinook.employee.firstname",
+          "schema.chinook.employee.hiredate",
+          "schema.chinook.employee.lastname",
+          "schema.chinook.employee.phone",
+          "schema.chinook.employee.postalcode",
+          "schema.chinook.employee.reportsto",
+          "schema.chinook.employee.state",
+          "schema.chinook.employee.title",
+          "schema.chinook.genre",
+          "schema.chinook.genre.genreid",
+          "schema.chinook.genre.name",
+          "schema.chinook.invoice",
+          "schema.chinook.invoice.billingaddress",
+          "schema.chinook.invoice.billingcity",
+          "schema.chinook.invoice.billingcountry",
+          "schema.chinook.invoice.billingpostalcode",
+          "schema.chinook.invoice.billingstate",
+          "schema.chinook.invoice.customerid",
+          "schema.chinook.invoice.invoicedate",
+          "schema.chinook.invoice.invoiceid",
+          "schema.chinook.invoice.total",
+          "schema.chinook.invoiceline",
+          "schema.chinook.invoiceline.invoiceid",
+          "schema.chinook.invoiceline.invoicelineid",
+          "schema.chinook.invoiceline.quantity",
+          "schema.chinook.invoiceline.trackid",
+          "schema.chinook.invoiceline.unitprice",
+          "schema.chinook.mediatype",
+          "schema.chinook.mediatype.mediatypeid",
+          "schema.chinook.mediatype.name",
+          "schema.chinook.playlist",
+          "schema.chinook.playlist.name",
+          "schema.chinook.playlist.playlistid",
+          "schema.chinook.playlisttrack",
+          "schema.chinook.playlisttrack.playlistid",
+          "schema.chinook.playlisttrack.trackid",
+          "schema.chinook.track",
+          "schema.chinook.track.albumid",
+          "schema.chinook.track.bytes",
+          "schema.chinook.track.composer",
+          "schema.chinook.track.genreid",
+          "schema.chinook.track.mediatypeid",
+          "schema.chinook.track.milliseconds",
+          "schema.chinook.track.name",
+          "schema.chinook.track.trackid",
+          "schema.chinook.track.unitprice"
+        ],
+        "authorized_relation_ids": [
+          "relation.fk_album_artistid",
+          "relation.fk_customer_supportrepid",
+          "relation.fk_employee_reportsto",
+          "relation.fk_invoice_customerid",
+          "relation.fk_invoiceline_invoiceid",
+          "relation.fk_invoiceline_trackid",
+          "relation.fk_playlisttrack_playlistid",
+          "relation.fk_playlisttrack_trackid",
+          "relation.fk_track_albumid",
+          "relation.fk_track_genreid",
+          "relation.fk_track_mediatypeid"
+        ],
+        "catalog_sha256": "7d4459bbd953b9cb19c01ab2c90528ba0c3006b22a53b23ae085ad47dd0648fc"
+      },
+      "result": {
+        "result_version": "1.0.0",
+        "request_id": "request.round2.reject",
+        "input_sha256": "f1b25a434cf39c2bfdf8e138cdd671784554b900a499004a9cf073e51be75bb0",
+        "domain_pack_ref": {
+          "domain_pack_id": "chinook_music_store",
+          "version": "1.0.0",
+          "manifest_sha256": "26906fd809480a18274ef3e07558e52b2f55857299685f63facdcdafe2efb3a0"
+        },
+        "status": "reject",
+        "reason_code": "public_contract_example",
+        "table_candidates": [
+          {
+            "object_id": "schema.chinook.artist",
+            "raw_score": 0.9,
+            "evidence_refs": [
+              "schema.chinook.artist"
+            ],
+            "raw_features": {
+              "contract_fake": true,
+              "candidate_kind": "schema_object"
+            }
+          },
+          {
+            "object_id": "schema.chinook.album",
+            "raw_score": 0.8,
+            "evidence_refs": [
+              "schema.chinook.album"
+            ],
+            "raw_features": {
+              "contract_fake": true,
+              "candidate_kind": "schema_object"
+            }
+          }
+        ],
+        "column_candidates": [
+          {
+            "object_id": "schema.chinook.artist.name",
+            "raw_score": 0.9,
+            "evidence_refs": [
+              "schema.chinook.artist.name"
+            ],
+            "raw_features": {
+              "contract_fake": true,
+              "candidate_kind": "schema_object"
+            }
+          }
+        ],
+        "selected_table_id": null,
+        "selected_column_ids": [],
+        "typed_decision": {
+          "decision_type": "abstain",
+          "candidate_options": [
+            {
+              "candidate_id": "schema.chinook.artist",
+              "display_name": "艺术家",
+              "evidence_refs": [
+                "schema.chinook.artist"
+              ],
+              "raw_features": {
+                "contract_fake": true,
+                "candidate_kind": "schema_object",
+                "lexical_raw_score": 0.9
+              }
+            },
+            {
+              "candidate_id": "schema.chinook.album",
+              "display_name": "专辑",
+              "evidence_refs": [
+                "schema.chinook.album"
+              ],
+              "raw_features": {
+                "contract_fake": true,
+                "candidate_kind": "schema_object",
+                "lexical_raw_score": 0.8
+              }
+            }
+          ],
+          "selected_option": null,
+          "raw_score": null,
+          "calibration_version": null,
+          "evidence_refs": [
+            "schema.chinook.album",
+            "schema.chinook.artist"
+          ],
+          "missing_or_conflicting_slots": [],
+          "recommended_action": "reject",
+          "abstain_reason": "insufficient_evidence",
+          "contract_version": "1.0.0"
+        },
+        "sql_execution_authorized": false
+      }
+    }
+  },
+  "document_complexity": {
+    "selected": {
+      "request": {
+        "request_version": "1.0.0",
+        "request_id": "request.round2.document.selected",
+        "phase": "pre_strategy",
+        "feature_version": "preflight-observation.v1",
+        "document": {
+          "document_id": "doc.round2.fake",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "media_type": "application/pdf",
+          "byte_count": 1234,
+          "page_count": 2
+        },
+        "observations": [
+          {
+            "page_number": 1,
+            "text_characters": 100,
+            "image_count": 0,
+            "table_hint_count": 0,
+            "layout_hint_count": 0,
+            "evidence_refs": [
+              "feature.fake.page1"
+            ]
+          }
+        ],
+        "evidence_catalog": [
+          {
+            "evidence_id": "feature.fake.page1",
+            "page_number": 1,
+            "kind": "preflight_observation"
+          }
+        ],
+        "available_strategies": [
+          {
+            "strategy_id": "pypdf_text.v1",
+            "display_name": "pypdf text"
+          },
+          {
+            "strategy_id": "pdfplumber_layout.v1",
+            "display_name": "pdfplumber layout"
+          }
+        ]
+      },
+      "result": {
+        "result_version": "1.0.0",
+        "request_id": "request.round2.document.selected",
+        "input_sha256": "7b701e1bd5361e075f289afc7c35a1c7350258f10dff58b1229be75d76809514",
+        "document_id": "doc.round2.fake",
+        "document_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "feature_version": "preflight-observation.v1",
+        "policy_version": "complexity_policy.v1",
+        "assessment_scope": "structural_complexity_not_quality",
+        "complexity": "simple",
+        "complexity_score": 0.2,
+        "score_semantics": "uncalibrated_complexity_score",
+        "uncertainty_reason": null,
+        "reasons": [
+          {
+            "reason_code": "public_fake_preflight",
+            "evidence_refs": [
+              "feature.fake.page1"
+            ]
+          }
+        ],
+        "selected_strategy_id": "pypdf_text.v1",
+        "typed_decision": {
+          "decision_type": "choice",
+          "candidate_options": [
+            {
+              "candidate_id": "pypdf_text.v1",
+              "display_name": "pypdf text",
+              "evidence_refs": [
+                "feature.fake.page1"
+              ],
+              "raw_features": {
+                "contract_fake": true
+              }
+            },
+            {
+              "candidate_id": "pdfplumber_layout.v1",
+              "display_name": "pdfplumber layout",
+              "evidence_refs": [
+                "feature.fake.page1"
+              ],
+              "raw_features": {
+                "contract_fake": true
+              }
+            }
+          ],
+          "selected_option": "pypdf_text.v1",
+          "raw_score": 0.8,
+          "calibration_version": null,
+          "evidence_refs": [
+            "feature.fake.page1"
+          ],
+          "missing_or_conflicting_slots": [],
+          "recommended_action": "accept",
+          "abstain_reason": null,
+          "contract_version": "1.0.0"
+        },
+        "execution_status": "not_started",
+        "ocr_authorized": false,
+        "external_processing_authorized": false
+      }
+    },
+    "unknown": {
+      "request": {
+        "request_version": "1.0.0",
+        "request_id": "request.round2.document.unknown",
+        "phase": "pre_strategy",
+        "feature_version": "preflight-observation.v1",
+        "document": {
+          "document_id": "doc.round2.fake",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "media_type": "application/pdf",
+          "byte_count": 1234,
+          "page_count": 2
+        },
+        "observations": [
+          {
+            "page_number": 1,
+            "text_characters": 0,
+            "image_count": 1,
+            "table_hint_count": 0,
+            "layout_hint_count": 0,
+            "evidence_refs": [
+              "feature.fake.page1"
+            ]
+          }
+        ],
+        "evidence_catalog": [
+          {
+            "evidence_id": "feature.fake.page1",
+            "page_number": 1,
+            "kind": "preflight_observation"
+          }
+        ],
+        "available_strategies": [
+          {
+            "strategy_id": "pypdf_text.v1",
+            "display_name": "pypdf text"
+          },
+          {
+            "strategy_id": "pdfplumber_layout.v1",
+            "display_name": "pdfplumber layout"
+          }
+        ]
+      },
+      "result": {
+        "result_version": "1.0.0",
+        "request_id": "request.round2.document.unknown",
+        "input_sha256": "56d568f32a8208101522b02ca7624b59ce6dbf3397ed1e127654f0f6409b78d8",
+        "document_id": "doc.round2.fake",
+        "document_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "feature_version": "preflight-observation.v1",
+        "policy_version": "complexity_policy.v1",
+        "assessment_scope": "structural_complexity_not_quality",
+        "complexity": "unknown",
+        "complexity_score": null,
+        "score_semantics": "uncalibrated_complexity_score",
+        "uncertainty_reason": "unsupported_scan",
+        "reasons": [
+          {
+            "reason_code": "public_fake_preflight",
+            "evidence_refs": [
+              "feature.fake.page1"
+            ]
+          }
+        ],
+        "selected_strategy_id": null,
+        "typed_decision": {
+          "decision_type": "abstain",
+          "candidate_options": [
+            {
+              "candidate_id": "pypdf_text.v1",
+              "display_name": "pypdf text",
+              "evidence_refs": [
+                "feature.fake.page1"
+              ],
+              "raw_features": {
+                "contract_fake": true
+              }
+            },
+            {
+              "candidate_id": "pdfplumber_layout.v1",
+              "display_name": "pdfplumber layout",
+              "evidence_refs": [
+                "feature.fake.page1"
+              ],
+              "raw_features": {
+                "contract_fake": true
+              }
+            }
+          ],
+          "selected_option": null,
+          "raw_score": null,
+          "calibration_version": null,
+          "evidence_refs": [
+            "feature.fake.page1"
+          ],
+          "missing_or_conflicting_slots": [],
+          "recommended_action": "escalate",
+          "abstain_reason": "insufficient_evidence",
+          "contract_version": "1.0.0"
+        },
+        "execution_status": "not_started",
+        "ocr_authorized": false,
+        "external_processing_authorized": false
+      }
+    }
+  }
+}

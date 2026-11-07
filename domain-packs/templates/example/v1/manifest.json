@@ -1,0 +1,39 @@
+{
+  "domain_pack_id": "example_public_pack",
+  "domain_id": "example_public",
+  "version": "1.0.0",
+  "schema_version": "1.0.0",
+  "content_schema_id": "domain-pack-content.v1",
+  "language": "zh-CN",
+  "created_at": "2026-09-26T00:00:00Z",
+  "data_level": "L0",
+  "source_refs": [
+    {
+      "source_id": "source.example_public",
+      "uri": "urn:example:synthetic-domain-pack",
+      "license": "CC0-1.0",
+      "data_level": "L0",
+      "authorized": true
+    }
+  ],
+  "license": {
+    "spdx_id": "CC0-1.0",
+    "redistribution_allowed": true,
+    "notice_path": "LICENSE-or-SOURCE.md"
+  },
+  "compatibility": {
+    "task_types": ["intent", "clarification", "nl2sql"],
+    "database_versions": ["example-schema-v1"]
+  },
+  "hash_algorithm": "sha256-utf8-lf",
+  "files": [
+    {"role": "concepts", "path": "concepts.json", "sha256": "84ad40033b395be48cf47160e27a97f71fc538e201d9dceb6a9fcd3de4633f2b", "data_level": "L0", "send_to_model": true},
+    {"role": "aliases", "path": "aliases.json", "sha256": "ea357759d3409c7280235b4dc1668c1a4f10b6d8d1311d651c8876278d232972", "data_level": "L0", "send_to_model": true},
+    {"role": "slots", "path": "slots.json", "sha256": "2b15f9fa80213915d9319c7ebbaf0267f6221e29e71dd57b1626ed76c64a9771", "data_level": "L0", "send_to_model": true},
+    {"role": "schema_catalog", "path": "schema-catalog.json", "sha256": "4d3c40ec73bb53d9c6558dddb1f40115abc4ce47ab127b93584c6f8090aeff1a", "data_level": "L0", "send_to_model": true},
+    {"role": "relations", "path": "relations.json", "sha256": "68421dcd3bb072073733e850ef3668fbdc319fdd932a37463c5f692b69f5b76e", "data_level": "L0", "send_to_model": true},
+    {"role": "value_evidence", "path": "value-evidence.json", "sha256": "b014c233a733dd79ae2f82003539820920ccb69e8977c29ff3a92607f105d92d", "data_level": "L0", "send_to_model": true},
+    {"role": "validation_rules", "path": "validation-rules.json", "sha256": "19a7893964f2cd3368a949df14dfd224b5907040b5d1ed0d9bde49b6e661ab5b", "data_level": "L0", "send_to_model": true},
+    {"role": "license_notice", "path": "LICENSE-or-SOURCE.md", "sha256": "4f79663b8b9d286529663286c29940e9bfd47d2bc6a787b178262af12acbfe69", "data_level": "L0", "send_to_model": false}
+  ]
+}

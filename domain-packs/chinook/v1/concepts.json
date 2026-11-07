@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "concepts",
+  "items": [
+    {
+      "concept_id": "concept.music_store",
+      "display_name": "音乐商店业务",
+      "description": "Chinook 公开样例数据库对应的音乐商店业务域，涵盖曲库、销售与员工三类实体。",
+      "parent_concept_ids": [],
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "concept_id": "concept.album",
+      "display_name": "专辑",
+      "description": "音乐商店专辑实体，对应 Album 表（约 347 行）。",
+      "parent_concept_ids": [
+        "concept.music_store"
+      ],
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "concept_id": "concept.artist",
+      "display_name": "艺术家",
+      "description": "音乐商店艺术家实体，对应 Artist 表（约 275 行）。",
+      "parent_concept_ids": [
+        "concept.music_store"
+      ],
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "concept_id": "concept.customer",
+      "display_name": "客户",
+      "description": "音乐商店客户实体，对应 Customer 表（约 59 行）。",
+      "parent_concept_ids": [
+        "concept.music_store"
+      ],
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "concept_id": "concept.employee",
+      "display_name": "员工",
+      "description": "音乐商店员工实体，对应 Employee 表（约 8 行）。",
+      "parent_concept_ids": [
+        "concept.music_store"
+      ],
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "concept_id": "concept.genre",
+      "display_name": "音乐流派",
+      "description": "音乐商店音乐流派实体，对应 Genre 表（约 25 行）。",
+      "parent_concept_ids": [
+        "concept.music_store"
+      ],
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "concept_id": "concept.invoice",
+      "display_name": "发票及账单总额",
+      "description": "音乐商店发票及账单总额实体，对应 Invoice 表（约 412 行）。",
+      "parent_concept_ids": [
+        "concept.music_store"
+      ],
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "concept_id": "concept.invoiceline",
+      "display_name": "发票明细",
+      "description": "音乐商店发票明细实体，对应 InvoiceLine 表（约 2240 行）。",
+      "parent_concept_ids": [
+        "concept.music_store"
+      ],
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "concept_id": "concept.mediatype",
+      "display_name": "媒体编码类型",
+      "description": "音乐商店媒体编码类型实体，对应 MediaType 表（约 5 行）。",
+      "parent_concept_ids": [
+        "concept.music_store"
+      ],
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "concept_id": "concept.playlist",
+      "display_name": "播放列表",
+      "description": "音乐商店播放列表实体，对应 Playlist 表（约 18 行）。",
+      "parent_concept_ids": [
+        "concept.music_store"
+      ],
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "concept_id": "concept.playlisttrack",
+      "display_name": "播放列表与曲目的关联",
+      "description": "音乐商店播放列表与曲目的关联实体，对应 PlaylistTrack 表（约 8715 行）。",
+      "parent_concept_ids": [
+        "concept.music_store"
+      ],
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "concept_id": "concept.track",
+      "display_name": "可销售的音频或视频曲目",
+      "description": "音乐商店可销售的音频或视频曲目实体，对应 Track 表（约 3503 行）。",
+      "parent_concept_ids": [
+        "concept.music_store"
+      ],
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    }
+  ]
+}

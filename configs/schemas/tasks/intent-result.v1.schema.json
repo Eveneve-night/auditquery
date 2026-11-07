@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "intent-result.v1",
+  "title": "Intent routing result v1",
+  "allOf": [
+    {"$ref": "task-result-envelope.v1"},
+    {
+      "type": "object",
+      "properties": {
+        "task_type": {"const": "intent"},
+        "data": {
+          "oneOf": [
+            {"type": "null"},
+            {"$ref": "#/$defs/intent_data"}
+          ]
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "intent_data": {
+      "type": "object",
+      "required": [
+        "intent",
+        "needs_clarification",
+        "required_sources",
+        "missing_slots",
+        "reason",
+        "normalized_query"
+      ],
+      "properties": {
+        "intent": {
+          "type": "string",
+          "enum": ["sql", "rag", "cross_source", "unknown"]
+        },
+        "needs_clarification": {"type": "boolean"},
+        "required_sources": {
+          "type": "array",
+          "items": {"type": "string", "pattern": "^[a-z][a-z0-9_-]*$"},
+          "maxItems": 4,
+          "uniqueItems": true
+        },
+        "missing_slots": {
+          "type": "array",
+          "items": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+          "maxItems": 8,
+          "uniqueItems": true
+        },
+        "reason": {
+          "type": "string",
+          "enum": ["routable", "ambiguous", "outside_available_sources", "unsupported_task"]
+        },
+        "normalized_query": {
+          "type": ["string", "null"],
+          "minLength": 1,
+          "maxLength": 500
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"needs_clarification": {"const": true}},
+            "required": ["needs_clarification"]
+          },
+          "then": {
+            "properties": {
+              "missing_slots": {"minItems": 1},
+              "reason": {"const": "ambiguous"}
+            }
+          },
+          "else": {"properties": {"missing_slots": {"maxItems": 0}}}
+        },
+        {
+          "if": {
+            "properties": {"intent": {"enum": ["sql", "rag"]}},
+            "required": ["intent"]
+          },
+          "then": {"properties": {"required_sources": {"minItems": 1}}}
+        },
+        {
+          "if": {
+            "properties": {"intent": {"const": "cross_source"}},
+            "required": ["intent"]
+          },
+          "then": {"properties": {"required_sources": {"minItems": 2}}}
+        },
+        {
+          "if": {
+            "properties": {"intent": {"const": "unknown"}},
+            "required": ["intent"]
+          },
+          "then": {"properties": {"required_sources": {"maxItems": 0}}}
+        },
+        {
+          "if": {
+            "properties": {
+              "intent": {"enum": ["sql", "rag", "cross_source"]},
+              "needs_clarification": {"const": false}
+            },
+            "required": ["intent", "needs_clarification"]
+          },
+          "then": {"properties": {"reason": {"const": "routable"}}}
+        },
+        {
+          "if": {
+            "properties": {
+              "intent": {"const": "unknown"},
+              "needs_clarification": {"const": false}
+            },
+            "required": ["intent", "needs_clarification"]
+          },
+          "then": {
+            "properties": {
+              "reason": {"enum": ["outside_available_sources", "unsupported_task"]}
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    }
+  }
+}

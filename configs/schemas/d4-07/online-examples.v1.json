@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "description": "D4-07 在线请求脱敏消费样例；invalid_cases 仅记录安全错误码，不包含异常正文。",
+  "valid_requests": [
+    {
+      "schema_version": "1.0.0",
+      "operation": "submit_query",
+      "session_id": "session.example",
+      "request_id": "request.example",
+      "turn_id": "turn.1",
+      "state_revision": 0,
+      "query": "统计艺术家数量"
+    },
+    {
+      "schema_version": "1.0.0",
+      "operation": "submit_clarification",
+      "session_id": "session.example",
+      "request_id": "request.example",
+      "turn_id": "turn.2",
+      "state_revision": 1,
+      "question_id": "question.example",
+      "slot_id": "slot.entity",
+      "values": ["artist"],
+      "evidence_refs": ["evidence.entity_kinds"]
+    }
+  ],
+  "invalid_cases": [
+    {"case_id": "stale_revision", "expected_error_code": "stale_state_revision"},
+    {"case_id": "cross_session", "expected_error_code": "session_not_found"},
+    {"case_id": "question_replay", "expected_error_code": "request_replayed"},
+    {"case_id": "cross_slot", "expected_error_code": "slot_binding_mismatch"},
+    {"case_id": "multiple_values", "expected_error_code": "multiple_answer_values"}
+  ]
+}

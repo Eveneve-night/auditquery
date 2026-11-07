@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "document-complexity-result.v1",
+  "type": "object",
+  "required": [
+    "result_version",
+    "request_id",
+    "input_sha256",
+    "document_id",
+    "document_sha256",
+    "feature_version",
+    "policy_version",
+    "assessment_scope",
+    "complexity",
+    "complexity_score",
+    "score_semantics",
+    "uncertainty_reason",
+    "reasons",
+    "selected_strategy_id",
+    "typed_decision",
+    "execution_status",
+    "ocr_authorized",
+    "external_processing_authorized"
+  ],
+  "properties": {
+    "result_version": {
+      "const": "1.0.0"
+    },
+    "request_id": {
+      "$ref": "round2-common.v1#/$defs/ref_id"
+    },
+    "input_sha256": {
+      "$ref": "round2-common.v1#/$defs/sha256"
+    },
+    "document_id": {
+      "$ref": "round2-common.v1#/$defs/ref_id"
+    },
+    "document_sha256": {
+      "$ref": "round2-common.v1#/$defs/sha256"
+    },
+    "feature_version": {
+      "const": "preflight-observation.v1"
+    },
+    "policy_version": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]*\\.v[1-9][0-9]*$"
+    },
+    "assessment_scope": {
+      "const": "structural_complexity_not_quality"
+    },
+    "complexity": {
+      "enum": [
+        "simple",
+        "moderate",
+        "complex",
+        "unknown"
+      ]
+    },
+    "complexity_score": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "score_semantics": {
+      "const": "uncalibrated_complexity_score"
+    },
+    "uncertainty_reason": {
+      "anyOf": [
+        {
+          "enum": [
+            "insufficient_features",
+            "unsupported_scan",
+            "resource_limit",
+            "policy_restriction"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reasons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "reason_code",
+          "evidence_refs"
+        ],
+        "properties": {
+          "reason_code": {
+            "$ref": "round2-common.v1#/$defs/reason_code"
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "round2-common.v1#/$defs/ref_id"
+            },
+            "minItems": 1,
+            "maxItems": 32,
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 32,
+      "uniqueItems": true
+    },
+    "selected_strategy_id": {
+      "anyOf": [
+        {
+          "enum": [
+            "pypdf_text.v1",
+            "pdfplumber_layout.v1"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "typed_decision": {
+      "$ref": "typed-decision.v1"
+    },
+    "execution_status": {
+      "const": "not_started"
+    },
+    "ocr_authorized": {
+      "const": false
+    },
+    "external_processing_authorized": {
+      "const": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "slots",
+  "items": [
+    {
+      "slot_id": "slot.schema_target",
+      "display_name": "目标表与数据粒度",
+      "description": "表或粒度不明确时选择定位目标；不是SQL执行授权。",
+      "value_type": "enum",
+      "required_by_default": false,
+      "required_when": [],
+      "conflict_slot_ids": [],
+      "allowed_value_evidence_refs": [
+        "evidence.otc.schema_targets"
+      ],
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    }
+  ]
+}

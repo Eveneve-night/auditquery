@@ -1,0 +1,17 @@
+{
+  "contract_id": "nl2sql-contract.v1",
+  "contract_version": "1.0.0",
+  "task_type": "nl2sql",
+  "prompt_version": "nl2sql.v1",
+  "prompt_path": "configs/prompts/nl2sql/v1/system.md",
+  "output_schema_id": "nl2sql-result.v1",
+  "output_schema_path": "configs/schemas/tasks/nl2sql-result.v1.schema.json",
+  "model": "qwen3.7-flash",
+  "generation": {
+    "temperature": 0,
+    "enable_thinking": false,
+    "response_format": "json_object",
+    "max_completion_tokens": 900
+  },
+  "description": "生成单表 SQLite 候选查询；执行前必须经过独立 SQL 安全网关。"
+}

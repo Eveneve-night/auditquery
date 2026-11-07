@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "slots",
+  "items": [
+    {
+      "slot_id": "slot.metric",
+      "display_name": "库存数量",
+      "description": "库存数量由用户明确给出；不得擅自补全。",
+      "value_type": "enum",
+      "required_by_default": true,
+      "required_when": [],
+      "conflict_slot_ids": [],
+      "allowed_value_evidence_refs": [
+        "evidence.retail_inventory.metric"
+      ],
+      "source_refs": [
+        "source.retail_inventory"
+      ]
+    },
+    {
+      "slot_id": "slot.entity_type",
+      "display_name": "商品",
+      "description": "商品由用户明确给出；不得擅自补全。",
+      "value_type": "enum",
+      "required_by_default": false,
+      "required_when": [],
+      "conflict_slot_ids": [],
+      "allowed_value_evidence_refs": [
+        "evidence.retail_inventory.entity_type"
+      ],
+      "source_refs": [
+        "source.retail_inventory"
+      ]
+    },
+    {
+      "slot_id": "slot.location",
+      "display_name": "仓库",
+      "description": "仓库由用户明确给出；不得擅自补全。",
+      "value_type": "enum",
+      "required_by_default": true,
+      "required_when": [],
+      "conflict_slot_ids": [],
+      "allowed_value_evidence_refs": [
+        "evidence.retail_inventory.location"
+      ],
+      "source_refs": [
+        "source.retail_inventory"
+      ]
+    },
+    {
+      "slot_id": "slot.unit",
+      "display_name": "数量单位",
+      "description": "数量单位由用户明确给出；不得擅自补全。",
+      "value_type": "enum",
+      "required_by_default": false,
+      "required_when": [],
+      "conflict_slot_ids": [],
+      "allowed_value_evidence_refs": [
+        "evidence.retail_inventory.unit"
+      ],
+      "source_refs": [
+        "source.retail_inventory"
+      ]
+    },
+    {
+      "slot_id": "slot.time_range",
+      "display_name": "统计期间",
+      "description": "统计期间由用户明确给出；不得擅自补全。",
+      "value_type": "string",
+      "required_by_default": true,
+      "required_when": [],
+      "conflict_slot_ids": [],
+      "allowed_value_evidence_refs": [],
+      "source_refs": [
+        "source.retail_inventory"
+      ]
+    }
+  ]
+}

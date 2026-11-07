@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "task-result-envelope.v1",
+  "title": "Common task result envelope",
+  "type": "object",
+  "required": ["schema_version", "task_type", "status", "data", "error", "warnings"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "task_type": {
+      "type": "string",
+      "enum": ["intent", "clarification", "nl2sql", "grounded_answer"]
+    },
+    "status": {"type": "string", "enum": ["success", "error"]},
+    "data": {"type": ["object", "null"]},
+    "error": {
+      "oneOf": [
+        {"type": "null"},
+        {"$ref": "#/$defs/task_error"}
+      ]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1, "maxLength": 200},
+      "uniqueItems": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "success"}}, "required": ["status"]},
+      "then": {
+        "properties": {
+          "data": {"type": "object"},
+          "error": {"type": "null"}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"status": {"const": "error"}}, "required": ["status"]},
+      "then": {
+        "properties": {
+          "data": {"type": "null"},
+          "error": {"$ref": "#/$defs/task_error"}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "task_error": {
+      "type": "object",
+      "required": ["code", "message", "retryable", "field_errors"],
+      "properties": {
+        "code": {
+          "type": "string",
+          "enum": [
+            "INVALID_INPUT",
+            "INSUFFICIENT_CONTEXT",
+            "UNSAFE_REQUEST",
+            "SCHEMA_VALIDATION_FAILED",
+            "POLICY_LIMIT",
+            "INTERNAL_ERROR"
+          ]
+        },
+        "message": {"type": "string", "minLength": 1, "maxLength": 300},
+        "retryable": {"type": "boolean"},
+        "field_errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["path", "code"],
+            "properties": {
+              "path": {"type": "string", "minLength": 1, "maxLength": 200},
+              "code": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"}
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

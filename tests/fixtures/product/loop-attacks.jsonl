@@ -1,0 +1,12 @@
+{"id":"state_transition","repeat":{"event_type":"state_transition","count":13,"action_template":"action-{index}"},"expected_stop_reason":"state_transition_limit"}
+{"id":"model_call","repeat":{"event_type":"model_call","count":5,"action_template":"action-{index}"},"expected_stop_reason":"model_call_limit"}
+{"id":"tool_call","repeat":{"event_type":"tool_call","count":7,"action_template":"action-{index}","tool_name_template":"tool-{index}","arguments_template":{"q":"q-{index}"}},"expected_stop_reason":"tool_call_limit"}
+{"id":"clarification","repeat":{"event_type":"clarification","count":3,"action_template":"action-{index}"},"expected_stop_reason":"specialized_attempt_limit"}
+{"id":"json_repair","repeat":{"event_type":"json_repair","count":2,"action_template":"action-{index}"},"expected_stop_reason":"specialized_attempt_limit"}
+{"id":"provider_retry","repeat":{"event_type":"provider_retry","count":3,"action_template":"action-{index}"},"expected_stop_reason":"specialized_attempt_limit"}
+{"id":"provider_fallback","repeat":{"event_type":"provider_fallback","count":2,"action_template":"action-{index}"},"expected_stop_reason":"specialized_attempt_limit"}
+{"id":"sql_generation","repeat":{"event_type":"sql_generation","count":3,"action_template":"action-{index}"},"expected_stop_reason":"specialized_attempt_limit"}
+{"id":"sql_execution","repeat":{"event_type":"sql_execution","count":3,"action_template":"action-{index}"},"expected_stop_reason":"specialized_attempt_limit"}
+{"id":"retrieval_round","repeat":{"event_type":"retrieval_round","count":3,"action_template":"action-{index}"},"expected_stop_reason":"specialized_attempt_limit"}
+{"id":"consecutive","repeat":{"event_type":"state_transition","count":3,"action_template":"same"},"expected_stop_reason":"consecutive_action_loop"}
+{"id":"signature","repeat":{"event_type":"tool_call","count":3,"action_template":"action-{index}","tool_name_template":"same","arguments_template":{"q":"same"}},"expected_stop_reason":"identical_tool_loop"}

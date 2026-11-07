@@ -1,0 +1,110 @@
+{
+  "example_set_version": "1.0.0",
+  "pending_question": {
+    "question_id": "question.public-001",
+    "session_id": "session.public-001",
+    "request_id": "request.public-001",
+    "turn_id": 1,
+    "state_revision": 2,
+    "slot_id": "slot.time_range",
+    "question_text": "请选择一个公开示例年份。",
+    "options": [
+      {
+        "value": "2011",
+        "display_name": "2011 年",
+        "evidence_ref": "value_evidence.public_year_2011"
+      },
+      {
+        "value": "2012",
+        "display_name": "2012 年",
+        "evidence_ref": "value_evidence.public_year_2012"
+      }
+    ]
+  },
+  "accepted_request": {
+    "schema_version": "2.0.0",
+    "operation": "submit_clarification",
+    "answer_id": "answer.public-001",
+    "session_id": "session.public-001",
+    "request_id": "request.public-001",
+    "turn_id": 1,
+    "state_revision": 2,
+    "question_id": "question.public-001",
+    "slot_id": "slot.time_range",
+    "values": ["2011"],
+    "evidence_refs": ["value_evidence.public_year_2011"]
+  },
+  "schema_rejected_mutations": [
+    {
+      "case_id": "empty_evidence",
+      "field": "evidence_refs",
+      "replacement": []
+    },
+    {
+      "case_id": "multiple_values",
+      "field": "values",
+      "replacement": ["2011", "2012"]
+    },
+    {
+      "case_id": "unknown_field",
+      "field": "client_note",
+      "replacement": "not-allowed"
+    }
+  ],
+  "runtime_rejected_mutations": [
+    {
+      "case_id": "session_tampered",
+      "field": "session_id",
+      "replacement": "session.attacker",
+      "error_code": "clarification_session_mismatch"
+    },
+    {
+      "case_id": "request_tampered",
+      "field": "request_id",
+      "replacement": "request.regenerated",
+      "error_code": "clarification_request_mismatch"
+    },
+    {
+      "case_id": "turn_tampered",
+      "field": "turn_id",
+      "replacement": 2,
+      "error_code": "clarification_turn_mismatch"
+    },
+    {
+      "case_id": "revision_stale",
+      "field": "state_revision",
+      "replacement": 1,
+      "error_code": "clarification_answer_stale"
+    },
+    {
+      "case_id": "question_tampered",
+      "field": "question_id",
+      "replacement": "question.attacker",
+      "error_code": "clarification_question_mismatch"
+    },
+    {
+      "case_id": "slot_tampered",
+      "field": "slot_id",
+      "replacement": "slot.entity",
+      "error_code": "clarification_cross_slot_update"
+    },
+    {
+      "case_id": "value_not_offered",
+      "field": "values",
+      "replacement": ["2099"],
+      "error_code": "clarification_value_not_offered"
+    },
+    {
+      "case_id": "evidence_mismatched",
+      "field": "evidence_refs",
+      "replacement": ["value_evidence.public_year_2012"],
+      "error_code": "invalid_answer_evidence_refs"
+    },
+    {
+      "case_id": "answer_replayed",
+      "field": "answer_id",
+      "replacement": "answer.consumed-001",
+      "error_code": "clarification_answer_replayed"
+    }
+  ]
+}

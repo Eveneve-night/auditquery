@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "aliases",
+  "items": [
+    {
+      "alias_id": "alias.maintenance.asset",
+      "surface_form": "asset",
+      "language": "en",
+      "concept_id": "concept.maintenance.asset",
+      "source_ref": "source.equipment_maintenance_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.maintenance.work_order",
+      "surface_form": "work_order",
+      "language": "en",
+      "concept_id": "concept.maintenance.work_order",
+      "source_ref": "source.equipment_maintenance_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.maintenance.maintenance_event",
+      "surface_form": "maintenance_event",
+      "language": "en",
+      "concept_id": "concept.maintenance.maintenance_event",
+      "source_ref": "source.equipment_maintenance_synthetic",
+      "confidence_class": "synthetic"
+    }
+  ]
+}

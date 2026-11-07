@@ -1,0 +1,114 @@
+{
+  "domain_pack_id": "chinook_music_store",
+  "domain_id": "chinook_music",
+  "version": "2.0.0",
+  "schema_version": "1.0.0",
+  "content_schema_id": "domain-pack-content.v1",
+  "language": "zh-CN",
+  "created_at": "2026-09-26T07:53:00Z",
+  "data_level": "L1",
+  "source_refs": [
+    {
+      "source_id": "source.chinook_database",
+      "uri": "https://github.com/lerocha/chinook-database/releases/tag/v1.4.5",
+      "license": "MIT",
+      "data_level": "L1",
+      "authorized": true
+    },
+    {
+      "source_id": "source.chinook_schema_extract",
+      "uri": "repo:data/schema/chinook-v1.4.5.schema.json",
+      "license": "MIT",
+      "data_level": "L1",
+      "authorized": true
+    },
+    {
+      "source_id": "source.d3_contract_vocabulary",
+      "uri": "repo:configs/prompts/clarification/v1/system.md",
+      "license": "MIT",
+      "data_level": "L0",
+      "authorized": true
+    },
+    {
+      "source_id": "source.d4_04_slot_semantics_v2",
+      "uri": "repo:docs/tasks/D4-04-自动槽位与选择性分流.md",
+      "license": "MIT",
+      "data_level": "L0",
+      "authorized": true
+    }
+  ],
+  "license": {
+    "spdx_id": "MIT",
+    "redistribution_allowed": true,
+    "notice_path": "LICENSE-or-SOURCE.md"
+  },
+  "compatibility": {
+    "task_types": [
+      "intent",
+      "clarification",
+      "nl2sql"
+    ],
+    "database_versions": [
+      "chinook-v1.4.5"
+    ]
+  },
+  "hash_algorithm": "sha256-utf8-lf",
+  "files": [
+    {
+      "role": "concepts",
+      "path": "concepts.json",
+      "sha256": "1737b9295d2509fe59bf5159547a3c1d718d5285d6d5644e28ab2510a043755d",
+      "data_level": "L1",
+      "send_to_model": true
+    },
+    {
+      "role": "aliases",
+      "path": "aliases.json",
+      "sha256": "0619f6c0937be8dc55d4823a9427ac5a3f86897d6f558a01a614ac380f2ceea0",
+      "data_level": "L1",
+      "send_to_model": true
+    },
+    {
+      "role": "slots",
+      "path": "slots.json",
+      "sha256": "d05fcb969b912e4c794db15db893a4261abe6f5a5ea0475f5672806b36cefede",
+      "data_level": "L0",
+      "send_to_model": true
+    },
+    {
+      "role": "schema_catalog",
+      "path": "schema-catalog.json",
+      "sha256": "6bcfde08614d0447e802bd0184877143e2a9fa088ddfbd45f6ba15ad7a3c6d7b",
+      "data_level": "L1",
+      "send_to_model": true
+    },
+    {
+      "role": "relations",
+      "path": "relations.json",
+      "sha256": "ec2bed760d9f5d4d1f27b489052231ff1b3967563352c735bbbddba6e25c6ae8",
+      "data_level": "L1",
+      "send_to_model": true
+    },
+    {
+      "role": "value_evidence",
+      "path": "value-evidence.json",
+      "sha256": "016bf6f8920a56b8af083204c518f1b04f8e4578b1a4d90883200622b8e6dbf0",
+      "data_level": "L1",
+      "send_to_model": true
+    },
+    {
+      "role": "validation_rules",
+      "path": "validation-rules.json",
+      "sha256": "caa5fbb9847a41b586d284a5c26d899e90fbc3ea4c6d7c132c6f56195e5aedee",
+      "data_level": "L0",
+      "send_to_model": true
+    },
+    {
+      "role": "license_notice",
+      "path": "LICENSE-or-SOURCE.md",
+      "sha256": "c5aa2ccb8d02a6e4d0cda321c1edb3b1d2646fd8a41374270c0d577e292230fb",
+      "data_level": "L0",
+      "send_to_model": false
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "protocol_id": "d4-typed-decision-experiment.v1",
+  "version": "1.0.0",
+  "status": "frozen_before_evaluation",
+  "frozen_at": "2026-09-26T00:00:00Z",
+  "claims": {
+    "runtime_implemented": false,
+    "innovation_proven": false,
+    "generalization_proven": false
+  },
+  "model_boundary": {
+    "online_models": ["qwen3.7-flash"],
+    "provider_ids": ["bailian-cn-beijing"],
+    "second_provider_enabled": false,
+    "fallback_enabled": false,
+    "jev_api_enabled": false,
+    "temperature": 0,
+    "enable_thinking": false
+  },
+  "shared_controls": {
+    "budget_profile_id": "agent-loop-limits.v1",
+    "policy_path": "configs/policies/agent-loop-limits.v1.json",
+    "policy_sha256": "bd6ff221f60517c35142684d32474b2e1263e6a36b2c804c8fa43adcc80327ea",
+    "budget": {
+      "max_model_calls": 4,
+      "max_input_tokens_total": 30000,
+      "max_output_tokens_total": 5000,
+      "max_wall_time_ms": 30000,
+      "hard_cost_cny": 1.0
+    },
+    "case_catalog": "same_frozen_cases_and_candidate_catalog_for_all_groups",
+    "scorer": "same_deterministic_scorer_for_all_groups",
+    "typed_contract_id": "typed-decision.v1",
+    "model_input_policy": {
+      "allowlist": ["current_request", "candidate_options", "evidence_refs", "domain_pack_version"],
+      "answer_derived_fields_allowed": false
+    }
+  },
+  "groups": [
+    {
+      "group_id": "B0",
+      "role": "baseline",
+      "uses_model": true,
+      "budget_profile_id": "agent-loop-limits.v1",
+      "candidate_catalog": "shared_frozen_catalog",
+      "output_constraint": "fixed_baseline_output",
+      "enabled_components": ["fixed_prompt", "llm_semantic_judgment"],
+      "disabled_components": ["typed_decision_contract", "domain_pack", "deterministic_rules", "value_evidence", "evidence_fusion", "empirical_calibration", "selective_routing", "fixed_rule_threshold"]
+    },
+    {
+      "group_id": "B1",
+      "role": "baseline",
+      "uses_model": true,
+      "budget_profile_id": "agent-loop-limits.v1",
+      "candidate_catalog": "shared_frozen_catalog",
+      "output_constraint": "typed-decision.v1",
+      "enabled_components": ["fixed_prompt", "llm_semantic_judgment", "typed_decision_contract"],
+      "disabled_components": ["domain_pack", "deterministic_rules", "value_evidence", "evidence_fusion", "empirical_calibration", "selective_routing", "fixed_rule_threshold"]
+    },
+    {
+      "group_id": "B2",
+      "role": "baseline",
+      "uses_model": false,
+      "budget_profile_id": "agent-loop-limits.v1",
+      "candidate_catalog": "shared_frozen_catalog",
+      "output_constraint": "local_typed_equivalent",
+      "enabled_components": ["domain_pack", "deterministic_rules", "value_evidence", "evidence_fusion", "selective_routing", "fixed_rule_threshold"],
+      "disabled_components": ["fixed_prompt", "llm_semantic_judgment", "typed_decision_contract", "empirical_calibration"]
+    },
+    {
+      "group_id": "P",
+      "role": "proposed",
+      "uses_model": true,
+      "budget_profile_id": "agent-loop-limits.v1",
+      "candidate_catalog": "shared_frozen_catalog",
+      "output_constraint": "typed-decision.v1",
+      "enabled_components": ["fixed_prompt", "llm_semantic_judgment", "typed_decision_contract", "domain_pack", "deterministic_rules", "value_evidence", "evidence_fusion", "empirical_calibration", "selective_routing"],
+      "disabled_components": ["fixed_rule_threshold"]
+    },
+    {
+      "group_id": "P-uncalibrated",
+      "role": "diagnostic",
+      "uses_model": true,
+      "budget_profile_id": "agent-loop-limits.v1",
+      "candidate_catalog": "shared_frozen_catalog",
+      "output_constraint": "typed-decision.v1",
+      "enabled_components": ["fixed_prompt", "llm_semantic_judgment", "typed_decision_contract", "domain_pack", "deterministic_rules", "value_evidence", "evidence_fusion", "selective_routing"],
+      "disabled_components": ["empirical_calibration", "fixed_rule_threshold"]
+    }
+  ],
+  "metrics": {
+    "primary": "post_clarification_end_to_end_execution_accuracy",
+    "secondary": [
+      "entity_f1", "slot_micro_f1", "slot_macro_f1", "schema_recall_at_1", "schema_recall_at_3", "schema_recall_at_5", "schema_mrr", "necessary_clarification_recall", "over_clarification_rate", "post_clarification_success_rate", "first_question_key_slot_hit_rate", "average_clarification_rounds", "abstain_precision", "coverage", "contract_valid_rate", "evidence_reference_valid_rate", "trace_completeness_rate", "end_to_end_p50", "end_to_end_p95", "model_calls", "tokens", "cost_cny", "new_domain_setup_time", "domain_pack_entry_count", "business_code_changed_lines"
+    ],
+    "calibration": ["brier_score", "ece", "reliability_diagram", "coverage_risk", "high_confidence_error_rate"],
+    "statistics": ["mcnemar_exact_for_binary", "paired_bootstrap_95ci_for_continuous"]
+  },
+  "minimum_ablations": [
+    {"ablation_id": "without_domain_pack", "change": "移除领域包，保留其他组件。", "same_split_budget_and_scorer": true},
+    {"ablation_id": "without_deterministic_rules", "change": "移除确定性规则，保留其他组件。", "same_split_budget_and_scorer": true},
+    {"ablation_id": "without_empirical_calibration", "change": "使用原始评分替代经验校准结果。", "same_split_budget_and_scorer": true},
+    {"ablation_id": "first_missing_slot", "change": "用第一个缺槽替代信息增益最大槽位策略。", "same_split_budget_and_scorer": true}
+  ],
+  "outcome_criteria": {
+    "success": [
+      {"code": "quality_gain", "condition": "P相对最佳基线主指标绝对提升至少5个百分点且配对统计支持。", "conclusion": "允许在限定数据和版本范围内主张创新收益。"},
+      {"code": "efficiency_gain", "condition": "正确率下降不超过2个百分点且p95、Token或费用至少降低30%。", "conclusion": "仅允许主张低延迟类型化决策优化。"}
+    ],
+    "hard_failure": [
+      {"code": "not_better_than_best_baseline", "condition": "P不优于最佳基线。", "conclusion": "取消创新主张。"},
+      {"code": "clarification_recall_too_low", "condition": "必要澄清召回低于0.85。", "conclusion": "停止中级任务3通过声明。"},
+      {"code": "over_clarification_too_high", "condition": "过度澄清率高于0.10。", "conclusion": "停止中级任务3通过声明。"},
+      {"code": "high_confidence_error_too_high", "condition": "高置信错误率高于0.05。", "conclusion": "不得称为经验校准置信度。"},
+      {"code": "cost_latency_regression", "condition": "p95或费用增加超过20%且主指标提升不足5个百分点。", "conclusion": "取消创新收益主张。"},
+      {"code": "migration_requires_code_or_test_answer", "condition": "新领域需要修改Prompt或业务代码，或写入隐藏测试答案。", "conclusion": "取消可迁移表述。"},
+      {"code": "evidence_not_reproducible", "condition": "证据引用无法复核。", "conclusion": "Gate失败。"}
+    ],
+    "degradation": [
+      {"code": "prompt_only_gain", "condition": "仅优于B0。", "conclusion": "降级为工程组合。"},
+      {"code": "single_schema_only", "condition": "只在单一Schema有效。", "conclusion": "降级为领域内增强。"},
+      {"code": "insufficient_hidden_test", "condition": "隐藏测试少于120或领域少于3。", "conclusion": "降级为初步可行性证据。"},
+      {"code": "calibration_missing", "condition": "未完成validation校准。", "conclusion": "仅称阈值分流。"},
+      {"code": "efficiency_only", "condition": "只有效率收益。", "conclusion": "仅称低延迟类型化决策优化。"}
+    ]
+  },
+  "data_gates": {
+    "competition_candidate": {"minimum_total_cases": 180, "purpose": "competition_release", "can_support_innovation_claim": false},
+    "innovation_claim": {"minimum_total_cases": 240, "purpose": "innovation_migration_calibration", "can_support_innovation_claim": true}
+  },
+  "data_manifest": {
+    "path": "configs/evaluation/d4/innovation-eval-manifest.v2.template.json",
+    "schema_id": "innovation-eval-manifest.v2",
+    "sha256": "63f9ec1e5bf94d2f30e7236a344d9e1fec8cb324540a715c215bb3b3437ec30a",
+    "contains_case_content": false
+  },
+  "validation_exposure": {
+    "register_path": "configs/evaluation/d4/validation-exposure.v1.json",
+    "register_sha256": "e258950455d21f6f0e13b2bbdfa127cddbd2f111a578623229c3e1ead51981de",
+    "maximum_per_prompt_major": 2,
+    "historical_count": 0,
+    "current_task_count": 0
+  },
+  "hidden_test": {
+    "content_committed": false,
+    "storage": "outside_normal_development_branches",
+    "keeper": "non_prompt_author",
+    "minimum_cases": 120,
+    "result_access": "aggregate_before_release_decision"
+  },
+  "trace_contract": "typed-decision-trace-event.v1",
+  "protected_d3_assets": {
+    "configs/policies/agent-loop-limits.v1.json": "bd6ff221f60517c35142684d32474b2e1263e6a36b2c804c8fa43adcc80327ea",
+    "configs/prompts/intent/v1/contract.json": "20b841d4a976703c0216ec88e435dd9f8d4cb806c71e62f9cf877e1ce2a92016",
+    "configs/prompts/intent/v1/system.md": "94e78ce4ad4da9b22e55249ec578812faffba658a47f7b9a98e26282da552f93",
+    "configs/prompts/clarification/v1/contract.json": "c41aa1c8d5770211ae88438f1b20adf65f47f6f33b2374979fb647ecf412d778",
+    "configs/prompts/clarification/v1/system.md": "67fdc563e73ef5bc17e6432789a0fac3b895cc9897d854a0c1f4bf1cee6accf3",
+    "configs/prompts/nl2sql/v1/contract.json": "ac069c3cbf78f4242d2ea793c6f5909a2a7170ce888ecd5408ec0f7d943d39ac",
+    "configs/prompts/nl2sql/v1/system.md": "06d751fe98c89bb1c29139c04ea8e55ec8d359911f111eed3fec0ca8ac3407b2",
+    "configs/prompts/grounded-answer/v1/contract.json": "30919b4d37c846347aa13050cce11e340a7849eb60d29879a0650b3df55a9a21",
+    "configs/prompts/grounded-answer/v1/system.md": "b6fe6477e37aa95034b4dc1299d13178800171f5d6859995a7546d12be1c917b",
+    "configs/schemas/tasks/intent-result.v1.schema.json": "5fc8bdbea9a85cbe82f58ef91733b456592b1cf81a05f038e99107f409080bb0",
+    "configs/schemas/tasks/clarification-result.v1.schema.json": "9245ff60eaef03aac4785be769045deac08906f145087d81e1b00f6c581f0213",
+    "configs/schemas/tasks/nl2sql-result.v1.schema.json": "0b1793423169d71f164bb900321766aeb527aa0073135acfa9c64fe14fad8ea0",
+    "configs/schemas/tasks/grounded-answer-result.v1.schema.json": "d696e7cc03731da36fe36551a301d17da7d77827594989780729a9a8411338a4",
+    "tests/goldens/d3-smoke/v1/manifest.json": "20432ccb90cdc67e214bc185452aa11e4cfbc57292e2a73da3dd9512909d315e"
+  }
+}

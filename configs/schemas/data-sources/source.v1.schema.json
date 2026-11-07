@@ -1,0 +1,91 @@
+{
+  "type": "object",
+  "properties": {
+    "contract_version": {
+      "const": "1.0.0"
+    },
+    "source_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.-]{0,95}$"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "verified",
+        "synced",
+        "published",
+        "draining",
+        "disabled",
+        "deleted"
+      ]
+    },
+    "connector": {
+      "$ref": "data-source-common.v1#/$defs/connector"
+    },
+    "sqlite_asset_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.-]{0,95}$"
+    },
+    "credential_ref": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "secret_id": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_.-]{0,95}$"
+            },
+            "source_id": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_.-]{0,95}$"
+            },
+            "purpose": {
+              "const": "data_source"
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "required": [
+            "secret_id",
+            "source_id",
+            "purpose",
+            "revision"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "binding": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "data-source-common.v1#/$defs/binding"
+        }
+      ]
+    }
+  },
+  "required": [
+    "contract_version",
+    "source_id",
+    "revision",
+    "status",
+    "connector",
+    "sqlite_asset_id",
+    "credential_ref",
+    "binding"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "data-source-record.v1"
+}

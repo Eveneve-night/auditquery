@@ -1,0 +1,10 @@
+jsonschema==4.26.0
+argon2-cffi==25.1.0
+cryptography==50.0.1
+pdfplumber==0.11.10
+pypdf==6.19.0
+reportlab==5.0.1
+playwright==1.63.0
+# 演示素材（截图/录屏）额外前置：录屏需 Playwright FFmpeg 工具，Python 包不携带。
+# 这一步是素材生成环境准备，会联网下载工具；运行时仍只访问 localhost。
+#   python -m playwright install ffmpeg

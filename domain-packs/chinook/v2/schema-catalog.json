@@ -1,0 +1,1018 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "schema_catalog",
+  "items": [
+    {
+      "object_id": "schema.chinook",
+      "object_type": "data_source",
+      "parent_object_id": null,
+      "display_name": "Chinook 音乐商店数据库",
+      "physical_name": "chinook-v1.4.5",
+      "data_type": null,
+      "concept_refs": [
+        "concept.music_store"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.album",
+      "object_type": "table",
+      "parent_object_id": "schema.chinook",
+      "display_name": "专辑",
+      "physical_name": "Album",
+      "data_type": null,
+      "concept_refs": [
+        "concept.album"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.album.albumid",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.album",
+      "display_name": "专辑ID",
+      "physical_name": "AlbumId",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.album.title",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.album",
+      "display_name": "专辑标题",
+      "physical_name": "Title",
+      "data_type": "NVARCHAR(160)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.album.artistid",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.album",
+      "display_name": "艺术家ID",
+      "physical_name": "ArtistId",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.artist",
+      "object_type": "table",
+      "parent_object_id": "schema.chinook",
+      "display_name": "艺术家",
+      "physical_name": "Artist",
+      "data_type": null,
+      "concept_refs": [
+        "concept.artist"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.artist.artistid",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.artist",
+      "display_name": "艺术家ID",
+      "physical_name": "ArtistId",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.artist.name",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.artist",
+      "display_name": "艺术家名称",
+      "physical_name": "Name",
+      "data_type": "NVARCHAR(120)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.customer",
+      "object_type": "table",
+      "parent_object_id": "schema.chinook",
+      "display_name": "客户",
+      "physical_name": "Customer",
+      "data_type": null,
+      "concept_refs": [
+        "concept.customer"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.customer.customerid",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.customer",
+      "display_name": "客户ID",
+      "physical_name": "CustomerId",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.customer.firstname",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.customer",
+      "display_name": "名",
+      "physical_name": "FirstName",
+      "data_type": "NVARCHAR(40)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.customer.lastname",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.customer",
+      "display_name": "姓",
+      "physical_name": "LastName",
+      "data_type": "NVARCHAR(20)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.customer.company",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.customer",
+      "display_name": "公司",
+      "physical_name": "Company",
+      "data_type": "NVARCHAR(80)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.customer.address",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.customer",
+      "display_name": "地址",
+      "physical_name": "Address",
+      "data_type": "NVARCHAR(70)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.customer.city",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.customer",
+      "display_name": "城市",
+      "physical_name": "City",
+      "data_type": "NVARCHAR(40)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.customer.state",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.customer",
+      "display_name": "州或省",
+      "physical_name": "State",
+      "data_type": "NVARCHAR(40)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.customer.country",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.customer",
+      "display_name": "国家",
+      "physical_name": "Country",
+      "data_type": "NVARCHAR(40)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.customer.postalcode",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.customer",
+      "display_name": "邮编",
+      "physical_name": "PostalCode",
+      "data_type": "NVARCHAR(10)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.customer.phone",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.customer",
+      "display_name": "电话",
+      "physical_name": "Phone",
+      "data_type": "NVARCHAR(24)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.customer.fax",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.customer",
+      "display_name": "传真",
+      "physical_name": "Fax",
+      "data_type": "NVARCHAR(24)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.customer.email",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.customer",
+      "display_name": "邮箱",
+      "physical_name": "Email",
+      "data_type": "NVARCHAR(60)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.customer.supportrepid",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.customer",
+      "display_name": "客户支持员工ID",
+      "physical_name": "SupportRepId",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.employee",
+      "object_type": "table",
+      "parent_object_id": "schema.chinook",
+      "display_name": "员工",
+      "physical_name": "Employee",
+      "data_type": null,
+      "concept_refs": [
+        "concept.employee"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.employee.employeeid",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.employee",
+      "display_name": "员工ID",
+      "physical_name": "EmployeeId",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.employee.lastname",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.employee",
+      "display_name": "姓",
+      "physical_name": "LastName",
+      "data_type": "NVARCHAR(20)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.employee.firstname",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.employee",
+      "display_name": "名",
+      "physical_name": "FirstName",
+      "data_type": "NVARCHAR(20)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.employee.title",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.employee",
+      "display_name": "职位",
+      "physical_name": "Title",
+      "data_type": "NVARCHAR(30)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.employee.reportsto",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.employee",
+      "display_name": "直属上级员工ID",
+      "physical_name": "ReportsTo",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.employee.birthdate",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.employee",
+      "display_name": "出生日期",
+      "physical_name": "BirthDate",
+      "data_type": "DATETIME",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.employee.hiredate",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.employee",
+      "display_name": "入职日期",
+      "physical_name": "HireDate",
+      "data_type": "DATETIME",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.employee.address",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.employee",
+      "display_name": "地址",
+      "physical_name": "Address",
+      "data_type": "NVARCHAR(70)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.employee.city",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.employee",
+      "display_name": "城市",
+      "physical_name": "City",
+      "data_type": "NVARCHAR(40)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.employee.state",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.employee",
+      "display_name": "州或省",
+      "physical_name": "State",
+      "data_type": "NVARCHAR(40)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.employee.country",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.employee",
+      "display_name": "国家",
+      "physical_name": "Country",
+      "data_type": "NVARCHAR(40)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.employee.postalcode",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.employee",
+      "display_name": "邮编",
+      "physical_name": "PostalCode",
+      "data_type": "NVARCHAR(10)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.employee.phone",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.employee",
+      "display_name": "电话",
+      "physical_name": "Phone",
+      "data_type": "NVARCHAR(24)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.employee.fax",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.employee",
+      "display_name": "传真",
+      "physical_name": "Fax",
+      "data_type": "NVARCHAR(24)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.employee.email",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.employee",
+      "display_name": "邮箱",
+      "physical_name": "Email",
+      "data_type": "NVARCHAR(60)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.genre",
+      "object_type": "table",
+      "parent_object_id": "schema.chinook",
+      "display_name": "音乐流派",
+      "physical_name": "Genre",
+      "data_type": null,
+      "concept_refs": [
+        "concept.genre"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.genre.genreid",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.genre",
+      "display_name": "流派ID",
+      "physical_name": "GenreId",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.genre.name",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.genre",
+      "display_name": "流派名称",
+      "physical_name": "Name",
+      "data_type": "NVARCHAR(120)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.invoice",
+      "object_type": "table",
+      "parent_object_id": "schema.chinook",
+      "display_name": "发票及账单总额",
+      "physical_name": "Invoice",
+      "data_type": null,
+      "concept_refs": [
+        "concept.invoice"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.invoice.invoiceid",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.invoice",
+      "display_name": "发票ID",
+      "physical_name": "InvoiceId",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.invoice.customerid",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.invoice",
+      "display_name": "客户ID",
+      "physical_name": "CustomerId",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.invoice.invoicedate",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.invoice",
+      "display_name": "开票日期",
+      "physical_name": "InvoiceDate",
+      "data_type": "DATETIME",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.invoice.billingaddress",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.invoice",
+      "display_name": "账单地址",
+      "physical_name": "BillingAddress",
+      "data_type": "NVARCHAR(70)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.invoice.billingcity",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.invoice",
+      "display_name": "账单城市",
+      "physical_name": "BillingCity",
+      "data_type": "NVARCHAR(40)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.invoice.billingstate",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.invoice",
+      "display_name": "账单州或省",
+      "physical_name": "BillingState",
+      "data_type": "NVARCHAR(40)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.invoice.billingcountry",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.invoice",
+      "display_name": "账单国家",
+      "physical_name": "BillingCountry",
+      "data_type": "NVARCHAR(40)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.invoice.billingpostalcode",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.invoice",
+      "display_name": "账单邮编",
+      "physical_name": "BillingPostalCode",
+      "data_type": "NVARCHAR(10)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.invoice.total",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.invoice",
+      "display_name": "发票总金额",
+      "physical_name": "Total",
+      "data_type": "NUMERIC(10,2)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.invoiceline",
+      "object_type": "table",
+      "parent_object_id": "schema.chinook",
+      "display_name": "发票明细",
+      "physical_name": "InvoiceLine",
+      "data_type": null,
+      "concept_refs": [
+        "concept.invoiceline"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.invoiceline.invoicelineid",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.invoiceline",
+      "display_name": "发票明细ID",
+      "physical_name": "InvoiceLineId",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.invoiceline.invoiceid",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.invoiceline",
+      "display_name": "发票ID",
+      "physical_name": "InvoiceId",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.invoiceline.trackid",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.invoiceline",
+      "display_name": "曲目ID",
+      "physical_name": "TrackId",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.invoiceline.unitprice",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.invoiceline",
+      "display_name": "成交单价",
+      "physical_name": "UnitPrice",
+      "data_type": "NUMERIC(10,2)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.invoiceline.quantity",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.invoiceline",
+      "display_name": "数量",
+      "physical_name": "Quantity",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.mediatype",
+      "object_type": "table",
+      "parent_object_id": "schema.chinook",
+      "display_name": "媒体编码类型",
+      "physical_name": "MediaType",
+      "data_type": null,
+      "concept_refs": [
+        "concept.mediatype"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.mediatype.mediatypeid",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.mediatype",
+      "display_name": "媒体类型ID",
+      "physical_name": "MediaTypeId",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.mediatype.name",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.mediatype",
+      "display_name": "媒体类型名称",
+      "physical_name": "Name",
+      "data_type": "NVARCHAR(120)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.playlist",
+      "object_type": "table",
+      "parent_object_id": "schema.chinook",
+      "display_name": "播放列表",
+      "physical_name": "Playlist",
+      "data_type": null,
+      "concept_refs": [
+        "concept.playlist"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.playlist.playlistid",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.playlist",
+      "display_name": "播放列表ID",
+      "physical_name": "PlaylistId",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.playlist.name",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.playlist",
+      "display_name": "播放列表名称",
+      "physical_name": "Name",
+      "data_type": "NVARCHAR(120)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.playlisttrack",
+      "object_type": "table",
+      "parent_object_id": "schema.chinook",
+      "display_name": "播放列表与曲目的关联",
+      "physical_name": "PlaylistTrack",
+      "data_type": null,
+      "concept_refs": [
+        "concept.playlisttrack"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.playlisttrack.playlistid",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.playlisttrack",
+      "display_name": "播放列表ID",
+      "physical_name": "PlaylistId",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.playlisttrack.trackid",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.playlisttrack",
+      "display_name": "曲目ID",
+      "physical_name": "TrackId",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.track",
+      "object_type": "table",
+      "parent_object_id": "schema.chinook",
+      "display_name": "可销售的音频或视频曲目",
+      "physical_name": "Track",
+      "data_type": null,
+      "concept_refs": [
+        "concept.track"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.track.trackid",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.track",
+      "display_name": "曲目ID",
+      "physical_name": "TrackId",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.track.name",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.track",
+      "display_name": "曲目名称",
+      "physical_name": "Name",
+      "data_type": "NVARCHAR(200)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.track.albumid",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.track",
+      "display_name": "专辑ID",
+      "physical_name": "AlbumId",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.track.mediatypeid",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.track",
+      "display_name": "媒体类型ID",
+      "physical_name": "MediaTypeId",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.track.genreid",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.track",
+      "display_name": "流派ID",
+      "physical_name": "GenreId",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.track.composer",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.track",
+      "display_name": "作曲者",
+      "physical_name": "Composer",
+      "data_type": "NVARCHAR(220)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.track.milliseconds",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.track",
+      "display_name": "时长，毫秒",
+      "physical_name": "Milliseconds",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.track.bytes",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.track",
+      "display_name": "文件大小，字节",
+      "physical_name": "Bytes",
+      "data_type": "INTEGER",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "object_id": "schema.chinook.track.unitprice",
+      "object_type": "column",
+      "parent_object_id": "schema.chinook.track",
+      "display_name": "目录单价",
+      "physical_name": "UnitPrice",
+      "data_type": "NUMERIC(10,2)",
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    }
+  ]
+}

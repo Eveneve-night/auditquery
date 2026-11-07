@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "document-complexity-request.v1",
+  "type": "object",
+  "required": [
+    "request_version",
+    "request_id",
+    "phase",
+    "feature_version",
+    "document",
+    "observations",
+    "evidence_catalog",
+    "available_strategies"
+  ],
+  "properties": {
+    "request_version": {
+      "const": "1.0.0"
+    },
+    "request_id": {
+      "$ref": "round2-common.v1#/$defs/ref_id"
+    },
+    "phase": {
+      "const": "pre_strategy"
+    },
+    "feature_version": {
+      "const": "preflight-observation.v1"
+    },
+    "document": {
+      "type": "object",
+      "required": [
+        "document_id",
+        "sha256",
+        "media_type",
+        "byte_count",
+        "page_count"
+      ],
+      "properties": {
+        "document_id": {
+          "$ref": "round2-common.v1#/$defs/ref_id"
+        },
+        "sha256": {
+          "$ref": "round2-common.v1#/$defs/sha256"
+        },
+        "media_type": {
+          "const": "application/pdf"
+        },
+        "byte_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "page_count": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "$ref": "round2-common.v1#/$defs/page_observation"
+      },
+      "minItems": 1,
+      "maxItems": 64,
+      "uniqueItems": true
+    },
+    "evidence_catalog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "evidence_id",
+          "page_number",
+          "kind"
+        ],
+        "properties": {
+          "evidence_id": {
+            "$ref": "round2-common.v1#/$defs/ref_id"
+          },
+          "page_number": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "kind": {
+            "enum": [
+              "document_metadata",
+              "preflight_observation"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 2048,
+      "uniqueItems": true
+    },
+    "available_strategies": {
+      "type": "array",
+      "items": {
+        "$ref": "round2-common.v1#/$defs/strategy"
+      },
+      "minItems": 1,
+      "maxItems": 2,
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false
+}

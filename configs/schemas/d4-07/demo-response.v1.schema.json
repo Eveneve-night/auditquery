@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "demo-response.v1",
+  "title": "D4-07 public offline demo response v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "request_id",
+    "scenario_id",
+    "route",
+    "mode",
+    "status",
+    "message",
+    "decision",
+    "candidate_evidence",
+    "sql",
+    "citations",
+    "trace",
+    "warnings",
+    "disclosure"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "request_id": {"$ref": "#/$defs/request_id"},
+    "scenario_id": {"type": "string", "pattern": "^D4-07-[A-Z]+-[0-9]{3}$"},
+    "route": {"enum": ["sql", "rag"]},
+    "mode": {"const": "offline_public_demo"},
+    "status": {"enum": ["success", "refused"]},
+    "message": {"type": "string", "minLength": 1, "maxLength": 256},
+    "decision": {"$ref": "#/$defs/decision"},
+    "candidate_evidence": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/candidate"},
+      "maxItems": 10
+    },
+    "sql": {
+      "oneOf": [
+        {"type": "null"},
+        {"$ref": "#/$defs/sql_result"}
+      ]
+    },
+    "citations": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/citation"},
+      "maxItems": 10
+    },
+    "trace": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/trace_event"},
+      "minItems": 1,
+      "maxItems": 64
+    },
+    "warnings": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[a-z][a-z0-9_]{1,63}$"},
+      "uniqueItems": true,
+      "maxItems": 16
+    },
+    "disclosure": {
+      "type": "object",
+      "required": [
+        "model_api_calls",
+        "network_evaluation_calls",
+        "credential_files_read",
+        "validation_exposures",
+        "hidden_test_exposures",
+        "model_answer_generated",
+        "business_accuracy_proven",
+        "generalization_proven",
+        "innovation_proven"
+      ],
+      "properties": {
+        "model_api_calls": {"const": 0},
+        "network_evaluation_calls": {"const": 0},
+        "credential_files_read": {"const": 0},
+        "validation_exposures": {"const": 0},
+        "hidden_test_exposures": {"const": 0},
+        "model_answer_generated": {"const": false},
+        "business_accuracy_proven": {"const": false},
+        "generalization_proven": {"const": false},
+        "innovation_proven": {"const": false}
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "request_id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.:-]{0,127}$"
+    },
+    "ref_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,127}$"
+    },
+    "decision": {
+      "type": "object",
+      "required": [
+        "action",
+        "reason_code",
+        "score_kind",
+        "score",
+        "calibration_version",
+        "thresholds",
+        "accept_authorizes_sql_execution",
+        "requires_d4_02_safety_gate"
+      ],
+      "properties": {
+        "action": {"enum": ["accept", "clarify", "escalate", "reject"]},
+        "reason_code": {"type": "string", "pattern": "^[a-z][a-z0-9_]{1,63}$"},
+        "score_kind": {"enum": ["uncalibrated_raw_score", "deterministic_bm25"]},
+        "score": {"type": ["number", "null"], "minimum": 0},
+        "calibration_version": {"type": "null"},
+        "thresholds": {
+          "type": "object",
+          "required": ["accept_min", "clarify_min", "abstain_below", "retrieval_min_score"],
+          "properties": {
+            "accept_min": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+            "clarify_min": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+            "abstain_below": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+            "retrieval_min_score": {"type": ["number", "null"], "minimum": 0}
+          },
+          "additionalProperties": false
+        },
+        "accept_authorizes_sql_execution": {"const": false},
+        "requires_d4_02_safety_gate": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "candidate": {
+      "type": "object",
+      "required": ["candidate_id", "display_name", "candidate_kind", "score", "evidence_refs"],
+      "properties": {
+        "candidate_id": {"$ref": "#/$defs/ref_id"},
+        "display_name": {"type": "string", "minLength": 1, "maxLength": 128},
+        "candidate_kind": {"type": "string", "pattern": "^[a-z][a-z0-9_]{1,63}$"},
+        "score": {"type": "number", "minimum": 0},
+        "evidence_refs": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/ref_id"},
+          "uniqueItems": true,
+          "maxItems": 32
+        }
+      },
+      "additionalProperties": false
+    },
+    "sql_result": {
+      "type": "object",
+      "required": [
+        "proposal_id",
+        "candidate_sql",
+        "tables",
+        "safety_approved",
+        "execution_attempts",
+        "columns",
+        "rows",
+        "row_count",
+        "truncated"
+      ],
+      "properties": {
+        "proposal_id": {"$ref": "#/$defs/ref_id"},
+        "candidate_sql": {"type": "string", "minLength": 1, "maxLength": 4096},
+        "tables": {
+          "type": "array",
+          "items": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]{0,63}$"},
+          "minItems": 1,
+          "maxItems": 1,
+          "uniqueItems": true
+        },
+        "safety_approved": {"type": "boolean"},
+        "execution_attempts": {"type": "integer", "minimum": 0, "maximum": 1},
+        "columns": {
+          "type": "array",
+          "items": {"type": "string", "maxLength": 128},
+          "maxItems": 64
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {"type": ["string", "number", "integer", "boolean", "null"]},
+            "maxItems": 64
+          },
+          "maxItems": 100
+        },
+        "row_count": {"type": "integer", "minimum": 0, "maximum": 100},
+        "truncated": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "citation": {
+      "type": "object",
+      "required": ["evidence_id", "document_id", "document_title", "pdf_path", "page", "snippet", "score"],
+      "properties": {
+        "evidence_id": {"$ref": "#/$defs/ref_id"},
+        "document_id": {"type": "string", "pattern": "^[a-z][a-z0-9_]{1,63}$"},
+        "document_title": {"type": "string", "minLength": 1, "maxLength": 128},
+        "pdf_path": {"type": "string", "pattern": "^data/raw/pdf/[a-z0-9_]+\\.pdf$"},
+        "page": {"type": "integer", "minimum": 1, "maximum": 10000},
+        "snippet": {"type": "string", "minLength": 1, "maxLength": 240},
+        "score": {"type": "number", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "trace_event": {
+      "type": "object",
+      "required": ["sequence", "stage", "action", "reason_code", "evidence_refs", "artifact_sha256"],
+      "properties": {
+        "sequence": {"type": "integer", "minimum": 1, "maximum": 128},
+        "stage": {"type": "string", "pattern": "^[a-z][a-z0-9_]{1,63}$"},
+        "action": {"type": ["string", "null"], "pattern": "^[a-z][a-z0-9_]{1,63}$"},
+        "reason_code": {"type": ["string", "null"], "pattern": "^[a-z][a-z0-9_]{1,63}$"},
+        "evidence_refs": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/ref_id"},
+          "uniqueItems": true,
+          "maxItems": 32
+        },
+        "artifact_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

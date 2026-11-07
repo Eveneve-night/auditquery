@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "selective-decision-policy.v1",
+  "title": "D4-04 selective decision policy v1",
+  "type": "object",
+  "required": [
+    "policy_id",
+    "version",
+    "mode",
+    "allowed_actions",
+    "supported_intents",
+    "action_priority",
+    "thresholds",
+    "calibrator",
+    "safety"
+  ],
+  "properties": {
+    "policy_id": {"const": "d4-selective-decision"},
+    "version": {"const": "1.0.0"},
+    "mode": {"const": "uncalibrated_raw_score"},
+    "allowed_actions": {
+      "type": "array",
+      "items": {"enum": ["accept", "clarify", "escalate", "reject"]},
+      "minItems": 4,
+      "maxItems": 4,
+      "uniqueItems": true
+    },
+    "supported_intents": {
+      "type": "array",
+      "items": {"const": "sql"},
+      "minItems": 1,
+      "maxItems": 1,
+      "uniqueItems": true
+    },
+    "action_priority": {
+      "type": "array",
+      "prefixItems": [
+        {"const": "policy_restriction"},
+        {"const": "hard_slot_issue"},
+        {"const": "unknown_slot_state"},
+        {"const": "outside_candidate_set"},
+        {"const": "raw_score_threshold"},
+        {"const": "accept"}
+      ],
+      "minItems": 6,
+      "maxItems": 6
+    },
+    "thresholds": {
+      "type": "object",
+      "required": [
+        "accept_min",
+        "clarify_min",
+        "abstain_below",
+        "accept_boundary",
+        "clarify_boundary",
+        "abstain_boundary"
+      ],
+      "properties": {
+        "accept_min": {"type": "number", "minimum": 0, "maximum": 1},
+        "clarify_min": {"type": "number", "minimum": 0, "maximum": 1},
+        "abstain_below": {"type": "number", "minimum": 0, "maximum": 1},
+        "accept_boundary": {"const": "greater_than_or_equal"},
+        "clarify_boundary": {"const": "greater_than_or_equal"},
+        "abstain_boundary": {"const": "strictly_less_than"}
+      },
+      "additionalProperties": false
+    },
+    "calibrator": {
+      "type": "object",
+      "required": ["kind", "interface_version", "empirically_calibrated"],
+      "properties": {
+        "kind": {"const": "identity_uncalibrated"},
+        "interface_version": {"const": "uncalibrated-identity.v1"},
+        "empirically_calibrated": {"const": false}
+      },
+      "additionalProperties": false
+    },
+    "safety": {
+      "type": "object",
+      "required": [
+        "accept_authorizes_sql_execution",
+        "requires_d4_02_safety_gate"
+      ],
+      "properties": {
+        "accept_authorizes_sql_execution": {"const": false},
+        "requires_d4_02_safety_gate": {"const": true}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

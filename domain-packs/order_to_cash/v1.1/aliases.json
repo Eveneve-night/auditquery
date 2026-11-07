@@ -1,0 +1,1102 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "aliases",
+  "items": [
+    {
+      "alias_id": "alias.otc.customer.0",
+      "surface_form": "客户档案",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.customer",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.customer.1",
+      "surface_form": "customer",
+      "language": "en",
+      "concept_id": "concept.otc.customer",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.customer.2",
+      "surface_form": "客户",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.customer",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.customer.3",
+      "surface_form": "客商",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.customer",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.customer_segment.0",
+      "surface_form": "客户分群",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.customer_segment",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.customer_segment.1",
+      "surface_form": "customer_segment",
+      "language": "en",
+      "concept_id": "concept.otc.customer_segment",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.customer_segment.2",
+      "surface_form": "客群",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.customer_segment",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.customer_contact.0",
+      "surface_form": "客户联系人",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.customer_contact",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.customer_contact.1",
+      "surface_form": "customer_contact",
+      "language": "en",
+      "concept_id": "concept.otc.customer_contact",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.customer_contact.2",
+      "surface_form": "联络人",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.customer_contact",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.customer_address.0",
+      "surface_form": "客户地址",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.customer_address",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.customer_address.1",
+      "surface_form": "customer_address",
+      "language": "en",
+      "concept_id": "concept.otc.customer_address",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.customer_address.2",
+      "surface_form": "收货地址",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.customer_address",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.product_category.0",
+      "surface_form": "商品分类",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.product_category",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.product_category.1",
+      "surface_form": "product_category",
+      "language": "en",
+      "concept_id": "concept.otc.product_category",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.product_category.2",
+      "surface_form": "品类",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.product_category",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.product.0",
+      "surface_form": "商品档案",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.product",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.product.1",
+      "surface_form": "product",
+      "language": "en",
+      "concept_id": "concept.otc.product",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.product.2",
+      "surface_form": "货品",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.product",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.product.3",
+      "surface_form": "SKU",
+      "language": "en",
+      "concept_id": "concept.otc.product",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.warehouse.0",
+      "surface_form": "仓库档案",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.warehouse",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.warehouse.1",
+      "surface_form": "warehouse",
+      "language": "en",
+      "concept_id": "concept.otc.warehouse",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.warehouse.2",
+      "surface_form": "库房",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.warehouse",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.quotation.0",
+      "surface_form": "销售报价单",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.quotation",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.quotation.1",
+      "surface_form": "quotation",
+      "language": "en",
+      "concept_id": "concept.otc.quotation",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.quotation.2",
+      "surface_form": "报价单",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.quotation",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.quotation_line.0",
+      "surface_form": "报价明细",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.quotation_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.quotation_line.1",
+      "surface_form": "quotation_line",
+      "language": "en",
+      "concept_id": "concept.otc.quotation_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.quotation_line.2",
+      "surface_form": "报价行",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.quotation_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order.0",
+      "surface_form": "当前销售订单",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_order",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order.1",
+      "surface_form": "sales_order",
+      "language": "en",
+      "concept_id": "concept.otc.sales_order",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order.2",
+      "surface_form": "销售单",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_order",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order.3",
+      "surface_form": "订单",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_order",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order_history.0",
+      "surface_form": "历史销售订单",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_order_history",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order_history.1",
+      "surface_form": "sales_order_history",
+      "language": "en",
+      "concept_id": "concept.otc.sales_order_history",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order_history.2",
+      "surface_form": "历史订单",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_order_history",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order_history.3",
+      "surface_form": "订单归档",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_order_history",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order_history.4",
+      "surface_form": "订单",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_order_history",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order_line.0",
+      "surface_form": "销售订单明细",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_order_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order_line.1",
+      "surface_form": "sales_order_line",
+      "language": "en",
+      "concept_id": "concept.otc.sales_order_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order_line.2",
+      "surface_form": "销售订单行",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_order_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order_line.3",
+      "surface_form": "订单明细",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_order_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order_line_history.0",
+      "surface_form": "历史订单明细",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_order_line_history",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order_line_history.1",
+      "surface_form": "sales_order_line_history",
+      "language": "en",
+      "concept_id": "concept.otc.sales_order_line_history",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order_line_history.2",
+      "surface_form": "归档订单行",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_order_line_history",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order_daily_summary.0",
+      "surface_form": "销售订单日汇总",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_order_daily_summary",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order_daily_summary.1",
+      "surface_form": "sales_order_daily_summary",
+      "language": "en",
+      "concept_id": "concept.otc.sales_order_daily_summary",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order_daily_summary.2",
+      "surface_form": "每日订单汇总",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_order_daily_summary",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order_daily_summary.3",
+      "surface_form": "日订单统计",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_order_daily_summary",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order_monthly_summary.0",
+      "surface_form": "销售订单月汇总",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_order_monthly_summary",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order_monthly_summary.1",
+      "surface_form": "sales_order_monthly_summary",
+      "language": "en",
+      "concept_id": "concept.otc.sales_order_monthly_summary",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order_monthly_summary.2",
+      "surface_form": "每月订单汇总",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_order_monthly_summary",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_order_monthly_summary.3",
+      "surface_form": "月订单统计",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_order_monthly_summary",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.shipment.0",
+      "surface_form": "销售发货单",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.shipment",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.shipment.1",
+      "surface_form": "shipment",
+      "language": "en",
+      "concept_id": "concept.otc.shipment",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.shipment.2",
+      "surface_form": "出库发货单",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.shipment",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.shipment.3",
+      "surface_form": "发货单",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.shipment",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.shipment_line.0",
+      "surface_form": "发货明细",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.shipment_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.shipment_line.1",
+      "surface_form": "shipment_line",
+      "language": "en",
+      "concept_id": "concept.otc.shipment_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.shipment_line.2",
+      "surface_form": "发货行",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.shipment_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.shipment_tracking.0",
+      "surface_form": "物流轨迹",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.shipment_tracking",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.shipment_tracking.1",
+      "surface_form": "shipment_tracking",
+      "language": "en",
+      "concept_id": "concept.otc.shipment_tracking",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.shipment_tracking.2",
+      "surface_form": "物流事件",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.shipment_tracking",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_return.0",
+      "surface_form": "销售退货单",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_return",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_return.1",
+      "surface_form": "sales_return",
+      "language": "en",
+      "concept_id": "concept.otc.sales_return",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_return.2",
+      "surface_form": "客户退货",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_return",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_return.3",
+      "surface_form": "退货单",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_return",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_return_line.0",
+      "surface_form": "退货明细",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_return_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_return_line.1",
+      "surface_form": "sales_return_line",
+      "language": "en",
+      "concept_id": "concept.otc.sales_return_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.sales_return_line.2",
+      "surface_form": "退货行",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.sales_return_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.invoice.0",
+      "surface_form": "销售发票",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.invoice",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.invoice.1",
+      "surface_form": "invoice",
+      "language": "en",
+      "concept_id": "concept.otc.invoice",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.invoice.2",
+      "surface_form": "开票记录",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.invoice",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.invoice.3",
+      "surface_form": "销项发票",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.invoice",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.invoice_line.0",
+      "surface_form": "发票明细",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.invoice_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.invoice_line.1",
+      "surface_form": "invoice_line",
+      "language": "en",
+      "concept_id": "concept.otc.invoice_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.invoice_line.2",
+      "surface_form": "开票明细",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.invoice_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.credit_note.0",
+      "surface_form": "销售红字单",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.credit_note",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.credit_note.1",
+      "surface_form": "credit_note",
+      "language": "en",
+      "concept_id": "concept.otc.credit_note",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.credit_note.2",
+      "surface_form": "红字发票",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.credit_note",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.credit_note.3",
+      "surface_form": "贷项通知",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.credit_note",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.receivable.0",
+      "surface_form": "应收账款",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.receivable",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.receivable.1",
+      "surface_form": "receivable",
+      "language": "en",
+      "concept_id": "concept.otc.receivable",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.receivable.2",
+      "surface_form": "应收",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.receivable",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.receivable.3",
+      "surface_form": "待收款",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.receivable",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.receivable_installment.0",
+      "surface_form": "应收分期",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.receivable_installment",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.receivable_installment.1",
+      "surface_form": "receivable_installment",
+      "language": "en",
+      "concept_id": "concept.otc.receivable_installment",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.receivable_installment.2",
+      "surface_form": "分期应收",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.receivable_installment",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.receipt.0",
+      "surface_form": "实收款记录",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.receipt",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.receipt.1",
+      "surface_form": "receipt",
+      "language": "en",
+      "concept_id": "concept.otc.receipt",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.receipt.2",
+      "surface_form": "实收",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.receipt",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.receipt.3",
+      "surface_form": "到账收款",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.receipt",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.receipt_allocation.0",
+      "surface_form": "收款核销",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.receipt_allocation",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.receipt_allocation.1",
+      "surface_form": "receipt_allocation",
+      "language": "en",
+      "concept_id": "concept.otc.receipt_allocation",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.receipt_allocation.2",
+      "surface_form": "应收核销",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.receipt_allocation",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.receipt_allocation.3",
+      "surface_form": "收款分配",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.receipt_allocation",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.refund.0",
+      "surface_form": "退款记录",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.refund",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.refund.1",
+      "surface_form": "refund",
+      "language": "en",
+      "concept_id": "concept.otc.refund",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.refund.2",
+      "surface_form": "销售退款",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.refund",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.refund_allocation.0",
+      "surface_form": "退款分摊",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.refund_allocation",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.refund_allocation.1",
+      "surface_form": "refund_allocation",
+      "language": "en",
+      "concept_id": "concept.otc.refund_allocation",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.refund_allocation.2",
+      "surface_form": "退款分配",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.refund_allocation",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.inventory_balance.0",
+      "surface_form": "库存余额",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.inventory_balance",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.inventory_balance.1",
+      "surface_form": "inventory_balance",
+      "language": "en",
+      "concept_id": "concept.otc.inventory_balance",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.inventory_balance.2",
+      "surface_form": "现存量",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.inventory_balance",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.inventory_balance.3",
+      "surface_form": "库存快照",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.inventory_balance",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.inventory_movement.0",
+      "surface_form": "库存流水",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.inventory_movement",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.inventory_movement.1",
+      "surface_form": "inventory_movement",
+      "language": "en",
+      "concept_id": "concept.otc.inventory_movement",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.inventory_movement.2",
+      "surface_form": "库存变动",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.inventory_movement",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.inventory_movement.3",
+      "surface_form": "出入库流水",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.inventory_movement",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.stock_reservation.0",
+      "surface_form": "库存预留",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.stock_reservation",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.stock_reservation.1",
+      "surface_form": "stock_reservation",
+      "language": "en",
+      "concept_id": "concept.otc.stock_reservation",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.stock_reservation.2",
+      "surface_form": "订单占用库存",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.stock_reservation",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.stock_reservation.3",
+      "surface_form": "库存锁定",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.stock_reservation",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.supplier.0",
+      "surface_form": "供应商档案",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.supplier",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.supplier.1",
+      "surface_form": "supplier",
+      "language": "en",
+      "concept_id": "concept.otc.supplier",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.supplier.2",
+      "surface_form": "供货商",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.supplier",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.purchase_order.0",
+      "surface_form": "采购订单",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.purchase_order",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.purchase_order.1",
+      "surface_form": "purchase_order",
+      "language": "en",
+      "concept_id": "concept.otc.purchase_order",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.purchase_order.2",
+      "surface_form": "采购单",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.purchase_order",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.purchase_order_line.0",
+      "surface_form": "采购明细",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.purchase_order_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.purchase_order_line.1",
+      "surface_form": "purchase_order_line",
+      "language": "en",
+      "concept_id": "concept.otc.purchase_order_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.purchase_order_line.2",
+      "surface_form": "采购订单行",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.purchase_order_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.goods_receipt.0",
+      "surface_form": "采购入库单",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.goods_receipt",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.goods_receipt.1",
+      "surface_form": "goods_receipt",
+      "language": "en",
+      "concept_id": "concept.otc.goods_receipt",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.goods_receipt.2",
+      "surface_form": "到货入库单",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.goods_receipt",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.goods_receipt_line.0",
+      "surface_form": "采购入库明细",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.goods_receipt_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.goods_receipt_line.1",
+      "surface_form": "goods_receipt_line",
+      "language": "en",
+      "concept_id": "concept.otc.goods_receipt_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.goods_receipt_line.2",
+      "surface_form": "到货明细",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.goods_receipt_line",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.payable.0",
+      "surface_form": "应付账款",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.payable",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.payable.1",
+      "surface_form": "payable",
+      "language": "en",
+      "concept_id": "concept.otc.payable",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.payable.2",
+      "surface_form": "应付",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.payable",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.payable.3",
+      "surface_form": "供应商应付款",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.payable",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.payment.0",
+      "surface_form": "供应商付款",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.payment",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.payment.1",
+      "surface_form": "payment",
+      "language": "en",
+      "concept_id": "concept.otc.payment",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.payment.2",
+      "surface_form": "采购付款",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.payment",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.otc.payment.3",
+      "surface_form": "实付",
+      "language": "zh-CN",
+      "concept_id": "concept.otc.payment",
+      "source_ref": "source.order_to_cash_synthetic",
+      "confidence_class": "synthetic"
+    }
+  ]
+}

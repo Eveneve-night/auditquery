@@ -1,0 +1,122 @@
+[
+  {
+    "case_id": "retail_inventory.alias",
+    "expected_rewrite": "统计商品的库存数量，2026年10月，东仓。",
+    "expected_clarification": null
+  },
+  {
+    "case_id": "retail_inventory.ambiguous",
+    "expected_rewrite": "只说数量，未说明是可用量还是总量。",
+    "expected_clarification": true
+  },
+  {
+    "case_id": "retail_inventory.typo",
+    "expected_rewrite": "查询库寸数量。",
+    "expected_clarification": null
+  },
+  {
+    "case_id": "retail_inventory.negation",
+    "expected_rewrite": "不要统计商品的库存数量。",
+    "expected_clarification": null
+  },
+  {
+    "case_id": "retail_inventory.number_unit",
+    "expected_rewrite": "只看超过12件的商品，不要改成120。",
+    "expected_clarification": null
+  },
+  {
+    "case_id": "retail_inventory.no_rewrite",
+    "expected_rewrite": "统计商品的库存数量。",
+    "expected_clarification": null
+  },
+  {
+    "case_id": "retail_inventory.missing_dimension",
+    "expected_rewrite": "商品的库存数量是多少？",
+    "expected_clarification": null
+  },
+  {
+    "case_id": "retail_inventory.conflict",
+    "expected_rewrite": "统计2025年，改为2026年；同时必须保留2025年。",
+    "expected_clarification": null
+  },
+  {
+    "case_id": "retail_inventory.supplement",
+    "expected_rewrite": "补充：2026年10月，东仓。",
+    "expected_clarification": null
+  },
+  {
+    "case_id": "retail_inventory.correction",
+    "expected_rewrite": "更正：不要东仓，换一个地点。",
+    "expected_clarification": null
+  },
+  {
+    "case_id": "retail_inventory.restart",
+    "expected_rewrite": "重新开始，放弃刚才的问题。",
+    "expected_clarification": null
+  },
+  {
+    "case_id": "retail_inventory.unknown",
+    "expected_rewrite": "查询量子晶格的相位角。",
+    "expected_clarification": null
+  },
+  {
+    "case_id": "equipment_loan.alias",
+    "expected_rewrite": "统计设备的借用数量，2026年10月，实验室。",
+    "expected_clarification": null
+  },
+  {
+    "case_id": "equipment_loan.ambiguous",
+    "expected_rewrite": "只说数量，未说明是可用量还是总量。",
+    "expected_clarification": true
+  },
+  {
+    "case_id": "equipment_loan.typo",
+    "expected_rewrite": "查询设被数量。",
+    "expected_clarification": null
+  },
+  {
+    "case_id": "equipment_loan.negation",
+    "expected_rewrite": "不要统计设备的借用数量。",
+    "expected_clarification": null
+  },
+  {
+    "case_id": "equipment_loan.number_unit",
+    "expected_rewrite": "只看超过12台的设备，不要改成120。",
+    "expected_clarification": null
+  },
+  {
+    "case_id": "equipment_loan.no_rewrite",
+    "expected_rewrite": "统计设备的借用数量。",
+    "expected_clarification": null
+  },
+  {
+    "case_id": "equipment_loan.missing_dimension",
+    "expected_rewrite": "设备的借用数量是多少？",
+    "expected_clarification": null
+  },
+  {
+    "case_id": "equipment_loan.conflict",
+    "expected_rewrite": "统计2025年，改为2026年；同时必须保留2025年。",
+    "expected_clarification": null
+  },
+  {
+    "case_id": "equipment_loan.supplement",
+    "expected_rewrite": "补充：2026年10月，实验室。",
+    "expected_clarification": null
+  },
+  {
+    "case_id": "equipment_loan.correction",
+    "expected_rewrite": "更正：不要实验室，换一个地点。",
+    "expected_clarification": null
+  },
+  {
+    "case_id": "equipment_loan.restart",
+    "expected_rewrite": "重新开始，放弃刚才的问题。",
+    "expected_clarification": null
+  },
+  {
+    "case_id": "equipment_loan.unknown",
+    "expected_rewrite": "查询量子晶格的相位角。",
+    "expected_clarification": null
+  }
+]

@@ -1,0 +1,173 @@
+{
+  "gate_id": "d4-conclusion-gate.v1",
+  "version": "1.0.0",
+  "status": "frozen_before_evaluation",
+  "frozen_at": "2026-10-03T00:00:00Z",
+  "task_id": "D4-08",
+  "owner": "A",
+  "protocol_ref": {
+    "path": "configs/evaluation/d4/experiment-protocol.v1.json",
+    "sha256": "f1baed141a552785de270a04e9db0bbcbeaa086a1cda04d27eac45d1e132a6aa"
+  },
+  "runner_result_schema": {
+    "path": "configs/schemas/d4-08/evaluation-runner-result.v1.schema.json",
+    "schema_id": "d4-evaluation-runner-result.v1"
+  },
+  "required_groups": ["B0", "B1", "B2", "P", "P-uncalibrated"],
+  "baseline_group_ids": ["B0", "B1", "B2"],
+  "proposed_group_id": "P",
+  "identity": {
+    "prompt_authors_by_capability": {
+      "clarification": ["Eveneve-night"],
+      "nl2sql": ["cacgn"],
+      "rag": ["stevethomasih520-afk"]
+    }
+  },
+  "primary_metric": "post_clarification_end_to_end_execution_accuracy",
+  "required_p_metrics": [
+    "post_clarification_end_to_end_execution_accuracy",
+    "necessary_clarification_recall",
+    "over_clarification_rate",
+    "slot_macro_f1",
+    "post_clarification_success_rate",
+    "high_confidence_error_rate",
+    "sufficient_question_e2e_accuracy_drop_pp"
+  ],
+  "thresholds": {
+    "necessary_clarification_recall_min": 0.90,
+    "necessary_clarification_recall_hard_min": 0.85,
+    "over_clarification_rate_max": 0.10,
+    "slot_macro_f1_min": 0.90,
+    "post_clarification_success_rate_min": 0.85,
+    "high_confidence_error_rate_max": 0.05,
+    "sufficient_question_e2e_drop_max_pp": 2.0,
+    "quality_gain_pp_min": 5.0,
+    "efficiency_gain_pct_min": 30.0,
+    "cost_latency_regression_pct_max": 20.0,
+    "hidden_test_min_cases": 120,
+    "domain_min_count": 3,
+    "validation_exposure_max_per_prompt_major": 2
+  },
+  "intermediate_pass_rules": [
+    {
+      "code": "necessary_clarification_recall_sufficient",
+      "metric": "necessary_clarification_recall",
+      "op": ">=",
+      "value": 0.90
+    },
+    {
+      "code": "over_clarification_rate_acceptable",
+      "metric": "over_clarification_rate",
+      "op": "<=",
+      "value": 0.10
+    },
+    {
+      "code": "slot_macro_f1_sufficient",
+      "metric": "slot_macro_f1",
+      "op": ">=",
+      "value": 0.90
+    },
+    {
+      "code": "post_clarification_success_rate_sufficient",
+      "metric": "post_clarification_success_rate",
+      "op": ">=",
+      "value": 0.85
+    },
+    {
+      "code": "sufficient_question_e2e_drop_acceptable",
+      "metric": "sufficient_question_e2e_accuracy_drop_pp",
+      "op": "<=",
+      "value": 2.0
+    }
+  ],
+  "hard_failure_rules": [
+    {
+      "code": "not_better_than_best_baseline",
+      "kind": "primary_delta",
+      "op": "<=",
+      "delta_pp": 0.0
+    },
+    {
+      "code": "clarification_recall_too_low",
+      "metric": "necessary_clarification_recall",
+      "op": "<",
+      "value": 0.85
+    },
+    {
+      "code": "over_clarification_too_high",
+      "metric": "over_clarification_rate",
+      "op": ">",
+      "value": 0.10
+    },
+    {
+      "code": "high_confidence_error_too_high",
+      "metric": "high_confidence_error_rate",
+      "op": ">",
+      "value": 0.05
+    },
+    {
+      "code": "cost_latency_regression",
+      "kind": "cost_latency_regression",
+      "efficiency_gain_pct": 30.0,
+      "cost_latency_regression_pct": 20.0,
+      "quality_gain_pp": 5.0
+    },
+    {
+      "code": "migration_requires_code_or_test_answer",
+      "kind": "migration_guard"
+    },
+    {
+      "code": "evidence_not_reproducible",
+      "kind": "evidence_guard"
+    }
+  ],
+  "success_rules": [
+    {
+      "code": "quality_gain",
+      "kind": "primary_delta",
+      "op": ">=",
+      "delta_pp": 5.0
+    },
+    {
+      "code": "efficiency_gain",
+      "kind": "efficiency_gain",
+      "correctness_drop_max_pp": 2.0,
+      "efficiency_gain_pct_min": 30.0
+    }
+  ],
+  "degradation_rules": [
+    {
+      "code": "prompt_only_gain",
+      "kind": "beats_b0_only"
+    },
+    {
+      "code": "single_schema_only",
+      "kind": "single_schema_only"
+    },
+    {
+      "code": "insufficient_hidden_test",
+      "kind": "insufficient_hidden_test"
+    },
+    {
+      "code": "calibration_missing",
+      "kind": "calibration_missing"
+    },
+    {
+      "code": "efficiency_only",
+      "kind": "efficiency_only"
+    }
+  ],
+  "guards": {
+    "hidden_test": {
+      "minimum_cases": 120,
+      "content_committed_allowed": false,
+      "keeper_must_not_be_prompt_author": true
+    },
+    "validation_exposure": {
+      "maximum_per_prompt_major": 2
+    },
+    "domain": {
+      "minimum_domain_count": 3
+    }
+  }
+}

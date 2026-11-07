@@ -1,0 +1,24 @@
+{
+  "version": "1.0.0",
+  "split": "prompt_dev",
+  "origin": "original_project_synthetic",
+  "entries": [
+    {
+      "domain": "orders",
+      "files": {
+        "orders.sql": "9aab5064d3d5b2d5b40e68956f0d63f6f2d5147c9ea7b37d23debf0f2d97fceb",
+        "orders-seed.json": "85df8522abf66e20560fc535b81ebfe2b9087776a910dc3e2ea7cf9e232b7de2"
+      }
+    },
+    {
+      "domain": "maintenance",
+      "files": {
+        "maintenance.sql": "d13014569dd1bb0ac39f821fd0ace7ec22d50c74f7d2d3b13a0c03fd62f9661c",
+        "maintenance-seed.json": "07683d71e7dc8ebbf169d084194c7ccaa7843937ad086abb979309223e7ab1cf"
+      }
+    }
+  ],
+  "order_DDL_source": "data/schema-linking/order_to_cash/v1/schema.sql",
+  "customer_data": false,
+  "human_cost_hours": null
+}

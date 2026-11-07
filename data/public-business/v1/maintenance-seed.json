@@ -1,0 +1,36 @@
+{
+  "asset": [
+    {
+      "id": 1,
+      "asset_name": "Synthetic Pump",
+      "site": "plant_A"
+    },
+    {
+      "id": 2,
+      "asset_name": "Synthetic Motor",
+      "site": "plant_B"
+    }
+  ],
+  "work_order": [
+    {
+      "id": 1,
+      "asset_id": 1,
+      "status": "open",
+      "planned_hours": 4
+    },
+    {
+      "id": 2,
+      "asset_id": 2,
+      "status": "closed",
+      "planned_hours": 2
+    }
+  ],
+  "maintenance_event": [
+    {
+      "id": 1,
+      "work_order_id": 2,
+      "duration_hours": 2,
+      "event_date": "2026-10-01"
+    }
+  ]
+}

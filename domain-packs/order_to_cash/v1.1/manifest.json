@@ -1,0 +1,91 @@
+{
+  "domain_pack_id": "order_to_cash",
+  "domain_id": "order_to_cash",
+  "version": "1.1.0",
+  "schema_version": "1.0.0",
+  "content_schema_id": "domain-pack-content.v1",
+  "language": "zh-CN",
+  "created_at": "2026-10-25T00:00:00Z",
+  "data_level": "L0",
+  "source_refs": [
+    {
+      "source_id": "source.order_to_cash_synthetic",
+      "uri": "repo:domain-packs/order_to_cash/v1/LICENSE-or-SOURCE.md",
+      "license": "MIT",
+      "data_level": "L0",
+      "authorized": true
+    }
+  ],
+  "license": {
+    "spdx_id": "MIT",
+    "redistribution_allowed": true,
+    "notice_path": "LICENSE-or-SOURCE.md"
+  },
+  "compatibility": {
+    "task_types": [
+      "nl2sql"
+    ],
+    "database_versions": [
+      "order-to-cash-schema.v1"
+    ]
+  },
+  "hash_algorithm": "sha256-utf8-lf",
+  "files": [
+    {
+      "role": "concepts",
+      "path": "concepts.json",
+      "sha256": "fbc087fb56d9d0046e73c268113b1f76ce11d38c33610b3c47ee55637b37c05d",
+      "data_level": "L0",
+      "send_to_model": true
+    },
+    {
+      "role": "aliases",
+      "path": "aliases.json",
+      "sha256": "1ef705cb030cb88c38fcffca3ce93776376eebc9ef6c1cb479b7dbc533e40588",
+      "data_level": "L0",
+      "send_to_model": true
+    },
+    {
+      "role": "slots",
+      "path": "slots.json",
+      "sha256": "875b19268d8ae41a6bc49b7c542f697088a197116eb9e93fadedbfbf42960618",
+      "data_level": "L0",
+      "send_to_model": true
+    },
+    {
+      "role": "schema_catalog",
+      "path": "schema-catalog.json",
+      "sha256": "64cef29e74c1c8e374b329468248781516df34228781a1d67e9c67a731945744",
+      "data_level": "L0",
+      "send_to_model": true
+    },
+    {
+      "role": "relations",
+      "path": "relations.json",
+      "sha256": "3715a3a8badf7a5acc2f6f1413ea31413d0d959621d6ed3f1b60040e0c909c17",
+      "data_level": "L0",
+      "send_to_model": true
+    },
+    {
+      "role": "value_evidence",
+      "path": "value-evidence.json",
+      "sha256": "3a0336df521129e110fdd994ed52239076d2fcc1b74e38d869abf4b5cd4cf7c6",
+      "data_level": "L0",
+      "send_to_model": true
+    },
+    {
+      "role": "validation_rules",
+      "path": "validation-rules.json",
+      "sha256": "27502ea0d2548f2ed54e7fcbb7518e0f3c1f0077cfb9bd93e59f52d35af93b41",
+      "data_level": "L0",
+      "send_to_model": true
+    },
+    {
+      "role": "license_notice",
+      "path": "LICENSE-or-SOURCE.md",
+      "sha256": "e7c1bcda20093fbaf91eb00a62322df3c73cf27fe472566c61e3f95d1ab1eef0",
+      "data_level": "L0",
+      "send_to_model": false
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "relations",
+  "items": [
+    {
+      "relation_id": "relation.maintenance.work_order.asset_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.equipment_maintenance.work_order.asset_id",
+      "target_object_id": "schema.equipment_maintenance.asset.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.equipment_maintenance_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.maintenance.maintenance_event.work_order_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.equipment_maintenance.maintenance_event.work_order_id",
+      "target_object_id": "schema.equipment_maintenance.work_order.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.equipment_maintenance_synthetic"
+      ]
+    }
+  ]
+}

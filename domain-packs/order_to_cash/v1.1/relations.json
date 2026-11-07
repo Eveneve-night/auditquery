@@ -1,0 +1,655 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "relations",
+  "items": [
+    {
+      "relation_id": "relation.otc.customer.segment_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.customer.segment_id",
+      "target_object_id": "schema.otc.customer_segment.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.customer_contact.customer_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.customer_contact.customer_id",
+      "target_object_id": "schema.otc.customer.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.customer_address.customer_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.customer_address.customer_id",
+      "target_object_id": "schema.otc.customer.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.product.category_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.product.category_id",
+      "target_object_id": "schema.otc.product_category.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.quotation.customer_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.quotation.customer_id",
+      "target_object_id": "schema.otc.customer.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.quotation_line.quotation_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.quotation_line.quotation_id",
+      "target_object_id": "schema.otc.quotation.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.quotation_line.product_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.quotation_line.product_id",
+      "target_object_id": "schema.otc.product.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.sales_order.customer_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.sales_order.customer_id",
+      "target_object_id": "schema.otc.customer.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.sales_order.quotation_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.sales_order.quotation_id",
+      "target_object_id": "schema.otc.quotation.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.sales_order_history.original_order_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.sales_order_history.original_order_id",
+      "target_object_id": "schema.otc.sales_order.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.sales_order_history.customer_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.sales_order_history.customer_id",
+      "target_object_id": "schema.otc.customer.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.sales_order_line.order_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.sales_order_line.order_id",
+      "target_object_id": "schema.otc.sales_order.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.sales_order_line.product_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.sales_order_line.product_id",
+      "target_object_id": "schema.otc.product.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.sales_order_line_history.history_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.sales_order_line_history.history_id",
+      "target_object_id": "schema.otc.sales_order_history.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.sales_order_line_history.product_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.sales_order_line_history.product_id",
+      "target_object_id": "schema.otc.product.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.sales_order_daily_summary.customer_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.sales_order_daily_summary.customer_id",
+      "target_object_id": "schema.otc.customer.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.sales_order_monthly_summary.customer_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.sales_order_monthly_summary.customer_id",
+      "target_object_id": "schema.otc.customer.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.shipment.order_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.shipment.order_id",
+      "target_object_id": "schema.otc.sales_order.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.shipment.warehouse_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.shipment.warehouse_id",
+      "target_object_id": "schema.otc.warehouse.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.shipment_line.shipment_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.shipment_line.shipment_id",
+      "target_object_id": "schema.otc.shipment.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.shipment_line.order_line_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.shipment_line.order_line_id",
+      "target_object_id": "schema.otc.sales_order_line.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.shipment_tracking.shipment_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.shipment_tracking.shipment_id",
+      "target_object_id": "schema.otc.shipment.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.sales_return.order_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.sales_return.order_id",
+      "target_object_id": "schema.otc.sales_order.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.sales_return.customer_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.sales_return.customer_id",
+      "target_object_id": "schema.otc.customer.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.sales_return_line.return_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.sales_return_line.return_id",
+      "target_object_id": "schema.otc.sales_return.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.sales_return_line.product_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.sales_return_line.product_id",
+      "target_object_id": "schema.otc.product.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.invoice.order_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.invoice.order_id",
+      "target_object_id": "schema.otc.sales_order.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.invoice.customer_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.invoice.customer_id",
+      "target_object_id": "schema.otc.customer.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.invoice_line.invoice_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.invoice_line.invoice_id",
+      "target_object_id": "schema.otc.invoice.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.invoice_line.order_line_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.invoice_line.order_line_id",
+      "target_object_id": "schema.otc.sales_order_line.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.credit_note.invoice_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.credit_note.invoice_id",
+      "target_object_id": "schema.otc.invoice.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.credit_note.return_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.credit_note.return_id",
+      "target_object_id": "schema.otc.sales_return.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.receivable.invoice_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.receivable.invoice_id",
+      "target_object_id": "schema.otc.invoice.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.receivable.customer_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.receivable.customer_id",
+      "target_object_id": "schema.otc.customer.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.receivable_installment.receivable_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.receivable_installment.receivable_id",
+      "target_object_id": "schema.otc.receivable.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.receipt.customer_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.receipt.customer_id",
+      "target_object_id": "schema.otc.customer.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.receipt_allocation.receipt_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.receipt_allocation.receipt_id",
+      "target_object_id": "schema.otc.receipt.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.receipt_allocation.receivable_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.receipt_allocation.receivable_id",
+      "target_object_id": "schema.otc.receivable.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.refund.return_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.refund.return_id",
+      "target_object_id": "schema.otc.sales_return.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.refund.customer_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.refund.customer_id",
+      "target_object_id": "schema.otc.customer.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.refund_allocation.refund_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.refund_allocation.refund_id",
+      "target_object_id": "schema.otc.refund.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.refund_allocation.receipt_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.refund_allocation.receipt_id",
+      "target_object_id": "schema.otc.receipt.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.inventory_balance.warehouse_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.inventory_balance.warehouse_id",
+      "target_object_id": "schema.otc.warehouse.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.inventory_balance.product_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.inventory_balance.product_id",
+      "target_object_id": "schema.otc.product.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.inventory_movement.warehouse_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.inventory_movement.warehouse_id",
+      "target_object_id": "schema.otc.warehouse.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.inventory_movement.product_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.inventory_movement.product_id",
+      "target_object_id": "schema.otc.product.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.stock_reservation.order_line_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.stock_reservation.order_line_id",
+      "target_object_id": "schema.otc.sales_order_line.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.stock_reservation.warehouse_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.stock_reservation.warehouse_id",
+      "target_object_id": "schema.otc.warehouse.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.purchase_order.supplier_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.purchase_order.supplier_id",
+      "target_object_id": "schema.otc.supplier.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.purchase_order_line.purchase_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.purchase_order_line.purchase_id",
+      "target_object_id": "schema.otc.purchase_order.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.purchase_order_line.product_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.purchase_order_line.product_id",
+      "target_object_id": "schema.otc.product.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.goods_receipt.purchase_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.goods_receipt.purchase_id",
+      "target_object_id": "schema.otc.purchase_order.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.goods_receipt.warehouse_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.goods_receipt.warehouse_id",
+      "target_object_id": "schema.otc.warehouse.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.goods_receipt_line.goods_receipt_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.goods_receipt_line.goods_receipt_id",
+      "target_object_id": "schema.otc.goods_receipt.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.goods_receipt_line.purchase_line_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.goods_receipt_line.purchase_line_id",
+      "target_object_id": "schema.otc.purchase_order_line.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.payable.purchase_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.payable.purchase_id",
+      "target_object_id": "schema.otc.purchase_order.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.payable.supplier_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.payable.supplier_id",
+      "target_object_id": "schema.otc.supplier.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.payment.payable_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.payment.payable_id",
+      "target_object_id": "schema.otc.payable.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "relation_id": "relation.otc.payment.supplier_id",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.otc.payment.supplier_id",
+      "target_object_id": "schema.otc.supplier.id",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    }
+  ]
+}

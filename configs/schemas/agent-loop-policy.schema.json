@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-loop-policy.v1",
+  "title": "Agent loop policy",
+  "type": "object",
+  "required": ["policy_id", "version", "limits", "termination_precedence"],
+  "properties": {
+    "policy_id": {"type": "string"},
+    "version": {"type": "string"},
+    "limits": {
+      "type": "object",
+      "required": [
+        "max_state_transitions", "max_model_calls", "max_tool_calls",
+        "max_consecutive_same_action", "max_identical_tool_signature_total",
+        "max_clarification_rounds", "max_json_repair_attempts",
+        "max_provider_retries_per_call", "retry_base_delay_ms",
+        "retry_max_delay_ms", "circuit_failure_threshold",
+        "circuit_open_seconds", "max_provider_fallbacks",
+        "max_sql_generation_attempts", "max_sql_execution_attempts",
+        "max_retrieval_rounds", "max_wall_time_ms", "max_input_tokens_total",
+        "max_output_tokens_total", "hard_cost_cny"
+      ],
+      "additionalProperties": {"type": ["integer", "number"]}
+    },
+    "termination_precedence": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false
+}

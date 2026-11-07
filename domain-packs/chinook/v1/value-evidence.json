@@ -1,0 +1,137 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "value_evidence",
+  "items": [
+    {
+      "evidence_id": "evidence.metric_kinds",
+      "slot_id": "slot.metric",
+      "evidence_type": "enum",
+      "payload": {
+        "values": [
+          "count",
+          "revenue",
+          "sales_revenue",
+          "invoice_total",
+          "unit_price",
+          "duration",
+          "growth_rate"
+        ]
+      },
+      "data_level": "L0",
+      "send_to_model": true,
+      "source_ref": "source.d3_contract_vocabulary"
+    },
+    {
+      "evidence_id": "evidence.entity_kinds",
+      "slot_id": "slot.entity_type",
+      "evidence_type": "enum",
+      "payload": {
+        "values": [
+          "artist",
+          "album",
+          "track",
+          "genre",
+          "media_type",
+          "playlist",
+          "playlist_track",
+          "customer",
+          "invoice",
+          "invoice_line",
+          "employee"
+        ]
+      },
+      "data_level": "L1",
+      "send_to_model": true,
+      "source_ref": "source.chinook_schema_extract"
+    },
+    {
+      "evidence_id": "evidence.time_range_years",
+      "slot_id": "slot.time_range",
+      "evidence_type": "range",
+      "payload": {
+        "minimum": 2009,
+        "maximum": 2013
+      },
+      "data_level": "L1",
+      "send_to_model": true,
+      "source_ref": "source.chinook_database"
+    },
+    {
+      "evidence_id": "evidence.country_enum",
+      "slot_id": "slot.country",
+      "evidence_type": "enum",
+      "payload": {
+        "values": [
+          "Argentina",
+          "Australia",
+          "Austria",
+          "Belgium",
+          "Brazil",
+          "Canada",
+          "Chile",
+          "Czech Republic",
+          "Denmark",
+          "Finland",
+          "France",
+          "Germany",
+          "Hungary",
+          "India",
+          "Ireland",
+          "Italy",
+          "Netherlands",
+          "Norway",
+          "Poland",
+          "Portugal",
+          "Spain",
+          "Sweden",
+          "USA",
+          "United Kingdom"
+        ]
+      },
+      "data_level": "L1",
+      "send_to_model": true,
+      "source_ref": "source.chinook_database"
+    },
+    {
+      "evidence_id": "evidence.limit_range",
+      "slot_id": "slot.limit",
+      "evidence_type": "range",
+      "payload": {
+        "minimum": 1
+      },
+      "data_level": "L0",
+      "send_to_model": true,
+      "source_ref": "source.d3_contract_vocabulary"
+    },
+    {
+      "evidence_id": "evidence.grain_kinds",
+      "slot_id": "slot.grain",
+      "evidence_type": "enum",
+      "payload": {
+        "values": [
+          "day",
+          "month",
+          "quarter",
+          "year"
+        ]
+      },
+      "data_level": "L0",
+      "send_to_model": true,
+      "source_ref": "source.d3_contract_vocabulary"
+    },
+    {
+      "evidence_id": "evidence.sort_kinds",
+      "slot_id": "slot.sort",
+      "evidence_type": "enum",
+      "payload": {
+        "values": [
+          "asc",
+          "desc"
+        ]
+      },
+      "data_level": "L0",
+      "send_to_model": true,
+      "source_ref": "source.d3_contract_vocabulary"
+    }
+  ]
+}

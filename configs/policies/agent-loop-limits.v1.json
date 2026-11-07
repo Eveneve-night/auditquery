@@ -1,0 +1,39 @@
+{
+  "policy_id": "agent-loop-limits",
+  "version": "1.0.0",
+  "limits": {
+    "max_state_transitions": 12,
+    "max_model_calls": 4,
+    "max_tool_calls": 6,
+    "max_consecutive_same_action": 2,
+    "max_identical_tool_signature_total": 2,
+    "max_clarification_rounds": 2,
+    "max_json_repair_attempts": 1,
+    "max_provider_retries_per_call": 2,
+    "retry_base_delay_ms": 250,
+    "retry_max_delay_ms": 2000,
+    "circuit_failure_threshold": 3,
+    "circuit_open_seconds": 30,
+    "max_provider_fallbacks": 1,
+    "max_sql_generation_attempts": 2,
+    "max_sql_execution_attempts": 2,
+    "max_retrieval_rounds": 2,
+    "max_wall_time_ms": 30000,
+    "max_input_tokens_total": 30000,
+    "max_output_tokens_total": 5000,
+    "soft_cost_cny": 0.30,
+    "hard_cost_cny": 1.00
+  },
+  "termination_precedence": [
+    "security_violation",
+    "hard_cost_limit",
+    "wall_time_limit",
+    "token_limit",
+    "identical_tool_loop",
+    "consecutive_action_loop",
+    "specialized_attempt_limit",
+    "model_call_limit",
+    "tool_call_limit",
+    "state_transition_limit"
+  ]
+}

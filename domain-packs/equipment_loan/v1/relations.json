@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "relations",
+  "items": [
+    {
+      "relation_id": "relation.equipment_loan.contains",
+      "relation_type": "contains",
+      "source_object_id": "schema.equipment_loan",
+      "target_object_id": "schema.equipment_loan.equipmentloan",
+      "direction": "directed",
+      "cardinality": "one_to_many",
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    }
+  ]
+}

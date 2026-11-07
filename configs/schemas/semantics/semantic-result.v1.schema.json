@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "semantic-result.v1",
+  "title": "Evidence-constrained semantic result v1",
+  "type": "object",
+  "required": [
+    "result_version",
+    "request_id",
+    "original_question",
+    "rewritten_question",
+    "text_coordinates",
+    "domain_pack_ref",
+    "intent",
+    "fragments",
+    "slot_observations",
+    "candidates",
+    "issues",
+    "edits",
+    "required_slot_resolution",
+    "typed_decision",
+    "sql_execution_authorized"
+  ],
+  "properties": {
+    "result_version": {"const": "1.0.0"},
+    "request_id": {"$ref": "#/$defs/ref_id"},
+    "original_question": {"type": "string", "minLength": 1, "maxLength": 8192},
+    "rewritten_question": {"type": "string", "minLength": 1, "maxLength": 8192},
+    "text_coordinates": {
+      "type": "object",
+      "required": ["unit", "range_semantics", "normalization"],
+      "properties": {
+        "unit": {"const": "unicode_code_point"},
+        "range_semantics": {"const": "half_open"},
+        "normalization": {"const": "original_question"}
+      },
+      "additionalProperties": false
+    },
+    "domain_pack_ref": {"$ref": "#/$defs/domain_pack_ref"},
+    "intent": {"enum": ["sql", "rag", "cross_source", "unknown"]},
+    "fragments": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/fragment"},
+      "maxItems": 128
+    },
+    "slot_observations": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/slot_observation"},
+      "maxItems": 64
+    },
+    "candidates": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/candidate"},
+      "maxItems": 50
+    },
+    "issues": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/issue"},
+      "maxItems": 64
+    },
+    "edits": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/edit"},
+      "maxItems": 64
+    },
+    "required_slot_resolution": {"$ref": "#/$defs/required_slot_resolution"},
+    "typed_decision": {"$ref": "typed-decision.v1"},
+    "sql_execution_authorized": {"const": false}
+  },
+  "$defs": {
+    "ref_id": {"type": "string", "pattern": "^[a-z][a-z0-9_.:-]{0,127}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "scalar": {"type": ["string", "number", "integer", "boolean"]},
+    "domain_pack_ref": {
+      "type": "object",
+      "required": ["domain_pack_id", "version", "manifest_sha256"],
+      "properties": {
+        "domain_pack_id": {"$ref": "#/$defs/ref_id"},
+        "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+        "manifest_sha256": {"$ref": "#/$defs/sha256"}
+      },
+      "additionalProperties": false
+    },
+    "fragment": {
+      "type": "object",
+      "required": [
+        "fragment_id", "start", "end", "text", "status", "entity_type",
+        "normalized_ref", "normalized_value", "candidate_ids", "evidence_refs"
+      ],
+      "properties": {
+        "fragment_id": {"$ref": "#/$defs/ref_id"},
+        "start": {"type": "integer", "minimum": 0},
+        "end": {"type": "integer", "minimum": 1},
+        "text": {"type": "string", "minLength": 1, "maxLength": 1024},
+        "status": {"enum": ["resolved", "ambiguous", "unknown"]},
+        "entity_type": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/ref_id"}]},
+        "normalized_ref": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/ref_id"}]},
+        "normalized_value": {"type": ["string", "number", "integer", "boolean", "null"]},
+        "candidate_ids": {
+          "type": "array", "items": {"$ref": "#/$defs/ref_id"},
+          "maxItems": 16, "uniqueItems": true
+        },
+        "evidence_refs": {
+          "type": "array", "items": {"$ref": "#/$defs/ref_id"},
+          "maxItems": 32, "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "slot_observation": {
+      "type": "object",
+      "required": ["slot_id", "values", "evidence_refs", "fragment_refs"],
+      "properties": {
+        "slot_id": {"$ref": "#/$defs/ref_id"},
+        "values": {"type": "array", "items": {"$ref": "#/$defs/scalar"}, "maxItems": 16},
+        "evidence_refs": {
+          "type": "array", "items": {"$ref": "#/$defs/ref_id"},
+          "maxItems": 32, "uniqueItems": true
+        },
+        "fragment_refs": {
+          "type": "array", "items": {"$ref": "#/$defs/ref_id"},
+          "maxItems": 16, "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "candidate": {
+      "type": "object",
+      "required": ["candidate_id", "display_name", "candidate_kind", "raw_score", "evidence_refs", "raw_features"],
+      "properties": {
+        "candidate_id": {"$ref": "#/$defs/ref_id"},
+        "display_name": {"type": "string", "minLength": 1, "maxLength": 160},
+        "candidate_kind": {"enum": ["concept", "schema_object", "slot"]},
+        "raw_score": {"type": "number", "minimum": 0, "maximum": 1},
+        "evidence_refs": {
+          "type": "array", "items": {"$ref": "#/$defs/ref_id"},
+          "minItems": 1, "maxItems": 32, "uniqueItems": true
+        },
+        "raw_features": {
+          "type": "object",
+          "propertyNames": {"pattern": "^[a-z][a-z0-9_]{0,63}$"},
+          "additionalProperties": {"type": ["number", "string", "boolean", "null"]},
+          "maxProperties": 32
+        }
+      },
+      "additionalProperties": false
+    },
+    "issue": {
+      "type": "object",
+      "required": ["issue_id", "kind", "fragment_refs", "candidate_ids", "evidence_refs", "reason_code"],
+      "properties": {
+        "issue_id": {"$ref": "#/$defs/ref_id"},
+        "kind": {"enum": ["unknown", "ambiguity", "unconfirmed_spelling"]},
+        "fragment_refs": {"type": "array", "items": {"$ref": "#/$defs/ref_id"}, "minItems": 1, "maxItems": 16, "uniqueItems": true},
+        "candidate_ids": {"type": "array", "items": {"$ref": "#/$defs/ref_id"}, "maxItems": 16, "uniqueItems": true},
+        "evidence_refs": {"type": "array", "items": {"$ref": "#/$defs/ref_id"}, "maxItems": 32, "uniqueItems": true},
+        "reason_code": {"type": "string", "pattern": "^[a-z][a-z0-9_]{1,63}$"}
+      },
+      "additionalProperties": false
+    },
+    "edit": {
+      "type": "object",
+      "required": ["edit_id", "source_fragment_id", "start", "end", "before", "after", "kind", "evidence_refs"],
+      "properties": {
+        "edit_id": {"$ref": "#/$defs/ref_id"},
+        "source_fragment_id": {"$ref": "#/$defs/ref_id"},
+        "start": {"type": "integer", "minimum": 0},
+        "end": {"type": "integer", "minimum": 1},
+        "before": {"type": "string", "minLength": 1, "maxLength": 1024},
+        "after": {"type": "string", "minLength": 1, "maxLength": 1024},
+        "kind": {"enum": ["alias_normalization", "spelling_correction"]},
+        "evidence_refs": {"type": "array", "items": {"$ref": "#/$defs/ref_id"}, "minItems": 1, "maxItems": 32, "uniqueItems": true}
+      },
+      "additionalProperties": false
+    },
+    "slot_assessment": {
+      "type": "object",
+      "required": ["slot_id", "required", "status", "value_count", "evidence_refs", "reason_codes"],
+      "properties": {
+        "slot_id": {"$ref": "#/$defs/ref_id"},
+        "required": {"type": ["boolean", "null"]},
+        "status": {"enum": ["filled", "missing", "conflicting", "unknown"]},
+        "value_count": {"type": "integer", "minimum": 0, "maximum": 16},
+        "evidence_refs": {"type": "array", "items": {"$ref": "#/$defs/ref_id"}, "maxItems": 32, "uniqueItems": true},
+        "reason_codes": {"type": "array", "items": {"type": "string", "pattern": "^[a-z][a-z0-9_]{1,63}$"}, "maxItems": 16, "uniqueItems": true}
+      },
+      "additionalProperties": false
+    },
+    "required_slot_resolution": {
+      "type": "object",
+      "required": ["source", "assessments", "hard_rule_violations", "soft_rule_violations"],
+      "properties": {
+        "source": {"const": "auto_domain_pack"},
+        "assessments": {"type": "array", "items": {"$ref": "#/$defs/slot_assessment"}, "maxItems": 64},
+        "hard_rule_violations": {"type": "array", "items": {"$ref": "#/$defs/ref_id"}, "maxItems": 32, "uniqueItems": true},
+        "soft_rule_violations": {"type": "array", "items": {"$ref": "#/$defs/ref_id"}, "maxItems": 32, "uniqueItems": true}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,37 @@
+# Local credentials and environment overrides
+**/api key.txt
+**/*api[Kk]ey*.csv
+**/.env
+**/.env.*
+!/.env.example
+**/secrets/
+**/credentials/
+configs/providers/*.local.json
+
+# Python runtime artifacts
+__pycache__/
+*.py[cod]
+.venv/
+.venv-product/
+.pytest_cache/
+.coverage
+
+# Frontend/runtime artifacts
+node_modules/
+dist/
+
+# Local databases and logs generated at runtime
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+*.log
+
+# IDE, operating-system, and temporary artifacts
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+tmp/
+
+# Local presentation recordings and generated release evidence are not source.
+deliverables/

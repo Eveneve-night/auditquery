@@ -1,0 +1,162 @@
+{
+  "escalate": {
+    "request": {
+      "request_version": "1.1.0",
+      "request_id": "request.round2.no_strategy.escalate",
+      "phase": "pre_strategy",
+      "feature_version": "preflight-observation.v1",
+      "document": {
+        "document_id": "doc.round2.fake",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "media_type": "application/pdf",
+        "byte_count": 1234,
+        "page_count": 2
+      },
+      "observations": [
+        {
+          "page_number": 1,
+          "text_characters": 0,
+          "image_count": 1,
+          "table_hint_count": 0,
+          "layout_hint_count": 0,
+          "evidence_refs": [
+            "feature.fake.page1"
+          ]
+        }
+      ],
+      "evidence_catalog": [
+        {
+          "evidence_id": "feature.fake.page1",
+          "page_number": 1,
+          "kind": "preflight_observation"
+        },
+        {
+          "evidence_id": "feature.runtime.capabilities",
+          "page_number": null,
+          "kind": "document_metadata"
+        }
+      ],
+      "available_strategies": []
+    },
+    "result": {
+      "result_version": "1.0.0",
+      "request_id": "request.round2.no_strategy.escalate",
+      "input_sha256": "d35faf9cabfe576b8f88946ecf94a770a11361fa2e01249ba9656eda4185b1fd",
+      "document_id": "doc.round2.fake",
+      "document_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "feature_version": "preflight-observation.v1",
+      "policy_version": "complexity_policy.v1",
+      "assessment_scope": "structural_complexity_not_quality",
+      "complexity": "unknown",
+      "complexity_score": null,
+      "score_semantics": "uncalibrated_complexity_score",
+      "uncertainty_reason": "policy_restriction",
+      "reasons": [
+        {
+          "reason_code": "local_capabilities_unavailable",
+          "evidence_refs": [
+            "feature.runtime.capabilities"
+          ]
+        }
+      ],
+      "selected_strategy_id": null,
+      "typed_decision": {
+        "decision_type": "abstain",
+        "candidate_options": [],
+        "selected_option": null,
+        "raw_score": null,
+        "calibration_version": null,
+        "evidence_refs": [
+          "feature.runtime.capabilities"
+        ],
+        "missing_or_conflicting_slots": [],
+        "recommended_action": "escalate",
+        "abstain_reason": "policy_restriction",
+        "contract_version": "1.0.0"
+      },
+      "execution_status": "not_started",
+      "ocr_authorized": false,
+      "external_processing_authorized": false
+    }
+  },
+  "reject": {
+    "request": {
+      "request_version": "1.1.0",
+      "request_id": "request.round2.no_strategy.reject",
+      "phase": "pre_strategy",
+      "feature_version": "preflight-observation.v1",
+      "document": {
+        "document_id": "doc.round2.fake",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "media_type": "application/pdf",
+        "byte_count": 1234,
+        "page_count": 2
+      },
+      "observations": [
+        {
+          "page_number": 1,
+          "text_characters": 0,
+          "image_count": 1,
+          "table_hint_count": 0,
+          "layout_hint_count": 0,
+          "evidence_refs": [
+            "feature.fake.page1"
+          ]
+        }
+      ],
+      "evidence_catalog": [
+        {
+          "evidence_id": "feature.fake.page1",
+          "page_number": 1,
+          "kind": "preflight_observation"
+        },
+        {
+          "evidence_id": "feature.runtime.capabilities",
+          "page_number": null,
+          "kind": "document_metadata"
+        }
+      ],
+      "available_strategies": []
+    },
+    "result": {
+      "result_version": "1.0.0",
+      "request_id": "request.round2.no_strategy.reject",
+      "input_sha256": "79f610588365a175bb5eb8300c9a2ad6cf742d5b5a1213756af900a76f004fcd",
+      "document_id": "doc.round2.fake",
+      "document_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "feature_version": "preflight-observation.v1",
+      "policy_version": "complexity_policy.v1",
+      "assessment_scope": "structural_complexity_not_quality",
+      "complexity": "unknown",
+      "complexity_score": null,
+      "score_semantics": "uncalibrated_complexity_score",
+      "uncertainty_reason": "policy_restriction",
+      "reasons": [
+        {
+          "reason_code": "local_capabilities_unavailable",
+          "evidence_refs": [
+            "feature.runtime.capabilities"
+          ]
+        }
+      ],
+      "selected_strategy_id": null,
+      "typed_decision": {
+        "decision_type": "abstain",
+        "candidate_options": [],
+        "selected_option": null,
+        "raw_score": null,
+        "calibration_version": null,
+        "evidence_refs": [
+          "feature.runtime.capabilities"
+        ],
+        "missing_or_conflicting_slots": [],
+        "recommended_action": "reject",
+        "abstain_reason": "policy_restriction",
+        "contract_version": "1.0.0"
+      },
+      "execution_status": "not_started",
+      "ocr_authorized": false,
+      "external_processing_authorized": false
+    }
+  }
+}

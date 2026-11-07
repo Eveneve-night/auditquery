@@ -1,0 +1,25 @@
+services:
+  product:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - ict_instance:/instance
+    secrets:
+      - product_master_key
+    environment:
+      ICT_MASTER_KEY_FILE: /run/secrets/product_master_key
+      ICT_DOCKER_BIND: "1"
+      ICT_QA_RATE_LIMIT: ${ICT_QA_RATE_LIMIT:-60}
+      ICT_QA_RATE_WINDOW_SECONDS: ${ICT_QA_RATE_WINDOW_SECONDS:-300}
+    command: ["python", "-m", "backend.product.server", "serve", "--instance", "/instance", "--mode", "offline", "--host", "0.0.0.0"]
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+
+secrets:
+  product_master_key:
+    file: ${ICT_MASTER_KEY_FILE:?Set an absolute external master-key file path}
+
+volumes:
+  ict_instance:

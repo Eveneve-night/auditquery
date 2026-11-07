@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "validation_rules",
+  "items": [
+    {
+      "rule_id": "rule.example_period_required",
+      "rule_kind": "hard",
+      "operator": "present",
+      "input_refs": ["slot.example_period"],
+      "evidence_refs": ["evidence.example_period_range"],
+      "reason_code": "example_period_missing",
+      "recommended_action": "clarify",
+      "source_refs": ["source.example_public"]
+    }
+  ]
+}

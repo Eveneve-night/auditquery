@@ -1,0 +1,230 @@
+{
+  "fixture_version": "semantic-contract-fixture.v1",
+  "request": {
+    "request_version": "1.0.0",
+    "request_id": "request.public.semantic.001",
+    "question": "统计歌手总数",
+    "domain_context": {
+      "domain_pack_ref": {
+        "domain_pack_id": "chinook_music_store",
+        "version": "1.0.0",
+        "manifest_sha256": "26906fd809480a18274ef3e07558e52b2f55857299685f63facdcdafe2efb3a0"
+      },
+      "authorized_catalog": {
+        "candidate_ids": ["concept.artist", "slot.metric"],
+        "max_data_level": "L1"
+      }
+    },
+    "session": {
+      "session_id": "session.public.semantic.001",
+      "turn_index": 1,
+      "slot_observations": [
+        {
+          "slot_id": "slot.metric",
+          "values": ["count"],
+          "evidence_refs": ["slot.metric", "evidence.metric_kinds"],
+          "source": "explicit_session"
+        }
+      ]
+    }
+  },
+  "result": {
+    "result_version": "1.0.0",
+    "request_id": "request.public.semantic.001",
+    "original_question": "统计歌手总数",
+    "rewritten_question": "统计艺术家总数",
+    "text_coordinates": {
+      "unit": "unicode_code_point",
+      "range_semantics": "half_open",
+      "normalization": "original_question"
+    },
+    "domain_pack_ref": {
+      "domain_pack_id": "chinook_music_store",
+      "version": "1.0.0",
+      "manifest_sha256": "26906fd809480a18274ef3e07558e52b2f55857299685f63facdcdafe2efb3a0"
+    },
+    "intent": "sql",
+    "fragments": [
+      {
+        "fragment_id": "fragment.artist",
+        "start": 2,
+        "end": 4,
+        "text": "歌手",
+        "status": "resolved",
+        "entity_type": "business.artist_kind",
+        "normalized_ref": "concept.artist",
+        "normalized_value": "artist",
+        "candidate_ids": ["concept.artist"],
+        "evidence_refs": ["concept.artist", "alias.artist_zh_2"]
+      },
+      {
+        "fragment_id": "fragment.metric",
+        "start": 4,
+        "end": 6,
+        "text": "总数",
+        "status": "resolved",
+        "entity_type": "business.metric_kind",
+        "normalized_ref": "slot.metric",
+        "normalized_value": "count",
+        "candidate_ids": ["slot.metric"],
+        "evidence_refs": ["slot.metric", "evidence.metric_kinds"]
+      }
+    ],
+    "slot_observations": [
+      {
+        "slot_id": "slot.metric",
+        "values": ["count"],
+        "evidence_refs": ["slot.metric", "evidence.metric_kinds"],
+        "fragment_refs": ["fragment.metric"]
+      },
+      {
+        "slot_id": "slot.entity_type",
+        "values": ["artist"],
+        "evidence_refs": ["slot.entity_type", "evidence.entity_kinds"],
+        "fragment_refs": ["fragment.artist"]
+      }
+    ],
+    "candidates": [
+      {
+        "candidate_id": "concept.artist",
+        "display_name": "艺术家",
+        "candidate_kind": "concept",
+        "raw_score": 1.0,
+        "evidence_refs": ["concept.artist", "alias.artist_zh_2"],
+        "raw_features": {
+          "candidate_kind": "concept",
+          "exact_alias": true
+        }
+      },
+      {
+        "candidate_id": "slot.metric",
+        "display_name": "指标",
+        "candidate_kind": "slot",
+        "raw_score": 0.9,
+        "evidence_refs": ["slot.metric", "evidence.metric_kinds"],
+        "raw_features": {
+          "candidate_kind": "slot",
+          "exact_phrase": true
+        }
+      }
+    ],
+    "issues": [],
+    "edits": [
+      {
+        "edit_id": "edit.artist.alias",
+        "source_fragment_id": "fragment.artist",
+        "start": 2,
+        "end": 4,
+        "before": "歌手",
+        "after": "艺术家",
+        "kind": "alias_normalization",
+        "evidence_refs": ["concept.artist", "alias.artist_zh_2"]
+      }
+    ],
+    "required_slot_resolution": {
+      "source": "auto_domain_pack",
+      "assessments": [
+        {
+          "slot_id": "slot.comparison_baseline",
+          "required": false,
+          "status": "missing",
+          "value_count": 0,
+          "evidence_refs": ["condition.metric_growth_baseline", "evidence.metric_kinds", "slot.comparison_baseline", "slot.metric", "source.d3_contract_vocabulary"],
+          "reason_codes": ["not_required", "value_missing"]
+        },
+        {
+          "slot_id": "slot.country",
+          "required": false,
+          "status": "missing",
+          "value_count": 0,
+          "evidence_refs": ["condition.entity_geo_attached", "evidence.entity_kinds", "slot.country", "slot.entity_type", "source.d3_contract_vocabulary"],
+          "reason_codes": ["not_required", "value_missing"]
+        },
+        {
+          "slot_id": "slot.entity_type",
+          "required": true,
+          "status": "filled",
+          "value_count": 1,
+          "evidence_refs": ["condition.metric_entity_attached", "evidence.entity_kinds", "evidence.metric_kinds", "slot.entity_type", "slot.metric", "source.d3_contract_vocabulary"],
+          "reason_codes": ["required_by_condition", "value_filled"]
+        },
+        {
+          "slot_id": "slot.grain",
+          "required": false,
+          "status": "missing",
+          "value_count": 0,
+          "evidence_refs": ["condition.metric_growth", "evidence.metric_kinds", "slot.grain", "slot.metric", "source.d3_contract_vocabulary"],
+          "reason_codes": ["not_required", "value_missing"]
+        },
+        {
+          "slot_id": "slot.limit",
+          "required": false,
+          "status": "missing",
+          "value_count": 0,
+          "evidence_refs": ["condition.metric_ranking", "evidence.metric_kinds", "slot.limit", "slot.metric", "source.d3_contract_vocabulary"],
+          "reason_codes": ["not_required", "value_missing"]
+        },
+        {
+          "slot_id": "slot.metric",
+          "required": true,
+          "status": "filled",
+          "value_count": 1,
+          "evidence_refs": ["evidence.metric_kinds", "slot.metric", "source.d3_contract_vocabulary"],
+          "reason_codes": ["required_by_default", "value_filled"]
+        },
+        {
+          "slot_id": "slot.sort",
+          "required": false,
+          "status": "missing",
+          "value_count": 0,
+          "evidence_refs": ["condition.limit_present", "slot.limit", "slot.sort", "source.d3_contract_vocabulary"],
+          "reason_codes": ["not_required", "value_missing"]
+        },
+        {
+          "slot_id": "slot.time_range",
+          "required": false,
+          "status": "missing",
+          "value_count": 0,
+          "evidence_refs": ["condition.metric_period_aggregate", "evidence.metric_kinds", "slot.metric", "slot.time_range", "source.d3_contract_vocabulary"],
+          "reason_codes": ["not_required", "value_missing"]
+        }
+      ],
+      "hard_rule_violations": [],
+      "soft_rule_violations": []
+    },
+    "typed_decision": {
+      "decision_type": "choice",
+      "candidate_options": [
+        {
+          "candidate_id": "concept.artist",
+          "display_name": "艺术家",
+          "evidence_refs": ["concept.artist", "alias.artist_zh_2"],
+          "raw_features": {
+            "candidate_kind": "concept",
+            "exact_alias": true,
+            "lexical_raw_score": 1.0
+          }
+        },
+        {
+          "candidate_id": "slot.metric",
+          "display_name": "指标",
+          "evidence_refs": ["slot.metric", "evidence.metric_kinds"],
+          "raw_features": {
+            "candidate_kind": "slot",
+            "exact_phrase": true,
+            "lexical_raw_score": 0.9
+          }
+        }
+      ],
+      "selected_option": "concept.artist",
+      "raw_score": 1.0,
+      "calibration_version": null,
+      "evidence_refs": ["concept.artist", "alias.artist_zh_2", "slot.metric", "evidence.metric_kinds"],
+      "missing_or_conflicting_slots": [],
+      "recommended_action": "accept",
+      "abstain_reason": null,
+      "contract_version": "1.0.0"
+    },
+    "sql_execution_authorized": false
+  }
+}

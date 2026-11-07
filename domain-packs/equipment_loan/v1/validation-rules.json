@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "validation_rules",
+  "items": [
+    {
+      "rule_id": "rule.equipment_loan.metric",
+      "rule_kind": "hard",
+      "operator": "in",
+      "input_refs": [
+        "slot.metric"
+      ],
+      "evidence_refs": [
+        "evidence.equipment_loan.metric"
+      ],
+      "reason_code": "metric_outside_evidence",
+      "recommended_action": "clarify",
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    },
+    {
+      "rule_id": "rule.equipment_loan.location",
+      "rule_kind": "hard",
+      "operator": "in",
+      "input_refs": [
+        "slot.location"
+      ],
+      "evidence_refs": [
+        "evidence.equipment_loan.location"
+      ],
+      "reason_code": "location_outside_evidence",
+      "recommended_action": "clarify",
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    },
+    {
+      "rule_id": "rule.equipment_loan.unit",
+      "rule_kind": "hard",
+      "operator": "in",
+      "input_refs": [
+        "slot.unit"
+      ],
+      "evidence_refs": [
+        "evidence.equipment_loan.unit"
+      ],
+      "reason_code": "unit_outside_evidence",
+      "recommended_action": "clarify",
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    }
+  ]
+}

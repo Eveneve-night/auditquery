@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "properties": {
+    "contract_version": {
+      "const": "1.0.0"
+    },
+    "source_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.-]{0,95}$"
+    },
+    "source_revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "connector": {
+      "$ref": "data-source-common.v1#/$defs/connector"
+    },
+    "binding": {
+      "$ref": "data-source-common.v1#/$defs/binding"
+    }
+  },
+  "required": [
+    "contract_version",
+    "source_id",
+    "source_revision",
+    "connector",
+    "binding"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "query-source-snapshot.v1"
+}

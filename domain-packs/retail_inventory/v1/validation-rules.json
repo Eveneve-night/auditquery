@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "validation_rules",
+  "items": [
+    {
+      "rule_id": "rule.retail_inventory.metric",
+      "rule_kind": "hard",
+      "operator": "in",
+      "input_refs": [
+        "slot.metric"
+      ],
+      "evidence_refs": [
+        "evidence.retail_inventory.metric"
+      ],
+      "reason_code": "metric_outside_evidence",
+      "recommended_action": "clarify",
+      "source_refs": [
+        "source.retail_inventory"
+      ]
+    },
+    {
+      "rule_id": "rule.retail_inventory.location",
+      "rule_kind": "hard",
+      "operator": "in",
+      "input_refs": [
+        "slot.location"
+      ],
+      "evidence_refs": [
+        "evidence.retail_inventory.location"
+      ],
+      "reason_code": "location_outside_evidence",
+      "recommended_action": "clarify",
+      "source_refs": [
+        "source.retail_inventory"
+      ]
+    },
+    {
+      "rule_id": "rule.retail_inventory.unit",
+      "rule_kind": "hard",
+      "operator": "in",
+      "input_refs": [
+        "slot.unit"
+      ],
+      "evidence_refs": [
+        "evidence.retail_inventory.unit"
+      ],
+      "reason_code": "unit_outside_evidence",
+      "recommended_action": "clarify",
+      "source_refs": [
+        "source.retail_inventory"
+      ]
+    }
+  ]
+}

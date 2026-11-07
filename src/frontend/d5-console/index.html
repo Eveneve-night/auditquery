@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>问数智能体控制台</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <span class="sidebar__logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+            <path
+              d="M12 3c-1.2 1.7-1.8 3.6-1.8 5.5 0 1.9.6 3.8 1.8 5.5 1.2-1.7 1.8-3.6 1.8-5.5C13.8 6.6 13.2 4.7 12 3Z"
+              fill="currentColor"
+            />
+            <circle cx="12" cy="12" r="1.6" fill="currentColor" opacity=".5" />
+            <path
+              d="M5.6 7.4a8.5 8.5 0 0 0 0 9.2M18.4 7.4a8.5 8.5 0 0 1 0 9.2"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+            />
+          </svg>
+        </span>
+        <div class="sidebar__brand-text">
+          <strong>问数智能体</strong>
+          <small>产品控制台</small>
+        </div>
+      </div>
+
+      <nav class="sidebar__nav">
+        <span class="sidebar__label">使用</span>
+        <a class="nav-item" href="#/guest" data-route="#/guest">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true">
+            <path
+              d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v9a2.5 2.5 0 0 1-2.5 2.5H8l-3 3V5.5Z"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linejoin="round"
+            />
+            <path d="M8 8.5h8M8 12h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          </svg>
+          访客提问
+        </a>
+        <a class="nav-item" href="#/admin/settings" data-route="#/admin/settings">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true">
+            <path
+              d="M12 3.5 4 7v5c0 4.4 3.2 7.6 8 8.5 4.8-.9 8-4.1 8-8.5V7l-8-3.5Z"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linejoin="round"
+            />
+            <path d="M9 12.2l2 2 4-4.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          管理员设置
+        </a>
+      </nav>
+
+      <div class="sidebar__foot">
+        <span class="sidebar__dot" aria-hidden="true"></span>
+        <span id="env-label">演示环境</span>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <div class="topbar__title">
+          <h1>问数智能体控制台</h1>
+          <small>多模态数据驱动的可解释问数问答</small>
+        </div>
+        <span class="status-pill status-pill--idle" id="mode-badge">演示模式 · 使用示例数据</span>
+      </header>
+
+      <main id="view" class="view"></main>
+
+      <footer class="footer">
+        <p>
+          演示环境 · 当前使用示例数据，回答仅供体验；接入在线服务后显示真实查询结果。
+        </p>
+        <p>
+          权限判定以服务端返回为准，页面提示不构成安全边界。
+        </p>
+      </footer>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

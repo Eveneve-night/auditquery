@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "aliases",
+  "items": [
+    {
+      "alias_id": "alias.retail_inventory.entity.0",
+      "surface_form": "货品",
+      "language": "zh-CN",
+      "concept_id": "concept.retail_inventory.entity",
+      "source_ref": "source.retail_inventory",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.retail_inventory.entity.1",
+      "surface_form": "SKU",
+      "language": "zh-CN",
+      "concept_id": "concept.retail_inventory.entity",
+      "source_ref": "source.retail_inventory",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.retail_inventory.metric.0",
+      "surface_form": "存量",
+      "language": "zh-CN",
+      "concept_id": "concept.retail_inventory.metric",
+      "source_ref": "source.retail_inventory",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.retail_inventory.metric.1",
+      "surface_form": "库存",
+      "language": "zh-CN",
+      "concept_id": "concept.retail_inventory.metric",
+      "source_ref": "source.retail_inventory",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.retail_inventory.location.0",
+      "surface_form": "仓库",
+      "language": "zh-CN",
+      "concept_id": "concept.retail_inventory.location",
+      "source_ref": "source.retail_inventory",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.retail_inventory.unit.0",
+      "surface_form": "件",
+      "language": "zh-CN",
+      "concept_id": "concept.retail_inventory.unit",
+      "source_ref": "source.retail_inventory",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.retail_inventory.available.quantity",
+      "surface_form": "数量",
+      "language": "zh-CN",
+      "concept_id": "concept.retail_inventory.available",
+      "source_ref": "source.retail_inventory",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.retail_inventory.total.quantity",
+      "surface_form": "数量",
+      "language": "zh-CN",
+      "concept_id": "concept.retail_inventory.total",
+      "source_ref": "source.retail_inventory",
+      "confidence_class": "synthetic"
+    }
+  ]
+}

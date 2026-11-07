@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "relations",
+  "items": [
+    {
+      "relation_id": "relation.example_table_contains_amount",
+      "relation_type": "contains",
+      "source_object_id": "schema.example_table",
+      "target_object_id": "schema.example_amount_column",
+      "direction": "directed",
+      "cardinality": "one_to_many",
+      "source_refs": ["source.example_public"]
+    }
+  ]
+}

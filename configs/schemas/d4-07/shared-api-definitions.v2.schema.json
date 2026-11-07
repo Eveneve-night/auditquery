@@ -1,0 +1,247 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "shared-api-definitions.v2.schema.json",
+  "title": "D4-07 shared online API definitions v2",
+  "$comment": "v2 adds a replay identifier and server-offered clarification options. Cross-field binding, option/evidence pairing, freshness and replay checks remain server runtime gates.",
+  "$defs": {
+    "bounded_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+    },
+    "ref_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,127}$"
+    },
+    "clarification_value": {
+      "type": ["string", "number", "integer", "boolean"]
+    },
+    "clarification_option": {
+      "type": "object",
+      "required": ["value", "display_name", "evidence_ref"],
+      "properties": {
+        "value": {"$ref": "#/$defs/clarification_value"},
+        "display_name": {"type": "string", "minLength": 1, "maxLength": 128},
+        "evidence_ref": {"$ref": "#/$defs/ref_id"}
+      },
+      "additionalProperties": false
+    },
+    "submit_query_request": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "operation",
+        "session_id",
+        "request_id",
+        "turn_id",
+        "state_revision",
+        "query"
+      ],
+      "properties": {
+        "schema_version": {"const": "2.0.0"},
+        "operation": {"const": "submit_query"},
+        "session_id": {"$ref": "#/$defs/bounded_id"},
+        "request_id": {"$ref": "#/$defs/bounded_id"},
+        "turn_id": {"type": "integer", "minimum": 0},
+        "state_revision": {"type": "integer", "minimum": 0},
+        "query": {"type": "string", "minLength": 1, "maxLength": 2000}
+      },
+      "additionalProperties": false
+    },
+    "submit_clarification_request": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "operation",
+        "answer_id",
+        "session_id",
+        "request_id",
+        "turn_id",
+        "state_revision",
+        "question_id",
+        "slot_id",
+        "values",
+        "evidence_refs"
+      ],
+      "properties": {
+        "schema_version": {"const": "2.0.0"},
+        "operation": {"const": "submit_clarification"},
+        "answer_id": {"$ref": "#/$defs/bounded_id"},
+        "session_id": {"$ref": "#/$defs/bounded_id"},
+        "request_id": {"$ref": "#/$defs/bounded_id"},
+        "turn_id": {"type": "integer", "minimum": 0},
+        "state_revision": {"type": "integer", "minimum": 0},
+        "question_id": {"$ref": "#/$defs/bounded_id"},
+        "slot_id": {"$ref": "#/$defs/ref_id"},
+        "values": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/clarification_value"},
+          "minItems": 1,
+          "maxItems": 1
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/ref_id"},
+          "minItems": 1,
+          "maxItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "online_request": {
+      "oneOf": [
+        {"$ref": "#/$defs/submit_query_request"},
+        {"$ref": "#/$defs/submit_clarification_request"}
+      ]
+    },
+    "pending_question": {
+      "type": "object",
+      "required": [
+        "question_id",
+        "session_id",
+        "request_id",
+        "turn_id",
+        "state_revision",
+        "slot_id",
+        "question_text",
+        "options"
+      ],
+      "properties": {
+        "question_id": {"$ref": "#/$defs/bounded_id"},
+        "session_id": {"$ref": "#/$defs/bounded_id"},
+        "request_id": {"$ref": "#/$defs/bounded_id"},
+        "turn_id": {"type": "integer", "minimum": 0},
+        "state_revision": {"type": "integer", "minimum": 0},
+        "slot_id": {"$ref": "#/$defs/ref_id"},
+        "question_text": {"type": "string", "minLength": 1, "maxLength": 256},
+        "options": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/clarification_option"},
+          "minItems": 1,
+          "maxItems": 16,
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "online_response": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "session_id",
+        "request_id",
+        "turn_id",
+        "state_revision",
+        "route",
+        "status",
+        "message",
+        "decision",
+        "pending_question",
+        "candidate_evidence",
+        "sql",
+        "citations",
+        "trace",
+        "usage",
+        "error",
+        "warnings"
+      ],
+      "properties": {
+        "schema_version": {"const": "2.0.0"},
+        "session_id": {"$ref": "#/$defs/bounded_id"},
+        "request_id": {"$ref": "#/$defs/bounded_id"},
+        "turn_id": {"type": "integer", "minimum": 0},
+        "state_revision": {"type": "integer", "minimum": 0},
+        "route": {"enum": ["sql", "rag", "clarification", "unknown"]},
+        "status": {"enum": ["success", "clarification_required", "refused", "error"]},
+        "message": {"type": "string", "minLength": 1, "maxLength": 256},
+        "decision": {
+          "oneOf": [
+            {"$ref": "shared-api-definitions.v1.schema.json#/$defs/decision"},
+            {"type": "null"}
+          ]
+        },
+        "pending_question": {
+          "oneOf": [
+            {"$ref": "#/$defs/pending_question"},
+            {"type": "null"}
+          ]
+        },
+        "candidate_evidence": {
+          "type": "array",
+          "items": {"$ref": "shared-api-definitions.v1.schema.json#/$defs/candidate"},
+          "maxItems": 10
+        },
+        "sql": {
+          "oneOf": [
+            {"$ref": "shared-api-definitions.v1.schema.json#/$defs/sql_result"},
+            {"type": "null"}
+          ]
+        },
+        "citations": {
+          "type": "array",
+          "items": {"$ref": "shared-api-definitions.v1.schema.json#/$defs/citation"},
+          "maxItems": 10
+        },
+        "trace": {
+          "type": "array",
+          "items": {"$ref": "shared-api-definitions.v1.schema.json#/$defs/trace_event"},
+          "maxItems": 64
+        },
+        "usage": {"$ref": "shared-api-definitions.v1.schema.json#/$defs/usage"},
+        "error": {
+          "oneOf": [
+            {"$ref": "shared-api-definitions.v1.schema.json#/$defs/safe_error"},
+            {"type": "null"}
+          ]
+        },
+        "warnings": {
+          "type": "array",
+          "items": {"type": "string", "pattern": "^[a-z][a-z0-9_]{1,63}$"},
+          "maxItems": 16,
+          "uniqueItems": true
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"const": "clarification_required"}}},
+          "then": {
+            "properties": {
+              "decision": {
+                "allOf": [
+                  {"$ref": "shared-api-definitions.v1.schema.json#/$defs/decision"},
+                  {"properties": {"action": {"const": "clarify"}}}
+                ]
+              },
+              "pending_question": {"$ref": "#/$defs/pending_question"},
+              "sql": {"type": "null"},
+              "error": {"type": "null"}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"status": {"const": "error"}}},
+          "then": {
+            "properties": {
+              "decision": {"type": "null"},
+              "pending_question": {"type": "null"},
+              "sql": {"type": "null"},
+              "citations": {"maxItems": 0},
+              "error": {"$ref": "shared-api-definitions.v1.schema.json#/$defs/safe_error"}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"status": {"enum": ["success", "refused"]}}},
+          "then": {
+            "properties": {
+              "decision": {"$ref": "shared-api-definitions.v1.schema.json#/$defs/decision"},
+              "pending_question": {"type": "null"},
+              "error": {"type": "null"}
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    }
+  }
+}

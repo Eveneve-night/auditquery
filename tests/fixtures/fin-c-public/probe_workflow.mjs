@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict';
+import { createSourceWorkflow } from '../../../src/frontend/d5-console/data-sources.js';
+import { ApiError } from '../../../src/frontend/d5-console/api-client.js';
+const draft={source_id:'source.a',revision:1,status:'draft'};
+// Component-only fixtures, deliberately not claimed as production contract validation.
+const valid=async s=>s.source_id==='source.a';
+let calls=0;const adapter={invoke:async()=>{calls++;return structuredClone(draft);}};
+let flow=createSourceWorkflow({adapter,validateSource:valid,getRole:()=> 'visitor'});
+assert.equal((await flow.perform('create')).error,'forbidden');assert.equal(calls,0);
+flow=createSourceWorkflow({getRole:()=> 'admin'});
+assert.equal((await flow.perform('test')).error,'not_implemented');assert.equal(flow.snapshot().source,null);
+flow=createSourceWorkflow({adapter,validateSource:valid,getRole:()=> 'admin'});
+assert.equal((await flow.perform('credential',{password:'sensitive'})).error,'invalid_contract');assert.equal(calls,0);
+assert.equal((await flow.perform('create')).source.revision,1);
+assert.equal((await flow.perform('test')).error,'revision_conflict');assert.equal(flow.snapshot().source.revision,1);
+assert.equal((await flow.perform('publish')).error,'invalid_contract');
+let external=flow.snapshot();external.source.revision=900;assert.equal(flow.snapshot().source.revision,1);
+flow=createSourceWorkflow({adapter,validateSource:async()=>false,getRole:()=> 'admin'});
+assert.equal((await flow.perform('create')).error,'invalid_contract');assert.equal(flow.snapshot().source,null);
+flow=createSourceWorkflow({adapter:{invoke:async()=>{throw Error('password=never-render');}},validateSource:valid,getRole:()=> 'admin'});
+assert.equal((await flow.perform('create')).error,'internal_error');assert.ok(!JSON.stringify(flow.snapshot()).includes('never-render'));
+let release;flow=createSourceWorkflow({adapter:{invoke:()=>new Promise(r=>release=r)},validateSource:valid,getRole:()=> 'admin'});
+const pending=flow.perform('create');assert.equal((await flow.perform('test')).error,'source_busy');release(draft);await pending;
+assert.equal(flow.snapshot().httpConnected,false);
+console.log(JSON.stringify({component_checks:10,production_contract_validation:false,http:false}));

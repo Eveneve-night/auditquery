@@ -1,0 +1,63 @@
+{
+  "schema_version": "2.0.0",
+  "session_id": "session.public-001",
+  "request_id": "request.public-001",
+  "turn_id": 1,
+  "state_revision": 2,
+  "route": "clarification",
+  "status": "clarification_required",
+  "message": "需要补充一个公开示例年份。",
+  "decision": {
+    "contract_version": "1.0.0",
+    "action": "clarify",
+    "reason_code": "missing_required_slot",
+    "score_kind": "deterministic_rule",
+    "raw_score": null,
+    "calibration_version": null,
+    "thresholds": {
+      "accept_min": 0.8,
+      "clarify_min": 0.4,
+      "abstain_below": 0.4,
+      "retrieval_min_score": null
+    },
+    "evidence_refs": ["rule.public_time_required"],
+    "missing_or_conflicting_slots": ["slot.time_range"],
+    "accept_authorizes_sql_execution": false,
+    "requires_d4_02_safety_gate": true
+  },
+  "pending_question": {
+    "question_id": "question.public-001",
+    "session_id": "session.public-001",
+    "request_id": "request.public-001",
+    "turn_id": 1,
+    "state_revision": 2,
+    "slot_id": "slot.time_range",
+    "question_text": "请选择一个公开示例年份。",
+    "options": [
+      {
+        "value": "2011",
+        "display_name": "2011 年",
+        "evidence_ref": "value_evidence.public_year_2011"
+      },
+      {
+        "value": "2012",
+        "display_name": "2012 年",
+        "evidence_ref": "value_evidence.public_year_2012"
+      }
+    ]
+  },
+  "candidate_evidence": [],
+  "sql": null,
+  "citations": [],
+  "trace": [],
+  "usage": {
+    "model_calls": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "estimated_cost_cny": 0,
+    "elapsed_ms": 0,
+    "stopped_reason": null
+  },
+  "error": null,
+  "warnings": ["offline_public_example"]
+}

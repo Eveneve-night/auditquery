@@ -1,0 +1,25 @@
+{
+  "contract_id": "d5-visitor-operation-rate-limit",
+  "contract_version": "1.0.0",
+  "api_version": "3.0",
+  "extends": "product-layer.v1.json",
+  "scope": ["POST /api/v3/query", "POST /api/v3/clarifications"],
+  "dimensions": ["session", "source"],
+  "defaults": {"operations": 60, "window_seconds": 300},
+  "configuration": {
+    "operations_env": "ICT_QA_RATE_LIMIT",
+    "window_seconds_env": "ICT_QA_RATE_WINDOW_SECONDS",
+    "format": "positive_decimal_integer",
+    "invalid_configuration": "fail_startup",
+    "mutable_by_client_or_admin_api": false
+  },
+  "counting": {
+    "query_and_clarification_share_quota": true,
+    "downstream_failure_consumes_quota": true,
+    "invalid_envelope_or_replay_consumes_quota": false,
+    "persist_across_restart": true,
+    "window_boundary": "reset_at_elapsed_greater_than_or_equal_to_window",
+    "rejection": {"http_status": 429, "error_code": "rate_limited", "before_agent_work": true, "session_revision_unchanged": true}
+  },
+  "unchanged": ["session_creation_limit", "admin_auth_upload_connectivity_limits", "agent-loop-limits.v1", "sql_safety_gate", "single_model_boundary"]
+}

@@ -1,0 +1,229 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "schema_catalog",
+  "items": [
+    {
+      "object_id": "schema.equipment_maintenance",
+      "object_type": "data_source",
+      "parent_object_id": null,
+      "display_name": "equipment_maintenance",
+      "physical_name": "equipment_maintenance",
+      "data_type": null,
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_maintenance_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.equipment_maintenance.asset",
+      "object_type": "table",
+      "parent_object_id": "schema.equipment_maintenance",
+      "display_name": "asset",
+      "physical_name": "asset",
+      "data_type": null,
+      "concept_refs": [
+        "concept.maintenance.asset"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_maintenance_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.equipment_maintenance.asset.id",
+      "object_type": "column",
+      "parent_object_id": "schema.equipment_maintenance.asset",
+      "display_name": "id",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.maintenance.asset"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_maintenance_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.equipment_maintenance.asset.asset_name",
+      "object_type": "column",
+      "parent_object_id": "schema.equipment_maintenance.asset",
+      "display_name": "asset_name",
+      "physical_name": "asset_name",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.maintenance.asset"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_maintenance_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.equipment_maintenance.asset.site",
+      "object_type": "column",
+      "parent_object_id": "schema.equipment_maintenance.asset",
+      "display_name": "site",
+      "physical_name": "site",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.maintenance.asset"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_maintenance_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.equipment_maintenance.work_order",
+      "object_type": "table",
+      "parent_object_id": "schema.equipment_maintenance",
+      "display_name": "work_order",
+      "physical_name": "work_order",
+      "data_type": null,
+      "concept_refs": [
+        "concept.maintenance.work_order"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_maintenance_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.equipment_maintenance.work_order.id",
+      "object_type": "column",
+      "parent_object_id": "schema.equipment_maintenance.work_order",
+      "display_name": "id",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.maintenance.work_order"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_maintenance_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.equipment_maintenance.work_order.asset_id",
+      "object_type": "column",
+      "parent_object_id": "schema.equipment_maintenance.work_order",
+      "display_name": "asset_id",
+      "physical_name": "asset_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.maintenance.work_order"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_maintenance_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.equipment_maintenance.work_order.status",
+      "object_type": "column",
+      "parent_object_id": "schema.equipment_maintenance.work_order",
+      "display_name": "status",
+      "physical_name": "status",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.maintenance.work_order"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_maintenance_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.equipment_maintenance.work_order.planned_hours",
+      "object_type": "column",
+      "parent_object_id": "schema.equipment_maintenance.work_order",
+      "display_name": "planned_hours",
+      "physical_name": "planned_hours",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.maintenance.work_order"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_maintenance_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.equipment_maintenance.maintenance_event",
+      "object_type": "table",
+      "parent_object_id": "schema.equipment_maintenance",
+      "display_name": "maintenance_event",
+      "physical_name": "maintenance_event",
+      "data_type": null,
+      "concept_refs": [
+        "concept.maintenance.maintenance_event"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_maintenance_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.equipment_maintenance.maintenance_event.id",
+      "object_type": "column",
+      "parent_object_id": "schema.equipment_maintenance.maintenance_event",
+      "display_name": "id",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.maintenance.maintenance_event"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_maintenance_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.equipment_maintenance.maintenance_event.work_order_id",
+      "object_type": "column",
+      "parent_object_id": "schema.equipment_maintenance.maintenance_event",
+      "display_name": "work_order_id",
+      "physical_name": "work_order_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.maintenance.maintenance_event"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_maintenance_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.equipment_maintenance.maintenance_event.duration_hours",
+      "object_type": "column",
+      "parent_object_id": "schema.equipment_maintenance.maintenance_event",
+      "display_name": "duration_hours",
+      "physical_name": "duration_hours",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.maintenance.maintenance_event"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_maintenance_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.equipment_maintenance.maintenance_event.event_date",
+      "object_type": "column",
+      "parent_object_id": "schema.equipment_maintenance.maintenance_event",
+      "display_name": "event_date",
+      "physical_name": "event_date",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.maintenance.maintenance_event"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.equipment_maintenance_synthetic"
+      ]
+    }
+  ]
+}

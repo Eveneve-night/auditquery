@@ -1,0 +1,3424 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "schema_catalog",
+  "items": [
+    {
+      "object_id": "schema.order_to_cash",
+      "object_type": "data_source",
+      "parent_object_id": null,
+      "display_name": "订单到回款合成业务库",
+      "physical_name": "order_to_cash",
+      "data_type": null,
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.customer",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "客户档案",
+      "physical_name": "customer",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.customer"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.customer.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.customer",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.customer"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.customer.customer_name",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.customer",
+      "display_name": "客户名称",
+      "physical_name": "customer_name",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.customer"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.customer.segment_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.customer",
+      "display_name": "分群编号",
+      "physical_name": "segment_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.customer"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.customer.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.customer",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.customer"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.customer_segment",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "客户分群",
+      "physical_name": "customer_segment",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.customer_segment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.customer_segment.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.customer_segment",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.customer_segment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.customer_segment.segment_name",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.customer_segment",
+      "display_name": "分群名称",
+      "physical_name": "segment_name",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.customer_segment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.customer_segment.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.customer_segment",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.customer_segment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.customer_contact",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "客户联系人",
+      "physical_name": "customer_contact",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.customer_contact"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.customer_contact.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.customer_contact",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.customer_contact"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.customer_contact.customer_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.customer_contact",
+      "display_name": "客户编号",
+      "physical_name": "customer_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.customer_contact"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.customer_contact.contact_name",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.customer_contact",
+      "display_name": "联系人姓名",
+      "physical_name": "contact_name",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.customer_contact"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.customer_contact.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.customer_contact",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.customer_contact"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.customer_address",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "客户地址",
+      "physical_name": "customer_address",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.customer_address"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.customer_address.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.customer_address",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.customer_address"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.customer_address.customer_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.customer_address",
+      "display_name": "客户编号",
+      "physical_name": "customer_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.customer_address"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.customer_address.address_text",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.customer_address",
+      "display_name": "地址正文",
+      "physical_name": "address_text",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.customer_address"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.customer_address.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.customer_address",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.customer_address"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.product_category",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "商品分类",
+      "physical_name": "product_category",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.product_category"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.product_category.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.product_category",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.product_category"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.product_category.category_name",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.product_category",
+      "display_name": "分类名称",
+      "physical_name": "category_name",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.product_category"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.product_category.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.product_category",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.product_category"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.product",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "商品档案",
+      "physical_name": "product",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.product"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.product.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.product",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.product"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.product.category_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.product",
+      "display_name": "分类编号",
+      "physical_name": "category_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.product"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.product.product_name",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.product",
+      "display_name": "商品名称",
+      "physical_name": "product_name",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.product"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.product.unit_price",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.product",
+      "display_name": "单价",
+      "physical_name": "unit_price",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.product"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.product.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.product",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.product"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.warehouse",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "仓库档案",
+      "physical_name": "warehouse",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.warehouse"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.warehouse.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.warehouse",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.warehouse"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.warehouse.warehouse_name",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.warehouse",
+      "display_name": "仓库名称",
+      "physical_name": "warehouse_name",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.warehouse"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.warehouse.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.warehouse",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.warehouse"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.quotation",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "销售报价单",
+      "physical_name": "quotation",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.quotation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.quotation.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.quotation",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.quotation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.quotation.customer_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.quotation",
+      "display_name": "客户编号",
+      "physical_name": "customer_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.quotation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.quotation.quoted_amount",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.quotation",
+      "display_name": "报价金额",
+      "physical_name": "quoted_amount",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.quotation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.quotation.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.quotation",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.quotation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.quotation_line",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "报价明细",
+      "physical_name": "quotation_line",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.quotation_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.quotation_line.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.quotation_line",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.quotation_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.quotation_line.quotation_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.quotation_line",
+      "display_name": "报价单编号",
+      "physical_name": "quotation_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.quotation_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.quotation_line.product_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.quotation_line",
+      "display_name": "商品编号",
+      "physical_name": "product_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.quotation_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.quotation_line.quantity",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.quotation_line",
+      "display_name": "报价数量",
+      "physical_name": "quantity",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.quotation_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.quotation_line.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.quotation_line",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.quotation_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "当前销售订单",
+      "physical_name": "sales_order",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.sales_order"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_order"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order.customer_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order",
+      "display_name": "客户编号",
+      "physical_name": "customer_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_order"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order.quotation_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order",
+      "display_name": "报价单编号",
+      "physical_name": "quotation_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_order"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order.order_amount",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order",
+      "display_name": "订单金额",
+      "physical_name": "order_amount",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.sales_order"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order.order_status",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order",
+      "display_name": "订单状态",
+      "physical_name": "order_status",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.sales_order"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.sales_order"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_history",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "历史销售订单",
+      "physical_name": "sales_order_history",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.sales_order_history"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_history.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_history",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_order_history"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_history.original_order_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_history",
+      "display_name": "原订单编号",
+      "physical_name": "original_order_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_order_history"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_history.customer_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_history",
+      "display_name": "客户编号",
+      "physical_name": "customer_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_order_history"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_history.order_amount",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_history",
+      "display_name": "历史订单金额",
+      "physical_name": "order_amount",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.sales_order_history"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_history.archived_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_history",
+      "display_name": "归档时间",
+      "physical_name": "archived_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.sales_order_history"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_history.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_history",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.sales_order_history"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_line",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "销售订单明细",
+      "physical_name": "sales_order_line",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.sales_order_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_line.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_line",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_order_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_line.order_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_line",
+      "display_name": "订单编号",
+      "physical_name": "order_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_order_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_line.product_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_line",
+      "display_name": "商品编号",
+      "physical_name": "product_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_order_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_line.quantity",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_line",
+      "display_name": "订购数量",
+      "physical_name": "quantity",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.sales_order_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_line.line_amount",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_line",
+      "display_name": "明细金额",
+      "physical_name": "line_amount",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.sales_order_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_line.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_line",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.sales_order_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_line_history",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "历史订单明细",
+      "physical_name": "sales_order_line_history",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.sales_order_line_history"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_line_history.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_line_history",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_order_line_history"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_line_history.history_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_line_history",
+      "display_name": "历史订单编号",
+      "physical_name": "history_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_order_line_history"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_line_history.product_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_line_history",
+      "display_name": "商品编号",
+      "physical_name": "product_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_order_line_history"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_line_history.quantity",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_line_history",
+      "display_name": "历史订购数量",
+      "physical_name": "quantity",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.sales_order_line_history"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_line_history.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_line_history",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.sales_order_line_history"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_daily_summary",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "销售订单日汇总",
+      "physical_name": "sales_order_daily_summary",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.sales_order_daily_summary"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_daily_summary.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_daily_summary",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_order_daily_summary"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_daily_summary.customer_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_daily_summary",
+      "display_name": "客户编号",
+      "physical_name": "customer_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_order_daily_summary"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_daily_summary.business_date",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_daily_summary",
+      "display_name": "业务日期",
+      "physical_name": "business_date",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.sales_order_daily_summary"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_daily_summary.order_count",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_daily_summary",
+      "display_name": "订单笔数",
+      "physical_name": "order_count",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_order_daily_summary"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_daily_summary.order_amount",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_daily_summary",
+      "display_name": "订单汇总金额",
+      "physical_name": "order_amount",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.sales_order_daily_summary"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_daily_summary.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_daily_summary",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.sales_order_daily_summary"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_monthly_summary",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "销售订单月汇总",
+      "physical_name": "sales_order_monthly_summary",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.sales_order_monthly_summary"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_monthly_summary.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_monthly_summary",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_order_monthly_summary"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_monthly_summary.customer_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_monthly_summary",
+      "display_name": "客户编号",
+      "physical_name": "customer_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_order_monthly_summary"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_monthly_summary.business_month",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_monthly_summary",
+      "display_name": "业务月份",
+      "physical_name": "business_month",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.sales_order_monthly_summary"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_monthly_summary.order_count",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_monthly_summary",
+      "display_name": "订单笔数",
+      "physical_name": "order_count",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_order_monthly_summary"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_monthly_summary.order_amount",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_monthly_summary",
+      "display_name": "订单汇总金额",
+      "physical_name": "order_amount",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.sales_order_monthly_summary"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_order_monthly_summary.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_order_monthly_summary",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.sales_order_monthly_summary"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.shipment",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "销售发货单",
+      "physical_name": "shipment",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.shipment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.shipment.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.shipment",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.shipment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.shipment.order_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.shipment",
+      "display_name": "订单编号",
+      "physical_name": "order_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.shipment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.shipment.warehouse_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.shipment",
+      "display_name": "仓库编号",
+      "physical_name": "warehouse_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.shipment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.shipment.shipped_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.shipment",
+      "display_name": "发货时间",
+      "physical_name": "shipped_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.shipment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.shipment.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.shipment",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.shipment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.shipment_line",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "发货明细",
+      "physical_name": "shipment_line",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.shipment_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.shipment_line.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.shipment_line",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.shipment_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.shipment_line.shipment_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.shipment_line",
+      "display_name": "发货单编号",
+      "physical_name": "shipment_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.shipment_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.shipment_line.order_line_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.shipment_line",
+      "display_name": "订单行编号",
+      "physical_name": "order_line_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.shipment_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.shipment_line.shipped_quantity",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.shipment_line",
+      "display_name": "实发数量",
+      "physical_name": "shipped_quantity",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.shipment_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.shipment_line.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.shipment_line",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.shipment_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.shipment_tracking",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "物流轨迹",
+      "physical_name": "shipment_tracking",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.shipment_tracking"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.shipment_tracking.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.shipment_tracking",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.shipment_tracking"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.shipment_tracking.shipment_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.shipment_tracking",
+      "display_name": "发货单编号",
+      "physical_name": "shipment_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.shipment_tracking"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.shipment_tracking.event_time",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.shipment_tracking",
+      "display_name": "轨迹时间",
+      "physical_name": "event_time",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.shipment_tracking"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.shipment_tracking.event_text",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.shipment_tracking",
+      "display_name": "轨迹内容",
+      "physical_name": "event_text",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.shipment_tracking"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.shipment_tracking.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.shipment_tracking",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.shipment_tracking"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_return",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "销售退货单",
+      "physical_name": "sales_return",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.sales_return"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_return.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_return",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_return"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_return.order_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_return",
+      "display_name": "订单编号",
+      "physical_name": "order_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_return"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_return.customer_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_return",
+      "display_name": "客户编号",
+      "physical_name": "customer_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_return"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_return.return_reason",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_return",
+      "display_name": "退货原因",
+      "physical_name": "return_reason",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.sales_return"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_return.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_return",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.sales_return"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_return_line",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "退货明细",
+      "physical_name": "sales_return_line",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.sales_return_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_return_line.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_return_line",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_return_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_return_line.return_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_return_line",
+      "display_name": "退货单编号",
+      "physical_name": "return_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_return_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_return_line.product_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_return_line",
+      "display_name": "商品编号",
+      "physical_name": "product_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.sales_return_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_return_line.returned_quantity",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_return_line",
+      "display_name": "实退数量",
+      "physical_name": "returned_quantity",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.sales_return_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.sales_return_line.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.sales_return_line",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.sales_return_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.invoice",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "销售发票",
+      "physical_name": "invoice",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.invoice"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.invoice.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.invoice",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.invoice"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.invoice.order_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.invoice",
+      "display_name": "订单编号",
+      "physical_name": "order_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.invoice"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.invoice.customer_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.invoice",
+      "display_name": "客户编号",
+      "physical_name": "customer_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.invoice"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.invoice.invoiced_amount",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.invoice",
+      "display_name": "开票金额",
+      "physical_name": "invoiced_amount",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.invoice"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.invoice.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.invoice",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.invoice"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.invoice_line",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "发票明细",
+      "physical_name": "invoice_line",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.invoice_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.invoice_line.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.invoice_line",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.invoice_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.invoice_line.invoice_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.invoice_line",
+      "display_name": "发票编号",
+      "physical_name": "invoice_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.invoice_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.invoice_line.order_line_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.invoice_line",
+      "display_name": "订单行编号",
+      "physical_name": "order_line_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.invoice_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.invoice_line.tax_amount",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.invoice_line",
+      "display_name": "税额",
+      "physical_name": "tax_amount",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.invoice_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.invoice_line.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.invoice_line",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.invoice_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.credit_note",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "销售红字单",
+      "physical_name": "credit_note",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.credit_note"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.credit_note.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.credit_note",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.credit_note"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.credit_note.invoice_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.credit_note",
+      "display_name": "发票编号",
+      "physical_name": "invoice_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.credit_note"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.credit_note.return_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.credit_note",
+      "display_name": "退货单编号",
+      "physical_name": "return_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.credit_note"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.credit_note.credit_amount",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.credit_note",
+      "display_name": "红字金额",
+      "physical_name": "credit_amount",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.credit_note"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.credit_note.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.credit_note",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.credit_note"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receivable",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "应收账款",
+      "physical_name": "receivable",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.receivable"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receivable.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.receivable",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.receivable"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receivable.invoice_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.receivable",
+      "display_name": "发票编号",
+      "physical_name": "invoice_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.receivable"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receivable.customer_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.receivable",
+      "display_name": "客户编号",
+      "physical_name": "customer_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.receivable"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receivable.receivable_amount",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.receivable",
+      "display_name": "应收金额",
+      "physical_name": "receivable_amount",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.receivable"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receivable.due_date",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.receivable",
+      "display_name": "到期日",
+      "physical_name": "due_date",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.receivable"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receivable.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.receivable",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.receivable"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receivable_installment",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "应收分期",
+      "physical_name": "receivable_installment",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.receivable_installment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receivable_installment.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.receivable_installment",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.receivable_installment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receivable_installment.receivable_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.receivable_installment",
+      "display_name": "应收编号",
+      "physical_name": "receivable_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.receivable_installment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receivable_installment.due_date",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.receivable_installment",
+      "display_name": "分期到期日",
+      "physical_name": "due_date",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.receivable_installment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receivable_installment.installment_amount",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.receivable_installment",
+      "display_name": "分期金额",
+      "physical_name": "installment_amount",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.receivable_installment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receivable_installment.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.receivable_installment",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.receivable_installment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receipt",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "实收款记录",
+      "physical_name": "receipt",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.receipt"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receipt.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.receipt",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.receipt"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receipt.customer_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.receipt",
+      "display_name": "客户编号",
+      "physical_name": "customer_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.receipt"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receipt.received_amount",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.receipt",
+      "display_name": "实收金额",
+      "physical_name": "received_amount",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.receipt"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receipt.received_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.receipt",
+      "display_name": "到账时间",
+      "physical_name": "received_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.receipt"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receipt.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.receipt",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.receipt"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receipt_allocation",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "收款核销",
+      "physical_name": "receipt_allocation",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.receipt_allocation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receipt_allocation.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.receipt_allocation",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.receipt_allocation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receipt_allocation.receipt_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.receipt_allocation",
+      "display_name": "收款编号",
+      "physical_name": "receipt_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.receipt_allocation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receipt_allocation.receivable_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.receipt_allocation",
+      "display_name": "应收编号",
+      "physical_name": "receivable_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.receipt_allocation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receipt_allocation.allocated_amount",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.receipt_allocation",
+      "display_name": "核销金额",
+      "physical_name": "allocated_amount",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.receipt_allocation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.receipt_allocation.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.receipt_allocation",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.receipt_allocation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.refund",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "退款记录",
+      "physical_name": "refund",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.refund"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.refund.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.refund",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.refund"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.refund.return_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.refund",
+      "display_name": "退货单编号",
+      "physical_name": "return_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.refund"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.refund.customer_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.refund",
+      "display_name": "客户编号",
+      "physical_name": "customer_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.refund"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.refund.refund_amount",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.refund",
+      "display_name": "退款金额",
+      "physical_name": "refund_amount",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.refund"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.refund.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.refund",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.refund"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.refund_allocation",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "退款分摊",
+      "physical_name": "refund_allocation",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.refund_allocation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.refund_allocation.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.refund_allocation",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.refund_allocation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.refund_allocation.refund_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.refund_allocation",
+      "display_name": "退款编号",
+      "physical_name": "refund_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.refund_allocation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.refund_allocation.receipt_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.refund_allocation",
+      "display_name": "收款编号",
+      "physical_name": "receipt_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.refund_allocation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.refund_allocation.allocated_amount",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.refund_allocation",
+      "display_name": "分摊金额",
+      "physical_name": "allocated_amount",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.refund_allocation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.refund_allocation.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.refund_allocation",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.refund_allocation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.inventory_balance",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "库存余额",
+      "physical_name": "inventory_balance",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.inventory_balance"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.inventory_balance.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.inventory_balance",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.inventory_balance"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.inventory_balance.warehouse_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.inventory_balance",
+      "display_name": "仓库编号",
+      "physical_name": "warehouse_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.inventory_balance"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.inventory_balance.product_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.inventory_balance",
+      "display_name": "商品编号",
+      "physical_name": "product_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.inventory_balance"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.inventory_balance.on_hand_quantity",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.inventory_balance",
+      "display_name": "现存数量",
+      "physical_name": "on_hand_quantity",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.inventory_balance"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.inventory_balance.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.inventory_balance",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.inventory_balance"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.inventory_movement",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "库存流水",
+      "physical_name": "inventory_movement",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.inventory_movement"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.inventory_movement.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.inventory_movement",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.inventory_movement"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.inventory_movement.warehouse_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.inventory_movement",
+      "display_name": "仓库编号",
+      "physical_name": "warehouse_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.inventory_movement"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.inventory_movement.product_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.inventory_movement",
+      "display_name": "商品编号",
+      "physical_name": "product_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.inventory_movement"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.inventory_movement.movement_quantity",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.inventory_movement",
+      "display_name": "变动数量",
+      "physical_name": "movement_quantity",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.inventory_movement"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.inventory_movement.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.inventory_movement",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.inventory_movement"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.stock_reservation",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "库存预留",
+      "physical_name": "stock_reservation",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.stock_reservation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.stock_reservation.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.stock_reservation",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.stock_reservation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.stock_reservation.order_line_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.stock_reservation",
+      "display_name": "订单行编号",
+      "physical_name": "order_line_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.stock_reservation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.stock_reservation.warehouse_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.stock_reservation",
+      "display_name": "仓库编号",
+      "physical_name": "warehouse_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.stock_reservation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.stock_reservation.reserved_quantity",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.stock_reservation",
+      "display_name": "预留数量",
+      "physical_name": "reserved_quantity",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.stock_reservation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.stock_reservation.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.stock_reservation",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.stock_reservation"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.supplier",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "供应商档案",
+      "physical_name": "supplier",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.supplier"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.supplier.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.supplier",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.supplier"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.supplier.supplier_name",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.supplier",
+      "display_name": "供应商名称",
+      "physical_name": "supplier_name",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.supplier"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.supplier.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.supplier",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.supplier"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.purchase_order",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "采购订单",
+      "physical_name": "purchase_order",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.purchase_order"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.purchase_order.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.purchase_order",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.purchase_order"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.purchase_order.supplier_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.purchase_order",
+      "display_name": "供应商编号",
+      "physical_name": "supplier_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.purchase_order"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.purchase_order.purchase_amount",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.purchase_order",
+      "display_name": "采购金额",
+      "physical_name": "purchase_amount",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.purchase_order"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.purchase_order.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.purchase_order",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.purchase_order"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.purchase_order_line",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "采购明细",
+      "physical_name": "purchase_order_line",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.purchase_order_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.purchase_order_line.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.purchase_order_line",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.purchase_order_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.purchase_order_line.purchase_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.purchase_order_line",
+      "display_name": "采购单编号",
+      "physical_name": "purchase_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.purchase_order_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.purchase_order_line.product_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.purchase_order_line",
+      "display_name": "商品编号",
+      "physical_name": "product_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.purchase_order_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.purchase_order_line.quantity",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.purchase_order_line",
+      "display_name": "采购数量",
+      "physical_name": "quantity",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.purchase_order_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.purchase_order_line.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.purchase_order_line",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.purchase_order_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.goods_receipt",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "采购入库单",
+      "physical_name": "goods_receipt",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.goods_receipt"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.goods_receipt.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.goods_receipt",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.goods_receipt"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.goods_receipt.purchase_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.goods_receipt",
+      "display_name": "采购单编号",
+      "physical_name": "purchase_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.goods_receipt"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.goods_receipt.warehouse_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.goods_receipt",
+      "display_name": "仓库编号",
+      "physical_name": "warehouse_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.goods_receipt"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.goods_receipt.received_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.goods_receipt",
+      "display_name": "入库时间",
+      "physical_name": "received_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.goods_receipt"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.goods_receipt.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.goods_receipt",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.goods_receipt"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.goods_receipt_line",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "采购入库明细",
+      "physical_name": "goods_receipt_line",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.goods_receipt_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.goods_receipt_line.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.goods_receipt_line",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.goods_receipt_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.goods_receipt_line.goods_receipt_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.goods_receipt_line",
+      "display_name": "入库单编号",
+      "physical_name": "goods_receipt_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.goods_receipt_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.goods_receipt_line.purchase_line_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.goods_receipt_line",
+      "display_name": "采购行编号",
+      "physical_name": "purchase_line_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.goods_receipt_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.goods_receipt_line.quantity",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.goods_receipt_line",
+      "display_name": "入库数量",
+      "physical_name": "quantity",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.goods_receipt_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.goods_receipt_line.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.goods_receipt_line",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.goods_receipt_line"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.payable",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "应付账款",
+      "physical_name": "payable",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.payable"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.payable.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.payable",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.payable"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.payable.purchase_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.payable",
+      "display_name": "采购单编号",
+      "physical_name": "purchase_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.payable"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.payable.supplier_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.payable",
+      "display_name": "供应商编号",
+      "physical_name": "supplier_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.payable"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.payable.payable_amount",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.payable",
+      "display_name": "应付金额",
+      "physical_name": "payable_amount",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.payable"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.payable.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.payable",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.payable"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.payment",
+      "object_type": "table",
+      "parent_object_id": "schema.order_to_cash",
+      "display_name": "供应商付款",
+      "physical_name": "payment",
+      "data_type": null,
+      "concept_refs": [
+        "concept.otc.payment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.payment.id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.payment",
+      "display_name": "记录编号",
+      "physical_name": "id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.payment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.payment.payable_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.payment",
+      "display_name": "应付编号",
+      "physical_name": "payable_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.payment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.payment.supplier_id",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.payment",
+      "display_name": "供应商编号",
+      "physical_name": "supplier_id",
+      "data_type": "INTEGER",
+      "concept_refs": [
+        "concept.otc.payment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.payment.paid_amount",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.payment",
+      "display_name": "实付金额",
+      "physical_name": "paid_amount",
+      "data_type": "NUMERIC",
+      "concept_refs": [
+        "concept.otc.payment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    },
+    {
+      "object_id": "schema.otc.payment.created_at",
+      "object_type": "column",
+      "parent_object_id": "schema.otc.payment",
+      "display_name": "创建时间",
+      "physical_name": "created_at",
+      "data_type": "TEXT",
+      "concept_refs": [
+        "concept.otc.payment"
+      ],
+      "authorization_level": "read_public",
+      "source_refs": [
+        "source.order_to_cash_synthetic"
+      ]
+    }
+  ]
+}

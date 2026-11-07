@@ -1,0 +1,117 @@
+{
+  "contract_id": "d5-product-layer",
+  "contract_version": "1.0.0",
+  "api_version": "3.0",
+  "api_schema": "api-v3.schema.json",
+  "compatibility": {
+    "previous_api": "2.0",
+    "strategy": "parallel_versioned_routes",
+    "breaking_change_rule": "new_major_api_or_contract_version"
+  },
+  "model_boundary": {
+    "provider": "bailian_beijing",
+    "model": "qwen3.7-flash",
+    "fallback": false,
+    "dynamic_routing": false,
+    "admin_mutable": false
+  },
+  "roles": [
+    {"id": "visitor", "description": "匿名访客，仅能访问服务端绑定给自己的短期问答会话。"},
+    {"id": "admin", "description": "单一管理员，只能使用冻结的管理能力，不能越过 SQL、模型或预算安全边界。"},
+    {"id": "bootstrap", "description": "首次初始化的一次性短时身份；管理员创建成功后永久失效。"}
+  ],
+  "error_catalog": [
+    {"code": "invalid_request", "http_status": 400, "safe_message": "请求格式无效。", "retryable": false},
+    {"code": "authentication_required", "http_status": 401, "safe_message": "需要有效身份。", "retryable": false},
+    {"code": "session_invalid", "http_status": 401, "safe_message": "会话无效或已过期。", "retryable": false},
+    {"code": "forbidden", "http_status": 403, "safe_message": "没有执行该操作的权限。", "retryable": false},
+    {"code": "csrf_invalid", "http_status": 403, "safe_message": "请求安全校验失败。", "retryable": false},
+    {"code": "resource_not_found", "http_status": 404, "safe_message": "资源不存在。", "retryable": false},
+    {"code": "operation_replayed", "http_status": 409, "safe_message": "操作已处理。", "retryable": false},
+    {"code": "state_conflict", "http_status": 409, "safe_message": "资源状态已变化，请刷新后重试。", "retryable": true},
+    {"code": "admin_already_initialized", "http_status": 409, "safe_message": "管理员已初始化。", "retryable": false},
+    {"code": "upload_too_large", "http_status": 413, "safe_message": "文件超过允许大小。", "retryable": false},
+    {"code": "unsupported_media_type", "http_status": 415, "safe_message": "仅接受受支持的 PDF。", "retryable": false},
+    {"code": "document_invalid", "http_status": 422, "safe_message": "文档未通过安全校验。", "retryable": false},
+    {"code": "rate_limited", "http_status": 429, "safe_message": "请求过于频繁，请稍后重试。", "retryable": true},
+    {"code": "budget_exhausted", "http_status": 429, "safe_message": "本次操作已达到安全预算。", "retryable": false},
+    {"code": "service_unavailable", "http_status": 503, "safe_message": "服务暂时不可用。", "retryable": true},
+    {"code": "internal_error", "http_status": 500, "safe_message": "操作失败。", "retryable": false}
+  ],
+  "endpoints": [
+    {"id": "create_visitor_session", "method": "POST", "path": "/api/v3/sessions", "roles": ["visitor", "admin"], "auth": "anonymous", "csrf": "not_applicable", "ownership": "own_session", "request_schema": "api-v3.schema.json#/$defs/session_create_request", "response_schema": "api-v3.schema.json#/$defs/session_response", "errors": ["invalid_request", "rate_limited", "service_unavailable"]},
+    {"id": "read_own_session", "method": "GET", "path": "/api/v3/sessions/{session_id}", "roles": ["visitor", "admin"], "auth": "visitor_session", "csrf": "not_applicable", "ownership": "own_session", "request_schema": null, "response_schema": "api-v3.schema.json#/$defs/session_response", "errors": ["authentication_required", "resource_not_found", "rate_limited"]},
+    {"id": "delete_own_session", "method": "DELETE", "path": "/api/v3/sessions/{session_id}", "roles": ["visitor", "admin"], "auth": "visitor_session", "csrf": "not_applicable", "ownership": "own_session", "request_schema": null, "response_schema": "api-v3.schema.json#/$defs/operation_response", "errors": ["authentication_required", "resource_not_found", "state_conflict"]},
+    {"id": "submit_query", "method": "POST", "path": "/api/v3/query", "roles": ["visitor", "admin"], "auth": "visitor_session", "csrf": "not_applicable", "ownership": "own_session", "request_schema": "api-v3.schema.json#/$defs/query_request", "response_schema": "api-v3.schema.json#/$defs/agent_response", "errors": ["authentication_required", "resource_not_found", "operation_replayed", "state_conflict", "rate_limited", "budget_exhausted", "service_unavailable"]},
+    {"id": "submit_clarification", "method": "POST", "path": "/api/v3/clarifications", "roles": ["visitor", "admin"], "auth": "visitor_session", "csrf": "not_applicable", "ownership": "own_session", "request_schema": "api-v3.schema.json#/$defs/clarification_request", "response_schema": "api-v3.schema.json#/$defs/agent_response", "errors": ["authentication_required", "resource_not_found", "operation_replayed", "state_conflict", "rate_limited", "budget_exhausted"]},
+    {"id": "read_own_events", "method": "GET", "path": "/api/v3/sessions/{session_id}/events", "roles": ["visitor", "admin"], "auth": "visitor_session", "csrf": "not_applicable", "ownership": "own_session", "request_schema": null, "response_schema": "api-v3.schema.json#/$defs/admin_summary_response", "errors": ["authentication_required", "resource_not_found", "rate_limited"]},
+    {"id": "bootstrap_admin", "method": "POST", "path": "/api/v3/auth/admin/bootstrap", "roles": ["bootstrap"], "auth": "bootstrap_token", "csrf": "not_applicable", "ownership": "bootstrap_only", "request_schema": "api-v3.schema.json#/$defs/bootstrap_request", "response_schema": "api-v3.schema.json#/$defs/admin_session_response", "errors": ["invalid_request", "authentication_required", "admin_already_initialized", "rate_limited"]},
+    {"id": "admin_login", "method": "POST", "path": "/api/v3/auth/admin/login", "roles": ["admin"], "auth": "login_credentials", "csrf": "not_applicable", "ownership": "none", "request_schema": "api-v3.schema.json#/$defs/login_request", "response_schema": "api-v3.schema.json#/$defs/admin_session_response", "errors": ["authentication_required", "rate_limited"]},
+    {"id": "admin_logout", "method": "POST", "path": "/api/v3/admin/logout", "roles": ["admin"], "auth": "admin_session", "csrf": "required", "ownership": "admin_global", "request_schema": "api-v3.schema.json#/$defs/empty_request", "response_schema": "api-v3.schema.json#/$defs/operation_response", "errors": ["authentication_required", "forbidden", "csrf_invalid"]},
+    {"id": "admin_revoke_all_sessions", "method": "POST", "path": "/api/v3/admin/sessions/revoke-all", "roles": ["admin"], "auth": "admin_session", "csrf": "required", "ownership": "admin_global", "request_schema": "api-v3.schema.json#/$defs/empty_request", "response_schema": "api-v3.schema.json#/$defs/operation_response", "errors": ["authentication_required", "forbidden", "csrf_invalid", "state_conflict"]},
+    {"id": "admin_health", "method": "GET", "path": "/api/v3/admin/health", "roles": ["admin"], "auth": "admin_session", "csrf": "not_applicable", "ownership": "admin_global", "request_schema": null, "response_schema": "api-v3.schema.json#/$defs/admin_summary_response", "errors": ["authentication_required", "forbidden"]},
+    {"id": "admin_upload_document", "method": "POST", "path": "/api/v3/admin/documents", "roles": ["admin"], "auth": "admin_session", "csrf": "required", "ownership": "admin_global", "request_schema": "api-v3.schema.json#/$defs/document_upload_request", "response_schema": "api-v3.schema.json#/$defs/document_status_response", "errors": ["authentication_required", "forbidden", "csrf_invalid", "upload_too_large", "unsupported_media_type", "document_invalid", "rate_limited"]},
+    {"id": "admin_read_document", "method": "GET", "path": "/api/v3/admin/documents/{document_id}", "roles": ["admin"], "auth": "admin_session", "csrf": "not_applicable", "ownership": "admin_global", "request_schema": null, "response_schema": "api-v3.schema.json#/$defs/document_status_response", "errors": ["authentication_required", "forbidden", "resource_not_found"]},
+    {"id": "admin_publish_document", "method": "POST", "path": "/api/v3/admin/documents/{document_id}/publish", "roles": ["admin"], "auth": "admin_session", "csrf": "required", "ownership": "admin_global", "request_schema": "api-v3.schema.json#/$defs/empty_request", "response_schema": "api-v3.schema.json#/$defs/document_status_response", "errors": ["authentication_required", "forbidden", "csrf_invalid", "resource_not_found", "state_conflict"]},
+    {"id": "admin_disable_document", "method": "POST", "path": "/api/v3/admin/documents/{document_id}/disable", "roles": ["admin"], "auth": "admin_session", "csrf": "required", "ownership": "admin_global", "request_schema": "api-v3.schema.json#/$defs/empty_request", "response_schema": "api-v3.schema.json#/$defs/document_status_response", "errors": ["authentication_required", "forbidden", "csrf_invalid", "resource_not_found", "state_conflict"]},
+    {"id": "admin_delete_document", "method": "DELETE", "path": "/api/v3/admin/documents/{document_id}", "roles": ["admin"], "auth": "admin_session", "csrf": "required", "ownership": "admin_global", "request_schema": null, "response_schema": "api-v3.schema.json#/$defs/operation_response", "errors": ["authentication_required", "forbidden", "csrf_invalid", "resource_not_found", "state_conflict"]},
+    {"id": "admin_download_document", "method": "GET", "path": "/api/v3/admin/documents/{document_id}/download", "roles": ["admin"], "auth": "admin_session", "csrf": "not_applicable", "ownership": "admin_global", "request_schema": null, "response_schema": "api-v3.schema.json#/$defs/admin_summary_response", "errors": ["authentication_required", "forbidden", "resource_not_found"]},
+    {"id": "admin_read_key_status", "method": "GET", "path": "/api/v3/admin/secrets/bailian", "roles": ["admin"], "auth": "admin_session", "csrf": "not_applicable", "ownership": "admin_global", "request_schema": null, "response_schema": "api-v3.schema.json#/$defs/key_status_response", "errors": ["authentication_required", "forbidden"]},
+    {"id": "admin_save_key", "method": "POST", "path": "/api/v3/admin/secrets/bailian", "roles": ["admin"], "auth": "admin_session", "csrf": "required", "ownership": "admin_global", "request_schema": "api-v3.schema.json#/$defs/key_write_request", "response_schema": "api-v3.schema.json#/$defs/key_status_response", "errors": ["authentication_required", "forbidden", "csrf_invalid", "invalid_request", "state_conflict"]},
+    {"id": "admin_replace_key", "method": "PUT", "path": "/api/v3/admin/secrets/bailian", "roles": ["admin"], "auth": "admin_session", "csrf": "required", "ownership": "admin_global", "request_schema": "api-v3.schema.json#/$defs/key_write_request", "response_schema": "api-v3.schema.json#/$defs/key_status_response", "errors": ["authentication_required", "forbidden", "csrf_invalid", "invalid_request", "state_conflict"]},
+    {"id": "admin_delete_key", "method": "DELETE", "path": "/api/v3/admin/secrets/bailian", "roles": ["admin"], "auth": "admin_session", "csrf": "required", "ownership": "admin_global", "request_schema": null, "response_schema": "api-v3.schema.json#/$defs/operation_response", "errors": ["authentication_required", "forbidden", "csrf_invalid", "state_conflict"]},
+    {"id": "admin_test_key_connectivity", "method": "POST", "path": "/api/v3/admin/secrets/bailian/connectivity-test", "roles": ["admin"], "auth": "admin_session", "csrf": "required", "ownership": "admin_global", "request_schema": "api-v3.schema.json#/$defs/connectivity_test_request", "response_schema": "api-v3.schema.json#/$defs/admin_summary_response", "errors": ["authentication_required", "forbidden", "csrf_invalid", "rate_limited", "budget_exhausted", "service_unavailable"]},
+    {"id": "admin_read_audit", "method": "GET", "path": "/api/v3/admin/audit-events", "roles": ["admin"], "auth": "admin_session", "csrf": "not_applicable", "ownership": "admin_global", "request_schema": null, "response_schema": "api-v3.schema.json#/$defs/admin_summary_response", "errors": ["authentication_required", "forbidden", "rate_limited"]},
+    {"id": "admin_read_usage", "method": "GET", "path": "/api/v3/admin/usage-summary", "roles": ["admin"], "auth": "admin_session", "csrf": "not_applicable", "ownership": "admin_global", "request_schema": null, "response_schema": "api-v3.schema.json#/$defs/admin_summary_response", "errors": ["authentication_required", "forbidden", "rate_limited"]}
+  ],
+  "security": {
+    "admin_bootstrap": {"rules": ["控制台生成不少于256位熵的一次性令牌，15分钟过期。", "仅未初始化状态可用；管理员创建与令牌消费必须同一事务。", "成功后永久关闭引导入口，失败不得创建半个管理员。", "仓库、镜像和示例不得包含默认密码或固定引导令牌。"]},
+    "visitor_session": {"rules": ["创建入口允许匿名访问但必须限流；服务端生成不可预测的不透明会话令牌和session_id。", "客户端不能指定所有者；服务端只保存令牌hash并在每次访问重新核验对象所有权。", "访客会话默认24小时过期，删除或过期后旧令牌和请求重放均失败关闭。", "创建失败不得留下可访问的半会话，响应和审计不得保存问题或回答原文。"]},
+    "admin_session": {"rules": ["浏览器只持有随机不透明令牌，服务端仅保存令牌哈希和会话元数据。", "登录成功必须轮换会话标识，Cookie 为 HttpOnly、SameSite=Strict；TLS 部署时必须 Secure。", "空闲30分钟或绝对8小时过期；注销全部会话以单事务提升会话世代。", "角色、权限、对象所有权均由后端重新判定，不信任客户端声明。"]},
+    "csrf": {"rules": ["所有使用管理员 Cookie 的写操作必须验证与会话绑定的独立 CSRF 令牌。", "CSRF 令牌不得写审计、日志、URL、Referer或响应缓存。", "验证失败统一返回csrf_invalid且不改变任何状态。"]},
+    "rate_limits": {"rules": ["登录按来源和账号双维度限流并采用失败退避。", "初始化、上传、连通测试和问答均有独立保守上限。", "限流失败不得启动解析、模型调用、SQL执行或持久化副作用。"]},
+    "api_key": {"rules": ["只允许bailian_beijing与qwen3.7-flash，不允许Base URL、模型、阈值、fallback或第二Provider由管理员修改。", "保存、替换和删除只改变SecretStore，不自动调用模型；连通测试是独立且需显式确认的操作。", "任何响应只返回配置状态、固定Provider/模型、来源、更新时间与末四位，永不返回明文。", "认证加密主密钥必须在仓库、业务数据库、普通备份和业务日志之外。"]}
+  },
+  "audit": {
+    "event_types": ["admin_bootstrap", "admin_login_succeeded", "admin_login_failed", "admin_logout", "admin_sessions_revoked", "authorization_denied", "csrf_rejected", "secret_changed", "connectivity_tested", "document_state_changed", "index_published", "security_limit_rejected"],
+    "allowed_fields": ["event_id", "event_type", "occurred_at", "request_id", "actor_role", "subject_type", "subject_id_hash", "outcome", "error_code", "source_fingerprint", "resource_revision", "usage_counts"],
+    "forbidden_fields": ["password", "cookie", "session_token", "csrf_token", "api_key", "master_key", "question_text", "answer_text", "database_row", "document_text", "raw_exception", "authorization_header"],
+    "retention_days": 90,
+    "append_only": true
+  },
+  "data_classes": [
+    {"id": "public", "examples": ["API版本", "固定模型名称", "公开状态码"], "storage": "可进入版本化配置和公开文档。", "audit": "允许记录。", "backup": "允许进入普通备份。"},
+    {"id": "internal", "examples": ["会话ID哈希", "文档ID", "索引版本", "聚合用量"], "storage": "最小化保存并设置保留期。", "audit": "仅保存稳定ID、hash和计数。", "backup": "允许进入受控业务备份。"},
+    {"id": "sensitive", "examples": ["问题原文", "回答原文", "PDF正文", "数据库行"], "storage": "仅为业务所需短时处理或隔离保存，不写普通审计。", "audit": "禁止原文，只允许不可逆摘要或计数。", "backup": "文档须进入单独授权备份；问答与数据库行默认不进入。"},
+    {"id": "secret", "examples": ["密码", "Cookie令牌", "CSRF令牌", "API Key", "主密钥"], "storage": "密码与令牌只保存哈希，API Key认证加密，主密钥外置。", "audit": "禁止明文、密文和可逆派生值。", "backup": "主密钥永不进入；SecretStore密文只能进入单独加密备份。"}
+  ],
+  "store_interfaces": [
+    {"id": "AuthStore", "operations": ["bootstrap_admin_once", "verify_password", "create_session", "get_session", "revoke_session", "revoke_all_sessions", "change_password"], "transaction": "初始化、密码变更和会话世代提升采用单事务；失败不得消费令牌或推进世代。", "concurrency": "写操作使用版本比较或等价串行化；并发初始化只能一个成功。", "restart_recovery": "管理员哈希、会话世代和未过期会话元数据可恢复；明文令牌不可恢复。", "failure_semantics": "存储不可用或状态不确定时拒绝登录、授权和写操作。"},
+    {"id": "MetadataStore", "operations": ["create_guest_session", "get_owned_session", "append_audit_event", "create_document_record", "compare_and_set_document_state", "get_active_index"], "transaction": "对象状态与审计结果同事务或使用可靠原子提交；禁止成功状态无审计。", "concurrency": "所有会话和文档状态更新使用revision比较，冲突返回state_conflict。", "restart_recovery": "重启后会话所有权、文档状态、活动索引指针和最小审计保持一致。", "failure_semantics": "对象不存在与越权查询对外均为resource_not_found；内部原因不得回显。"},
+    {"id": "DocumentStore", "operations": ["write_quarantine", "read_quarantine", "write_index_candidate", "publish_index_atomically", "disable_document", "delete_document_bytes"], "transaction": "上传、候选索引和发布目录隔离；仅通过原子指针切换发布。", "concurrency": "服务器生成ID且拒绝覆盖；同hash并发上传采用幂等去重。", "restart_recovery": "启动时清理未提交临时文件，读取最后完整的活动索引指针。", "failure_semantics": "任何校验、解析、索引或发布失败都保留旧索引并把新对象标记failed。"},
+    {"id": "SecretStore", "operations": ["put_if_absent", "replace", "delete", "status", "get_for_provider_call"], "transaction": "密文与版本元数据原子替换；失败保留旧密文且不改变状态。", "concurrency": "替换和删除需要revision比较；过期写返回state_conflict。", "restart_recovery": "仅在外部主密钥可用且认证解密成功时恢复；否则服务降级并拒绝模型调用。", "failure_semantics": "认证失败、密文损坏或主密钥缺失时失败关闭；异常只给稳定错误码。"}
+  ],
+  "pdf_lifecycle": {
+    "version": "1.0.0",
+    "states": ["quarantined", "validating", "validated", "indexing", "published", "disabled", "failed", "deleted"],
+    "validation_order": ["server_generated_id", "extension_and_content_type", "pdf_magic_bytes", "byte_limit", "sha256_and_dedup", "page_limit", "bounded_dual_parse", "index_candidate_validation"],
+    "limits": {"max_file_bytes": 26214400, "max_pages": 500, "parse_timeout_seconds": 60},
+    "publish": "候选索引完整校验后，以单次原子指针切换成为活动索引；访客只能检索published文档。",
+    "failure": "任一步失败均不发布候选内容、不覆盖同名对象、保留旧索引，并记录脱敏稳定失败码。"
+  },
+  "threats": [
+    {"id": "T-D5-01", "threat": "访客调用管理端点或横向越权访问其他会话（IDOR）。", "control": "后端RBAC与对象所有权双重校验；缺失和越权对象统一404。", "test_owner": "B+C", "required_test": "逐端点匿名/访客/他人会话矩阵与响应同形检查。"},
+    {"id": "T-D5-02", "threat": "会话固定、盗用或重放。", "control": "登录轮换不透明令牌、服务端哈希、绝对/空闲过期和世代注销。", "test_owner": "B", "required_test": "固定旧令牌、注销后重放、并发revoke-all和过期测试。"},
+    {"id": "T-D5-03", "threat": "CSRF触发管理员写操作。", "control": "SameSite=Strict加会话绑定CSRF令牌，写操作失败无副作用。", "test_owner": "B+C", "required_test": "缺失、错误、跨会话和重放CSRF令牌的全管理写接口测试。"},
+    {"id": "T-D5-04", "threat": "暴力登录与账号枚举。", "control": "账号/来源双维度限流、统一失败响应和安全审计。", "test_owner": "B", "required_test": "未知账号与错误密码同形、阈值边界和锁定恢复测试。"},
+    {"id": "T-D5-05", "threat": "路径穿越、文件覆盖和客户端文件名注入。", "control": "服务器生成ID，隔离根目录，拒绝路径片段且不以文件名定位。", "test_owner": "C", "required_test": "相对/绝对/编码路径、保留名、同名和符号链接攻击测试。"},
+    {"id": "T-D5-06", "threat": "伪PDF、多义文件或内容类型欺骗。", "control": "扩展名、Content-Type、magic bytes与双解析结果共同校验。", "test_owner": "C", "required_test": "伪扩展、错误magic、截断、加密和解析器分歧测试。"},
+    {"id": "T-D5-07", "threat": "超大文件、超页数、解析炸弹和资源耗尽。", "control": "字节、页数、总配额、解析时限和并发上限均先于发布。", "test_owner": "C", "required_test": "边界等号、超限、超时、并发配额和进程恢复测试。"},
+    {"id": "T-D5-08", "threat": "API Key经响应、日志、异常、报告或备份泄漏。", "control": "SecretStore认证加密、外置主密钥、响应末四位和全链路泄漏扫描。", "test_owner": "B+C", "required_test": "保存/替换/删除/失败后扫描响应、日志、审计、报告和备份。"},
+    {"id": "T-D5-09", "threat": "密码、Cookie、CSRF或问题/回答原文进入审计。", "control": "审计字段白名单与禁止字段扫描。", "test_owner": "B+C", "required_test": "每类成功/失败事件注入诱饵后验证审计零命中。"},
+    {"id": "T-D5-10", "threat": "索引构建或发布中断导致半发布。", "control": "候选索引隔离、完整性校验和原子活动指针切换。", "test_owner": "C", "required_test": "每个生命周期阶段故障注入并验证旧索引仍可用。"},
+    {"id": "T-D5-11", "threat": "管理员借配置界面改变模型、Base URL、安全阈值或执行任意SQL。", "control": "这些字段不进入公共Schema；后端固定Provider/模型并继续复用SafetyGate。", "test_owner": "A", "required_test": "向全部管理请求注入model/base_url/sql/threshold/fallback并要求Schema或运行时拒绝。"},
+    {"id": "T-D5-12", "threat": "并发写入或重启造成会话、Key、文档状态半提交。", "control": "revision比较、原子替换、启动恢复与失败关闭。", "test_owner": "B+C", "required_test": "并发竞争、写中断、重启恢复和同请求安全重试测试。"}
+  ],
+  "implementation_status": "contract_only_not_implemented"
+}

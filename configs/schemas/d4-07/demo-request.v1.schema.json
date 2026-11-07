@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "demo-request.v1",
+  "title": "D4-07 public offline demo request v1",
+  "type": "object",
+  "required": ["schema_version", "request_id", "scenario_id"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "request_id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.:-]{0,127}$"
+    },
+    "scenario_id": {
+      "type": "string",
+      "pattern": "^D4-07-[A-Z]+-[0-9]{3}$"
+    }
+  },
+  "additionalProperties": false
+}

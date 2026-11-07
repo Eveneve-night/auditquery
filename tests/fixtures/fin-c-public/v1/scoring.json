@@ -1,0 +1,8 @@
+[
+  {"case_id":"orders.total","decision":"select","sql":"SELECT SUM(order_amount) FROM sales_order","result":[[200]],"table":"sales_order"},
+  {"case_id":"orders.ambiguous","decision":"clarify","reason":"current/history/line/summary grain required"},
+  {"case_id":"orders.unknown","decision":"abstain","reason":"no forecast evidence"},
+  {"case_id":"maintenance.open","decision":"select","sql":"SELECT COUNT(*) FROM work_order WHERE status='open'","result":[[1]],"table":"work_order"},
+  {"case_id":"maintenance.ambiguous","decision":"clarify","reason":"planned versus actual hours and scope required"},
+  {"case_id":"maintenance.unknown","decision":"abstain","reason":"no predictive maintenance evidence"}
+]

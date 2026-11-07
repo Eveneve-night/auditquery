@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "contract_version": {
+      "const": "1.0.0"
+    },
+    "connector": {
+      "$ref": "data-source-common.v1#/$defs/connector"
+    },
+    "capabilities": {
+      "$ref": "data-source-common.v1#/$defs/capabilities"
+    }
+  },
+  "required": [
+    "contract_version",
+    "connector",
+    "capabilities"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "connector-descriptor.v1"
+}

@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema-linking-request.v1",
+  "type": "object",
+  "required": [
+    "request_version",
+    "request_id",
+    "question",
+    "domain_pack_ref",
+    "catalog_scope",
+    "max_data_level",
+    "authorized_object_ids",
+    "authorized_relation_ids",
+    "catalog_sha256"
+  ],
+  "properties": {
+    "request_version": {
+      "const": "1.0.0"
+    },
+    "request_id": {
+      "$ref": "round2-common.v1#/$defs/ref_id"
+    },
+    "question": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 8192
+    },
+    "domain_pack_ref": {
+      "$ref": "round2-common.v1#/$defs/pack_ref"
+    },
+    "catalog_scope": {
+      "const": "full_model_visible_read_public_pack"
+    },
+    "max_data_level": {
+      "enum": [
+        "L0",
+        "L1"
+      ]
+    },
+    "authorized_object_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "round2-common.v1#/$defs/ref_id"
+      },
+      "minItems": 1,
+      "maxItems": 8192,
+      "uniqueItems": true
+    },
+    "authorized_relation_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "round2-common.v1#/$defs/ref_id"
+      },
+      "minItems": 0,
+      "maxItems": 4096,
+      "uniqueItems": true
+    },
+    "catalog_sha256": {
+      "$ref": "round2-common.v1#/$defs/sha256"
+    }
+  },
+  "additionalProperties": false
+}

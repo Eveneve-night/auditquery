@@ -1,0 +1,478 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "aliases",
+  "items": [
+    {
+      "alias_id": "alias.album_zh_1",
+      "surface_form": "专辑",
+      "language": "zh-CN",
+      "concept_id": "concept.album",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.album_zh_2",
+      "surface_form": "唱片",
+      "language": "zh-CN",
+      "concept_id": "concept.album",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.album_en",
+      "surface_form": "Album",
+      "language": "en",
+      "concept_id": "concept.album",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "authoritative"
+    },
+    {
+      "alias_id": "alias.artist_zh_1",
+      "surface_form": "艺术家",
+      "language": "zh-CN",
+      "concept_id": "concept.artist",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.artist_zh_2",
+      "surface_form": "歌手",
+      "language": "zh-CN",
+      "concept_id": "concept.artist",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.artist_zh_3",
+      "surface_form": "乐队",
+      "language": "zh-CN",
+      "concept_id": "concept.artist",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.artist_en",
+      "surface_form": "Artist",
+      "language": "en",
+      "concept_id": "concept.artist",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "authoritative"
+    },
+    {
+      "alias_id": "alias.customer_zh_1",
+      "surface_form": "客户",
+      "language": "zh-CN",
+      "concept_id": "concept.customer",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.customer_zh_2",
+      "surface_form": "顾客",
+      "language": "zh-CN",
+      "concept_id": "concept.customer",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.customer_zh_3",
+      "surface_form": "买家",
+      "language": "zh-CN",
+      "concept_id": "concept.customer",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.customer_en",
+      "surface_form": "Customer",
+      "language": "en",
+      "concept_id": "concept.customer",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "authoritative"
+    },
+    {
+      "alias_id": "alias.employee_zh_1",
+      "surface_form": "员工",
+      "language": "zh-CN",
+      "concept_id": "concept.employee",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.employee_zh_2",
+      "surface_form": "雇员",
+      "language": "zh-CN",
+      "concept_id": "concept.employee",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.employee_zh_3",
+      "surface_form": "销售支持",
+      "language": "zh-CN",
+      "concept_id": "concept.employee",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.employee_en",
+      "surface_form": "Employee",
+      "language": "en",
+      "concept_id": "concept.employee",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "authoritative"
+    },
+    {
+      "alias_id": "alias.genre_zh_1",
+      "surface_form": "流派",
+      "language": "zh-CN",
+      "concept_id": "concept.genre",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.genre_zh_2",
+      "surface_form": "曲风",
+      "language": "zh-CN",
+      "concept_id": "concept.genre",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.genre_zh_3",
+      "surface_form": "类型",
+      "language": "zh-CN",
+      "concept_id": "concept.genre",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.genre_en",
+      "surface_form": "Genre",
+      "language": "en",
+      "concept_id": "concept.genre",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "authoritative"
+    },
+    {
+      "alias_id": "alias.invoice_zh_1",
+      "surface_form": "发票",
+      "language": "zh-CN",
+      "concept_id": "concept.invoice",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.invoice_zh_2",
+      "surface_form": "账单",
+      "language": "zh-CN",
+      "concept_id": "concept.invoice",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.invoice_zh_3",
+      "surface_form": "销售收入",
+      "language": "zh-CN",
+      "concept_id": "concept.invoice",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.invoice_en",
+      "surface_form": "Invoice",
+      "language": "en",
+      "concept_id": "concept.invoice",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "authoritative"
+    },
+    {
+      "alias_id": "alias.invoiceline_zh_1",
+      "surface_form": "发票明细",
+      "language": "zh-CN",
+      "concept_id": "concept.invoiceline",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.invoiceline_zh_2",
+      "surface_form": "订单行",
+      "language": "zh-CN",
+      "concept_id": "concept.invoiceline",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.invoiceline_en",
+      "surface_form": "InvoiceLine",
+      "language": "en",
+      "concept_id": "concept.invoiceline",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "authoritative"
+    },
+    {
+      "alias_id": "alias.mediatype_zh_1",
+      "surface_form": "媒体类型",
+      "language": "zh-CN",
+      "concept_id": "concept.mediatype",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.mediatype_zh_2",
+      "surface_form": "文件类型",
+      "language": "zh-CN",
+      "concept_id": "concept.mediatype",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.mediatype_zh_3",
+      "surface_form": "编码类型",
+      "language": "zh-CN",
+      "concept_id": "concept.mediatype",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.mediatype_en",
+      "surface_form": "MediaType",
+      "language": "en",
+      "concept_id": "concept.mediatype",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "authoritative"
+    },
+    {
+      "alias_id": "alias.playlist_zh_1",
+      "surface_form": "播放列表",
+      "language": "zh-CN",
+      "concept_id": "concept.playlist",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.playlist_zh_2",
+      "surface_form": "歌单",
+      "language": "zh-CN",
+      "concept_id": "concept.playlist",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.playlist_en",
+      "surface_form": "Playlist",
+      "language": "en",
+      "concept_id": "concept.playlist",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "authoritative"
+    },
+    {
+      "alias_id": "alias.playlisttrack_zh_1",
+      "surface_form": "歌单曲目",
+      "language": "zh-CN",
+      "concept_id": "concept.playlisttrack",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.playlisttrack_zh_2",
+      "surface_form": "播放列表曲目",
+      "language": "zh-CN",
+      "concept_id": "concept.playlisttrack",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.playlisttrack_en",
+      "surface_form": "PlaylistTrack",
+      "language": "en",
+      "concept_id": "concept.playlisttrack",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "authoritative"
+    },
+    {
+      "alias_id": "alias.track_zh_1",
+      "surface_form": "曲目",
+      "language": "zh-CN",
+      "concept_id": "concept.track",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.track_zh_2",
+      "surface_form": "歌曲",
+      "language": "zh-CN",
+      "concept_id": "concept.track",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.track_zh_3",
+      "surface_form": "音轨",
+      "language": "zh-CN",
+      "concept_id": "concept.track",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.track_en",
+      "surface_form": "Track",
+      "language": "en",
+      "concept_id": "concept.track",
+      "source_ref": "source.chinook_schema_extract",
+      "confidence_class": "authoritative"
+    },
+    {
+      "alias_id": "alias.ranking_zh_1",
+      "surface_form": "排名",
+      "language": "zh-CN",
+      "concept_id": "concept.ranking",
+      "source_ref": "source.d4_04_slot_semantics_v2",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.ranking_zh_2",
+      "surface_form": "排行",
+      "language": "zh-CN",
+      "concept_id": "concept.ranking",
+      "source_ref": "source.d4_04_slot_semantics_v2",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.ranking_en",
+      "surface_form": "top",
+      "language": "en",
+      "concept_id": "concept.ranking",
+      "source_ref": "source.d4_04_slot_semantics_v2",
+      "confidence_class": "authoritative"
+    },
+    {
+      "alias_id": "alias.extrema_zh_1",
+      "surface_form": "最高",
+      "language": "zh-CN",
+      "concept_id": "concept.scalar_extrema",
+      "source_ref": "source.d4_04_slot_semantics_v2",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.extrema_zh_2",
+      "surface_form": "最低",
+      "language": "zh-CN",
+      "concept_id": "concept.scalar_extrema",
+      "source_ref": "source.d4_04_slot_semantics_v2",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.extrema_zh_3",
+      "surface_form": "最多",
+      "language": "zh-CN",
+      "concept_id": "concept.scalar_extrema",
+      "source_ref": "source.d4_04_slot_semantics_v2",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.extrema_zh_4",
+      "surface_form": "最少",
+      "language": "zh-CN",
+      "concept_id": "concept.scalar_extrema",
+      "source_ref": "source.d4_04_slot_semantics_v2",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.extrema_zh_5",
+      "surface_form": "最长",
+      "language": "zh-CN",
+      "concept_id": "concept.scalar_extrema",
+      "source_ref": "source.d4_04_slot_semantics_v2",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.extrema_zh_6",
+      "surface_form": "最短",
+      "language": "zh-CN",
+      "concept_id": "concept.scalar_extrema",
+      "source_ref": "source.d4_04_slot_semantics_v2",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.extrema_zh_7",
+      "surface_form": "最大",
+      "language": "zh-CN",
+      "concept_id": "concept.scalar_extrema",
+      "source_ref": "source.d4_04_slot_semantics_v2",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.extrema_zh_8",
+      "surface_form": "最小",
+      "language": "zh-CN",
+      "concept_id": "concept.scalar_extrema",
+      "source_ref": "source.d4_04_slot_semantics_v2",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.geo_filter_zh_1",
+      "surface_form": "哪个国家",
+      "language": "zh-CN",
+      "concept_id": "concept.geographic_filter",
+      "source_ref": "source.d4_04_slot_semantics_v2",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.geo_filter_zh_2",
+      "surface_form": "哪些国家",
+      "language": "zh-CN",
+      "concept_id": "concept.geographic_filter",
+      "source_ref": "source.d4_04_slot_semantics_v2",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.geo_filter_zh_3",
+      "surface_form": "哪个地区",
+      "language": "zh-CN",
+      "concept_id": "concept.geographic_filter",
+      "source_ref": "source.d4_04_slot_semantics_v2",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.geo_group_zh_1",
+      "surface_form": "各国",
+      "language": "zh-CN",
+      "concept_id": "concept.geographic_grouping",
+      "source_ref": "source.d4_04_slot_semantics_v2",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.geo_group_zh_2",
+      "surface_form": "各地区",
+      "language": "zh-CN",
+      "concept_id": "concept.geographic_grouping",
+      "source_ref": "source.d4_04_slot_semantics_v2",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.geo_group_zh_3",
+      "surface_form": "每个国家",
+      "language": "zh-CN",
+      "concept_id": "concept.geographic_grouping",
+      "source_ref": "source.d4_04_slot_semantics_v2",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.geo_group_zh_4",
+      "surface_form": "分国家",
+      "language": "zh-CN",
+      "concept_id": "concept.geographic_grouping",
+      "source_ref": "source.d4_04_slot_semantics_v2",
+      "confidence_class": "curated"
+    },
+    {
+      "alias_id": "alias.geo_group_zh_5",
+      "surface_form": "按国家",
+      "language": "zh-CN",
+      "concept_id": "concept.geographic_grouping",
+      "source_ref": "source.d4_04_slot_semantics_v2",
+      "confidence_class": "curated"
+    }
+  ]
+}

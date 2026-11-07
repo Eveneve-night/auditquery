@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "value_evidence",
+  "items": [
+    {
+      "evidence_id": "evidence.otc.schema_targets",
+      "slot_id": "slot.schema_target",
+      "evidence_type": "enum",
+      "payload": {
+        "values": [
+          "customer",
+          "customer_segment",
+          "customer_contact",
+          "customer_address",
+          "product_category",
+          "product",
+          "warehouse",
+          "quotation",
+          "quotation_line",
+          "sales_order",
+          "sales_order_history",
+          "sales_order_line",
+          "sales_order_line_history",
+          "sales_order_daily_summary",
+          "sales_order_monthly_summary",
+          "shipment",
+          "shipment_line",
+          "shipment_tracking",
+          "sales_return",
+          "sales_return_line",
+          "invoice",
+          "invoice_line",
+          "credit_note",
+          "receivable",
+          "receivable_installment",
+          "receipt",
+          "receipt_allocation",
+          "refund",
+          "refund_allocation",
+          "inventory_balance",
+          "inventory_movement",
+          "stock_reservation",
+          "supplier",
+          "purchase_order",
+          "purchase_order_line",
+          "goods_receipt",
+          "goods_receipt_line",
+          "payable",
+          "payment"
+        ]
+      },
+      "data_level": "L0",
+      "send_to_model": true,
+      "source_ref": "source.order_to_cash_synthetic"
+    }
+  ]
+}

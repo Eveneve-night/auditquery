@@ -1,0 +1,17 @@
+{
+  "contract_id": "intent-contract.v1",
+  "contract_version": "1.0.0",
+  "task_type": "intent",
+  "prompt_version": "intent.v1",
+  "prompt_path": "configs/prompts/intent/v1/system.md",
+  "output_schema_id": "intent-result.v1",
+  "output_schema_path": "configs/schemas/tasks/intent-result.v1.schema.json",
+  "model": "qwen3.7-flash",
+  "generation": {
+    "temperature": 0,
+    "enable_thinking": false,
+    "response_format": "json_object",
+    "max_completion_tokens": 300
+  },
+  "description": "根据用户问题和可用数据源判断 SQL、RAG、跨源或未知路由，并标记是否需要澄清。"
+}

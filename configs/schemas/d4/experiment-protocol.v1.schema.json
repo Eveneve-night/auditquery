@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "d4-experiment-protocol.v1",
+  "title": "D4 typed decision experiment protocol v1",
+  "type": "object",
+  "required": [
+    "protocol_id", "version", "status", "frozen_at", "claims", "model_boundary",
+    "shared_controls", "groups", "metrics", "minimum_ablations", "outcome_criteria",
+    "data_gates", "data_manifest", "validation_exposure", "hidden_test", "trace_contract", "protected_d3_assets"
+  ],
+  "properties": {
+    "protocol_id": {"const": "d4-typed-decision-experiment.v1"},
+    "version": {"const": "1.0.0"},
+    "status": {"const": "frozen_before_evaluation"},
+    "frozen_at": {"type": "string", "format": "date-time"},
+    "claims": {
+      "type": "object",
+      "required": ["runtime_implemented", "innovation_proven", "generalization_proven"],
+      "properties": {
+        "runtime_implemented": {"const": false},
+        "innovation_proven": {"const": false},
+        "generalization_proven": {"const": false}
+      },
+      "additionalProperties": false
+    },
+    "model_boundary": {
+      "type": "object",
+      "required": ["online_models", "provider_ids", "second_provider_enabled", "fallback_enabled", "jev_api_enabled", "temperature", "enable_thinking"],
+      "properties": {
+        "online_models": {"const": ["qwen3.7-flash"]},
+        "provider_ids": {"const": ["bailian-cn-beijing"]},
+        "second_provider_enabled": {"const": false},
+        "fallback_enabled": {"const": false},
+        "jev_api_enabled": {"const": false},
+        "temperature": {"const": 0},
+        "enable_thinking": {"const": false}
+      },
+      "additionalProperties": false
+    },
+    "shared_controls": {
+      "type": "object",
+      "required": ["budget_profile_id", "policy_path", "policy_sha256", "budget", "case_catalog", "scorer", "typed_contract_id", "model_input_policy"],
+      "properties": {
+        "budget_profile_id": {"const": "agent-loop-limits.v1"},
+        "policy_path": {"const": "configs/policies/agent-loop-limits.v1.json"},
+        "policy_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "budget": {
+          "type": "object",
+          "required": ["max_model_calls", "max_input_tokens_total", "max_output_tokens_total", "max_wall_time_ms", "hard_cost_cny"],
+          "properties": {
+            "max_model_calls": {"type": "integer", "minimum": 0, "maximum": 4},
+            "max_input_tokens_total": {"type": "integer", "minimum": 0, "maximum": 30000},
+            "max_output_tokens_total": {"type": "integer", "minimum": 0, "maximum": 5000},
+            "max_wall_time_ms": {"type": "integer", "minimum": 1, "maximum": 30000},
+            "hard_cost_cny": {"type": "number", "minimum": 0, "maximum": 1}
+          },
+          "additionalProperties": false
+        },
+        "case_catalog": {"const": "same_frozen_cases_and_candidate_catalog_for_all_groups"},
+        "scorer": {"const": "same_deterministic_scorer_for_all_groups"},
+        "typed_contract_id": {"const": "typed-decision.v1"},
+        "model_input_policy": {
+          "type": "object",
+          "required": ["allowlist", "answer_derived_fields_allowed"],
+          "properties": {
+            "allowlist": {"const": ["current_request", "candidate_options", "evidence_refs", "domain_pack_version"]},
+            "answer_derived_fields_allowed": {"const": false}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "groups": {
+      "type": "array", "minItems": 5, "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["group_id", "role", "uses_model", "budget_profile_id", "candidate_catalog", "output_constraint", "enabled_components", "disabled_components"],
+        "properties": {
+          "group_id": {"type": "string", "enum": ["B0", "B1", "B2", "P", "P-uncalibrated"]},
+          "role": {"type": "string", "enum": ["baseline", "proposed", "diagnostic"]},
+          "uses_model": {"type": "boolean"},
+          "budget_profile_id": {"const": "agent-loop-limits.v1"},
+          "candidate_catalog": {"const": "shared_frozen_catalog"},
+          "output_constraint": {"type": "string", "enum": ["fixed_baseline_output", "typed-decision.v1", "local_typed_equivalent"]},
+          "enabled_components": {"type": "array", "items": {"$ref": "#/$defs/component"}, "uniqueItems": true},
+          "disabled_components": {"type": "array", "items": {"$ref": "#/$defs/component"}, "uniqueItems": true}
+        },
+        "additionalProperties": false
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "required": ["primary", "secondary", "calibration", "statistics"],
+      "properties": {
+        "primary": {"const": "post_clarification_end_to_end_execution_accuracy"},
+        "secondary": {"type": "array", "minItems": 10, "items": {"type": "string", "pattern": "^[a-z][a-z0-9_]{2,127}$"}, "uniqueItems": true},
+        "calibration": {"const": ["brier_score", "ece", "reliability_diagram", "coverage_risk", "high_confidence_error_rate"]},
+        "statistics": {"const": ["mcnemar_exact_for_binary", "paired_bootstrap_95ci_for_continuous"]}
+      },
+      "additionalProperties": false
+    },
+    "minimum_ablations": {
+      "type": "array", "minItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["ablation_id", "change", "same_split_budget_and_scorer"],
+        "properties": {
+          "ablation_id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]{2,63}$"},
+          "change": {"type": "string", "minLength": 1, "maxLength": 300},
+          "same_split_budget_and_scorer": {"const": true}
+        },
+        "additionalProperties": false
+      }
+    },
+    "outcome_criteria": {
+      "type": "object",
+      "required": ["success", "hard_failure", "degradation"],
+      "properties": {
+        "success": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/criterion"}},
+        "hard_failure": {"type": "array", "minItems": 6, "items": {"$ref": "#/$defs/criterion"}},
+        "degradation": {"type": "array", "minItems": 5, "items": {"$ref": "#/$defs/criterion"}}
+      },
+      "additionalProperties": false
+    },
+    "data_gates": {
+      "type": "object",
+      "required": ["competition_candidate", "innovation_claim"],
+      "properties": {
+        "competition_candidate": {"$ref": "#/$defs/data_gate"},
+        "innovation_claim": {"$ref": "#/$defs/data_gate"}
+      },
+      "additionalProperties": false
+    },
+    "data_manifest": {
+      "type": "object",
+      "required": ["path", "schema_id", "sha256", "contains_case_content"],
+      "properties": {
+        "path": {"const": "configs/evaluation/d4/innovation-eval-manifest.v2.template.json"},
+        "schema_id": {"const": "innovation-eval-manifest.v2"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "contains_case_content": {"const": false}
+      },
+      "additionalProperties": false
+    },
+    "validation_exposure": {
+      "type": "object",
+      "required": ["register_path", "register_sha256", "maximum_per_prompt_major", "historical_count", "current_task_count"],
+      "properties": {
+        "register_path": {"const": "configs/evaluation/d4/validation-exposure.v1.json"},
+        "register_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "maximum_per_prompt_major": {"const": 2},
+        "historical_count": {"const": 0},
+        "current_task_count": {"const": 0}
+      },
+      "additionalProperties": false
+    },
+    "hidden_test": {
+      "type": "object",
+      "required": ["content_committed", "storage", "keeper", "minimum_cases", "result_access"],
+      "properties": {
+        "content_committed": {"const": false},
+        "storage": {"const": "outside_normal_development_branches"},
+        "keeper": {"const": "non_prompt_author"},
+        "minimum_cases": {"const": 120},
+        "result_access": {"const": "aggregate_before_release_decision"}
+      },
+      "additionalProperties": false
+    },
+    "trace_contract": {"const": "typed-decision-trace-event.v1"}
+    ,
+    "protected_d3_assets": {
+      "type": "object",
+      "minProperties": 14,
+      "propertyNames": {"pattern": "^(configs|tests)/[A-Za-z0-9_./-]+$"},
+      "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+    }
+  },
+  "$defs": {
+    "component": {
+      "type": "string",
+      "enum": ["fixed_prompt", "llm_semantic_judgment", "typed_decision_contract", "domain_pack", "deterministic_rules", "value_evidence", "evidence_fusion", "empirical_calibration", "selective_routing", "fixed_rule_threshold"]
+    },
+    "criterion": {
+      "type": "object",
+      "required": ["code", "condition", "conclusion"],
+      "properties": {
+        "code": {"type": "string", "pattern": "^[a-z][a-z0-9_]{2,63}$"},
+        "condition": {"type": "string", "minLength": 1, "maxLength": 500},
+        "conclusion": {"type": "string", "minLength": 1, "maxLength": 300}
+      },
+      "additionalProperties": false
+    },
+    "data_gate": {
+      "type": "object",
+      "required": ["minimum_total_cases", "purpose", "can_support_innovation_claim"],
+      "properties": {
+        "minimum_total_cases": {"type": "integer", "minimum": 1},
+        "purpose": {"type": "string", "enum": ["competition_release", "innovation_migration_calibration"]},
+        "can_support_innovation_claim": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "d4-08-public-canary-control.v1",
+  "title": "D4-08 public online canary control v1",
+  "type": "object",
+  "required": [
+    "control_id", "version", "owner", "status", "scope",
+    "provider_boundary", "groups", "batch_limits", "equality_constraints",
+    "required_before_public_canary", "required_before_validation_or_hidden_test",
+    "stop_policy", "credential_boundary", "redacted_report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "control_id": {"const": "d4-08-public-canary-control.v1"},
+    "version": {"const": "1.0.0"},
+    "owner": {"const": "A"},
+    "status": {"const": "frozen_before_online_canary"},
+    "scope": {"const": "one_public_prompt_dev_case_only"},
+    "provider_boundary": {
+      "type": "object",
+      "required": ["provider_id", "region", "model", "temperature", "enable_thinking", "second_provider_enabled", "fallback_enabled"],
+      "additionalProperties": false,
+      "properties": {
+        "provider_id": {"const": "bailian-cn-beijing"},
+        "region": {"const": "cn-beijing"},
+        "model": {"const": "qwen3.7-flash"},
+        "temperature": {"const": 0},
+        "enable_thinking": {"const": false},
+        "second_provider_enabled": {"const": false},
+        "fallback_enabled": {"const": false}
+      }
+    },
+    "groups": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["group_id", "uses_model", "provider_attempt_cap"],
+        "additionalProperties": false,
+        "properties": {
+          "group_id": {"enum": ["B0", "B1", "B2", "P", "P-uncalibrated"]},
+          "uses_model": {"type": "boolean"},
+          "provider_attempt_cap": {"type": "integer", "minimum": 0, "maximum": 1}
+        }
+      }
+    },
+    "batch_limits": {
+      "type": "object",
+      "required": ["case_count", "provider_attempt_cap", "hard_cost_cny", "validation_case_reads", "hidden_test_case_reads"],
+      "additionalProperties": false,
+      "properties": {
+        "case_count": {"const": 1},
+        "provider_attempt_cap": {"const": 4},
+        "hard_cost_cny": {"type": "number", "exclusiveMinimum": 0, "maximum": 0.05},
+        "validation_case_reads": {"const": 0},
+        "hidden_test_case_reads": {"const": 0}
+      }
+    },
+    "equality_constraints": {"type": "array", "minItems": 5, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "required_before_public_canary": {"type": "array", "minItems": 5, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "required_before_validation_or_hidden_test": {"type": "array", "minItems": 6, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "stop_policy": {
+      "type": "object",
+      "required": ["immediate", "retryable_only_by_frozen_gateway", "may_raise_limits"],
+      "additionalProperties": false,
+      "properties": {
+        "immediate": {"type": "array", "minItems": 5, "uniqueItems": true, "items": {"type": "string"}},
+        "retryable_only_by_frozen_gateway": {"type": "array", "minItems": 6, "uniqueItems": true, "items": {"type": "string"}},
+        "may_raise_limits": {"const": false}
+      }
+    },
+    "credential_boundary": {
+      "type": "object",
+      "required": ["loader", "repository_storage_allowed", "plaintext_logging_allowed", "copy_or_modify_external_files_allowed"],
+      "additionalProperties": false,
+      "properties": {
+        "loader": {"const": "src.backend.llm.credentials.ExternalFileCredentialProvider"},
+        "repository_storage_allowed": {"const": false},
+        "plaintext_logging_allowed": {"const": false},
+        "copy_or_modify_external_files_allowed": {"const": false}
+      }
+    },
+    "redacted_report": {
+      "type": "object",
+      "required": ["required_fields", "forbidden_content"],
+      "additionalProperties": false,
+      "properties": {
+        "required_fields": {"type": "array", "minItems": 10, "uniqueItems": true, "items": {"type": "string"}},
+        "forbidden_content": {"type": "array", "minItems": 6, "uniqueItems": true, "items": {"type": "string"}}
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "clarification-result.v1",
+  "title": "Clarification decision result v1",
+  "allOf": [
+    {"$ref": "task-result-envelope.v1"},
+    {
+      "type": "object",
+      "properties": {
+        "task_type": {"const": "clarification"},
+        "data": {
+          "oneOf": [
+            {"type": "null"},
+            {"$ref": "#/$defs/clarification_data"}
+          ]
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "clarification_data": {
+      "type": "object",
+      "required": [
+        "should_clarify",
+        "primary_slot",
+        "missing_slots",
+        "question",
+        "reason"
+      ],
+      "properties": {
+        "should_clarify": {"type": "boolean"},
+        "primary_slot": {
+          "type": ["string", "null"],
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "missing_slots": {
+          "type": "array",
+          "items": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+          "maxItems": 8,
+          "uniqueItems": true
+        },
+        "question": {
+          "type": ["string", "null"],
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "reason": {
+          "type": "string",
+          "enum": ["missing_required_slot", "ambiguous_reference", "complete"]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"should_clarify": {"const": true}},
+            "required": ["should_clarify"]
+          },
+          "then": {
+            "properties": {
+              "primary_slot": {"type": "string"},
+              "missing_slots": {"minItems": 1},
+              "question": {"type": "string"},
+              "reason": {"enum": ["missing_required_slot", "ambiguous_reference"]}
+            }
+          },
+          "else": {
+            "properties": {
+              "primary_slot": {"type": "null"},
+              "missing_slots": {"maxItems": 0},
+              "question": {"type": "null"},
+              "reason": {"const": "complete"}
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    }
+  }
+}

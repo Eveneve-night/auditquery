@@ -1,0 +1,32 @@
+{
+  "version": "1.0.0",
+  "split": "prompt_dev",
+  "visibility": "public_development",
+  "case_count": 36,
+  "input_path": "inputs.json",
+  "input_sha256": "8d30ba8d249743ebba6e618f7dd4060980b5c030f89987af7bca45babcb1b6fa",
+  "schema_families": [
+    "retail_inventory",
+    "equipment_loan",
+    "chinook"
+  ],
+  "template_families": [
+    "alias",
+    "ambiguous",
+    "typo",
+    "negation",
+    "number_unit",
+    "no_rewrite",
+    "missing_dimension",
+    "conflict",
+    "supplement",
+    "correction",
+    "restart",
+    "unknown"
+  ],
+  "blind_test_created": false,
+  "notes": "覆盖计划和公开运行输入，不含判分答案；不作为隐藏、未见或正式准确率样本。",
+  "scoring_path": "scoring.json",
+  "scoring_sha256": "a6410b2af20db271304c0964c2e1a2b380a6a22ebce694283b9419c26e98e0a3",
+  "scored_cases": 24
+}

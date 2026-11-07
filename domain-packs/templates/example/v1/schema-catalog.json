@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "schema_catalog",
+  "items": [
+    {
+      "object_id": "schema.example_source",
+      "object_type": "data_source",
+      "parent_object_id": null,
+      "display_name": "虚构数据源",
+      "physical_name": "example_source",
+      "data_type": null,
+      "concept_refs": [],
+      "authorization_level": "read_public",
+      "source_refs": ["source.example_public"]
+    },
+    {
+      "object_id": "schema.example_table",
+      "object_type": "table",
+      "parent_object_id": "schema.example_source",
+      "display_name": "虚构指标表",
+      "physical_name": "example_metrics",
+      "data_type": null,
+      "concept_refs": ["concept.example_metric"],
+      "authorization_level": "read_public",
+      "source_refs": ["source.example_public"]
+    },
+    {
+      "object_id": "schema.example_amount_column",
+      "object_type": "column",
+      "parent_object_id": "schema.example_table",
+      "display_name": "虚构金额列",
+      "physical_name": "example_amount",
+      "data_type": "decimal",
+      "concept_refs": ["concept.example_amount"],
+      "authorization_level": "read_public",
+      "source_refs": ["source.example_public"]
+    }
+  ]
+}

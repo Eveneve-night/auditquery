@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "round2-common.v1",
+  "$defs": {
+    "ref_id": {
+      "$ref": "typed-decision.v1#/$defs/ref_id"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "pack_ref": {
+      "$ref": "semantic-request.v1#/$defs/domain_pack_ref"
+    },
+    "reason_code": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{1,63}$"
+    },
+    "ranked_object": {
+      "type": "object",
+      "required": [
+        "object_id",
+        "raw_score",
+        "evidence_refs",
+        "raw_features"
+      ],
+      "properties": {
+        "object_id": {
+          "$ref": "round2-common.v1#/$defs/ref_id"
+        },
+        "raw_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "round2-common.v1#/$defs/ref_id"
+          },
+          "minItems": 1,
+          "maxItems": 32,
+          "uniqueItems": true
+        },
+        "raw_features": {
+          "$ref": "typed-decision.v1#/$defs/candidate/properties/raw_features"
+        }
+      },
+      "additionalProperties": false
+    },
+    "strategy": {
+      "type": "object",
+      "required": [
+        "strategy_id",
+        "display_name"
+      ],
+      "properties": {
+        "strategy_id": {
+          "enum": [
+            "pypdf_text.v1",
+            "pdfplumber_layout.v1"
+          ]
+        },
+        "display_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      },
+      "additionalProperties": false
+    },
+    "page_observation": {
+      "type": "object",
+      "required": [
+        "page_number",
+        "text_characters",
+        "image_count",
+        "table_hint_count",
+        "layout_hint_count",
+        "evidence_refs"
+      ],
+      "properties": {
+        "page_number": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "text_characters": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "image_count": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "table_hint_count": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "layout_hint_count": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "round2-common.v1#/$defs/ref_id"
+          },
+          "minItems": 1,
+          "maxItems": 32,
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

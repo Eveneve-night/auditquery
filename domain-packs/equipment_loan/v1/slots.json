@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "slots",
+  "items": [
+    {
+      "slot_id": "slot.metric",
+      "display_name": "借用数量",
+      "description": "借用数量由用户明确给出；不得擅自补全。",
+      "value_type": "enum",
+      "required_by_default": true,
+      "required_when": [],
+      "conflict_slot_ids": [],
+      "allowed_value_evidence_refs": [
+        "evidence.equipment_loan.metric"
+      ],
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    },
+    {
+      "slot_id": "slot.entity_type",
+      "display_name": "设备",
+      "description": "设备由用户明确给出；不得擅自补全。",
+      "value_type": "enum",
+      "required_by_default": false,
+      "required_when": [],
+      "conflict_slot_ids": [],
+      "allowed_value_evidence_refs": [
+        "evidence.equipment_loan.entity_type"
+      ],
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    },
+    {
+      "slot_id": "slot.location",
+      "display_name": "借用部门",
+      "description": "借用部门由用户明确给出；不得擅自补全。",
+      "value_type": "enum",
+      "required_by_default": true,
+      "required_when": [],
+      "conflict_slot_ids": [],
+      "allowed_value_evidence_refs": [
+        "evidence.equipment_loan.location"
+      ],
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    },
+    {
+      "slot_id": "slot.unit",
+      "display_name": "数量单位",
+      "description": "数量单位由用户明确给出；不得擅自补全。",
+      "value_type": "enum",
+      "required_by_default": false,
+      "required_when": [],
+      "conflict_slot_ids": [],
+      "allowed_value_evidence_refs": [
+        "evidence.equipment_loan.unit"
+      ],
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    },
+    {
+      "slot_id": "slot.time_range",
+      "display_name": "统计期间",
+      "description": "统计期间由用户明确给出；不得擅自补全。",
+      "value_type": "string",
+      "required_by_default": true,
+      "required_when": [],
+      "conflict_slot_ids": [],
+      "allowed_value_evidence_refs": [],
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    }
+  ]
+}

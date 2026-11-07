@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "concepts",
+  "items": [
+    {
+      "concept_id": "concept.equipment_loan.entity",
+      "display_name": "设备",
+      "description": "设备借用合成业务元数据：设备。单位不隐式换算，范围不隐式补全。",
+      "parent_concept_ids": [],
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    },
+    {
+      "concept_id": "concept.equipment_loan.metric",
+      "display_name": "借用数量",
+      "description": "设备借用合成业务元数据：借用数量。单位不隐式换算，范围不隐式补全。",
+      "parent_concept_ids": [],
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    },
+    {
+      "concept_id": "concept.equipment_loan.location",
+      "display_name": "借用部门",
+      "description": "设备借用合成业务元数据：借用部门。单位不隐式换算，范围不隐式补全。",
+      "parent_concept_ids": [],
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    },
+    {
+      "concept_id": "concept.equipment_loan.unit",
+      "display_name": "台",
+      "description": "设备借用合成业务元数据：台。单位不隐式换算，范围不隐式补全。",
+      "parent_concept_ids": [],
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    },
+    {
+      "concept_id": "concept.equipment_loan.available",
+      "display_name": "可用数量",
+      "description": "可用数量与另一数量口径不同，需明确口径。",
+      "parent_concept_ids": [],
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    },
+    {
+      "concept_id": "concept.equipment_loan.total",
+      "display_name": "总数量",
+      "description": "总数量与另一数量口径不同，需明确口径。",
+      "parent_concept_ids": [],
+      "source_refs": [
+        "source.equipment_loan"
+      ]
+    }
+  ]
+}

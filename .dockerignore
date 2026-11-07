@@ -1,0 +1,25 @@
+.git
+.venv
+__pycache__
+*.pyc
+*.sqlite*
+!data/raw/chinook-v1.4.5/Chinook_Sqlite.sqlite
+*.db
+*.key
+*.pem
+.env
+**/.env
+**/.env.*
+**/api key.txt
+**/*api[Kk]ey*.csv
+**/secrets/
+**/credentials/
+configs/providers/*.local.json
+tests/
+docs/
+deliverables/
+*.zip
+*.parquet
+data/raw/ohr-bench-v2/
+references/
+tests/goldens/

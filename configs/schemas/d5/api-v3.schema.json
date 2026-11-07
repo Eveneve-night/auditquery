@@ -1,0 +1,251 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "api-v3.schema.json",
+  "title": "D5 public API v3 transport definitions",
+  "$defs": {
+    "bounded_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"},
+    "version_fields": {
+      "type": "object",
+      "required": ["api_version", "contract_version"],
+      "properties": {
+        "api_version": {"const": "3.0"},
+        "contract_version": {"const": "1.0.0"}
+      }
+    },
+    "empty_request": {"type": "object", "maxProperties": 0, "additionalProperties": false},
+    "session_create_request": {
+      "type": "object",
+      "required": ["api_version", "contract_version", "request_id"],
+      "properties": {
+        "api_version": {"const": "3.0"},
+        "contract_version": {"const": "1.0.0"},
+        "request_id": {"$ref": "#/$defs/bounded_id"}
+      },
+      "additionalProperties": false
+    },
+    "session_response": {
+      "type": "object",
+      "required": ["api_version", "contract_version", "request_id", "session_id", "state_revision", "expires_at"],
+      "properties": {
+        "api_version": {"const": "3.0"},
+        "contract_version": {"const": "1.0.0"},
+        "request_id": {"$ref": "#/$defs/bounded_id"},
+        "session_id": {"$ref": "#/$defs/bounded_id"},
+        "state_revision": {"type": "integer", "minimum": 0},
+        "expires_at": {"type": "string", "format": "date-time"}
+      },
+      "additionalProperties": false
+    },
+    "query_request": {
+      "type": "object",
+      "required": ["api_version", "contract_version", "session_id", "request_id", "turn_id", "state_revision", "question"],
+      "properties": {
+        "api_version": {"const": "3.0"},
+        "contract_version": {"const": "1.0.0"},
+        "session_id": {"$ref": "#/$defs/bounded_id"},
+        "request_id": {"$ref": "#/$defs/bounded_id"},
+        "turn_id": {"type": "integer", "minimum": 0},
+        "state_revision": {"type": "integer", "minimum": 0},
+        "question": {"type": "string", "minLength": 1, "maxLength": 2000}
+      },
+      "additionalProperties": false
+    },
+    "clarification_request": {
+      "type": "object",
+      "required": ["api_version", "contract_version", "answer_id", "session_id", "request_id", "turn_id", "state_revision", "question_id", "slot_id", "values", "evidence_refs"],
+      "properties": {
+        "api_version": {"const": "3.0"},
+        "contract_version": {"const": "1.0.0"},
+        "answer_id": {"$ref": "#/$defs/bounded_id"},
+        "session_id": {"$ref": "#/$defs/bounded_id"},
+        "request_id": {"$ref": "#/$defs/bounded_id"},
+        "turn_id": {"type": "integer", "minimum": 0},
+        "state_revision": {"type": "integer", "minimum": 0},
+        "question_id": {"$ref": "#/$defs/bounded_id"},
+        "slot_id": {"$ref": "#/$defs/bounded_id"},
+        "values": {"type": "array", "minItems": 1, "maxItems": 1, "items": {"type": ["string", "number", "integer", "boolean"]}},
+        "evidence_refs": {"type": "array", "minItems": 1, "maxItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/bounded_id"}}
+      },
+      "additionalProperties": false
+    },
+    "agent_response": {
+      "type": "object",
+      "required": ["api_version", "contract_version", "request_id", "session_id", "state_revision", "status", "payload", "error"],
+      "properties": {
+        "api_version": {"const": "3.0"},
+        "contract_version": {"const": "1.0.0"},
+        "request_id": {"$ref": "#/$defs/bounded_id"},
+        "session_id": {"$ref": "#/$defs/bounded_id"},
+        "state_revision": {"type": "integer", "minimum": 0},
+        "status": {"enum": ["success", "clarification_required", "refused", "error"]},
+        "payload": {
+          "oneOf": [
+            {"$ref": "../d4-07/shared-api-definitions.v2.schema.json#/$defs/online_response"},
+            {"type": "null"}
+          ]
+        },
+        "error": {"oneOf": [{"$ref": "#/$defs/error_body"}, {"type": "null"}]}
+      },
+      "additionalProperties": false
+    },
+    "bootstrap_request": {
+      "type": "object",
+      "required": ["api_version", "contract_version", "setup_token", "username", "password"],
+      "properties": {
+        "api_version": {"const": "3.0"},
+        "contract_version": {"const": "1.0.0"},
+        "setup_token": {"type": "string", "minLength": 32, "maxLength": 512},
+        "username": {"type": "string", "minLength": 3, "maxLength": 64},
+        "password": {"type": "string", "minLength": 12, "maxLength": 256}
+      },
+      "additionalProperties": false
+    },
+    "login_request": {
+      "type": "object",
+      "required": ["api_version", "contract_version", "username", "password"],
+      "properties": {
+        "api_version": {"const": "3.0"},
+        "contract_version": {"const": "1.0.0"},
+        "username": {"type": "string", "minLength": 1, "maxLength": 64},
+        "password": {"type": "string", "minLength": 1, "maxLength": 256}
+      },
+      "additionalProperties": false
+    },
+    "admin_session_response": {
+      "type": "object",
+      "required": ["api_version", "contract_version", "request_id", "authenticated", "csrf_token", "expires_at"],
+      "properties": {
+        "api_version": {"const": "3.0"},
+        "contract_version": {"const": "1.0.0"},
+        "request_id": {"$ref": "#/$defs/bounded_id"},
+        "authenticated": {"const": true},
+        "csrf_token": {"type": "string", "minLength": 32, "maxLength": 512},
+        "expires_at": {"type": "string", "format": "date-time"}
+      },
+      "additionalProperties": false
+    },
+    "operation_response": {
+      "type": "object",
+      "required": ["api_version", "contract_version", "request_id", "status", "resource_revision"],
+      "properties": {
+        "api_version": {"const": "3.0"},
+        "contract_version": {"const": "1.0.0"},
+        "request_id": {"$ref": "#/$defs/bounded_id"},
+        "status": {"enum": ["accepted", "completed", "deleted", "disabled", "published", "revoked"]},
+        "resource_revision": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "key_write_request": {
+      "type": "object",
+      "required": ["api_version", "contract_version", "request_id", "provider", "model", "api_key"],
+      "properties": {
+        "api_version": {"const": "3.0"},
+        "contract_version": {"const": "1.0.0"},
+        "request_id": {"$ref": "#/$defs/bounded_id"},
+        "provider": {"const": "bailian_beijing"},
+        "model": {"const": "qwen3.7-flash"},
+        "api_key": {"type": "string", "minLength": 16, "maxLength": 512}
+      },
+      "additionalProperties": false
+    },
+    "key_status_response": {
+      "type": "object",
+      "required": ["api_version", "contract_version", "request_id", "configured", "provider", "model", "source", "updated_at", "last_four"],
+      "properties": {
+        "api_version": {"const": "3.0"},
+        "contract_version": {"const": "1.0.0"},
+        "request_id": {"$ref": "#/$defs/bounded_id"},
+        "configured": {"type": "boolean"},
+        "provider": {"const": "bailian_beijing"},
+        "model": {"const": "qwen3.7-flash"},
+        "source": {"enum": ["secret_store", "not_configured"]},
+        "updated_at": {"type": ["string", "null"], "format": "date-time"},
+        "last_four": {"type": ["string", "null"], "pattern": "^[A-Za-z0-9]{4}$"}
+      },
+      "additionalProperties": false
+    },
+    "connectivity_test_request": {
+      "type": "object",
+      "required": ["api_version", "contract_version", "request_id", "explicit_confirmation"],
+      "properties": {
+        "api_version": {"const": "3.0"},
+        "contract_version": {"const": "1.0.0"},
+        "request_id": {"$ref": "#/$defs/bounded_id"},
+        "explicit_confirmation": {"const": true}
+      },
+      "additionalProperties": false
+    },
+    "document_upload_request": {
+      "type": "object",
+      "required": ["api_version", "contract_version", "request_id", "filename", "content_type", "declared_bytes", "content_sha256"],
+      "properties": {
+        "api_version": {"const": "3.0"},
+        "contract_version": {"const": "1.0.0"},
+        "request_id": {"$ref": "#/$defs/bounded_id"},
+        "filename": {"type": "string", "minLength": 1, "maxLength": 255},
+        "content_type": {"const": "application/pdf"},
+        "declared_bytes": {"type": "integer", "minimum": 1, "maximum": 26214400},
+        "content_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "document_status_response": {
+      "type": "object",
+      "required": ["api_version", "contract_version", "request_id", "document_id", "state", "sha256", "bytes", "page_count", "index_version", "failure_code"],
+      "properties": {
+        "api_version": {"const": "3.0"},
+        "contract_version": {"const": "1.0.0"},
+        "request_id": {"$ref": "#/$defs/bounded_id"},
+        "document_id": {"$ref": "#/$defs/bounded_id"},
+        "state": {"enum": ["quarantined", "validating", "validated", "indexing", "published", "disabled", "failed", "deleted"]},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "bytes": {"type": "integer", "minimum": 1},
+        "page_count": {"type": ["integer", "null"], "minimum": 1},
+        "index_version": {"type": ["string", "null"], "maxLength": 64},
+        "failure_code": {"type": ["string", "null"], "pattern": "^[a-z][a-z0-9_]{2,63}$"}
+      },
+      "additionalProperties": false
+    },
+    "admin_summary_response": {
+      "type": "object",
+      "required": ["api_version", "contract_version", "request_id", "status", "summary"],
+      "properties": {
+        "api_version": {"const": "3.0"},
+        "contract_version": {"const": "1.0.0"},
+        "request_id": {"$ref": "#/$defs/bounded_id"},
+        "status": {"enum": ["ok", "degraded"]},
+        "summary": {"type": "object"}
+      },
+      "additionalProperties": false
+    },
+    "error_body": {
+      "type": "object",
+      "required": ["code", "message", "retryable"],
+      "properties": {
+        "code": {"type": "string", "pattern": "^[a-z][a-z0-9_]{2,63}$"},
+        "message": {"type": "string", "minLength": 1, "maxLength": 160},
+        "retryable": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "error_response": {
+      "type": "object",
+      "required": ["api_version", "contract_version", "request_id", "error"],
+      "properties": {
+        "api_version": {"const": "3.0"},
+        "contract_version": {"const": "1.0.0"},
+        "request_id": {"$ref": "#/$defs/bounded_id"},
+        "error": {"$ref": "#/$defs/error_body"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "type": "object",
+  "required": ["api_version", "contract_version"],
+  "properties": {
+    "api_version": {"const": "3.0"},
+    "contract_version": {"const": "1.0.0"}
+  },
+  "additionalProperties": true
+}

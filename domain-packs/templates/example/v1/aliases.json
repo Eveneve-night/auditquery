@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "aliases",
+  "items": [
+    {
+      "alias_id": "alias.example_amount_short",
+      "surface_form": "样例额",
+      "language": "zh-CN",
+      "concept_id": "concept.example_amount",
+      "source_ref": "source.example_public",
+      "confidence_class": "synthetic"
+    }
+  ]
+}

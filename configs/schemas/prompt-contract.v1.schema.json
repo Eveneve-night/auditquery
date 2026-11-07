@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "prompt-contract.v1",
+  "title": "Versioned task prompt contract",
+  "type": "object",
+  "required": [
+    "contract_id",
+    "contract_version",
+    "task_type",
+    "prompt_version",
+    "prompt_path",
+    "output_schema_id",
+    "output_schema_path",
+    "model",
+    "generation"
+  ],
+  "properties": {
+    "contract_id": {
+      "type": "string",
+      "pattern": "^(intent|clarification|nl2sql|grounded-answer)-contract\\.v[1-9][0-9]*$"
+    },
+    "contract_version": {"type": "string", "pattern": "^[1-9][0-9]*\\.[0-9]+\\.[0-9]+$"},
+    "task_type": {
+      "type": "string",
+      "enum": ["intent", "clarification", "nl2sql", "grounded_answer"]
+    },
+    "prompt_version": {
+      "type": "string",
+      "pattern": "^(intent|clarification|nl2sql|grounded-answer)\\.v[1-9][0-9]*$"
+    },
+    "prompt_path": {
+      "type": "string",
+      "pattern": "^configs/prompts/(intent|clarification|nl2sql|grounded-answer)/v[1-9][0-9]*/system\\.md$"
+    },
+    "output_schema_id": {
+      "type": "string",
+      "pattern": "^(intent|clarification|nl2sql|grounded-answer)-result\\.v[1-9][0-9]*$"
+    },
+    "output_schema_path": {
+      "type": "string",
+      "pattern": "^configs/schemas/tasks/(intent|clarification|nl2sql|grounded-answer)-result\\.v[1-9][0-9]*\\.schema\\.json$"
+    },
+    "model": {"const": "qwen3.7-flash"},
+    "generation": {
+      "type": "object",
+      "required": ["temperature", "enable_thinking", "response_format", "max_completion_tokens"],
+      "properties": {
+        "temperature": {"const": 0},
+        "enable_thinking": {"const": false},
+        "response_format": {"const": "json_object"},
+        "max_completion_tokens": {"type": "integer", "minimum": 1, "maximum": 1500}
+      },
+      "additionalProperties": false
+    },
+    "description": {"type": "string", "minLength": 1, "maxLength": 500}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"task_type": {"const": "intent"}}, "required": ["task_type"]},
+      "then": {
+        "properties": {
+          "contract_id": {"pattern": "^intent-contract\\.v[1-9][0-9]*$"},
+          "prompt_version": {"pattern": "^intent\\.v[1-9][0-9]*$"},
+          "prompt_path": {"pattern": "^configs/prompts/intent/v[1-9][0-9]*/system\\.md$"},
+          "output_schema_id": {"pattern": "^intent-result\\.v[1-9][0-9]*$"},
+          "output_schema_path": {"pattern": "^configs/schemas/tasks/intent-result\\.v[1-9][0-9]*\\.schema\\.json$"}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"task_type": {"const": "clarification"}}, "required": ["task_type"]},
+      "then": {
+        "properties": {
+          "contract_id": {"pattern": "^clarification-contract\\.v[1-9][0-9]*$"},
+          "prompt_version": {"pattern": "^clarification\\.v[1-9][0-9]*$"},
+          "prompt_path": {"pattern": "^configs/prompts/clarification/v[1-9][0-9]*/system\\.md$"},
+          "output_schema_id": {"pattern": "^clarification-result\\.v[1-9][0-9]*$"},
+          "output_schema_path": {"pattern": "^configs/schemas/tasks/clarification-result\\.v[1-9][0-9]*\\.schema\\.json$"}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"task_type": {"const": "nl2sql"}}, "required": ["task_type"]},
+      "then": {
+        "properties": {
+          "contract_id": {"pattern": "^nl2sql-contract\\.v[1-9][0-9]*$"},
+          "prompt_version": {"pattern": "^nl2sql\\.v[1-9][0-9]*$"},
+          "prompt_path": {"pattern": "^configs/prompts/nl2sql/v[1-9][0-9]*/system\\.md$"},
+          "output_schema_id": {"pattern": "^nl2sql-result\\.v[1-9][0-9]*$"},
+          "output_schema_path": {"pattern": "^configs/schemas/tasks/nl2sql-result\\.v[1-9][0-9]*\\.schema\\.json$"}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"task_type": {"const": "grounded_answer"}}, "required": ["task_type"]},
+      "then": {
+        "properties": {
+          "contract_id": {"pattern": "^grounded-answer-contract\\.v[1-9][0-9]*$"},
+          "prompt_version": {"pattern": "^grounded-answer\\.v[1-9][0-9]*$"},
+          "prompt_path": {"pattern": "^configs/prompts/grounded-answer/v[1-9][0-9]*/system\\.md$"},
+          "output_schema_id": {"pattern": "^grounded-answer-result\\.v[1-9][0-9]*$"},
+          "output_schema_path": {"pattern": "^configs/schemas/tasks/grounded-answer-result\\.v[1-9][0-9]*\\.schema\\.json$"}
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

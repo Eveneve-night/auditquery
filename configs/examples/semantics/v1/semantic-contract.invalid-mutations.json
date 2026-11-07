@@ -1,0 +1,131 @@
+{
+  "fixture_version": "semantic-contract-invalid-mutations.v1",
+  "base_case": "semantic-contract.valid.json",
+  "cases": [
+    {
+      "case_id": "request.external_required_slots",
+      "target": "request",
+      "violation_code": "request_schema_invalid",
+      "mutations": [
+        {"op": "add", "path": "/required_slots", "value": ["slot.time_range"]}
+      ]
+    },
+    {
+      "case_id": "request.answer_field_leak",
+      "target": "request",
+      "violation_code": "forbidden_answer_field",
+      "mutations": [
+        {"op": "add", "path": "/expected", "value": "artist"}
+      ]
+    },
+    {
+      "case_id": "result.answer_field_leak",
+      "target": "result",
+      "violation_code": "forbidden_answer_field",
+      "mutations": [
+        {"op": "add", "path": "/answer", "value": "42"}
+      ]
+    },
+    {
+      "case_id": "result.fragment_out_of_bounds",
+      "target": "result",
+      "violation_code": "fragment_position_invalid",
+      "mutations": [
+        {"op": "replace", "path": "/fragments/0/end", "value": 99}
+      ]
+    },
+    {
+      "case_id": "result.fragment_text_mismatch",
+      "target": "result",
+      "violation_code": "fragment_text_mismatch",
+      "mutations": [
+        {"op": "replace", "path": "/fragments/0/text", "value": "客户"}
+      ]
+    },
+    {
+      "case_id": "result.candidate_outside_authorized_catalog",
+      "target": "result",
+      "violation_code": "candidate_not_authorized",
+      "mutations": [
+        {"op": "replace", "path": "/candidates/0/candidate_id", "value": "concept.customer"}
+      ]
+    },
+    {
+      "case_id": "result.selection_not_in_candidates",
+      "target": "result",
+      "violation_code": "selected_option_not_in_candidates",
+      "mutations": [
+        {"op": "replace", "path": "/typed_decision/selected_option", "value": "concept.customer"}
+      ]
+    },
+    {
+      "case_id": "result.overlapping_edits",
+      "target": "result",
+      "violation_code": "edit_overlap",
+      "mutations": [
+        {
+          "op": "add",
+          "path": "/edits/-",
+          "value": {
+            "edit_id": "edit.overlap",
+            "source_fragment_id": "fragment.artist",
+            "start": 3,
+            "end": 4,
+            "before": "手",
+            "after": "艺术家",
+            "kind": "alias_normalization",
+            "evidence_refs": ["concept.artist"]
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "result.unfounded_rewrite",
+      "target": "result",
+      "violation_code": "unfounded_edit_replacement",
+      "mutations": [
+        {"op": "replace", "path": "/edits/0/after", "value": "2013年艺术家"}
+      ]
+    },
+    {
+      "case_id": "result.required_slot_not_recomputed",
+      "target": "result",
+      "violation_code": "required_slot_resolution_mismatch",
+      "mutations": [
+        {"op": "replace", "path": "/required_slot_resolution/assessments/0/required", "value": true}
+      ]
+    },
+    {
+      "case_id": "result.illegal_evidence_reference",
+      "target": "result",
+      "violation_code": "evidence_ref_not_in_domain_pack",
+      "mutations": [
+        {"op": "add", "path": "/candidates/0/evidence_refs/-", "value": "evidence.not_authorized"}
+      ]
+    },
+    {
+      "case_id": "result.unknown_fragment_with_resolution",
+      "target": "result",
+      "violation_code": "unknown_fragment_must_not_resolve",
+      "mutations": [
+        {"op": "replace", "path": "/fragments/0/status", "value": "unknown"}
+      ]
+    },
+    {
+      "case_id": "result.typed_decision_candidate_drift",
+      "target": "result",
+      "violation_code": "typed_decision_candidates_mismatch",
+      "mutations": [
+        {"op": "remove", "path": "/typed_decision/candidate_options/1"}
+      ]
+    },
+    {
+      "case_id": "result.session_observation_overwritten",
+      "target": "result",
+      "violation_code": "session_observation_not_preserved",
+      "mutations": [
+        {"op": "replace", "path": "/slot_observations/0/values/0", "value": "revenue"}
+      ]
+    }
+  ]
+}

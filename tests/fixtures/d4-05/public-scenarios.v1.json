@@ -1,0 +1,92 @@
+{
+  "scenario_version": "1.0.0",
+  "split": "public_synthetic_contract",
+  "scenarios": [
+    {
+      "id": "D4-05-PUBLIC-001",
+      "scenario_kind": "missing_then_safe_execute",
+      "query": "艺术家",
+      "initial_observations": {
+        "slot.metric": {
+          "values": ["count"],
+          "evidence_refs": ["evidence.metric_kinds"]
+        }
+      },
+      "structured_replies": [
+        {
+          "value": "artist",
+          "evidence_ref": "evidence.entity_kinds"
+        }
+      ],
+      "sql_proposal": {
+        "proposal_id": "proposal.public.001",
+        "sql": "SELECT COUNT(*) AS artist_count FROM Artist",
+        "tables": ["Artist"],
+        "params": []
+      }
+    },
+    {
+      "id": "D4-05-PUBLIC-002",
+      "scenario_kind": "two_round_clarification",
+      "query": "艺术家",
+      "initial_observations": {
+        "slot.metric": {
+          "values": ["count"],
+          "evidence_refs": ["evidence.metric_kinds"]
+        }
+      },
+      "structured_replies": [
+        {
+          "value": "customer",
+          "evidence_ref": "evidence.entity_kinds"
+        },
+        {
+          "value": "Canada",
+          "evidence_ref": "evidence.country_enum"
+        }
+      ],
+      "sql_proposal": null
+    },
+    {
+      "id": "D4-05-PUBLIC-003",
+      "scenario_kind": "single_year_representation",
+      "query": "艺术家",
+      "initial_observations": {
+        "slot.metric": {
+          "values": ["revenue"],
+          "evidence_refs": ["evidence.metric_kinds"]
+        }
+      },
+      "structured_replies": [
+        {
+          "value": "2010",
+          "evidence_ref": "evidence.time_range_years"
+        }
+      ],
+      "sql_proposal": null
+    },
+    {
+      "id": "D4-05-PUBLIC-004",
+      "scenario_kind": "malicious_proposal_rejected",
+      "query": "艺术家",
+      "initial_observations": {
+        "slot.metric": {
+          "values": ["count"],
+          "evidence_refs": ["evidence.metric_kinds"]
+        }
+      },
+      "structured_replies": [
+        {
+          "value": "artist",
+          "evidence_ref": "evidence.entity_kinds"
+        }
+      ],
+      "sql_proposal": {
+        "proposal_id": "proposal.public.004",
+        "sql": "DELETE FROM Artist",
+        "tables": ["Artist"],
+        "params": []
+      }
+    }
+  ]
+}

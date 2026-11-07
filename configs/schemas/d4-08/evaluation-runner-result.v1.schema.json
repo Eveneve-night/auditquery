@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "d4-evaluation-runner-result.v1",
+  "title": "D4 evaluation runner result v1 (B-side contract)",
+  "type": "object",
+  "required": [
+    "runner_id", "run_id", "protocol_id", "protocol_sha256", "data_version",
+    "groups", "statistics", "exposure", "hidden_test", "migration",
+    "evidence_reproducible"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "runner_id": {"const": "d4-evaluation-runner.v1"},
+    "run_id": {"type": "string", "minLength": 1},
+    "protocol_id": {"const": "d4-typed-decision-experiment.v1"},
+    "protocol_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "data_version": {"type": "string", "minLength": 1},
+    "groups": {
+      "type": "object",
+      "required": ["B0", "B1", "B2", "P", "P-uncalibrated"],
+      "additionalProperties": false,
+      "properties": {
+        "B0": {"$ref": "#/$defs/group"},
+        "B1": {"$ref": "#/$defs/group"},
+        "B2": {"$ref": "#/$defs/group"},
+        "P": {"$ref": "#/$defs/group"},
+        "P-uncalibrated": {"$ref": "#/$defs/group"}
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "required": ["mcnemar", "paired_bootstrap_95ci"],
+      "additionalProperties": false,
+      "properties": {
+        "mcnemar": {"$ref": "#/$defs/mcnemar"},
+        "paired_bootstrap_95ci": {"$ref": "#/$defs/bootstrap"}
+      }
+    },
+    "exposure": {
+      "type": "object",
+      "required": ["validation_historical_count", "validation_current_task_count"],
+      "additionalProperties": false,
+      "properties": {
+        "validation_historical_count": {"type": "integer", "minimum": 0},
+        "validation_current_task_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "hidden_test": {
+      "type": "object",
+      "required": ["capability", "case_count", "content_committed", "keeper"],
+      "additionalProperties": false,
+      "properties": {
+        "capability": {"type": "string", "enum": ["nl2sql", "rag", "clarification"]},
+        "case_count": {"type": "integer", "minimum": 0},
+        "content_committed": {"type": "boolean"},
+        "keeper": {"type": "string", "minLength": 1}
+      }
+    },
+    "migration": {
+      "type": "object",
+      "required": [
+        "domain_count", "new_domain_prompt_or_code_changed",
+        "new_domain_test_answer_written", "business_code_changed_lines"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "domain_count": {"type": "integer", "minimum": 0},
+        "new_domain_prompt_or_code_changed": {"type": "boolean"},
+        "new_domain_test_answer_written": {"type": "boolean"},
+        "business_code_changed_lines": {"type": "integer", "minimum": 0}
+      }
+    },
+    "evidence_reproducible": {"type": "boolean"}
+  },
+  "$defs": {
+    "group": {
+      "type": "object",
+      "required": ["group_id", "role", "metrics"],
+      "additionalProperties": false,
+      "properties": {
+        "group_id": {"type": "string", "minLength": 1},
+        "role": {"type": "string", "enum": ["baseline", "proposed", "diagnostic"]},
+        "metrics": {
+          "type": "object",
+          "required": ["post_clarification_end_to_end_execution_accuracy"],
+          "additionalProperties": true,
+          "properties": {
+            "post_clarification_end_to_end_execution_accuracy": {
+              "type": "number", "minimum": 0.0, "maximum": 1.0
+            },
+            "necessary_clarification_recall": {
+              "type": "number", "minimum": 0.0, "maximum": 1.0
+            },
+            "over_clarification_rate": {
+              "type": "number", "minimum": 0.0, "maximum": 1.0
+            },
+            "slot_macro_f1": {
+              "type": "number", "minimum": 0.0, "maximum": 1.0
+            },
+            "post_clarification_success_rate": {
+              "type": "number", "minimum": 0.0, "maximum": 1.0
+            },
+            "high_confidence_error_rate": {
+              "type": "number", "minimum": 0.0, "maximum": 1.0
+            },
+            "sufficient_question_e2e_accuracy_drop_pp": {
+              "type": "number", "minimum": 0.0, "maximum": 100.0
+            },
+            "end_to_end_p95_ms": {
+              "type": "number", "minimum": 0.0
+            },
+            "cost_cny": {
+              "type": "number", "minimum": 0.0
+            },
+            "tokens": {
+              "type": "number", "minimum": 0.0
+            },
+            "model_calls": {
+              "type": "number", "minimum": 0.0
+            },
+            "brier_score": {
+              "type": "number", "minimum": 0.0, "maximum": 1.0
+            },
+            "ece": {
+              "type": "number", "minimum": 0.0
+            }
+          }
+        }
+      }
+    },
+    "mcnemar": {
+      "type": "object",
+      "required": ["comparison", "p_value", "sample_pairs"],
+      "additionalProperties": false,
+      "properties": {
+        "comparison": {"type": "string", "minLength": 1},
+        "p_value": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+        "sample_pairs": {"type": "integer", "minimum": 1}
+      }
+    },
+    "bootstrap": {
+      "type": "object",
+      "required": ["comparison", "metric", "lower", "upper"],
+      "additionalProperties": false,
+      "properties": {
+        "comparison": {"type": "string", "minLength": 1},
+        "metric": {"type": "string", "minLength": 1},
+        "lower": {"type": "number"},
+        "upper": {"type": "number"}
+      }
+    }
+  }
+}

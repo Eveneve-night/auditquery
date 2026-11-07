@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "admin-bootstrap-api.v2.schema.json",
+  "title": "D5 admin login and optional password change payloads v2",
+  "$defs": {
+    "bounded_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"},
+    "login_request": {
+      "type": "object",
+      "required": ["api_version", "contract_version", "request_id", "username", "password"],
+      "properties": {
+        "api_version": {"const": "3.0"},
+        "contract_version": {"const": "2.0.0"},
+        "request_id": {"$ref": "#/$defs/bounded_id"},
+        "username": {"const": "admin"},
+        "password": {"type": "string", "minLength": 1, "maxLength": 256}
+      },
+      "additionalProperties": false
+    },
+    "admin_session_response": {
+      "type": "object",
+      "required": ["api_version", "contract_version", "request_id", "authenticated", "csrf_token", "expires_at", "must_change_password", "password_change_available", "allowed_actions"],
+      "properties": {
+        "api_version": {"const": "3.0"},
+        "contract_version": {"const": "2.0.0"},
+        "request_id": {"$ref": "#/$defs/bounded_id"},
+        "authenticated": {"const": true},
+        "csrf_token": {"type": "string", "minLength": 32, "maxLength": 512},
+        "expires_at": {"type": "string", "format": "date-time"},
+        "must_change_password": {"const": false},
+        "password_change_available": {"const": true},
+        "allowed_actions": {
+          "type": "array",
+          "const": ["admin", "change_password", "logout"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "password_change_request": {
+      "type": "object",
+      "required": ["api_version", "contract_version", "request_id", "current_password", "new_password"],
+      "properties": {
+        "api_version": {"const": "3.0"},
+        "contract_version": {"const": "2.0.0"},
+        "request_id": {"$ref": "#/$defs/bounded_id"},
+        "current_password": {"type": "string", "minLength": 1, "maxLength": 256},
+        "new_password": {"type": "string", "minLength": 12, "maxLength": 256}
+      },
+      "additionalProperties": false
+    },
+    "password_change_response": {
+      "type": "object",
+      "required": ["api_version", "contract_version", "request_id", "status", "must_change_password", "other_sessions_revoked", "resource_revision"],
+      "properties": {
+        "api_version": {"const": "3.0"},
+        "contract_version": {"const": "2.0.0"},
+        "request_id": {"$ref": "#/$defs/bounded_id"},
+        "status": {"const": "password_changed"},
+        "must_change_password": {"const": false},
+        "other_sessions_revoked": {"const": true},
+        "resource_revision": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    }
+  },
+  "type": "object",
+  "additionalProperties": false
+}

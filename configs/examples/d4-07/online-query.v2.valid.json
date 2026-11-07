@@ -1,0 +1,9 @@
+{
+  "schema_version": "2.0.0",
+  "operation": "submit_query",
+  "session_id": "session.public-001",
+  "request_id": "request.public-002",
+  "turn_id": 2,
+  "state_revision": 3,
+  "query": "统计公开示例中的记录数量。"
+}

@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "relations",
+  "items": [
+    {
+      "relation_id": "relation.fk_album_artistid",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.chinook.album.artistid",
+      "target_object_id": "schema.chinook.artist.artistid",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "relation_id": "relation.fk_customer_supportrepid",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.chinook.customer.supportrepid",
+      "target_object_id": "schema.chinook.employee.employeeid",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "relation_id": "relation.fk_employee_reportsto",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.chinook.employee.reportsto",
+      "target_object_id": "schema.chinook.employee.employeeid",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "relation_id": "relation.fk_invoice_customerid",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.chinook.invoice.customerid",
+      "target_object_id": "schema.chinook.customer.customerid",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "relation_id": "relation.fk_invoiceline_invoiceid",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.chinook.invoiceline.invoiceid",
+      "target_object_id": "schema.chinook.invoice.invoiceid",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "relation_id": "relation.fk_invoiceline_trackid",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.chinook.invoiceline.trackid",
+      "target_object_id": "schema.chinook.track.trackid",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "relation_id": "relation.fk_playlisttrack_playlistid",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.chinook.playlisttrack.playlistid",
+      "target_object_id": "schema.chinook.playlist.playlistid",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "relation_id": "relation.fk_playlisttrack_trackid",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.chinook.playlisttrack.trackid",
+      "target_object_id": "schema.chinook.track.trackid",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "relation_id": "relation.fk_track_albumid",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.chinook.track.albumid",
+      "target_object_id": "schema.chinook.album.albumid",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "relation_id": "relation.fk_track_genreid",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.chinook.track.genreid",
+      "target_object_id": "schema.chinook.genre.genreid",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    },
+    {
+      "relation_id": "relation.fk_track_mediatypeid",
+      "relation_type": "foreign_key",
+      "source_object_id": "schema.chinook.track.mediatypeid",
+      "target_object_id": "schema.chinook.mediatype.mediatypeid",
+      "direction": "directed",
+      "cardinality": "many_to_one",
+      "source_refs": [
+        "source.chinook_schema_extract"
+      ]
+    }
+  ]
+}

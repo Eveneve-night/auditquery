@@ -1,0 +1,162 @@
+{
+  "schema_id": "chinook-v1.4.5",
+  "dialect": "sqlite",
+  "default_schema": "main",
+  "description": "数字媒体商店示例库。当前模型评测只允许单表 SELECT。",
+  "tables": {
+    "Album": {
+      "description": "专辑",
+      "aliases": ["专辑", "唱片"],
+      "row_count": 347,
+      "columns": {
+        "AlbumId": {"type": "INTEGER", "primary_key": true, "description": "专辑ID"},
+        "Title": {"type": "NVARCHAR(160)", "description": "专辑标题"},
+        "ArtistId": {"type": "INTEGER", "description": "艺术家ID"}
+      }
+    },
+    "Artist": {
+      "description": "艺术家",
+      "aliases": ["艺术家", "歌手", "乐队"],
+      "row_count": 275,
+      "columns": {
+        "ArtistId": {"type": "INTEGER", "primary_key": true, "description": "艺术家ID"},
+        "Name": {"type": "NVARCHAR(120)", "description": "艺术家名称"}
+      }
+    },
+    "Customer": {
+      "description": "客户",
+      "aliases": ["客户", "顾客", "买家"],
+      "row_count": 59,
+      "columns": {
+        "CustomerId": {"type": "INTEGER", "primary_key": true, "description": "客户ID"},
+        "FirstName": {"type": "NVARCHAR(40)", "description": "名"},
+        "LastName": {"type": "NVARCHAR(20)", "description": "姓"},
+        "Company": {"type": "NVARCHAR(80)", "description": "公司"},
+        "Address": {"type": "NVARCHAR(70)", "description": "地址"},
+        "City": {"type": "NVARCHAR(40)", "description": "城市"},
+        "State": {"type": "NVARCHAR(40)", "description": "州或省"},
+        "Country": {"type": "NVARCHAR(40)", "description": "国家"},
+        "PostalCode": {"type": "NVARCHAR(10)", "description": "邮编"},
+        "Phone": {"type": "NVARCHAR(24)", "description": "电话"},
+        "Fax": {"type": "NVARCHAR(24)", "description": "传真"},
+        "Email": {"type": "NVARCHAR(60)", "description": "邮箱"},
+        "SupportRepId": {"type": "INTEGER", "description": "客户支持员工ID"}
+      }
+    },
+    "Employee": {
+      "description": "员工",
+      "aliases": ["员工", "雇员", "销售支持"],
+      "row_count": 8,
+      "columns": {
+        "EmployeeId": {"type": "INTEGER", "primary_key": true, "description": "员工ID"},
+        "LastName": {"type": "NVARCHAR(20)", "description": "姓"},
+        "FirstName": {"type": "NVARCHAR(20)", "description": "名"},
+        "Title": {"type": "NVARCHAR(30)", "description": "职位"},
+        "ReportsTo": {"type": "INTEGER", "description": "直属上级员工ID"},
+        "BirthDate": {"type": "DATETIME", "description": "出生日期"},
+        "HireDate": {"type": "DATETIME", "description": "入职日期"},
+        "Address": {"type": "NVARCHAR(70)", "description": "地址"},
+        "City": {"type": "NVARCHAR(40)", "description": "城市"},
+        "State": {"type": "NVARCHAR(40)", "description": "州或省"},
+        "Country": {"type": "NVARCHAR(40)", "description": "国家"},
+        "PostalCode": {"type": "NVARCHAR(10)", "description": "邮编"},
+        "Phone": {"type": "NVARCHAR(24)", "description": "电话"},
+        "Fax": {"type": "NVARCHAR(24)", "description": "传真"},
+        "Email": {"type": "NVARCHAR(60)", "description": "邮箱"}
+      }
+    },
+    "Genre": {
+      "description": "音乐流派",
+      "aliases": ["流派", "曲风", "类型"],
+      "row_count": 25,
+      "columns": {
+        "GenreId": {"type": "INTEGER", "primary_key": true, "description": "流派ID"},
+        "Name": {"type": "NVARCHAR(120)", "description": "流派名称"}
+      }
+    },
+    "Invoice": {
+      "description": "发票及账单总额",
+      "aliases": ["发票", "账单", "销售收入"],
+      "row_count": 412,
+      "columns": {
+        "InvoiceId": {"type": "INTEGER", "primary_key": true, "description": "发票ID"},
+        "CustomerId": {"type": "INTEGER", "description": "客户ID"},
+        "InvoiceDate": {"type": "DATETIME", "description": "开票日期"},
+        "BillingAddress": {"type": "NVARCHAR(70)", "description": "账单地址"},
+        "BillingCity": {"type": "NVARCHAR(40)", "description": "账单城市"},
+        "BillingState": {"type": "NVARCHAR(40)", "description": "账单州或省"},
+        "BillingCountry": {"type": "NVARCHAR(40)", "description": "账单国家"},
+        "BillingPostalCode": {"type": "NVARCHAR(10)", "description": "账单邮编"},
+        "Total": {"type": "NUMERIC(10,2)", "description": "发票总金额"}
+      }
+    },
+    "InvoiceLine": {
+      "description": "发票明细",
+      "aliases": ["发票明细", "订单行"],
+      "row_count": 2240,
+      "columns": {
+        "InvoiceLineId": {"type": "INTEGER", "primary_key": true, "description": "发票明细ID"},
+        "InvoiceId": {"type": "INTEGER", "description": "发票ID"},
+        "TrackId": {"type": "INTEGER", "description": "曲目ID"},
+        "UnitPrice": {"type": "NUMERIC(10,2)", "description": "成交单价"},
+        "Quantity": {"type": "INTEGER", "description": "数量"}
+      }
+    },
+    "MediaType": {
+      "description": "媒体编码类型",
+      "aliases": ["媒体类型", "文件类型", "编码类型"],
+      "row_count": 5,
+      "columns": {
+        "MediaTypeId": {"type": "INTEGER", "primary_key": true, "description": "媒体类型ID"},
+        "Name": {"type": "NVARCHAR(120)", "description": "媒体类型名称"}
+      }
+    },
+    "Playlist": {
+      "description": "播放列表",
+      "aliases": ["播放列表", "歌单"],
+      "row_count": 18,
+      "columns": {
+        "PlaylistId": {"type": "INTEGER", "primary_key": true, "description": "播放列表ID"},
+        "Name": {"type": "NVARCHAR(120)", "description": "播放列表名称"}
+      }
+    },
+    "PlaylistTrack": {
+      "description": "播放列表与曲目的关联",
+      "aliases": ["歌单曲目", "播放列表曲目"],
+      "row_count": 8715,
+      "columns": {
+        "PlaylistId": {"type": "INTEGER", "primary_key": true, "description": "播放列表ID"},
+        "TrackId": {"type": "INTEGER", "primary_key": true, "description": "曲目ID"}
+      }
+    },
+    "Track": {
+      "description": "可销售的音频或视频曲目",
+      "aliases": ["曲目", "歌曲", "音轨"],
+      "row_count": 3503,
+      "columns": {
+        "TrackId": {"type": "INTEGER", "primary_key": true, "description": "曲目ID"},
+        "Name": {"type": "NVARCHAR(200)", "description": "曲目名称"},
+        "AlbumId": {"type": "INTEGER", "description": "专辑ID"},
+        "MediaTypeId": {"type": "INTEGER", "description": "媒体类型ID"},
+        "GenreId": {"type": "INTEGER", "description": "流派ID"},
+        "Composer": {"type": "NVARCHAR(220)", "description": "作曲者"},
+        "Milliseconds": {"type": "INTEGER", "description": "时长，毫秒"},
+        "Bytes": {"type": "INTEGER", "description": "文件大小，字节"},
+        "UnitPrice": {"type": "NUMERIC(10,2)", "description": "目录单价"}
+      }
+    }
+  },
+  "relationships": [
+    {"from":"Album.ArtistId","to":"Artist.ArtistId"},
+    {"from":"Customer.SupportRepId","to":"Employee.EmployeeId"},
+    {"from":"Employee.ReportsTo","to":"Employee.EmployeeId"},
+    {"from":"Invoice.CustomerId","to":"Customer.CustomerId"},
+    {"from":"InvoiceLine.InvoiceId","to":"Invoice.InvoiceId"},
+    {"from":"InvoiceLine.TrackId","to":"Track.TrackId"},
+    {"from":"PlaylistTrack.PlaylistId","to":"Playlist.PlaylistId"},
+    {"from":"PlaylistTrack.TrackId","to":"Track.TrackId"},
+    {"from":"Track.AlbumId","to":"Album.AlbumId"},
+    {"from":"Track.GenreId","to":"Genre.GenreId"},
+    {"from":"Track.MediaTypeId","to":"MediaType.MediaTypeId"}
+  ]
+}

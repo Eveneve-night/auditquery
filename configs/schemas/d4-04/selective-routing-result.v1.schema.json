@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "selective-routing-result.v1",
+  "title": "D4-04 selective routing result v1",
+  "type": "object",
+  "required": [
+    "result_version",
+    "mode",
+    "required_slots_source",
+    "intent",
+    "policy_ref",
+    "raw_score",
+    "slot_assessments",
+    "action",
+    "reason_code",
+    "typed_decision",
+    "trace_event",
+    "requires_d4_02_safety_gate",
+    "sql_execution_authorized"
+  ],
+  "properties": {
+    "result_version": {"const": "1.0.0"},
+    "mode": {"const": "uncalibrated_raw_score"},
+    "required_slots_source": {"const": "auto_domain_pack"},
+    "intent": {"enum": ["sql", "rag", "cross_source", "unknown"]},
+    "policy_ref": {
+      "type": "object",
+      "required": ["policy_id", "version", "sha256"],
+      "properties": {
+        "policy_id": {"const": "d4-selective-decision"},
+        "version": {"const": "1.0.0"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "raw_score": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "slot_assessments": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/slot_assessment"},
+      "maxItems": 64
+    },
+    "action": {"enum": ["accept", "clarify", "escalate", "reject"]},
+    "reason_code": {
+      "enum": [
+        "accepted_at_raw_score_threshold",
+        "required_slot_missing",
+        "slot_conflicting",
+        "slot_state_unknown",
+        "hard_rule_failed",
+        "soft_rule_requires_clarification",
+        "soft_rule_below_clarify_threshold",
+        "raw_score_below_accept",
+        "raw_score_below_abstain",
+        "outside_candidate_set",
+        "candidate_score_tie",
+        "unsupported_intent",
+        "unknown_intent",
+        "policy_restriction"
+      ]
+    },
+    "typed_decision": {"$ref": "typed-decision.v1"},
+    "trace_event": {"$ref": "typed-decision-trace-event.v1"},
+    "requires_d4_02_safety_gate": {"const": true},
+    "sql_execution_authorized": {"const": false}
+  },
+  "$defs": {
+    "ref_id": {"type": "string", "pattern": "^[a-z][a-z0-9_.:-]{0,127}$"},
+    "slot_assessment": {
+      "type": "object",
+      "required": [
+        "slot_id",
+        "required",
+        "status",
+        "value_count",
+        "evidence_refs",
+        "reason_codes"
+      ],
+      "properties": {
+        "slot_id": {"$ref": "#/$defs/ref_id"},
+        "required": {"type": ["boolean", "null"]},
+        "status": {"enum": ["filled", "missing", "conflicting", "unknown"]},
+        "value_count": {"type": "integer", "minimum": 0, "maximum": 16},
+        "evidence_refs": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/ref_id"},
+          "maxItems": 32,
+          "uniqueItems": true
+        },
+        "reason_codes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{1,63}$"
+          },
+          "maxItems": 16,
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

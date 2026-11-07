@@ -1,0 +1,455 @@
+{
+  "version": "1.0.0",
+  "source": "original_project_synthetic",
+  "license": "MIT",
+  "split": "prompt_dev",
+  "document_count": 32,
+  "family_count": 6,
+  "independent_blind_samples": 0,
+  "documents": [
+    {
+      "document_id": "prose-01",
+      "path": "pdfs/prose-01.pdf",
+      "family_id": "prose",
+      "structure_type": "prose",
+      "split": "prompt_dev",
+      "pages": 2,
+      "sha256": "069a9215480c7e40aec863a149f0d47f94962bca447d7d65103180c123edeb51",
+      "generation_parameters": {
+        "serial": "101",
+        "quantity": 11,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "prose-02",
+      "path": "pdfs/prose-02.pdf",
+      "family_id": "prose",
+      "structure_type": "prose",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "a4ff6bc861143a4869a7362dc3f25fceef5ae672cfc71112f9b57d9344c55385",
+      "generation_parameters": {
+        "serial": "102",
+        "quantity": 18,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "prose-03",
+      "path": "pdfs/prose-03.pdf",
+      "family_id": "prose",
+      "structure_type": "prose",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "07844a83e89f11a5394b690bcdd360ff4aa61e9e041793e12d9f797b727d073e",
+      "generation_parameters": {
+        "serial": "103",
+        "quantity": 25,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "prose-04",
+      "path": "pdfs/prose-04.pdf",
+      "family_id": "prose",
+      "structure_type": "prose",
+      "split": "prompt_dev",
+      "pages": 2,
+      "sha256": "6a4032c61e23717fc4b4a276ec1bfef6f23e137440edc361cbea5412257327da",
+      "generation_parameters": {
+        "serial": "104",
+        "quantity": 32,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "prose-05",
+      "path": "pdfs/prose-05.pdf",
+      "family_id": "prose",
+      "structure_type": "prose",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "6d87d4785fe0ad904056b010559aa09b907f4dd1f31c1d49565bb403559745f6",
+      "generation_parameters": {
+        "serial": "105",
+        "quantity": 39,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "prose-06",
+      "path": "pdfs/prose-06.pdf",
+      "family_id": "prose",
+      "structure_type": "prose",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "e667303ccf22cb45f671598daf2d8e8dbf5505b4e5aa78164e82c5863c758c85",
+      "generation_parameters": {
+        "serial": "106",
+        "quantity": 46,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "columns-01",
+      "path": "pdfs/columns-01.pdf",
+      "family_id": "columns",
+      "structure_type": "columns",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "11111acedc94ddad42db04cba44c23ac5e722a34191998909ea59679685f1f2a",
+      "generation_parameters": {
+        "serial": "201",
+        "quantity": 12,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "columns-02",
+      "path": "pdfs/columns-02.pdf",
+      "family_id": "columns",
+      "structure_type": "columns",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "cdf20ab5d7f9bcabf59c7e061402a8324d2daae4ae7c2c77bdd1a4e1b6b8a473",
+      "generation_parameters": {
+        "serial": "202",
+        "quantity": 19,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "columns-03",
+      "path": "pdfs/columns-03.pdf",
+      "family_id": "columns",
+      "structure_type": "columns",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "cedc88cf05fedbcb688f0779952795a007b5aec4e5bd0f579f6b0781e568216e",
+      "generation_parameters": {
+        "serial": "203",
+        "quantity": 26,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "columns-04",
+      "path": "pdfs/columns-04.pdf",
+      "family_id": "columns",
+      "structure_type": "columns",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "e80bf74835e3a3d11d2749c93c56355656f20bb45eb9b41db1e4cb92a7398690",
+      "generation_parameters": {
+        "serial": "204",
+        "quantity": 33,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "columns-05",
+      "path": "pdfs/columns-05.pdf",
+      "family_id": "columns",
+      "structure_type": "columns",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "6fd271abaefefd83fcfa6696e105c947cd794a32c623b2e66389587de41b119d",
+      "generation_parameters": {
+        "serial": "205",
+        "quantity": 40,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "columns-06",
+      "path": "pdfs/columns-06.pdf",
+      "family_id": "columns",
+      "structure_type": "columns",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "9fda67eac7c58d86f2d17d44dd1b38a3550d8b6fdadebae4cc97a41022dd310d",
+      "generation_parameters": {
+        "serial": "206",
+        "quantity": 47,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "ruled_table-01",
+      "path": "pdfs/ruled_table-01.pdf",
+      "family_id": "ruled_table",
+      "structure_type": "ruled_table",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "742716da3414d9f857d8778cbae9c51c397565381825271088f1e42749b39907",
+      "generation_parameters": {
+        "serial": "301",
+        "quantity": 13,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "ruled_table-02",
+      "path": "pdfs/ruled_table-02.pdf",
+      "family_id": "ruled_table",
+      "structure_type": "ruled_table",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "6176286e2fcbfedea25eb3103836c390c5beefd7f464010969330f2eb573708d",
+      "generation_parameters": {
+        "serial": "302",
+        "quantity": 20,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "ruled_table-03",
+      "path": "pdfs/ruled_table-03.pdf",
+      "family_id": "ruled_table",
+      "structure_type": "ruled_table",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "a9b083067a61de2bb27fff5e37689f0893a0a84830b05576db0fdb184d6ff95d",
+      "generation_parameters": {
+        "serial": "303",
+        "quantity": 27,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "ruled_table-04",
+      "path": "pdfs/ruled_table-04.pdf",
+      "family_id": "ruled_table",
+      "structure_type": "ruled_table",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "d04167751aa6cb76f3a4674461d43fec155e391c97e4fd342f978b7b09d2358b",
+      "generation_parameters": {
+        "serial": "304",
+        "quantity": 34,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "ruled_table-05",
+      "path": "pdfs/ruled_table-05.pdf",
+      "family_id": "ruled_table",
+      "structure_type": "ruled_table",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "a242d27dff726b55471f76e134135748403585688e1fde8e93eb4e6690089edd",
+      "generation_parameters": {
+        "serial": "305",
+        "quantity": 41,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "ruled_table-06",
+      "path": "pdfs/ruled_table-06.pdf",
+      "family_id": "ruled_table",
+      "structure_type": "ruled_table",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "ee98321203498e58ebb9b94333fc08cdf3d2bf8426c6fa2f07f8914d627cd564",
+      "generation_parameters": {
+        "serial": "306",
+        "quantity": 48,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "sparse_table-01",
+      "path": "pdfs/sparse_table-01.pdf",
+      "family_id": "sparse_table",
+      "structure_type": "sparse_table",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "37bd9780920fe7c641647603fa7580c7caeec46b48e1e735d02093c2491f8682",
+      "generation_parameters": {
+        "serial": "401",
+        "quantity": 14,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "sparse_table-02",
+      "path": "pdfs/sparse_table-02.pdf",
+      "family_id": "sparse_table",
+      "structure_type": "sparse_table",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "79d7b0e27ca8ce7d9a4552d6a071eb9635c31ea5ab8c456d9db79d5f94f573b4",
+      "generation_parameters": {
+        "serial": "402",
+        "quantity": 21,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "sparse_table-03",
+      "path": "pdfs/sparse_table-03.pdf",
+      "family_id": "sparse_table",
+      "structure_type": "sparse_table",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "115f8f00a89794810043bca061686c8a45cd39c491c6ffd1ba7a875c69d3f174",
+      "generation_parameters": {
+        "serial": "403",
+        "quantity": 28,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "sparse_table-04",
+      "path": "pdfs/sparse_table-04.pdf",
+      "family_id": "sparse_table",
+      "structure_type": "sparse_table",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "5e5ec568d52067a60359a1b337a492a660491fd6bee0faa6090d398c9dcbf804",
+      "generation_parameters": {
+        "serial": "404",
+        "quantity": 35,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "sparse_table-05",
+      "path": "pdfs/sparse_table-05.pdf",
+      "family_id": "sparse_table",
+      "structure_type": "sparse_table",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "977821aa9f0d95755a8e9de992487fcb2c755f936f2230c747e7928f99f91f76",
+      "generation_parameters": {
+        "serial": "405",
+        "quantity": 42,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "sparse_table-06",
+      "path": "pdfs/sparse_table-06.pdf",
+      "family_id": "sparse_table",
+      "structure_type": "sparse_table",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "25a3d6a60d310c535b2c811c4b860477966c2f6b74d706c436533d1364ec590b",
+      "generation_parameters": {
+        "serial": "406",
+        "quantity": 49,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "mixed-01",
+      "path": "pdfs/mixed-01.pdf",
+      "family_id": "mixed",
+      "structure_type": "mixed",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "19975fdbb83e17d1c615ee3a4ef137ad8773bd8b51d2f874ff67af1833643363",
+      "generation_parameters": {
+        "serial": "501",
+        "quantity": 15,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "mixed-02",
+      "path": "pdfs/mixed-02.pdf",
+      "family_id": "mixed",
+      "structure_type": "mixed",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "581615fcbe0bb50aa6ef46d4fe3eafb00f724a183741cdec38f3b3d6f856a7f2",
+      "generation_parameters": {
+        "serial": "502",
+        "quantity": 22,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "mixed-03",
+      "path": "pdfs/mixed-03.pdf",
+      "family_id": "mixed",
+      "structure_type": "mixed",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "8b42a1c55192850fa0513f9b6f76ecbf550f12f5dc00cb229aee4074850eeb4f",
+      "generation_parameters": {
+        "serial": "503",
+        "quantity": 29,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "mixed-04",
+      "path": "pdfs/mixed-04.pdf",
+      "family_id": "mixed",
+      "structure_type": "mixed",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "4a79e62ee907de82dba31637f36fdd16b74c9eaba8e6a8aa6a031c2179d8aa3d",
+      "generation_parameters": {
+        "serial": "504",
+        "quantity": 36,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "mixed-05",
+      "path": "pdfs/mixed-05.pdf",
+      "family_id": "mixed",
+      "structure_type": "mixed",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "9dfb0af03a5b4d1021d4676e37c4bc3726fcc3dc2e3d50c5f9f50e2fad805d65",
+      "generation_parameters": {
+        "serial": "505",
+        "quantity": 43,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "mixed-06",
+      "path": "pdfs/mixed-06.pdf",
+      "family_id": "mixed",
+      "structure_type": "mixed",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "6f8e631edd8bf63ff89864711edc82e32b0336d67c361abc1b117a5a19151f9a",
+      "generation_parameters": {
+        "serial": "506",
+        "quantity": 50,
+        "generator": "build_round2_complexity_assets.v1"
+      }
+    },
+    {
+      "document_id": "scan-boundary-01",
+      "path": "pdfs/scan-boundary-01.pdf",
+      "family_id": "image_only",
+      "structure_type": "image_only",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "74f8cbb85d572c4a3e49f2128f2f45d36fd4db88c593f976cc9054a693bc067d",
+      "generation_parameters": {
+        "generator": "image_only_boundary.v1"
+      }
+    },
+    {
+      "document_id": "scan-boundary-02",
+      "path": "pdfs/scan-boundary-02.pdf",
+      "family_id": "image_only",
+      "structure_type": "image_only",
+      "split": "prompt_dev",
+      "pages": 1,
+      "sha256": "d1267e414396f1174b71858a126c8d851e952cbadaa6418b81f22bbe4157d475",
+      "generation_parameters": {
+        "generator": "image_only_boundary.v1"
+      }
+    }
+  ]
+}

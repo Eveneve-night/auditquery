@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "source-catalog.v1",
+  "title": "Fixed source catalog v1",
+  "type": "object",
+  "required": ["catalog_id", "version", "schema_version", "hash_algorithm", "sources"],
+  "properties": {
+    "catalog_id": {"const": "d4-fixed-source-catalog"},
+    "version": {"const": "1.0.0"},
+    "schema_version": {"const": "1.0.0"},
+    "hash_algorithm": {"const": "sha256-utf8-lf"},
+    "sources": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {"$ref": "#/$defs/source"}
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "required": [
+        "source_id",
+        "route_kind",
+        "display_name",
+        "description",
+        "data_level",
+        "license",
+        "model_context",
+        "resource_refs"
+      ],
+      "properties": {
+        "source_id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]{1,63}$"},
+        "route_kind": {"type": "string", "enum": ["sql", "rag"]},
+        "display_name": {"type": "string", "minLength": 1, "maxLength": 80},
+        "description": {"type": "string", "minLength": 1, "maxLength": 240},
+        "data_level": {"type": "string", "enum": ["L0", "L1"]},
+        "license": {"type": "string", "minLength": 1, "maxLength": 80},
+        "model_context": {"const": "source_id_only"},
+        "resource_refs": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "required": ["path", "sha256"],
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._/-]{1,255}$"
+              },
+              "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

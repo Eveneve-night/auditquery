@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "d4-07-public-scenarios.v1",
+  "title": "D4-07 public synthetic demo scenarios v1",
+  "type": "object",
+  "required": ["manifest_id", "version", "split", "scenarios"],
+  "properties": {
+    "manifest_id": {"const": "d4-07-public-demo"},
+    "version": {"const": "1.0.0"},
+    "split": {"const": "public_synthetic_demo"},
+    "scenarios": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 16,
+      "items": {
+        "oneOf": [
+          {"$ref": "#/$defs/sql_scenario"},
+          {"$ref": "#/$defs/rag_scenario"}
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "ref_id": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,127}$"},
+    "scenario_id": {"type": "string", "pattern": "^D4-07-[A-Z]+-[0-9]{3}$"},
+    "observation": {
+      "type": "object",
+      "required": ["values", "evidence_refs"],
+      "properties": {
+        "values": {
+          "type": "array",
+          "items": {"type": ["string", "number", "integer", "boolean"]},
+          "minItems": 1,
+          "maxItems": 8
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/ref_id"},
+          "minItems": 1,
+          "maxItems": 16,
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "reply": {
+      "type": "object",
+      "required": ["value", "evidence_ref"],
+      "properties": {
+        "value": {"type": ["string", "number", "integer", "boolean"]},
+        "evidence_ref": {"$ref": "#/$defs/ref_id"}
+      },
+      "additionalProperties": false
+    },
+    "proposal": {
+      "type": "object",
+      "required": ["proposal_id", "sql", "tables", "params"],
+      "properties": {
+        "proposal_id": {"$ref": "#/$defs/ref_id"},
+        "sql": {"type": "string", "minLength": 1, "maxLength": 4096},
+        "tables": {
+          "type": "array",
+          "items": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]{0,63}$"},
+          "minItems": 1,
+          "maxItems": 1,
+          "uniqueItems": true
+        },
+        "params": {
+          "type": "array",
+          "items": {"type": ["string", "number", "integer", "boolean", "null"]},
+          "maxItems": 16
+        }
+      },
+      "additionalProperties": false
+    },
+    "sql_scenario": {
+      "type": "object",
+      "required": ["id", "title", "route", "query", "initial_observations", "structured_replies", "sql_proposal"],
+      "properties": {
+        "id": {"$ref": "#/$defs/scenario_id"},
+        "title": {"type": "string", "minLength": 1, "maxLength": 80},
+        "route": {"const": "sql"},
+        "query": {"type": "string", "minLength": 1, "maxLength": 256},
+        "initial_observations": {
+          "type": "object",
+          "propertyNames": {"pattern": "^slot\\.[a-z][a-z0-9_]{1,63}$"},
+          "additionalProperties": {"$ref": "#/$defs/observation"},
+          "minProperties": 1,
+          "maxProperties": 16
+        },
+        "structured_replies": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/reply"},
+          "minItems": 1,
+          "maxItems": 2
+        },
+        "sql_proposal": {"$ref": "#/$defs/proposal"}
+      },
+      "additionalProperties": false
+    },
+    "rag_scenario": {
+      "type": "object",
+      "required": ["id", "title", "route", "query", "top_k", "min_score"],
+      "properties": {
+        "id": {"$ref": "#/$defs/scenario_id"},
+        "title": {"type": "string", "minLength": 1, "maxLength": 80},
+        "route": {"const": "rag"},
+        "query": {"type": "string", "minLength": 1, "maxLength": 256},
+        "top_k": {"type": "integer", "minimum": 1, "maximum": 5},
+        "min_score": {"type": "number", "minimum": 0, "maximum": 1000}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

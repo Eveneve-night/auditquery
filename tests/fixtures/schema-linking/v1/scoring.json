@@ -1,0 +1,346 @@
+[
+  {
+    "case_id": "public.001",
+    "table_ids": [
+      "schema.otc.sales_order"
+    ],
+    "field_ids": [
+      "schema.otc.sales_order.order_amount"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.002",
+    "table_ids": [
+      "schema.otc.sales_order_history"
+    ],
+    "field_ids": [
+      "schema.otc.sales_order_history.order_amount"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.003",
+    "table_ids": [
+      "schema.otc.sales_order_history"
+    ],
+    "field_ids": [
+      "schema.otc.sales_order_history.archived_at"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.004",
+    "table_ids": [
+      "schema.otc.sales_order_line"
+    ],
+    "field_ids": [
+      "schema.otc.sales_order_line.quantity"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.005",
+    "table_ids": [
+      "schema.otc.sales_order_line_history"
+    ],
+    "field_ids": [
+      "schema.otc.sales_order_line_history.quantity"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.006",
+    "table_ids": [
+      "schema.otc.sales_order_daily_summary"
+    ],
+    "field_ids": [
+      "schema.otc.sales_order_daily_summary.order_count"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.007",
+    "table_ids": [
+      "schema.otc.sales_order_monthly_summary"
+    ],
+    "field_ids": [
+      "schema.otc.sales_order_monthly_summary.order_amount"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.008",
+    "table_ids": [
+      "schema.otc.sales_order_daily_summary"
+    ],
+    "field_ids": [],
+    "action": "select"
+  },
+  {
+    "case_id": "public.009",
+    "table_ids": [
+      "schema.otc.sales_order_monthly_summary"
+    ],
+    "field_ids": [],
+    "action": "select"
+  },
+  {
+    "case_id": "public.010",
+    "table_ids": [
+      "schema.otc.receivable"
+    ],
+    "field_ids": [
+      "schema.otc.receivable.receivable_amount"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.011",
+    "table_ids": [
+      "schema.otc.receipt"
+    ],
+    "field_ids": [
+      "schema.otc.receipt.received_amount"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.012",
+    "table_ids": [
+      "schema.otc.receipt"
+    ],
+    "field_ids": [
+      "schema.otc.receipt.received_at"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.013",
+    "table_ids": [
+      "schema.otc.receivable_installment"
+    ],
+    "field_ids": [
+      "schema.otc.receivable_installment.due_date"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.014",
+    "table_ids": [
+      "schema.otc.receipt_allocation"
+    ],
+    "field_ids": [
+      "schema.otc.receipt_allocation.allocated_amount"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.015",
+    "table_ids": [
+      "schema.otc.payment"
+    ],
+    "field_ids": [
+      "schema.otc.payment.paid_amount"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.016",
+    "table_ids": [
+      "schema.otc.payable"
+    ],
+    "field_ids": [
+      "schema.otc.payable.payable_amount"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.017",
+    "table_ids": [
+      "schema.otc.invoice"
+    ],
+    "field_ids": [
+      "schema.otc.invoice.invoiced_amount"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.018",
+    "table_ids": [
+      "schema.otc.invoice_line"
+    ],
+    "field_ids": [
+      "schema.otc.invoice_line.tax_amount"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.019",
+    "table_ids": [
+      "schema.otc.shipment_line"
+    ],
+    "field_ids": [
+      "schema.otc.shipment_line.shipped_quantity"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.020",
+    "table_ids": [
+      "schema.otc.shipment_tracking"
+    ],
+    "field_ids": [
+      "schema.otc.shipment_tracking.event_time"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.021",
+    "table_ids": [
+      "schema.otc.inventory_balance"
+    ],
+    "field_ids": [
+      "schema.otc.inventory_balance.on_hand_quantity"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.022",
+    "table_ids": [
+      "schema.otc.inventory_movement"
+    ],
+    "field_ids": [
+      "schema.otc.inventory_movement.movement_quantity"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.023",
+    "table_ids": [
+      "schema.otc.stock_reservation"
+    ],
+    "field_ids": [
+      "schema.otc.stock_reservation.reserved_quantity"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.024",
+    "table_ids": [
+      "schema.otc.purchase_order"
+    ],
+    "field_ids": [
+      "schema.otc.purchase_order.purchase_amount"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.025",
+    "table_ids": [
+      "schema.otc.purchase_order_line"
+    ],
+    "field_ids": [
+      "schema.otc.purchase_order_line.quantity"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.026",
+    "table_ids": [
+      "schema.otc.goods_receipt_line"
+    ],
+    "field_ids": [
+      "schema.otc.goods_receipt_line.quantity"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.027",
+    "table_ids": [
+      "schema.otc.customer_contact"
+    ],
+    "field_ids": [
+      "schema.otc.customer_contact.contact_name"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.028",
+    "table_ids": [
+      "schema.otc.product"
+    ],
+    "field_ids": [
+      "schema.otc.product.unit_price"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.029",
+    "table_ids": [
+      "schema.otc.product"
+    ],
+    "field_ids": [
+      "schema.otc.product.unit_price"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.030",
+    "table_ids": [],
+    "field_ids": [],
+    "action": "clarify"
+  },
+  {
+    "case_id": "public.031",
+    "table_ids": [],
+    "field_ids": [],
+    "action": "abstain"
+  },
+  {
+    "case_id": "public.032",
+    "table_ids": [],
+    "field_ids": [],
+    "action": "abstain"
+  },
+  {
+    "case_id": "public.033",
+    "table_ids": [],
+    "field_ids": [],
+    "action": "clarify"
+  },
+  {
+    "case_id": "public.034",
+    "table_ids": [],
+    "field_ids": [],
+    "action": "clarify"
+  },
+  {
+    "case_id": "public.035",
+    "table_ids": [],
+    "field_ids": [],
+    "action": "clarify"
+  },
+  {
+    "case_id": "public.036",
+    "table_ids": [],
+    "field_ids": [],
+    "action": "abstain"
+  },
+  {
+    "case_id": "public.037",
+    "table_ids": [
+      "schema.otc.sales_order_monthly_summary"
+    ],
+    "field_ids": [
+      "schema.otc.sales_order_monthly_summary.order_count"
+    ],
+    "action": "select"
+  },
+  {
+    "case_id": "public.038",
+    "table_ids": [],
+    "field_ids": [],
+    "action": "clarify"
+  }
+]

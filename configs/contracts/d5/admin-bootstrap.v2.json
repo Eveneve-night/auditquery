@@ -1,0 +1,87 @@
+{
+  "contract_id": "d5-admin-bootstrap",
+  "contract_version": "2.0.0",
+  "effective_date": "2026-10-13",
+  "authorization": "human_owner_explicit_baseline_change",
+  "supersedes": {
+    "contract": "product-layer.v1.json",
+    "contract_version": "1.0.0",
+    "scope": [
+      "roles.bootstrap",
+      "endpoints.bootstrap_admin",
+      "security.admin_bootstrap",
+      "AuthStore.bootstrap_admin_once"
+    ],
+    "retained": "除上述管理员首次初始化与可选改密语义外，product-layer.v1 的权限、审计、数据分类、Store、PDF、单模型与安全边界继续有效。"
+  },
+  "api": {
+    "route_major": "v3",
+    "schema": "admin-bootstrap-api.v2.schema.json",
+    "transport_contract_version": "2.0.0"
+  },
+  "initial_credentials": {
+    "username": "admin",
+    "initial_password": "ictagent123",
+    "create_only_when": "auth_store_empty",
+    "password_storage": "argon2id_hash_only",
+    "must_change_password": false,
+    "password_change_policy": "optional"
+  },
+  "lifecycle": {
+    "initialization": [
+      "仅当 AuthStore 完全为空时，以单一事务创建 admin、Argon2id 密码哈希和 must_change_password=false；不得持久化明文。",
+      "初始化失败必须整体回滚；并发初始化只能一个成功。",
+      "AuthStore 已存在任何管理员状态时不得创建、覆盖或重置管理员。"
+    ],
+    "authenticated_session": [
+      "默认密码登录成功后的会话必须返回 must_change_password=false、password_change_available=true，并允许正常管理操作。",
+      "管理员可选择 POST /api/v3/admin/password 修改密码，也可在保持默认密码时继续使用回环地址上的本地管理面。",
+      "可选改密不降低服务端认证、RBAC、CSRF、限流、审计和会话重放防护。"
+    ],
+    "password_change": [
+      "可选改密必须校验当前会话、CSRF、当前密码和新密码策略，并以单一事务更新 Argon2id 哈希、提升会话世代和撤销其他会话。",
+      "改密成功后默认密码永久失效；失败不得推进状态、消费重放标识或撤销会话。",
+      "改密后的当前会话可轮换或保留，但契约响应必须明确 must_change_password=false、other_sessions_revoked=true。"
+    ],
+    "restart_and_recovery": [
+      "重启、备份恢复、升级和重复初始化不得恢复已经被改密替换的默认密码，也不得把可选改密改成强制改密。",
+      "恢复数据包含已初始化管理员时不得执行空库初始化逻辑。"
+    ]
+  },
+  "deployment_guard": {
+    "default_bind": "127.0.0.1",
+    "rules": [
+      "默认密码尚未修改时，仅允许回环地址上的本地演示管理面。",
+      "非回环监听、生产模式或 TLS 反向代理部署在默认密码仍有效时，readiness 必须失败或管理面必须拒绝启动。",
+      "该限制不能由前端隐藏按钮替代，必须由服务端状态强制。"
+    ]
+  },
+  "confidentiality": {
+    "forbidden_sinks": [
+      "log",
+      "audit",
+      "http_response",
+      "frontend_state",
+      "browser_storage",
+      "cookie",
+      "url",
+      "screenshot",
+      "machine_report",
+      "backup_export"
+    ],
+    "frontend_rules": [
+      "根路由保持普通访客问答，管理员登录入口位于设置。",
+      "用户名可固定或预填 admin；密码输入框必须为空且不得持久化。",
+      "前端在设置中提供可选改密入口，不得强制跳转或阻止已认证管理员使用管理功能；服务端仍是唯一权限边界。"
+    ]
+  },
+  "migration": {
+    "v1_empty_store": "不再发放 bootstrap token；按 v2 自动初始化默认管理员。",
+    "v1_initialized_store": "保留现有管理员哈希和状态，绝不套用默认密码或覆盖凭据。",
+    "consumer_impact": {
+      "B": "实现空库初始化、must_change_password=false、可选改密端点、权限 Gate、部署 readiness 和原子回滚。",
+      "C": "实现设置入口、空密码框和可选改密入口；不得把前端控制作为安全边界。"
+    }
+  },
+  "implementation_status": "contract_only_b_and_c_runtime_pending"
+}

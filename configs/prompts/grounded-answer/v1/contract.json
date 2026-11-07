@@ -1,0 +1,17 @@
+{
+  "contract_id": "grounded-answer-contract.v1",
+  "contract_version": "1.0.0",
+  "task_type": "grounded_answer",
+  "prompt_version": "grounded-answer.v1",
+  "prompt_path": "configs/prompts/grounded-answer/v1/system.md",
+  "output_schema_id": "grounded-answer-result.v1",
+  "output_schema_path": "configs/schemas/tasks/grounded-answer-result.v1.schema.json",
+  "model": "qwen3.7-flash",
+  "generation": {
+    "temperature": 0,
+    "enable_thinking": false,
+    "response_format": "json_object",
+    "max_completion_tokens": 800
+  },
+  "description": "RAG 有据问答任务契约：模型返回完整任务信封，仅引用输入中存在的 evidence ID 并逐字给出引用；本地代码继续校验证据包含关系与引文。"
+}

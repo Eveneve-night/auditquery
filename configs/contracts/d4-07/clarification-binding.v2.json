@@ -1,0 +1,78 @@
+{
+  "contract_id": "d4-07.clarification-binding",
+  "contract_version": "2.0.0",
+  "request_schema": "online-request.v2.schema.json",
+  "response_schema": "online-response.v2.schema.json",
+  "immutable_echo_fields": [
+    "session_id",
+    "request_id",
+    "turn_id",
+    "state_revision",
+    "question_id",
+    "slot_id"
+  ],
+  "client_generated_fields": ["answer_id"],
+  "selection_contract": {
+    "value_count": 1,
+    "evidence_ref_count": 1,
+    "value_source": "pending_question.options[].value",
+    "evidence_source": "selected_option.evidence_ref"
+  },
+  "runtime_gate_owner": "B",
+  "runtime_gates": [
+    {
+      "rule_id": "binding.session_id",
+      "field": "session_id",
+      "error_code": "clarification_session_mismatch",
+      "schema_enforced": false
+    },
+    {
+      "rule_id": "binding.request_id",
+      "field": "request_id",
+      "error_code": "clarification_request_mismatch",
+      "schema_enforced": false
+    },
+    {
+      "rule_id": "binding.turn_id",
+      "field": "turn_id",
+      "error_code": "clarification_turn_mismatch",
+      "schema_enforced": false
+    },
+    {
+      "rule_id": "binding.state_revision",
+      "field": "state_revision",
+      "error_code": "clarification_answer_stale",
+      "schema_enforced": false
+    },
+    {
+      "rule_id": "binding.question_id",
+      "field": "question_id",
+      "error_code": "clarification_question_mismatch",
+      "schema_enforced": false
+    },
+    {
+      "rule_id": "binding.slot_id",
+      "field": "slot_id",
+      "error_code": "clarification_cross_slot_update",
+      "schema_enforced": false
+    },
+    {
+      "rule_id": "selection.value",
+      "field": "values",
+      "error_code": "clarification_value_not_offered",
+      "schema_enforced": false
+    },
+    {
+      "rule_id": "selection.evidence_ref",
+      "field": "evidence_refs",
+      "error_code": "invalid_answer_evidence_refs",
+      "schema_enforced": false
+    },
+    {
+      "rule_id": "replay.answer_id_or_question_id",
+      "field": "answer_id",
+      "error_code": "clarification_answer_replayed",
+      "schema_enforced": false
+    }
+  ]
+}

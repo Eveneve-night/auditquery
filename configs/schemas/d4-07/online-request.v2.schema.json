@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "online-request.v2.schema.json",
+  "title": "D4-07 online request v2",
+  "$ref": "shared-api-definitions.v2.schema.json#/$defs/online_request"
+}

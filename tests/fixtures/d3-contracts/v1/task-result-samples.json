@@ -1,0 +1,94 @@
+{
+  "intent_success": {
+    "task_type": "intent",
+    "payload": {
+      "query": "数据库里一共有多少位艺术家？",
+      "conversation": [],
+      "available_sources": ["chinook_sql", "fixture_knowledge"]
+    },
+    "result": {
+      "schema_version": "1.0.0",
+      "task_type": "intent",
+      "status": "success",
+      "data": {
+        "intent": "sql",
+        "needs_clarification": false,
+        "required_sources": ["chinook_sql"],
+        "missing_slots": [],
+        "reason": "routable",
+        "normalized_query": null
+      },
+      "error": null,
+      "warnings": []
+    }
+  },
+  "intent_error": {
+    "task_type": "intent",
+    "payload": {
+      "query": "测试问题",
+      "conversation": [],
+      "available_sources": ["chinook_sql"]
+    },
+    "result": {
+      "schema_version": "1.0.0",
+      "task_type": "intent",
+      "status": "error",
+      "data": null,
+      "error": {
+        "code": "INVALID_INPUT",
+        "message": "输入缺少必需字段。",
+        "retryable": false,
+        "field_errors": [{"path": "query", "code": "REQUIRED"}]
+      },
+      "warnings": []
+    }
+  },
+  "clarification_required": {
+    "task_type": "clarification",
+    "payload": {
+      "query": "增长率是多少？",
+      "known_slots": {},
+      "required_slots": ["metric", "time_range", "comparison_baseline"]
+    },
+    "result": {
+      "schema_version": "1.0.0",
+      "task_type": "clarification",
+      "status": "success",
+      "data": {
+        "should_clarify": true,
+        "primary_slot": "metric",
+        "missing_slots": ["metric", "time_range", "comparison_baseline"],
+        "question": "请问要计算哪项指标的增长率？",
+        "reason": "missing_required_slot"
+      },
+      "error": null,
+      "warnings": []
+    }
+  },
+  "clarification_complete": {
+    "task_type": "clarification",
+    "payload": {
+      "query": "2010年美国发票总额是多少？",
+      "known_slots": {
+        "metric": "invoice_total",
+        "time_range": "2010",
+        "country": "USA"
+      },
+      "required_slots": ["metric", "time_range", "country"]
+    },
+    "result": {
+      "schema_version": "1.0.0",
+      "task_type": "clarification",
+      "status": "success",
+      "data": {
+        "should_clarify": false,
+        "primary_slot": null,
+        "missing_slots": [],
+        "question": null,
+        "reason": "complete"
+      },
+      "error": null,
+      "warnings": []
+    }
+  }
+}

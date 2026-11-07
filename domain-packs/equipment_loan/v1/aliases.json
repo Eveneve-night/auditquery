@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "aliases",
+  "items": [
+    {
+      "alias_id": "alias.equipment_loan.entity.0",
+      "surface_form": "器材",
+      "language": "zh-CN",
+      "concept_id": "concept.equipment_loan.entity",
+      "source_ref": "source.equipment_loan",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.equipment_loan.entity.1",
+      "surface_form": "仪器",
+      "language": "zh-CN",
+      "concept_id": "concept.equipment_loan.entity",
+      "source_ref": "source.equipment_loan",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.equipment_loan.metric.0",
+      "surface_form": "借用量",
+      "language": "zh-CN",
+      "concept_id": "concept.equipment_loan.metric",
+      "source_ref": "source.equipment_loan",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.equipment_loan.metric.1",
+      "surface_form": "借出数量",
+      "language": "zh-CN",
+      "concept_id": "concept.equipment_loan.metric",
+      "source_ref": "source.equipment_loan",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.equipment_loan.location.0",
+      "surface_form": "借用部门",
+      "language": "zh-CN",
+      "concept_id": "concept.equipment_loan.location",
+      "source_ref": "source.equipment_loan",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.equipment_loan.unit.0",
+      "surface_form": "台",
+      "language": "zh-CN",
+      "concept_id": "concept.equipment_loan.unit",
+      "source_ref": "source.equipment_loan",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.equipment_loan.available.quantity",
+      "surface_form": "数量",
+      "language": "zh-CN",
+      "concept_id": "concept.equipment_loan.available",
+      "source_ref": "source.equipment_loan",
+      "confidence_class": "synthetic"
+    },
+    {
+      "alias_id": "alias.equipment_loan.total.quantity",
+      "surface_form": "数量",
+      "language": "zh-CN",
+      "concept_id": "concept.equipment_loan.total",
+      "source_ref": "source.equipment_loan",
+      "confidence_class": "synthetic"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "register_id": "d4-validation-exposure.v1",
+  "version": "1.0.0",
+  "dataset_version": "2.0.0",
+  "prompt_major_version": "d4-preimplementation",
+  "maximum_exposures": 2,
+  "historical_exposure_count": 0,
+  "current_task_exposure_count": 0,
+  "entries": []
+}

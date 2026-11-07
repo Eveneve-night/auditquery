@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <title>可解释精准问数 · 问答台</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app">
+      <!-- 左侧导航栏 -->
+      <aside class="sidebar" aria-label="主导航">
+        <div class="sidebar__brand">
+          <span class="sidebar__logo" aria-hidden="true"></span>
+          <div class="sidebar__brand-text">
+            <strong>问数台</strong>
+            <small>D4-07 · C 侧</small>
+          </div>
+        </div>
+
+        <nav class="sidebar__nav">
+          <a class="nav-item is-active" href="#ask-panel" data-target="ask-panel">
+            <span class="nav-item__icon">⌘</span>提问
+          </a>
+          <a class="nav-item" href="#decision-panel" data-target="decision-panel">
+            <span class="nav-item__icon">◈</span>决策
+          </a>
+          <a class="nav-item" href="#candidate-panel" data-target="candidate-panel">
+            <span class="nav-item__icon">▤</span>证据
+          </a>
+          <a class="nav-item" href="#sql-panel" data-target="sql-panel">
+            <span class="nav-item__icon">▣</span>SQL
+          </a>
+          <a class="nav-item" href="#citation-panel" data-target="citation-panel">
+            <span class="nav-item__icon">❝</span>引用
+          </a>
+          <a class="nav-item" href="#trace-panel" data-target="trace-panel">
+            <span class="nav-item__icon">⇶</span>轨迹
+          </a>
+          <a class="nav-item" href="#cost-panel" data-target="cost-panel">
+            <span class="nav-item__icon">◎</span>披露
+          </a>
+        </nav>
+
+        <div class="sidebar__foot">
+          <div class="sidebar__boundary" aria-label="运行边界">
+            <p>运行边界</p>
+            <span>模型调用 <strong>0</strong></span>
+            <span>只读 SQL</span>
+            <span>证据不足即拒答</span>
+            <span>未校准分数明确标注</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- 主区域 -->
+      <div class="main">
+        <!-- 顶部工具栏 -->
+        <header class="toolbar">
+          <div class="toolbar__title">
+            <h1>自由提问，每一步都有证据可回看</h1>
+            <p>
+              输入自然语言问题，查看意图路由、澄清、SQL / 文档答案、引用页码、工具链轨迹与费用明细。
+              本骨架当前由契约 MOCK 驱动，不调用模型、不连接真实后端；待 B 侧在线 API 就绪后切换数据源。
+            </p>
+          </div>
+          <div class="toolbar__meta">
+            <span id="conn-mode" class="conn-badge">数据源：mock</span>
+            <span id="service-state" class="status-pill status-pill--idle">就绪</span>
+          </div>
+        </header>
+
+        <!-- 内容区 -->
+        <main class="content">
+          <div class="layout">
+            <!-- 左栏：提问 + 澄清 + 决策 -->
+            <aside class="layout__col layout__col--left">
+              <!-- 01 问答输入与多轮 -->
+              <section id="ask-panel" class="panel ask-panel" aria-labelledby="ask-heading">
+                <div class="section-heading">
+                  <div>
+                    <p class="kicker">01 / 提问</p>
+                    <h2 id="ask-heading">输入问题</h2>
+                  </div>
+                </div>
+                <form id="ask-form" class="ask-form">
+                  <textarea
+                    id="question-input"
+                    rows="3"
+                    autocomplete="off"
+                    placeholder="例如：月度经营报表的截止时间是什么时候？"
+                    aria-label="问题输入"
+                  ></textarea>
+                  <div class="ask-form__bar">
+                    <span class="ask-form__hint">Enter 发送 · 支持多轮追问</span>
+                    <button id="ask-submit" type="submit">提问</button>
+                  </div>
+                </form>
+                <div class="turn-list" id="turn-list" aria-live="polite"></div>
+              </section>
+
+              <!-- 02 澄清交互 -->
+              <section id="clarify-panel" class="panel panel--accent" aria-labelledby="clarify-heading" hidden>
+                <div class="section-heading">
+                  <div>
+                    <p class="kicker">02 / 澄清</p>
+                    <h2 id="clarify-heading">缺失信息</h2>
+                  </div>
+                  <span class="status-pill status-pill--warn">等待补充</span>
+                </div>
+                <div id="clarify-list" class="stack-list"></div>
+              </section>
+
+              <!-- 03 决策 -->
+              <section id="decision-panel" class="panel decision-panel" aria-labelledby="decision-heading" hidden>
+                <div class="section-heading">
+                  <div>
+                    <p class="kicker">03 / 决策</p>
+                    <h2 id="decision-heading">选择性动作</h2>
+                  </div>
+                  <span id="result-status" class="status-pill"></span>
+                </div>
+                <p id="result-message" class="result-message"></p>
+                <dl class="metric-grid">
+                  <div><dt>动作</dt><dd id="decision-action">—</dd></div>
+                  <div><dt>稳定理由</dt><dd id="decision-reason">—</dd></div>
+                  <div><dt>分数性质</dt><dd id="score-kind">—</dd></div>
+                  <div><dt>当前分数</dt><dd id="score-value">—</dd></div>
+                </dl>
+                <div class="threshold-block">
+                  <h3>阈值</h3>
+                  <div id="threshold-list" class="chip-list"></div>
+                </div>
+              </section>
+            </aside>
+
+            <!-- 右栏：证据 + SQL/引用 + 轨迹 + 披露 -->
+            <div class="layout__col layout__col--right">
+              <!-- 04 候选证据 -->
+              <section id="candidate-panel" class="panel" aria-labelledby="candidate-heading" hidden>
+                <div class="section-heading compact">
+                  <div>
+                    <p class="kicker">04 / 证据</p>
+                    <h2 id="candidate-heading">候选与来源</h2>
+                  </div>
+                </div>
+                <div id="candidate-list" class="stack-list"></div>
+              </section>
+
+              <!-- 05A SQL -->
+              <section id="sql-panel" class="panel" aria-labelledby="sql-heading" hidden>
+                <div class="section-heading compact">
+                  <div>
+                    <p class="kicker">05A / SQL</p>
+                    <h2 id="sql-heading">安全执行载荷</h2>
+                  </div>
+                  <span id="safety-badge" class="status-pill"></span>
+                </div>
+                <pre class="code-block"><code id="sql-code"></code></pre>
+                <div id="sql-meta" class="chip-list"></div>
+                <div class="table-wrap">
+                  <table id="result-table"></table>
+                </div>
+              </section>
+
+              <!-- 05B RAG -->
+              <section id="citation-panel" class="panel" aria-labelledby="citation-heading" hidden>
+                <div class="section-heading compact">
+                  <div>
+                    <p class="kicker">05B / RAG</p>
+                    <h2 id="citation-heading">可核验引用</h2>
+                  </div>
+                  <span class="status-pill status-pill--warn">未生成模型答案</span>
+                </div>
+                <div id="citation-list" class="citation-list"></div>
+              </section>
+
+              <!-- 06 轨迹 -->
+              <section id="trace-panel" class="panel timeline-panel" aria-labelledby="trace-heading" hidden>
+                <div class="section-heading compact">
+                  <div>
+                    <p class="kicker">06 / 轨迹</p>
+                    <h2 id="trace-heading">工具链事件</h2>
+                  </div>
+                </div>
+                <ol id="trace-list" class="timeline"></ol>
+                <p class="footnote">仅展示动作、证据和工件摘要；不展示或伪造模型内部思维链。</p>
+              </section>
+
+              <!-- 07 费用与边界披露 -->
+              <section id="cost-panel" class="panel cost-panel" aria-labelledby="cost-heading" hidden>
+                <div class="section-heading compact">
+                  <div>
+                    <p class="kicker">07 / 费用与边界</p>
+                    <h2 id="cost-heading">运行披露</h2>
+                  </div>
+                </div>
+                <div id="cost-list" class="chip-list"></div>
+                <div id="warning-list" class="chip-list"></div>
+              </section>
+            </div>
+          </div>
+        </main>
+
+        <footer class="app-footer">
+          <span>领域证据约束的类型化不确定性决策与主动澄清闭环</span>
+          <span id="manifest-ref"></span>
+        </footer>
+      </div>
+    </div>
+    <script type="module" src="app.js" defer></script>
+  </body>
+</html>

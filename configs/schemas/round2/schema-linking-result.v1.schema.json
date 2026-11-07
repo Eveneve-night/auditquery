@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schema-linking-result.v1",
+  "type": "object",
+  "required": [
+    "result_version",
+    "request_id",
+    "input_sha256",
+    "domain_pack_ref",
+    "status",
+    "reason_code",
+    "table_candidates",
+    "column_candidates",
+    "selected_table_id",
+    "selected_column_ids",
+    "typed_decision",
+    "sql_execution_authorized"
+  ],
+  "properties": {
+    "result_version": {
+      "const": "1.0.0"
+    },
+    "request_id": {
+      "$ref": "round2-common.v1#/$defs/ref_id"
+    },
+    "input_sha256": {
+      "$ref": "round2-common.v1#/$defs/sha256"
+    },
+    "domain_pack_ref": {
+      "$ref": "round2-common.v1#/$defs/pack_ref"
+    },
+    "status": {
+      "enum": [
+        "selected",
+        "clarify",
+        "abstain",
+        "reject"
+      ]
+    },
+    "reason_code": {
+      "$ref": "round2-common.v1#/$defs/reason_code"
+    },
+    "table_candidates": {
+      "type": "array",
+      "items": {
+        "$ref": "round2-common.v1#/$defs/ranked_object"
+      },
+      "minItems": 0,
+      "maxItems": 50,
+      "uniqueItems": true
+    },
+    "column_candidates": {
+      "type": "array",
+      "items": {
+        "$ref": "round2-common.v1#/$defs/ranked_object"
+      },
+      "minItems": 0,
+      "maxItems": 50,
+      "uniqueItems": true
+    },
+    "selected_table_id": {
+      "anyOf": [
+        {
+          "$ref": "round2-common.v1#/$defs/ref_id"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "selected_column_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "round2-common.v1#/$defs/ref_id"
+      },
+      "minItems": 0,
+      "maxItems": 50,
+      "uniqueItems": true
+    },
+    "typed_decision": {
+      "$ref": "typed-decision.v1"
+    },
+    "sql_execution_authorized": {
+      "const": false
+    }
+  },
+  "additionalProperties": false
+}

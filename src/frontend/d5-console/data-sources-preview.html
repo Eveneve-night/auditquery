@@ -1,0 +1,4 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>数据源流程 · 离线组件</title><link rel="stylesheet" href="./styles.css"><main><h1>数据源管理流程</h1><p>本页是可复用组件预览。没有接入管理HTTP或凭据服务；点击操作不会产生真实连接成功。</p><section id="source-workflow"></section><a href="./index.html">返回现有控制台</a></main><script type="module">
+import { createSourceWorkflow, renderSourceWorkflow } from './data-sources.js';
+renderSourceWorkflow(document.getElementById('source-workflow'), createSourceWorkflow({getRole:()=> 'admin'}));
+</script></html>

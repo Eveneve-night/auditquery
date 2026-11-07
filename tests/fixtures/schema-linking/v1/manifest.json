@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "split": "prompt_dev",
+  "case_count": 38,
+  "visibility": "public_development_no_blind_claim",
+  "input_fields": [
+    "question",
+    "authorized_table_ids"
+  ],
+  "scoring_separate": true,
+  "files": {
+    "inputs.json": "06f84ee96cdb21a62fbcfd778ff7d1d908c3a95f1a5d02d99c88065a85690125",
+    "scoring.json": "b17f88373c2efc682433f62a10b5763ef241ea4dc96046da8f2c77386f5673d0"
+  }
+}

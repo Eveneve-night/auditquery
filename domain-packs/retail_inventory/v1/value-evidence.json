@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "value_evidence",
+  "items": [
+    {
+      "evidence_id": "evidence.retail_inventory.metric",
+      "slot_id": "slot.metric",
+      "evidence_type": "enum",
+      "payload": {
+        "values": [
+          "count",
+          "库存数量"
+        ]
+      },
+      "data_level": "L0",
+      "send_to_model": true,
+      "source_ref": "source.retail_inventory"
+    },
+    {
+      "evidence_id": "evidence.retail_inventory.entity_type",
+      "slot_id": "slot.entity_type",
+      "evidence_type": "enum",
+      "payload": {
+        "values": [
+          "商品"
+        ]
+      },
+      "data_level": "L0",
+      "send_to_model": true,
+      "source_ref": "source.retail_inventory"
+    },
+    {
+      "evidence_id": "evidence.retail_inventory.location",
+      "slot_id": "slot.location",
+      "evidence_type": "enum",
+      "payload": {
+        "values": [
+          "东仓",
+          "西仓"
+        ]
+      },
+      "data_level": "L0",
+      "send_to_model": true,
+      "source_ref": "source.retail_inventory"
+    },
+    {
+      "evidence_id": "evidence.retail_inventory.unit",
+      "slot_id": "slot.unit",
+      "evidence_type": "enum",
+      "payload": {
+        "values": [
+          "件"
+        ]
+      },
+      "data_level": "L0",
+      "send_to_model": true,
+      "source_ref": "source.retail_inventory"
+    }
+  ]
+}

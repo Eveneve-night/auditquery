@@ -1,0 +1,83 @@
+{
+  "catalog_id": "d4-fixed-source-catalog",
+  "version": "1.0.0",
+  "schema_version": "1.0.0",
+  "hash_algorithm": "sha256-utf8-lf",
+  "sources": [
+    {
+      "source_id": "chinook_sql",
+      "route_kind": "sql",
+      "display_name": "Chinook 音乐商店数据库",
+      "description": "用于已授权 Chinook SQLite 数据的单表只读问数。",
+      "data_level": "L0",
+      "license": "MIT",
+      "model_context": "source_id_only",
+      "resource_refs": [
+        {
+          "path": "data/manifests/chinook-v1.4.5.json",
+          "sha256": "b412387424d04e990684028d567f27a36676889029843c9073cb427d4b5516fd"
+        }
+      ]
+    },
+    {
+      "source_id": "expense_policy",
+      "route_kind": "rag",
+      "display_name": "差旅报销制度",
+      "description": "公开合成的差旅与报销规则夹具。",
+      "data_level": "L0",
+      "license": "project-owned synthetic fixture",
+      "model_context": "source_id_only",
+      "resource_refs": [
+        {
+          "path": "tests/fixtures/knowledge/expense_policy.md",
+          "sha256": "f85cfdadae6ee31596fcbf23034c4f3e06db9c6676f5bb46572ced42ef9354f3"
+        }
+      ]
+    },
+    {
+      "source_id": "project_report",
+      "route_kind": "rag",
+      "display_name": "项目进度报告",
+      "description": "公开合成的项目进度与风险报告夹具。",
+      "data_level": "L0",
+      "license": "project-owned synthetic fixture",
+      "model_context": "source_id_only",
+      "resource_refs": [
+        {
+          "path": "tests/fixtures/knowledge/project_report.md",
+          "sha256": "9f41a494f94c826e311d4f9926581fb80ce6aa2793e5eb8dbd4e698a3e099b7f"
+        }
+      ]
+    },
+    {
+      "source_id": "sales_playbook",
+      "route_kind": "rag",
+      "display_name": "销售方法手册",
+      "description": "公开合成的销售流程与方法文档夹具。",
+      "data_level": "L0",
+      "license": "project-owned synthetic fixture",
+      "model_context": "source_id_only",
+      "resource_refs": [
+        {
+          "path": "tests/fixtures/knowledge/sales_playbook.md",
+          "sha256": "4938d33cb56f7cfc00cb33d9797bca9c6d71c654e86ee6b72c4150f87e864433"
+        }
+      ]
+    },
+    {
+      "source_id": "security_policy",
+      "route_kind": "rag",
+      "display_name": "安全管理规范",
+      "description": "公开合成的账号、密钥与安全流程文档夹具。",
+      "data_level": "L0",
+      "license": "project-owned synthetic fixture",
+      "model_context": "source_id_only",
+      "resource_refs": [
+        {
+          "path": "tests/fixtures/knowledge/security_policy.md",
+          "sha256": "e5bc54666c6d17df15acc4cd1cfbe15308dfcc8d3b7f7920c6eb72c194cf39eb"
+        }
+      ]
+    }
+  ]
+}

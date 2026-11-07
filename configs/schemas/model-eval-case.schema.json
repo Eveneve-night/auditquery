@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "model-eval-case.v1",
+  "title": "Model evaluation case",
+  "type": "object",
+  "required": ["id", "task_type", "split", "input", "context", "expected", "tags"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[A-Z]+-[0-9]{3}$"},
+    "task_type": {
+      "type": "string",
+      "enum": ["intent", "clarification", "nl2sql", "grounded_answer"]
+    },
+    "split": {"type": "string", "enum": ["prompt_dev", "validation", "test"]},
+    "input": {"type": "object"},
+    "context": {"type": "object"},
+    "expected": {"type": "object"},
+    "tags": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "metadata": {"type": "object"}
+  },
+  "additionalProperties": false
+}

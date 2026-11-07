@@ -1,0 +1,17 @@
+{
+  "contract_id": "clarification-contract.v1",
+  "contract_version": "1.0.0",
+  "task_type": "clarification",
+  "prompt_version": "clarification.v1",
+  "prompt_path": "configs/prompts/clarification/v1/system.md",
+  "output_schema_id": "clarification-result.v1",
+  "output_schema_path": "configs/schemas/tasks/clarification-result.v1.schema.json",
+  "model": "qwen3.7-flash",
+  "generation": {
+    "temperature": 0,
+    "enable_thinking": false,
+    "response_format": "json_object",
+    "max_completion_tokens": 300
+  },
+  "description": "比较必需槽位与已知槽位，判断是否需要澄清，并一次只提出一个最高优先级问题。"
+}

@@ -1,0 +1,35 @@
+{
+  "example_set_version": "1.0.0",
+  "examples": [
+    {
+      "id": "visitor_session_create_request",
+      "schema_ref": "api-v3.schema.json#/$defs/session_create_request",
+      "payload": {"api_version": "3.0", "contract_version": "1.0.0", "request_id": "req.public.001"}
+    },
+    {
+      "id": "visitor_query_request",
+      "schema_ref": "api-v3.schema.json#/$defs/query_request",
+      "payload": {"api_version": "3.0", "contract_version": "1.0.0", "session_id": "session.public.001", "request_id": "req.public.002", "turn_id": 1, "state_revision": 0, "question": "公开假问题：请给出示例结果。"}
+    },
+    {
+      "id": "admin_login_request",
+      "schema_ref": "api-v3.schema.json#/$defs/login_request",
+      "payload": {"api_version": "3.0", "contract_version": "1.0.0", "username": "demo_admin", "password": "PUBLIC_FAKE_PASSWORD"}
+    },
+    {
+      "id": "key_status_response",
+      "schema_ref": "api-v3.schema.json#/$defs/key_status_response",
+      "payload": {"api_version": "3.0", "contract_version": "1.0.0", "request_id": "req.public.003", "configured": true, "provider": "bailian_beijing", "model": "qwen3.7-flash", "source": "secret_store", "updated_at": "2026-10-08T00:00:00Z", "last_four": "AB12"}
+    },
+    {
+      "id": "uniform_not_found_error",
+      "schema_ref": "api-v3.schema.json#/$defs/error_response",
+      "payload": {"api_version": "3.0", "contract_version": "1.0.0", "request_id": "req.public.004", "error": {"code": "resource_not_found", "message": "资源不存在。", "retryable": false}}
+    },
+    {
+      "id": "document_status_response",
+      "schema_ref": "api-v3.schema.json#/$defs/document_status_response",
+      "payload": {"api_version": "3.0", "contract_version": "1.0.0", "request_id": "req.public.005", "document_id": "doc.public.001", "state": "published", "sha256": "0000000000000000000000000000000000000000000000000000000000000000", "bytes": 1024, "page_count": 2, "index_version": "index.public.v1", "failure_code": null}
+    }
+  ]
+}
