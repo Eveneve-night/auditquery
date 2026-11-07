@@ -677,10 +677,30 @@ function split(path) {
 }
 
 export function createMockTransport() {
+  // Explicit UI fixture: never an HTTP/model reachability claim; no Key retained.
+  let settings = {version:"1.0.0",revision:0,configured:false,credential_configured:false,pricing_status:"configured",
+    config:{version:"1.0.0",protocol:"openai-chat-completions",provider_id:"fixture-provider",model:"fixture-model",
+      base_url:"http://127.0.0.1:8001/v1",local:true,auth_mode:"bearer",input_per_million_tokens:0,output_per_million_tokens:0}};
   return async function transport(method, path, options = {}) {
     const body = options.body || null;
     const csrf = options.csrf || null;
     const target = split(path);
+    if (target.startsWith("/api/v3/admin/model-settings")) {
+      const denied = requireAdmin(csrf, {csrfRequired:method !== "GET"});
+      if (denied) return denied;
+      if (method === "GET" && target === "/api/v3/admin/model-settings") return {status:200,json:structuredClone(settings)};
+      if (method === "PUT" && target === "/api/v3/admin/model-settings") {
+        if (!body?.config || body.expected_revision !== settings.revision || typeof body.api_key !== "string") return fail(400,"invalid_request","离线配置无效。",false,body);
+        settings = {...settings,config:structuredClone(body.config),revision:settings.revision+1,configured:true,credential_configured:Boolean(body.api_key)};
+        return {status:200,json:structuredClone(settings)};
+      }
+      if (method === "DELETE" && target === "/api/v3/admin/model-settings" && body?.expected_revision === settings.revision) {
+        settings = {...settings,revision:settings.revision+1,configured:false,credential_configured:false};
+        return {status:200,json:structuredClone(settings)};
+      }
+      if (method === "POST" && target.endsWith("/test") && body?.explicit_confirmation === true) return {status:200,json:{fixture:true,calls:0}};
+      return fail(400,"invalid_request","离线配置无效。",false,body);
+    }
 
     if (method === "POST" && target === "/api/v3/sessions") return onCreateSession(body);
     if (method === "POST" && target === "/api/v3/query") return onQuery(body);

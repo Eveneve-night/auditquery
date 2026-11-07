@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://auditquery.local/schemas/model-services/service.v1",
+  "$ref": "#/$defs/config",
+  "$defs": {
+    "config": {
+      "type": "object", "additionalProperties": false,
+      "required": ["version", "protocol", "provider_id", "model", "base_url", "local", "auth_mode", "input_per_million_tokens", "output_per_million_tokens"],
+      "properties": {
+        "version": {"const": "1.0.0"},
+        "protocol": {"const": "openai-chat-completions"},
+        "provider_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}$"},
+        "model": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}$"},
+        "base_url": {"type": "string", "minLength": 1, "maxLength": 2048},
+        "local": {"type": "boolean"},
+        "auth_mode": {"enum": ["bearer", "none"]},
+        "input_per_million_tokens": {"type": ["number", "null"], "minimum": 0},
+        "output_per_million_tokens": {"type": ["number", "null"], "minimum": 0}
+      },
+      "if": {"properties": {"auth_mode": {"const": "none"}}},
+      "then": {"properties": {"local": {"const": true}}}
+    },
+    "put_request": {
+      "type": "object", "additionalProperties": false,
+      "required": ["config", "api_key", "expected_revision"],
+      "properties": {
+        "config": {"$ref": "#/$defs/config"},
+        "api_key": {"type": "string", "maxLength": 4096},
+        "expected_revision": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}

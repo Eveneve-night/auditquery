@@ -112,7 +112,8 @@ class ProductServerTests(unittest.TestCase):
         self.assertIn("window.D5_LIVE_API = true;", live)
         self.assertLess(live.index("window.D5_LIVE_API = true;"), live.index('src="./app.js"'))
         self.assertIn("在线模式 · 连接真实服务", live)
-        self.assertIn("提交问题后可能调用唯一允许的模型 qwen3.7-flash", live)
+        self.assertIn("提交问题后可能调用管理员配置的模型", live)
+        self.assertNotIn("唯一允许的模型", live)
         self.assertNotIn("演示模式", live)
         self.assertNotIn("模型调用 0 次", live)
         with self.assertRaises(ProductStartupError):

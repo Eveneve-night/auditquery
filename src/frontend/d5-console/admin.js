@@ -350,7 +350,13 @@ function buildDocumentSection(ctx) {
 
 function buildKeySection(ctx) {
   const box = node("section", "panel");
-  box.append(node("h3", "", "模型 Key 状态（bailian_beijing / qwen3.7-flash）"));
+  box.append(node("h3", "", "模型服务（OpenAI 兼容 Chat Completions）"));
+  for (const [key, label] of Object.entries({provider_id:"服务商标识",model:"模型 ID",base_url:"Base URL（不含 /chat/completions）",local:"本地模式 true/false",auth_mode:"认证 bearer/none",input_per_million_tokens:"输入单价 CNY/百万 token",output_per_million_tokens:"输出单价 CNY/百万 token"})) {
+    const field = node("input", ""); field.id = `model-${key}`;
+    field.setAttribute("aria-label", label); field.setAttribute("placeholder",label);
+    box.append(field);
+  }
+  box.append(node("p", "", "远程服务必须 HTTPS；本地 HTTP/无认证须明确开启。单价留空为未知，发送前拒绝；保存不调用模型。"));
 
   const status = node("div", "chip-row");
   status.id = IDS.keyStatus;
@@ -475,12 +481,13 @@ export async function refreshKey(ctx) {
   clear(box);
   try {
     const response = await ctx.client.adminReadKeyStatus();
+    ctx.state.modelSettings = response;
+    for (const [key,value] of Object.entries(response.config || {})) {
+      const field = byId(`model-${key}`); if (field) field.value = value === null ? "" : String(value);
+    }
     box.append(node("span", response.configured ? "chip chip--ok" : "chip chip--warn", response.configured ? "已配置" : "未配置"));
-    box.append(node("span", "chip", `Provider ${response.provider}`));
-    box.append(node("span", "chip", `模型 ${response.model}`));
-    box.append(node("span", "chip", `来源 ${response.source}`));
-    box.append(node("span", "chip", `更新时间 ${response.updated_at ? String(response.updated_at).replace("T", " ").slice(0, 19) : "—"}`));
-    box.append(node("span", "chip", `末四位 ${response.last_four || "—"}`));
+    box.append(node("span", "chip", `Provider ${response.config?.provider_id} / ${response.config?.model}`));
+    box.append(node("span", "chip", `价格 ${response.pricing_status} · revision ${response.revision}`));
     return response;
   } catch (error) {
     await handleError(ctx, error, "读取 Key 状态失败。");
@@ -611,28 +618,31 @@ export async function deleteDocument(ctx, documentId) {
 export async function saveKey(ctx, { replace }) {
   const input = byId(IDS.keyInput);
   const apiKey = input ? String(input.value || "") : "";
-  if (apiKey.length < 16) {
-    setNotice("密钥长度不足 16 位，未提交。", "bad");
-    return null;
+  const config = {version:"1.0.0", protocol:"openai-chat-completions"};
+  for (const key of ["provider_id","model","base_url","local","auth_mode","input_per_million_tokens","output_per_million_tokens"]) {
+    const value = byId(`model-${key}`)?.value || "";
+    config[key] = key === "local" ? value === "true" : key.endsWith("_tokens") ? (value === "" ? null : Number(value)) : value;
   }
   try {
     const method = replace ? ctx.client.adminReplaceKey : ctx.client.adminSaveKey;
-    const response = await method.call(ctx.client, { apiKey, csrf: ctx.state.admin.csrf });
+    const response = await method.call(ctx.client, { apiKey, config, expectedRevision: ctx.state.modelSettings?.revision, csrf: ctx.state.admin.csrf });
     // 提交后立即清空输入框：明文不留痕
     if (input) input.value = "";
-    setNotice(`Key 已${replace ? "替换" : "保存"}：末四位 ${response.last_four}`, "ok");
+    setNotice("模型配置已保存；未调用模型。", "ok");
     await refreshKey(ctx);
     await refreshAudit(ctx);
     return response;
   } catch (error) {
     await handleError(ctx, error, "保存 Key 失败。");
     return null;
+  } finally {
+    if (input) input.value = "";
   }
 }
 
 export async function deleteKey(ctx) {
   try {
-    await ctx.client.adminDeleteKey({ csrf: ctx.state.admin.csrf });
+    await ctx.client.adminDeleteKey({ csrf: ctx.state.admin.csrf, expectedRevision: ctx.state.modelSettings?.revision });
     setNotice("Key 已删除，模型调用将失败关闭。", "ok");
     await refreshKey(ctx);
     await refreshAudit(ctx);
@@ -647,7 +657,7 @@ export async function testConnectivity(ctx) {
   try {
     const response = await ctx.client.adminTestKeyConnectivity({ csrf: ctx.state.admin.csrf });
     const summary = response.summary || {};
-    setNotice(`连通测试完成：${summary.provider} / ${summary.model} 可达=${summary.reachable}`, "ok");
+    setNotice(response.fixture ? "离线 fixture：未调用模型，不能证明可达。" : `连通测试完成；调用 ${response.calls} 次。`, "ok");
     await refreshAudit(ctx);
     return response;
   } catch (error) {

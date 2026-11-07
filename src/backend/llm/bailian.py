@@ -226,13 +226,13 @@ class BailianProvider:
                 "temperature": request.temperature,
                 "max_completion_tokens": request.max_completion_tokens,
                 "stream": False,
-                "enable_thinking": False,
                 "response_format": {"type": "json_object"},
             }
+            payload.update(self._protocol_options())
             response = self.transport.send(
                 url=self.config.endpoint,
                 headers={
-                    "Authorization": f"Bearer {credential_value}",
+                    **({"Authorization": f"Bearer {credential_value}"} if credential_value else {}),
                     "Content-Type": "application/json",
                     "Accept": "application/json",
                     "X-Client-Request-Id": request.request_id,
@@ -293,6 +293,9 @@ class BailianProvider:
             error=error,
             latency_ms=self._latency_ms(started),
         )
+
+    def _protocol_options(self) -> dict:
+        return {"enable_thinking": False}
 
     @staticmethod
     def _normalized_headers(headers: Mapping[str, str]) -> dict[str, str]:

@@ -257,9 +257,9 @@ out.admin.afterSave = {
 };
 out.leak.canaryInKeyPanel = textOf("a-key-status").includes(canaryKey);
 out.leak.canaryInConsole = nodeText(byId("view")).includes(canaryKey);
-out.leak.lastFourOnly = textOf("a-key-status").includes("1234");
+out.leak.noPartialKey = !textOf("a-key-status").includes("1234");
 // 对照组：同一扫描路径必须能命中页面里确实存在的文本，证明「零命中」不是空转
-out.leak.controlFoundInConsole = nodeText(byId("view")).includes("末四位");
+out.leak.controlFoundInConsole = nodeText(byId("view")).includes("Provider");
 
 await test.testConnectivity();
 out.admin.connectivity = textOf("a-notice");

@@ -10,4 +10,6 @@ D3/D4/D5 及 ROUND2 是内部兼容协议标识，不应仅为命名修改字段
 
 本轮改动：外部文件凭据配置移除开发机默认路径，集中校验显式路径；缺失或空路径统一返回 CredentialError。没有改动 SQL/授权/预算的执行边界。
 
+模型服务：ModelSettings 把配置与不透明 Key 作为独立用途的加密事务文档；ConfiguredProvider 在调用边界读取配置，OpenAICompatibleProvider 复用已有单次响应解析/账本，通过校验并固定 DNS 地址的传输连接配置主机。管理设置与连通测试后端强制 Auth/CSRF；不允许问答请求覆盖 endpoint。未知单价阻止发送。旧百炼密文首次配置时原子迁移并撤销旧槽。详见 [模型服务契约](MODEL-SERVICES.md)。SQL 安全门、只读执行、循环/预算未放宽；RAG 保持确定性摘录。
+
 后续顺序：真实受控 Adapter → 授权快照与 Registry → HTTP/UI → 跨层验收。避免全仓换框架或过早拆服务。

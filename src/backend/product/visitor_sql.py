@@ -33,10 +33,10 @@ class SecretStoreCredentialProvider:
 
 
 def build_approved_sql_adapter(store: SqliteSecretStore) -> "VisitorSqlAdapter":
-    """Construct the one frozen provider/model pipeline; no API call here."""
-    config = BailianConfig.from_file(ROOT / "configs" / "providers" / "bailian-qwen3.7-flash.json")
+    """Construct the configured pipeline; no credential read or API call here."""
+    from .model_settings import ModelSettings, ConfiguredProvider
     ledger = UsageLedger()
-    provider = BailianProvider(config, SecretStoreCredentialProvider(store), usage_ledger=ledger)
+    provider = ConfiguredProvider(ModelSettings(store), ledger)
     gateway = LLMGateway(provider, LoopPolicy.from_file(ROOT / "configs" / "policies" /
                                                         "agent-loop-limits.v1.json"), usage_ledger=ledger)
     return VisitorSqlAdapter(
