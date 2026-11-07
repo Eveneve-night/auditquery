@@ -76,6 +76,7 @@ class ModelCallResult:
     finish_reason: str | None
     attempt_count: int = 1
     warnings: tuple[str, ...] = ()
+    configuration_revision: int | None = None
 
     def __post_init__(self) -> None:
         if self.estimated_cost_cny < 0 or self.latency_ms < 0:
@@ -83,6 +84,13 @@ class ModelCallResult:
         if self.attempt_count <= 0:
             raise ValueError("attempt_count must be positive")
         object.__setattr__(self, "parsed_output", dict(self.parsed_output))
+
+
+@runtime_checkable
+class ModelIdentityValidator(Protocol):
+    """Optional provider capability for configuration-bound response identity."""
+
+    def accepts_result(self, result: ModelCallResult) -> bool: ...
 
 
 @runtime_checkable

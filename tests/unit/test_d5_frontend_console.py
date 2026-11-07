@@ -311,7 +311,7 @@ class FrontendRenderTest(unittest.TestCase):
         for state in ("已发布（published）", "失败（failed）", "已停用（disabled）"):
             self.assertIn(state, joined)
         self.assertIn("未配置", console["key"])
-        self.assertIn("末四位 —", console["key"])
+        self.assertIn("revision 0", console["key"])
         self.assertIn("保留 90 天", console["audit"])
         self.assertIn("模型调用 · 0", console["usage"])
 
@@ -321,13 +321,14 @@ class FrontendRenderTest(unittest.TestCase):
         self.assertEqual("", row["value"], "密钥框不得预填任何值")
         self.assertEqual("off", row["autocomplete"])
 
-    def test_key_save_shows_only_last_four_and_clears_input(self) -> None:
+    def test_key_save_never_shows_even_partial_key_and_clears_input(self) -> None:
         after = self.admin["afterSave"]
-        self.assertIn("末四位 1234", after["key"])
+        self.assertIn("已配置", after["key"])
+        self.assertNotIn("1234", after["key"])
         self.assertEqual("", after["inputValue"], "保存后必须清空输入框")
         self.assertFalse(self.leak["canaryInKeyPanel"])
         self.assertFalse(self.leak["canaryInConsole"])
-        self.assertTrue(self.leak["lastFourOnly"])
+        self.assertTrue(self.leak["noPartialKey"])
         # 对照组：同一扫描路径能命中页面里确实存在的文本，说明「明文零命中」非空转
         self.assertTrue(self.leak["controlFoundInConsole"], "泄漏扫描本身失效（对照组未命中）")
 
@@ -335,8 +336,8 @@ class FrontendRenderTest(unittest.TestCase):
         self.assertFalse(self.leak["canaryInAudit"], "审计事件里出现问题原文")
 
     def test_connectivity_test_is_explicit_and_offline(self) -> None:
-        self.assertIn("连通测试完成", self.admin["connectivity"])
-        self.assertIn("可达=true", self.admin["connectivity"])
+        self.assertIn("离线 fixture", self.admin["connectivity"])
+        self.assertIn("不能证明可达", self.admin["connectivity"])
 
     def test_document_state_transitions(self) -> None:
         self.assertIn("已停用：doc.1", self.admin["afterDisable"]["notice"])

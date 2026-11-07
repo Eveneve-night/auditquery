@@ -144,6 +144,14 @@ class OnlineSqlProposalPort:
         }
         self.last_telemetry: ProposalTelemetry | None = None
 
+    def _accepts_model(self, result):
+        from ..llm.contracts import ModelIdentityValidator
+        provider=getattr(self.gateway,'provider',None)
+        if isinstance(provider,ModelIdentityValidator):
+            return provider.accepts_result(result)
+        return (result.provider_id==PROVIDER_ID and result.requested_model==MODEL_ID
+                and result.returned_model==MODEL_ID)
+
     def _selected_table(self, observations: Mapping[str, SlotObservation]) -> str:
         entity = observations.get("slot.entity_type")
         if (not isinstance(entity, SlotObservation) or len(entity.values) != 1
@@ -165,6 +173,7 @@ class OnlineSqlProposalPort:
 
     def _capture_usage(self, request_id: str, cursor: int, *, result=None, error=None) -> None:
         ledger = getattr(self.gateway, "usage_ledger", None)
+        records = tuple(record for record in ledger.records()[cursor:] if record.request_id == request_id) if isinstance(ledger, UsageLedger) else ()
         summary = ledger.summary(request_id=request_id, start_index=cursor) if isinstance(ledger, UsageLedger) else {}
         if summary.get("calls", 0) or (isinstance(ledger, UsageLedger) and result is None):
             # Provider bookkeeping also records local credential/configuration
@@ -195,8 +204,11 @@ class OnlineSqlProposalPort:
             calls = 0 if current.code.value in {"circuit_open", "policy_limit", "configuration_error"} else 1
             input_tokens, output_tokens, total_tokens = current.input_tokens, current.output_tokens, current.total_tokens
             cost, latency = current.estimated_cost_cny, 0.0
+        provider = getattr(self.gateway, 'provider', None)
+        identity = result or (records[-1] if records else None)
         self.last_telemetry = ProposalTelemetry(
-            request_id, PROVIDER_ID, MODEL_ID, calls, input_tokens, output_tokens,
+            request_id, identity.provider_id if identity else getattr(provider, 'provider_id', PROVIDER_ID),
+            identity.requested_model if identity else getattr(provider, 'model', MODEL_ID), calls, input_tokens, output_tokens,
             total_tokens, cost, latency, "",
         )
 
@@ -210,7 +222,9 @@ class OnlineSqlProposalPort:
         # Otherwise the API's generic proposal error fallback can invent a call
         # before the gateway has been reached (e.g. mismatched entity/table).
         self.last_telemetry = ProposalTelemetry(
-            "", PROVIDER_ID, MODEL_ID, 0, 0, 0, 0, 0.0, 0.0, ""
+            "", getattr(getattr(self.gateway, 'provider', None), 'provider_id', PROVIDER_ID),
+            getattr(getattr(self.gateway, 'provider', None), 'model', MODEL_ID),
+            0, 0, 0, 0, 0.0, 0.0, ""
         )
         try:
             validate_conversation_state(conversation_state)
@@ -274,9 +288,7 @@ class OnlineSqlProposalPort:
         if (
             result.request_id != model_request.request_id
             or result.task_type != TASK_TYPE
-            or result.provider_id != PROVIDER_ID
-            or result.requested_model != MODEL_ID
-            or result.returned_model != MODEL_ID
+            or not self._accepts_model(result)
         ):
             raise OnlineSqlProposalError("sql_proposal_model_contract_mismatch")
         try:

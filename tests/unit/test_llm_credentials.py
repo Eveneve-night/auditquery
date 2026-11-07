@@ -47,7 +47,7 @@ class CredentialTest(unittest.TestCase):
             root = Path(directory)
             preferred = root / "api key.txt"
             fallback = root / "fallback.csv"
-            preferred.write_text("not-a-key", encoding="utf-8")
+            preferred.write_text("invalid\nheader", encoding="utf-8")
             fallback.write_text(f"name,api-key\ndefault,{VALID_KEY_B}\n", encoding="utf-8")
 
             credential = ExternalFileCredentialProvider(preferred, fallback).load()

@@ -65,8 +65,8 @@ def _index_payload(payload: bytes, mode: str) -> bytes:
     paragraph_end = html.find('</p>', paragraph_start)
     if start < 0 or paragraph_start < 0 or paragraph_end < 0:
         raise ProductStartupError("service_unavailable")
-    paragraph = ('<p>当前页面连接本机在线服务；提交问题后可能调用唯一允许的模型 '
-                 'qwen3.7-flash 并产生费用。管理员页只显示 Key 的配置状态与末四位，'
+    paragraph = ('<p>当前页面连接本机在线服务；提交问题后可能调用管理员配置的模型 '
+                 '服务并产生费用。管理员页只显示 Key 的配置状态，'
                  '不预填、不回显、不提供“显示已保存 Key”。</p>')
     return (html[:paragraph_start] + paragraph + html[paragraph_end + len('</p>'):]).encode("utf-8")
 
@@ -160,6 +160,9 @@ class ProductRuntime:
             self.auth = AuthService(SqliteAuthStore(auth_db))
             self.secret_store = SqliteSecretStore(secret_db, master_key=master_key)
             self.secret_store.startup_check()
+            from .model_settings import ModelSettings
+            self.model_settings = ModelSettings(self.secret_store)
+            self.model_settings.status()  # Authenticate persisted settings at startup.
             bootstrap = json.loads((ROOT / "configs" / "contracts" / "d5" /
                                     "admin-bootstrap.v2.json").read_text(encoding="utf-8"))
             identity = bootstrap["initial_credentials"]
@@ -184,6 +187,55 @@ class ProductRuntime:
             raise
         except (OSError, sqlite3.Error, ValueError, RuntimeError) as exc:
             raise ProductStartupError() from exc
+
+    def _model_settings_request(self, method, path, common):
+        from .secret_store import SecretAudit, SecretStoreError
+        from .model_settings import probe_settings
+        from ..llm.errors import ProviderError
+        from ..llm.credentials import CredentialError
+        rid=common['request_id']
+        try:
+            principal=self.auth.guard_admin_path(method,path,common['cookies'].get('ict_admin_session'),
+                csrf_token=common['headers'].get('x-csrf-token'),request_id=rid)
+            audit=SecretAudit(self.auth,rid,principal.session_id,common['source'])
+            if method=='GET' and path=='/api/v3/admin/model-settings':
+                result=self.model_settings.status()
+            else:
+                if len(common['body'])>8192 or common['content_type'].split(';')[0]!='application/json':
+                    return self._error(rid,'invalid_request',400)
+                data=json.loads(common['body'])
+                if not isinstance(data,dict): return self._error(rid,'invalid_request',400)
+                if method=='PUT' and path=='/api/v3/admin/model-settings' and set(data)=={'config','api_key','expected_revision'}:
+                    result=self.model_settings.save(data['config'],data['api_key'],data['expected_revision'],audit=audit)
+                elif method=='DELETE' and path=='/api/v3/admin/model-settings' and set(data)=={'expected_revision'}:
+                    result=self.model_settings.revoke(data['expected_revision'],audit=audit)
+                elif (method=='POST' and path=='/api/v3/admin/model-settings/test'
+                      and set(data)=={'explicit_confirmation'} and data['explicit_confirmation'] is True):
+                    if self.mode!='online':
+                        return self._error(rid,'online_mode_required',409,message='离线模式不进行模型连通测试；请明确启动 online 模式。')
+                    import hashlib
+                    self.secret_store.consume_connectivity_attempt(hashlib.sha256(common['source'].encode()).hexdigest(),audit=audit)
+                    try:
+                        result=probe_settings(self.model_settings)
+                    except Exception:
+                        self.secret_store.record_connectivity_outcome(audit,succeeded=False)
+                        raise
+                    self.secret_store.record_connectivity_outcome(audit,succeeded=True,
+                        usage_counts={'requests':result['calls'],'input_tokens':result['input_tokens'],
+                                      'output_tokens':result['output_tokens']})
+                else: return self._error(rid,'invalid_request',400)
+            return AuthHttpResponse(200,{'Content-Type':'application/json'},json.dumps(result).encode())
+        except AuthError as exc: return self._error(rid,exc.code,exc.http_status)
+        except (ValueError,TypeError,CredentialError): return self._error(rid,'invalid_request',400)
+        except ProviderError as exc:
+            return self._error(rid,'model_'+exc.code.value,400,
+                message={'configuration_error':'模型配置无效或单价未知，请检查配置。',
+                         'authentication_error':'模型服务认证失败，请检查 Key。',
+                         'authorization_error':'模型服务拒绝授权。',
+                         'network_error':'模型连接失败，请检查地址与网络。',
+                         'model_mismatch':'服务返回的模型与配置不一致。'}.get(exc.code.value,'模型测试未通过，请检查协议、限额及服务状态。'))
+        except SecretStoreError as exc: return self._error(rid,exc.code,exc.http_status)
+        except (OSError,sqlite3.Error,RuntimeError): return self._error(rid,'service_unavailable',503)
 
     @staticmethod
     def _disabled_probe(*_args, **_kwargs):
@@ -210,7 +262,7 @@ class ProductRuntime:
                 "SELECT COUNT(*) FROM visitor_sessions WHERE deleted_at IS NULL AND expires_at > ?", (now,)
             ).fetchone()[0])
         records = self.documents.list_records()
-        secret = self.secret_store.status()
+        model_status = self.model_settings.status()
         return {
             "mode": self.mode,
             "api_version": "3.0", "contract_version": "1.0.0",
@@ -220,10 +272,11 @@ class ProductRuntime:
                 "published": sum(item.state == "published" for item in records),
                 "ids": [item.document_id for item in records],
             },
-            "model_boundary": {"provider": "bailian_beijing", "model": "qwen3.7-flash",
+            "model_boundary": {"provider": self.model_settings.status()['config']['provider_id'],
+                               "model": self.model_settings.status()['config']['model'],
                                "fallback": False, "dynamic_routing": False},
-            "secret": {"configured": secret.configured,
-                       "source": "secret_store" if secret.configured else "not_configured"},
+            "secret": {"configured": model_status['credential_configured'],
+                       "source": "secret_store" if model_status['credential_configured'] else "not_configured"},
         }
 
     def _admin_usage(self) -> dict:
@@ -275,6 +328,7 @@ class ProductRuntime:
     def _secret_ready(self) -> bool:
         try:
             self.secret_store.startup_check()
+            self.model_settings.status()
             return True
         except (OSError, sqlite3.Error, RuntimeError):
             return False
@@ -325,6 +379,8 @@ class ProductRuntime:
             return self.auth_app.handle(method, path, **common)
         if path.startswith("/api/v3/admin/secrets/"):
             return self.secret_app.handle(method, path, **common)
+        if path.startswith("/api/v3/admin/model-settings"):
+            return self._model_settings_request(method, path, common)
         if path.startswith("/api/v3/admin/documents"):
             if path == "/api/v3/admin/documents" and method == "POST" and content_type.startswith("multipart/"):
                 try:
@@ -377,9 +433,9 @@ class ProductRuntime:
                                 json.dumps(value, ensure_ascii=False).encode("utf-8"))
 
     @classmethod
-    def _error(cls, rid: str, code: str, status: int) -> AuthHttpResponse:
+    def _error(cls, rid: str, code: str, status: int, *, message: str | None = None) -> AuthHttpResponse:
         return cls._json(status, {"api_version": "3.0", "contract_version": "1.0.0", "request_id": rid,
-                                  "error": {"code": code, "message": "服务暂时不可用。" if status == 503 else "请求无效。",
+                                  "error": {"code": code, "message": message or ("服务暂时不可用。" if status == 503 else "请求无效。"),
                                             "retryable": status == 503}})
 
 

@@ -28,12 +28,10 @@ class CredentialProvider(Protocol):
 
 
 def _validate_key(value: str) -> str:
-    key = value.strip().lstrip("\ufeff")
-    if not key or any(character.isspace() for character in key):
-        raise CredentialError("Credential text is empty or contains whitespace")
-    if not re.fullmatch(r"sk-[A-Za-z0-9._-]{16,}", key):
-        raise CredentialError("Credential text does not match the approved key format")
-    return key
+    if (not isinstance(value, str) or not 1 <= len(value) <= 4096
+            or any(ord(c) < 33 or ord(c) > 126 for c in value)):
+        raise CredentialError("Credential must be nonempty, bounded, header-safe text")
+    return value
 
 
 def _load_csv_key(path: Path) -> str:

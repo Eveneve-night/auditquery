@@ -20,6 +20,7 @@ export const API_VERSION = "3.0";
 export const CONTRACT_VERSION = "1.0.0";
 export const ADMIN_CONTRACT_VERSION = "2.0.0";
 export const CSRF_HEADER = "x-csrf-token";
+// Legacy fixture exports only; live requests use encrypted model-settings.
 export const PROVIDER = "bailian_beijing";
 export const MODEL = "qwen3.7-flash";
 
@@ -178,27 +179,27 @@ export function createClient(options = {}) {
       return send("GET", `/api/v3/admin/documents/${encodeURIComponent(documentId)}/download`, { raw: true });
     },
     adminReadKeyStatus() {
-      return send("GET", "/api/v3/admin/secrets/bailian");
+      return send("GET", "/api/v3/admin/model-settings");
     },
-    adminSaveKey({ apiKey, csrf }) {
-      return send("POST", "/api/v3/admin/secrets/bailian", {
+    adminSaveKey({ apiKey, csrf, config, expectedRevision }) {
+      return send("PUT", "/api/v3/admin/model-settings", {
         csrf,
-        body: { ...envelope(), provider: PROVIDER, model: MODEL, api_key: apiKey },
+        body: { config, api_key: apiKey, expected_revision: expectedRevision },
       });
     },
-    adminReplaceKey({ apiKey, csrf }) {
-      return send("PUT", "/api/v3/admin/secrets/bailian", {
+    adminReplaceKey({ apiKey, csrf, config, expectedRevision }) {
+      return send("PUT", "/api/v3/admin/model-settings", {
         csrf,
-        body: { ...envelope(), provider: PROVIDER, model: MODEL, api_key: apiKey },
+        body: { config, api_key: apiKey, expected_revision: expectedRevision },
       });
     },
-    adminDeleteKey({ csrf }) {
-      return send("DELETE", "/api/v3/admin/secrets/bailian", { csrf });
+    adminDeleteKey({ csrf, expectedRevision }) {
+      return send("DELETE", "/api/v3/admin/model-settings", { csrf, body: { expected_revision: expectedRevision } });
     },
     adminTestKeyConnectivity({ csrf }) {
-      return send("POST", "/api/v3/admin/secrets/bailian/connectivity-test", {
+      return send("POST", "/api/v3/admin/model-settings/test", {
         csrf,
-        body: { ...envelope(), explicit_confirmation: true },
+        body: { explicit_confirmation: true },
       });
     },
     adminReadAudit() {

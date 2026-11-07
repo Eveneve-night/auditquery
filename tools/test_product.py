@@ -18,6 +18,7 @@ PATTERNS = (
     "test_d5_document_lifecycle.py", "test_d5_product_server.py",
     "test_d5_product_snapshot.py", "test_data_source_contracts.py",
     "test_fin_source_registry.py", "test_fin_source_storage.py",
+    "test_model_settings.py",
 )
 
 if __name__ == "__main__":
