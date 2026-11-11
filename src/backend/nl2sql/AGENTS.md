@@ -4,7 +4,7 @@
 
 ## 最小入口
 
-读根AGENTS、[产品任务板](../../../docs/product/TASKS.md)，按任务读取SQL proposal / SafetyGate / 执行器及契约。评测任务读[测试策略](../../../docs/product/TESTING.md)。历史D3审查按需追溯，不强制追加报告。
+读根AGENTS、[产品任务板](../../../docs/product/TASKS.md)，按任务读取SQL proposal / SafetyGate / 执行器及契约。评测任务读[测试策略](../../../docs/product/TESTING.md)。修改执行边界时记录验证结果。
 
 ## 执行边界
 
