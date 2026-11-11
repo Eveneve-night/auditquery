@@ -1,26 +1,37 @@
 # AuditQuery
 
-可审计的本地只读数据问答原型。已有固定 Chinook 单表 SQL 候选、安全门与只读执行、澄清/拒答、预算控制、文档页级证据、身份/CSRF、加密凭据与持久化。
+AuditQuery 是面向开发者、数据分析人员和小团队的本地只读数据问答工具。查询结果可核对 SQL、数据来源和实际执行记录；文档摘录可核对原文及页码。
 
-SQLite 数据源 Adapter 和管理 HTTP 尚未实现；数据源管理页是预览。文档回答主要为确定性摘录，尚无模型综合答案或跨源融合。离线页面使用示例。
+## 能做什么
 
-## 启动与测试
+- 对随附的 Chinook 数据库执行受安全门约束的单表只读查询；缺少必要信息时请求澄清。
+- 检索已发布的 PDF，展示带页码的确定性摘录。
+- 管理员可配置兼容 Chat Completions 的模型服务；服务商、模型和 Key 不固定。此能力以所检出的版本为准。
 
-Python 3.12，安装 requirements-product.txt，从根目录执行：
+当前不支持任意 SQLite 数据库接入、JOIN、跨源问答或生成式文档综合回答。数据源管理界面为预览，离线演示使用固定样例。
+
+## 本地试用
+
+需要 Python 3.12。在仓库根目录执行以下 PowerShell 命令；它为一次性离线试用生成进程级主密钥：
 
 ```powershell
+python -m pip install -r requirements-product.txt
 $env:PYTHONPATH = Join-Path (Get-Location) 'src'
-# 设置 ICT_MASTER_KEY_FILE 为仓库外自行生成的主密钥文件。
-python -m backend.product.server serve --instance <仓库外实例目录> --mode offline
-python tools/test_product.py
+$env:ICT_SECRET_MASTER_KEY_B64 = python -c "import secrets; import base64; print(base64.urlsafe_b64encode(secrets.token_bytes(32)).decode())"
+$instance = Join-Path ([System.IO.Path]::GetTempPath()) ('auditquery-' + [guid]::NewGuid())
+python -m backend.product.server serve --instance $instance --mode offline
 ```
 
-服务默认绑定 127.0.0.1:8000。`/health/live` 检查存活，`/health/ready` 检查就绪；缺少主密钥时就绪失败。Windows 封装为 infra/start.ps1，容器入口为 compose.yaml。
+打开 `http://127.0.0.1:8000/demo`。离线试用不需要模型 Key。若需要重启后保留实例，请使用[部署指南](infra/README.md)中的持久主密钥方案，不要为同一个实例重新生成密钥。
 
-在线模型可在管理员设置中配置服务商、Base URL、模型和 Key，支持 OpenAI 兼容 Chat Completions；百炼不再是唯一选择。远程 HTTPS、本地回环 HTTP/无认证显式开启，无隐式 fallback。未知单价显示 unknown 并在发送前失败关闭，需填写 CNY 单价后才能调用。其他原生协议未支持，见 [模型服务与迁移](docs/product/MODEL-SERVICES.md)。用户自行配置后的正常产品使用不需逐次人工审批；开发 Agent 仍不擅自读取真实 Key 或消耗付费 API。
+## 按你的需求阅读
 
-核心回归入口不代表全部测试或业务准确率；完整发现仍包含待迁移的历史材料检查，见 [测试策略](docs/product/TESTING.md)。
+| 我想做什么 | 从哪里开始 |
+|---|---|
+| 了解适用场景和产品边界 | [产品范围](docs/product/PRODUCT.md) |
+| 安装、配置在线模型、备份恢复 | [部署](infra/README.md) · [模型服务设置](docs/product/MODEL-SERVICES.md) |
+| 阅读或修改代码 | [源码导航](src/README.md) · [架构](docs/product/ARCHITECTURE.md) · [贡献指南](CONTRIBUTING.md) |
+| 运行测试或查找样例 | [测试](tests/README.md) · [数据](data/README.md) · [工具](tools/README.md) |
+| 反馈缺陷或安全问题 | [问题反馈](CONTRIBUTING.md) · [安全策略](SECURITY.md) |
 
-[产品范围](docs/product/PRODUCT.md) · [架构](docs/product/ARCHITECTURE.md) · [任务](docs/product/TASKS.md) · [开发约定](AGENTS.md)。D3/D4/D5 为内部协议兼容版本标识。
-
-当前是开发中源码原型，不是已完成的通用产品或 v0.1 功能发布。模型配置任务的核心回归为 210 项（含 17 项新专项），相关在线 SQL 离线回归 27 项、前端回归 64 项；原迁移阶段文档专项 13 项的结果只绑定其对应版本。这不代表完整旧测试集通过，也不代表真实服务商在线验收。历史测试迁移、干净安装和容器验收仍列为后续工作。
+项目自有代码采用 [MIT](LICENSE)。数据和依赖的许可见[第三方声明](THIRD_PARTY_NOTICES.md)和[资产许可](docs/product/ASSET-LICENSES.md)。
