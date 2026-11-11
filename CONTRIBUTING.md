@@ -5,7 +5,7 @@
 ## 提交修改
 
 1. 阅读[架构](docs/product/ARCHITECTURE.md)及适用的 [开发约定](AGENTS.md)，从目标分支创建任务分支。
-2. 使用 Python 3.12 安装 `requirements-product.txt`，运行 `python tools/test_product.py`。按[测试策略](docs/product/TESTING.md)补充受影响模块的测试。
+2. 使用 Python 3.12 安装 `requirements-product.txt`，运行 `python tools/test_product.py`。改动涉及专项模块时，用 `python tools/test_specialized.py --list` 查看已声明的分组并运行对应分组。按[测试策略](docs/product/TESTING.md)补充受影响模块的测试。
 3. PR 说明问题、改动、兼容性、验证结果和未验证项。不要把模拟结果当作真实服务验收。
 4. 涉及权限、凭据、SQL 执行或模型外发的变更须独立安全复核。新增数据或代码时核对授权并保留第三方通知。
 

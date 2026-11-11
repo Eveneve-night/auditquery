@@ -1,6 +1,7 @@
 # 开发与运维工具
 
 - `test_product.py`：默认离线产品回归；从仓库根目录执行。
+- `test_specialized.py`：已声明的专项套件入口；用 `--list` 查看分组与依赖，用 `--suite` 选择分组。缺前置条件时如实报 skipped 并返回非零退出码。
 - `data_assets/`、`rag/`、`schema_linking/`：生成合成数据、文档夹具和元数据。
 - `evaluation/`：专项校验和评测。运行前检查输入、依赖与输出路径，不是默认测试入口。
 - `demo/`、`deployment/`：演示和部署探针。
